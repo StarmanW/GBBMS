@@ -38,4 +38,14 @@ class Donor extends Authenticatable
     {
         $this->notify(new DonorResetPassword($token));
     }
+
+    //One-To-Many Reservation Relationship
+    public function reservations(){
+        return $this->hasMany('App\Reservation');
+    }
+
+    //One-To-Many Blood Relationship
+    public function bloods(){
+        return $this->hasMany('App\Blood');
+    }
 }

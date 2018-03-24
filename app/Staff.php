@@ -38,4 +38,9 @@ class Staff extends Authenticatable
     {
         $this->notify(new StaffResetPassword($token));
     }
+
+    //One-To-Many EventSchedule Relationship
+    public function staffs() {
+        return $this->hasMany('App\EventSchedule');
+    }
 }
