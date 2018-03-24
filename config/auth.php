@@ -36,6 +36,16 @@ return [
     */
 
     'guards' => [
+        'donor' => [
+            'driver' => 'session',
+            'provider' => 'donors',
+        ],
+
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
+        ],
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -65,6 +75,16 @@ return [
     */
 
     'providers' => [
+        'donors' => [
+            'driver' => 'eloquent',
+            'model' => App\Donor::class,
+        ],
+
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\Staff::class,
+        ],
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
@@ -92,6 +112,18 @@ return [
     */
 
     'passwords' => [
+        'donors' => [
+            'provider' => 'donors',
+            'table' => 'donor_password_resets',
+            'expire' => 60,
+        ],
+
+        'staff' => [
+            'provider' => 'staff',
+            'table' => 'staff_password_resets',
+            'expire' => 60,
+        ],
+
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
