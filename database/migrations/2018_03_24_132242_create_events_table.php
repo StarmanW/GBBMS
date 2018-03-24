@@ -14,7 +14,13 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('eventID', 10)->primary();
+            $table->string('eventName', 255)->nullable(false);
+            $table->date('eventDate')->nullable(false);
+            $table->time('eventStartTime')->nullable(false);
+            $table->time('eventEndTime')->nullable(false);
+            $table->string('roomID', 10)->nullable(false)->unique();
+            $table->boolean('eventStatus')->nullable(false);
             $table->timestamps();
         });
     }

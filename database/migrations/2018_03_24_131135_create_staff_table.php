@@ -13,10 +13,17 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('staffID', 10)->primary();
+            $table->boolean('staffPos')->nullable(false);
+            $table->string('password', 255)->nullable(false);
+            $table->string('ICNum', 12)->unique()->nullable(false);
+            $table->date('birthDate')->nullable(false);
+            $table->string('firstName', 255)->nullable(false);
+            $table->string('lastName', 255)->nullable(false);
+            $table->string('emailAddress', 255)->unique()->nullable(false);
+            $table->string('phoneNum', 20);
+            $table->string('homeAddress', 500);
+            $table->boolean('staffAccStatus')->nullable(false);
             $table->rememberToken();
             $table->timestamps();
         });
