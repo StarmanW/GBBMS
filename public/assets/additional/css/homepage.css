@@ -1,0 +1,56 @@
+
+.card-img {
+    color: #149dcc;
+    background-color: #0d6786;
+}
+
+/*title card screen size based on hover transform funtion*/
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+    #fa-card-icon-1,
+	#fa-card-icon-2,
+	#fa-card-icon-3 {
+		margin-top: .2em;
+	}
+}
+
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+    #fa-card-icon-1,
+	#fa-card-icon-2,
+	#fa-card-icon-3 {
+		margin-top: .2em;
+	}
+}
+@media only screen and (min-width: 1200px) {
+    #fa-card-icon-1,
+	#fa-card-icon-2,
+	#fa-card-icon-3 {
+		margin-top: .05em;
+	}
+}
+
+.activity-table td{
+	vertical-align: top;
+	text-align: left;
+}
+
+/*mobirise style with tweaked value*/
+/*initial shadow with deeper on hover shadow*/
+.cid-qBNZ18swZs .timeline-text-content {
+	box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+	transition: all .4s;
+ }
+
+ .cid-qBNZ18swZs .timeline-element:hover .timeline-text-content {
+	box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.16);
+	transition: all .4s;
+}
+
+.cid-qBNZ18swZs .mbr-timeline-date {
+	box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+	transition: all .4s;
+}
+
+.cid-qBNZ18swZs .timeline-element:hover .mbr-timeline-date {
+	box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.16);
+	transition: all .4s;
+}

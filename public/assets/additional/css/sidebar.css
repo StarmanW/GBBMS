@@ -1,0 +1,84 @@
+body {
+    font-family: 'Rubik' !important;
+    font-weight: 400;
+}
+
+#homepageStyle {
+    font-size: 20px
+}
+
+.w3-container {
+    padding: 0;
+}
+
+.w3-sidebar {
+    width: 250px;
+    height: 100%;
+    background: #333333;
+    color: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sideBarHR {
+    background: #aaa;
+    margin: auto;
+    width: 95%;
+    
+}
+
+.fa-angle-up {
+    position: fixed; 
+    z-index: 1;
+    margin-left: 2%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.fa-angle-up:hover,
+.fa-angle-up:focus,
+.fa-angle-up.focus,
+.fa-angle-up.active {
+    color: white;
+    background-color: #0d6786;
+    opacity: 1;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+    .fa-angle-up {
+        top: 80px;
+        height: 30px;
+        width: 30px;
+        margin-left: .5%;
+    }
+
+    .sidebar-wrapper {
+        margin-top: 30%;
+    }
+    
+}
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+    .sidebar-wrapper {
+        margin-top: 46%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .fa-angle-up {
+        margin-left: 2%;
+    }
+
+    .sidebar-wrapper {
+        margin-top: 45%;
+    }
+}

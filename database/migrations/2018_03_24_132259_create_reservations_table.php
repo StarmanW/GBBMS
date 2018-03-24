@@ -15,8 +15,8 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->string('resvID')->primary();
-            $table->foreign('donorID')->references('donorID')->on('donors');
-            $table->foreign('eventID')->references('eventID')->on('events');
+            $table->string('donorID', 10);
+            $table->string('eventID', 10);
             $table->dateTime('resvDateTime')->nullable(false);
             $table->integer('resvStatus')->nullable(false);
             $table->timestamps();

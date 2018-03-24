@@ -1,0 +1,34 @@
+
+.table td {
+    padding: .60rem;
+}
+
+.table .button-column {
+    text-align: right;
+}
+
+table .fa-bars,
+table .fa-calendar-check {
+    display: inline-block;    
+    width: 1.8rem;
+    height: 1.5rem;
+    outline: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: .2em .7em;
+    margin: 0;
+    border-radius: 3px;
+}
+
+table .fa-bars:hover,
+table .fa-bars:focus,
+table .fa-bars.focus,
+table .fa-bars.active,
+table .fa-calendar-check:hover,
+table .fa-calendar-check:focus,
+table .fa-calendar-check.focus,
+table .fa-calendar-check.active {
+    color: white;
+    background-color: #0d6786;
+}
