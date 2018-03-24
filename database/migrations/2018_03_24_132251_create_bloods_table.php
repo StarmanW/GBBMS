@@ -13,8 +13,12 @@ class CreateBloodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bloods', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('blood', function (Blueprint $table) {
+            $table->string('bloodBagID', 10)->primary();
+            $table->foreign('donorID')->references('donorID')->on('donors');
+            $table->foreign('eventID')->references('eventID')->on('events');
+            $table->float('bloodVol', 8, 2)->nullable(false);
+            $table->string('remarks', 255)->nullable(false);
             $table->timestamps();
         });
     }

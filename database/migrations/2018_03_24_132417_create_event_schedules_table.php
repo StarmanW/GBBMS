@@ -14,7 +14,9 @@ class CreateEventSchedulesTable extends Migration
     public function up()
     {
         Schema::create('event_schedules', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('schedID', 10);
+            $table->foreign('staffID')->references('staffID')->on('staff');
+            $table->foreign('eventID')->references('eventID')->on('events');
             $table->timestamps();
         });
     }

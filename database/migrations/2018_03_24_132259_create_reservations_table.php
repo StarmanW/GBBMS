@@ -14,7 +14,11 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('resvID')->primary();
+            $table->foreign('donorID')->references('donorID')->on('donors');
+            $table->foreign('eventID')->references('eventID')->on('events');
+            $table->dateTime('resvDateTime')->nullable(false);
+            $table->integer('resvStatus')->nullable(false);
             $table->timestamps();
         });
     }
