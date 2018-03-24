@@ -20,6 +20,6 @@ class Event extends Model
 
     //One-To-Many EventSchedule Relationship
     public function eventSchedules(){
-        return $this->hasMany('App\EventSchedules');
+        return $this->hasMany('App\EventSchedule');
     }
 }
