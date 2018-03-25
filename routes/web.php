@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//TEST
+Route::get('/donate-history', function () {
+    return view('donor.donate-history');
+});
+//TEST END
 
 //Login Route
 Route::get('/login', function () {
