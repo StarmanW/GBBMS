@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v4.6.5, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="assets/images/gLogo.png" type="image/x-icon">
+    <meta name="description" content="">
+    <title>View Lists</title>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+    <link rel="stylesheet" href="assets/tether/tether.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+
+    <link rel="stylesheet" href="assets/additional/css/scrollToTop.css" type="text/css">
+    <link rel="stylesheet" href="assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href="assets/additional/css/table-list.css" type="text/css">
+    <link rel="stylesheet" href="assets/additional/css/viewlist.css" type="text/css">
+</head>
+
+<body>
+    <section class="menu cid-qLZn3ksm57" once="menu" id="menu1-i">
+        <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="menu-logo">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <!-- TEMP LINK -->
+                        <a href="login.html">
+                            <img src="assets/images/gleneagles-singapore-thumb-img-1-262x262.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap">
+                        <a class="navbar-caption text-white display-7" href="homepage-hr.html">Gleneagles Kota Kinabalu</a>
+                    </span>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                    <li class="nav-item">
+                        <a class="nav-link link text-white display-4" href="dashboard.html">DASHBOARD</a>       <!-- TEMP LINK -->
+                    </li>
+                    <li class="nav-item dropdown open">
+                        <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
+                        <div class="dropdown-menu">
+                            <a class="text-white dropdown-item display-4" href="registration.html">Registration     <!-- TEMP LINK -->
+                                <br>
+                            </a>
+                            <a class="text-white dropdown-item display-4" href="./viewlist-hr.html">View Lists        <!-- TEMP LINK -->
+                                <br>
+                            </a>
+                            <a class="text-white dropdown-item display-4" href="">View Reports</a>      <!-- TEMP LINK -->
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-white display-4" href="login.html">      <!-- TEMP LINK -->
+                            <span class="mbri-lock mbr-iconfont mbr-iconfont-btn"></span>LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <div class="container active wrapper-multitab">
+        <h1 class="mbr-section-title mbr-fonts-style align-center pb-3 display-1">View Lists</h1>
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#event">Event List</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#staff">Staff List</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#donor">Donor List</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="event" class="tab-pane fade in active">
+                <section class="section-table cid-qMsKYUfsjq" id="table1-1s">
+                    <div class="container container-table">
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event List</h2>
+                        <div class="table-wrapper">
+                            <div class="container">
+                                <div class="row search">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6">
+                                        <div class="dataTables_filter">
+                                            <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                            <input class="form-control input-sm" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="container scroll">
+                                <table class="table isSearch" cellspacing="0">
+                                    <thead>
+                                        <tr class="table-heads ">
+                                            <th class="head-item mbr-fonts-style display-7">Event ID</th>
+                                            <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                            <th class="head-item mbr-fonts-style display-7">Date</th>
+                                            <th class="head-item mbr-fonts-style display-7">Time</th>
+                                            <th class="head-item mbr-fonts-style display-7">Event Status</th>
+                                            <th class="head-item mbr-fonts-style display-7"></th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">E180124</td>
+                                            <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <a href="./event-details-hr.html"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">E181285</td>
+                                            <td class="body-item mbr-fonts-style display-7">Blood Week June 2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">20-Jun-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">11.00 Am to 5.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">Cancelled</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">E184523</td>
+                                            <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive October 2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">15-Oct-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">E174523</td>
+                                            <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive December 2017</td>
+                                            <td class="body-item mbr-fonts-style display-7">18-Dec-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">Finished</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="container table-info-container">
+                                <div class="row info">
+                                    <div class="col-md-6">
+                                        <div class="dataTables_info mbr-fonts-style display-7">
+                                            <span class="infoBefore">Showing</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoAfter">entries</span>
+                                            <span class="infoFilteredBefore">(filtered from</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoFilteredAfter"> total entries)</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div id="staff" class="tab-pane fade in active">
+                <section class="section-table cid-qMsKT09Rch" id="table1-1q">
+                    <div class="container container-table">
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Staff List</h2>
+                        <div class="table-wrapper">
+                            <div class="container">
+                                <div class="row search">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6">
+                                        <div class="dataTables_filter">
+                                            <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                            <input class="form-control input-sm" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="container scroll">
+                                <table class="table isSearch" cellspacing="0">
+                                    <thead>
+                                        <tr class="table-heads">
+                                            <th class="head-item mbr-fonts-style display-7">Staff ID</th>
+                                            <th class="head-item mbr-fonts-style display-7">Staff Name</th>
+                                            <th class="head-item mbr-fonts-style display-7">Position</th>
+                                            <th class="head-item mbr-fonts-style display-7">Email Address</th>
+                                            <th class="head-item mbr-fonts-style display-7">Phone Number</th>
+                                            <th class="head-item mbr-fonts-style display-7">Account Status</th>
+                                            <th class="head-item mbr-fonts-style display-7"></th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">SH15001</td>
+                                            <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
+                                            <td class="body-item mbr-fonts-style display-7">HR Manager</td>
+                                            <td class="body-item mbr-fonts-style display-7">zions-sh15@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">019-553-5413</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">SN16002</td>
+                                            <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
+                                            <td class="body-item mbr-fonts-style display-7">Nurse</td>
+                                            <td class="body-item mbr-fonts-style display-7">samuelwkf-sn16@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">012-446-5856</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">SN17001</td>
+                                            <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
+                                            <td class="body-item mbr-fonts-style display-7">Nurse</td>
+                                            <td class="body-item mbr-fonts-style display-7">chongjh-sn17@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">013-124-9875</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">SN18030</td>
+                                            <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
+                                            <td class="body-item mbr-fonts-style display-7">Nurse</td>
+                                            <td class="body-item mbr-fonts-style display-7">enjiuntej-sn18@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">019-542-1123</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">SN17035</td>
+                                            <td class="body-item mbr-fonts-style display-7">Teo Kien Lung</td>
+                                            <td class="body-item mbr-fonts-style display-7">Nurse</td>
+                                            <td class="body-item mbr-fonts-style display-7">teokl-sn17@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">016-856-4231</td>
+                                            <td class="body-item mbr-fonts-style display-7">Deactivated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="container table-info-container">
+                                <div class="row info">
+                                    <div class="col-md-6">
+                                        <div class="dataTables_info mbr-fonts-style display-7">
+                                            <span class="infoBefore">Showing</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoAfter">entries</span>
+                                            <span class="infoFilteredBefore">(filtered from</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoFilteredAfter"> total entries)</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div id="donor" class="tab-pane fade in active">
+                <section class="section-table cid-qMsKEFTWPJ" id="table1-1p">
+                    <div class="container container-table">
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
+                        <div class="table-wrapper">
+                            <div class="container">
+                                <div class="row search">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6">
+                                        <div class="dataTables_filter">
+                                            <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                            <input class="form-control input-sm" disabled="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="container scroll">
+                                <table class="table isSearch" cellspacing="0">
+                                    <thead>
+                                        <tr class="table-heads ">
+                                            <th class="head-item mbr-fonts-style display-7">NAME</th>
+                                            <th class="head-item mbr-fonts-style display-7">Donor ID</th>
+                                            <th class="head-item mbr-fonts-style display-7">Blood Type</th>
+                                            <th class="head-item mbr-fonts-style display-7">Email Address</th>
+                                            <th class="head-item mbr-fonts-style display-7">Phone Number</th>
+                                            <th class="head-item mbr-fonts-style display-7">Account Status</th>
+                                            <th class="head-item mbr-fonts-style display-7"></th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
+                                            <td class="body-item mbr-fonts-style display-7">DNOPAA0001</td>
+                                            <td class="body-item mbr-fonts-style display-7">O Positive</td>
+                                            <td class="body-item mbr-fonts-style display-7">samuelwkf-sn16@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">019-864-2235</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Shrilina Koo Yung Ja</td>
+                                            <td class="body-item mbr-fonts-style display-7">DNANEC0002</td>
+                                            <td class="body-item mbr-fonts-style display-7">A Negative</td>
+                                            <td class="body-item mbr-fonts-style display-7">shirlinakyj-sa16@student.tarc.edu.my</td>
+                                            <td class="body-item mbr-fonts-style display-7">014-245-7855</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
+                                            <td class="body-item mbr-fonts-style display-7">DABPER0004</td>
+                                            <td class="body-item mbr-fonts-style display-7">AB Positive</td>
+                                            <td class="body-item mbr-fonts-style display-7">xXNoSkopeXx@outlook.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">013-574-7855</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
+                                            <td class="body-item mbr-fonts-style display-7">DNBPEF0005</td>
+                                            <td class="body-item mbr-fonts-style display-7">B Positive</td>
+                                            <td class="body-item mbr-fonts-style display-7">PepeTheFrog@hotmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">019-152-5543</td>
+                                            <td class="body-item mbr-fonts-style display-7">Deactivated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Teo Kien Lung</td>
+                                            <td class="body-item mbr-fonts-style display-7">DNAPEF0004</td>
+                                            <td class="body-item mbr-fonts-style display-7">A Positive</td>
+                                            <td class="body-item mbr-fonts-style display-7">imrichaf@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">019-154-7562</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
+                                            <td class="body-item mbr-fonts-style display-7">DNOPEF0004</td>
+                                            <td class="body-item mbr-fonts-style display-7">O Positive</td>
+                                            <td class="body-item mbr-fonts-style display-7">ididdrugs98@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">014-548-7878</td>
+                                            <td class="body-item mbr-fonts-style display-7">Activated</td>
+                                            <td class="body-item mbr-fonts-style display-7">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="container table-info-container">
+                                <div class="row info">
+                                    <div class="col-md-6">
+                                        <div class="dataTables_info mbr-fonts-style display-7">
+                                            <span class="infoBefore">Showing</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoAfter">entries</span>
+                                            <span class="infoFilteredBefore">(filtered from</span>
+                                            <span class="inactive infoRows"></span>
+                                            <span class="infoFilteredAfter"> total entries)</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section class="cid-qLZKjpnkMs" id="footer1-s">
+        <div class="container">
+            <div class="media-container-row content text-white">
+                <div class="col-12 col-md-3">
+                    <div class="media-wrap">
+                        <!-- TEMP LINK -->
+                        <a href="homepage-hr.html">
+                            <img src="assets/images/gLogo.png" alt="Gleneagles Logo" title="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                    <h5 class="pb-3">
+                        Address
+                    </h5>
+                    <p class="mbr-text">Riverson@Sembulan, Block A-1, Lorong Riverson@Sembulan,
+                        <br>88100 Kota Kinabalu, Sabah</p>
+                </div>
+                <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                    <h5 class="pb-3">
+                        Contacts
+                    </h5>
+                    <p class="mbr-text">General Line: +6088 518 888
+                        <br>Appointment Line: +6088-518 810
+                        <br>FAX: +6088-518 889
+                        <br>24-Hour Emergency &amp; Ambulance: +6088-518 911</p>
+                </div>
+                <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                    <h5 class="pb-3">
+                        Links
+                    </h5>
+                    <p class="mbr-text">
+                        <a href="http://gleneagleskk.com.my/" target="_blank">Gleneagles KK
+                        </a>
+                        <br>
+                        <a href="http://gleneagleskk.com.my/contact-us/" target="_blank">Gleneagles Contact From
+                        </a>
+                        <br>
+                        <a href="http://gleneagleskk.com.my/careers/" target="_blank">Careers</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-lower">
+                <div class="media-container-row">
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="media-container-row mbr-white">
+                    <div class="col-sm-12 copyright">
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            © Copyright 2018 Gleneagles Kota Kinabalu Hospital. All rights reserved
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="assets/popper/popper.min.js"></script>
+    <script src="assets/tether/tether.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/dropdown/js/script.min.js"></script>
+    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+    <script src="assets/parallax/jarallax.min.js"></script>
+    <script src="assets/smoothscroll/smooth-scroll.js"></script>
+    <script src="assets/datatables/jquery.data-tables.min.js"></script>
+    <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <script src="assets/additional/js/scrolltotop.js"></script>
+    <script src="assets/additional/js/noBackDate.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <!-- Back to top -->
+    <div id="scrollToTop" class="scrollToTop mbr-arrow-up">
+        <a style="text-align: center;">
+            <i></i>
+        </a>
+    </div>
+</body>
+
+</html>
