@@ -48,15 +48,15 @@ class RegisterController extends Controller {
 
         //Data Input Validation
         return Validator::make($data, [
-            'firstName' => ['required', 'string', 'min:2', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'lastName' => ['required', 'string', 'min:2', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
             'ICNum' => ['required', 'min:12', 'max:12', 'regex:/\d{12}/'],
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:donors',
             'birthDate' => 'required|date',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|max:255|confirmed',
             'bloodType' => ['required', 'regex:/[1-8]{1}/'],
-            'homeAddress' => 'required'
+            'homeAddress' => 'required|max:500'
         ]);
     }
 
