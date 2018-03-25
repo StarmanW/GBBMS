@@ -6,9 +6,14 @@ use App\Notifications\DonorResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Donor extends Authenticatable
-{
+class Donor extends Authenticatable {
     use Notifiable;
+
+    //Defining custom PK field for Donor, otherwise it will default to "id"
+    protected $primaryKey = 'donorID';
+
+    //Set incrementing to false, otherwise the PK field will be cast to INTEGER
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +21,9 @@ class Donor extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'donorID', 'password', 'ICNum', 'birthDate', 'firstName',
+        'lastName', 'emailAddress', 'phoneNum', 'homeAddress',
+        'bloodType', 'donorAccStatus'
     ];
 
     /**
@@ -31,21 +38,20 @@ class Donor extends Authenticatable
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         $this->notify(new DonorResetPassword($token));
     }
 
     //One-To-Many Reservation Relationship
-    public function reservations(){
+    public function reservations() {
         return $this->hasMany('App\Reservation');
     }
 
     //One-To-Many Blood Relationship
-    public function bloods(){
+    public function bloods() {
         return $this->hasMany('App\Blood');
     }
 }

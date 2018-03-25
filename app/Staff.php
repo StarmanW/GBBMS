@@ -10,6 +10,12 @@ class Staff extends Authenticatable
 {
     use Notifiable;
 
+    //Defining custom PK field for Staff, otherwise it will default to "id"
+    protected $primaryKey = 'staffID';
+
+    //Set incrementing to false, otherwise the PK field will be cast to INTEGER
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *

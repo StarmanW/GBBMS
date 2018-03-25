@@ -4,11 +4,11 @@ namespace App\Http\Controllers\DonorAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -36,8 +36,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('donor.guest', ['except' => 'logout']);
     }
 
@@ -46,9 +45,8 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLoginForm()
-    {
-        return view('donor.auth.login');
+    public function showLoginForm() {
+        return view('login');
     }
 
     /**
@@ -56,8 +54,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
+    protected function guard() {
         return Auth::guard('donor');
+    }
+
+    //Overwrite default logout function to redirect to "/login"
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
     }
 }

@@ -4,22 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
-{
-    //
+class Event extends Model {
+
+    //Defining custom PK field for Event, otherwise it will default to "id"
+    protected $primaryKey = 'eventID';
+
+    //Set incrementing to false, otherwise the PK field will be cast to INTEGER
+    public $incrementing = false;
 
     //One-To-Many Reservation Relationship
-    public function reservations(){
+    public function reservations() {
         return $this->hasMany('App\Reservation');
     }
 
     //One-To-Many Blood Relationship
-    public function bloods(){
+    public function bloods() {
         return $this->hasMany('App\Blood');
     }
 
     //One-To-Many EventSchedule Relationship
-    public function eventSchedules(){
+    public function eventSchedules() {
         return $this->hasMany('App\EventSchedule');
     }
 }

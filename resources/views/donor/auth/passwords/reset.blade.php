@@ -1,4 +1,4 @@
-@extends('donor.layout.auth')
+@extends('donor.layout.baseTemplate')
 
 @section('content')
 <div class="container">

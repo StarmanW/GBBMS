@@ -1,4 +1,4 @@
-@extends('donor.layout.auth')
+@extends('donor.layout.baseTemplate')
 
 <!-- Main Content -->
 @section('content')

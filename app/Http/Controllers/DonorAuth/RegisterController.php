@@ -8,8 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -35,38 +34,56 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('donor.guest');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
+
+        //Data Input Validation
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:donors',
+            'firstName' => ['required', 'string', 'min:2', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'lastName' => ['required', 'string', 'min:2', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'ICNum' => ['required', 'min:12', 'max:12', 'regex:/\d{12}/'],
+            'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
+            'emailAddress' => 'required|email|max:255|unique:donors',
+            'birthDate' => 'required|date',
             'password' => 'required|min:6|confirmed',
+            'bloodType' => ['required', 'regex:/[1-8]{1}/'],
+            'homeAddress' => 'required'
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return Donor
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
+
+        //Generate donor ID, get year and get the latest donor count
+        $donorID = 'D' . date('y') . sprintf('%04d', count(Donor::all()) + 1);
+
+        //Return the created donor instance and store in DB
         return Donor::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'donorID' => $donorID,
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'ICNum' => $data['ICNum'],
+            'phoneNum' => $data['phoneNum'],
+            'emailAddress' => $data['emailAddress'],
+            'birthDate' => $data['birthDate'],
             'password' => bcrypt($data['password']),
+            'bloodType' => $data['bloodType'],
+            'homeAddress' => $data['homeAddress'],
+            'donorAccStatus' => 1,
         ]);
     }
 
@@ -75,9 +92,8 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRegistrationForm()
-    {
-        return view('donor.auth.register');
+    public function showRegistrationForm() {
+        return view('donor.auth.registerDonor');    //Return registration form in "donor" > "auth" folder
     }
 
     /**
@@ -85,8 +101,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
+    protected function guard() {
         return Auth::guard('donor');
     }
 }
