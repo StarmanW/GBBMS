@@ -11,8 +11,40 @@
 |
 */
 //TEST
-Route::get('/donate-history', function () {
+Route::get('/donation', function () {
     return view('donor.donate-history');
+});
+
+Route::get('/donation/detail', function () {
+    return view('donor.donate-history-details');
+});
+
+Route::get('/profile', function () {
+    return view('donor.donor-profile');
+});
+
+Route::get('/event', function () {
+    return view('donor.event-details-donor');
+});
+
+Route::get('/home', function () {
+    return view('donor.home');
+});
+
+Route::get('/registration', function () {
+    return view('donor.registerDonor');
+});
+
+Route::get('/reservation', function () {
+    return view('donor.resv-list');
+});
+
+Route::get('/reservation/detail', function () {
+    return view('donor.resv-details');
+});
+
+Route::get('/upcoming-events', function () {
+    return view('donor.upcoming-event-list');
 });
 //TEST END
 
