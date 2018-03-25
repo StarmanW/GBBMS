@@ -137,5 +137,4 @@
 @section('additionalJS')
     <script src="{{'/assets/additional/js/jquery-1.12.1.min.js'}}"></script>
     <script src="{{'/assets/additional/js/login-page_script.js'}}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 @endsection
