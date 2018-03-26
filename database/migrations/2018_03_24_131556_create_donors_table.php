@@ -14,15 +14,17 @@ class CreateDonorsTable extends Migration
     {
         Schema::create('donors', function (Blueprint $table) {
             $table->string('donorID', 10)->primary();
-            $table->string('password', 255)->nullable(false);
+            $table->string('password')->nullable(false);
             $table->string('ICNum', 12)->unique()->nullable(false);
             $table->date('birthDate')->nullable(false);
-            $table->string('firstName', 255)->nullable(false);
-            $table->string('lastName', 255)->nullable(false);
-            $table->string('emailAddress', 255)->unique()->nullable(false);
+            $table->string('firstName')->nullable(false);
+            $table->string('lastName')->nullable(false);
+            $table->string('emailAddress')->unique()->nullable(false);
+            $table->boolean('gender')->nullable(false);
             $table->string('phoneNum', 20);
-            $table->string('homeAddress', 500);
+            $table->string('homeAddress');
             $table->integer('bloodType')->nullable(false);
+            $table->string('profileImage');
             $table->boolean('donorAccStatus')->nullable(false);
             $table->rememberToken();
             $table->timestamps();

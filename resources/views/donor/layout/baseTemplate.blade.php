@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="assets/images/gLogo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/gLogo.png" type="image/x-icon">
     <meta name="description" content="Web Maker Description">
     @yield('title')
     <link rel="stylesheet" href="/assets/web/assets/mobirise-icons/mobirise-icons.css">
@@ -37,12 +37,12 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="https://mobirise.com">
-                            <img src="/assets/images/gLogo.png" alt="Mobirise" title="" style="height: 3.8rem;">
+                        <a href="/donor/home">
+                            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="https://mobirise.com">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="/donor/home">Gleneagles Kota Kinabalu</a>
                     </span>
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="donor-profile.html">View Profile
+                        <a class="text-white dropdown-item display-4" href="/donor/profile">View Profile
                             <!-- TEMP LINK -->
                             <br>
                         </a>

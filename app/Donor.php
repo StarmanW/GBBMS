@@ -45,6 +45,64 @@ class Donor extends Authenticatable {
         $this->notify(new DonorResetPassword($token));
     }
 
+    //Get Blood Type in string
+    public function getBloodTypeString() {
+        $bloodTypeString = "None";
+
+        switch ($this->bloodType) {
+            case 1:
+                $bloodTypeString = "A+";
+                break;
+            case 2:
+                $bloodTypeString = "A-";
+                break;
+            case 3:
+                $bloodTypeString = "B+";
+                break;
+            case 4:
+                $bloodTypeString = "B-";
+                break;
+            case 5:
+                $bloodTypeString = "O+";
+                break;
+            case 6:
+                $bloodTypeString = "O-";
+                break;
+            case 7:
+                $bloodTypeString = "AB+";
+                break;
+            case 8:
+                $bloodTypeString = "AB-";
+                break;
+        }
+        return $bloodTypeString;
+    }
+
+
+    /**
+     * Method to return the email for password reset
+     *
+     * @return string Returns the User Email Address
+     */
+    public function getEmailForPasswordReset() {
+        return $this->emailAddress;
+    }
+
+    public function routeNotificationFor($driver) {
+        if (method_exists($this, $method = 'routeNotificationFor' . Str::studly($driver))) {
+            return $this->{$method}();
+        }
+
+        switch ($driver) {
+            case 'database':
+                return $this->notifications();
+            case 'mail':
+                return $this->emailAddress;
+            case 'nexmo':
+                return $this->phone_number;
+        }
+    }
+
     //One-To-Many Reservation Relationship
     public function reservations() {
         return $this->hasMany('App\Reservation');

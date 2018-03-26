@@ -56,6 +56,8 @@ class RegisterController extends Controller {
             'birthDate' => 'required|date',
             'password' => 'required|min:6|max:255|confirmed',
             'bloodType' => ['required', 'regex:/[1-8]{1}/'],
+            'gender' => ['required', 'boolean'],
+            'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required|max:500'
         ]);
     }
@@ -71,8 +73,29 @@ class RegisterController extends Controller {
         //Generate donor ID, get year and get the latest donor count
         $donorID = 'D' . date('y') . sprintf('%04d', count(Donor::all()) + 1);
 
-        //Return the created donor instance and store in DB
-        return Donor::create([
+        //Handle file upload
+        if ($data['profileImage'] !== null) {
+            //Get filename
+            $fileNameWithExt = $data['profileImage']->getClientOriginalName();
+            //Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just extension
+            $extension = $data['profileImage']->getClientOriginalExtension();
+            //Filename to store, add timestamp for uniqueness of images that
+            //might have the same name.
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            //Upload Image
+            /*
+             * By default, storage folder is not accessible.
+             * Required to run "php artisan storage:link" command to create a sym link
+             * between the storage folder and the public folder.
+             */
+            $path = $data['profileImage']->storeAs('public/profileImage', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'defaultProfileImage.jpg';
+        }
+
+        $donor = Donor::create([
             'donorID' => $donorID,
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -82,9 +105,14 @@ class RegisterController extends Controller {
             'birthDate' => $data['birthDate'],
             'password' => bcrypt($data['password']),
             'bloodType' => $data['bloodType'],
+            'gender' => $data['gender'],
+            'profileImage' => $fileNameToStore,
             'homeAddress' => $data['homeAddress'],
             'donorAccStatus' => 1,
         ]);
+        
+        //Return the created donor instance and store in DB
+        return $donor;
     }
 
     /**
@@ -93,7 +121,7 @@ class RegisterController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function showRegistrationForm() {
-        return view('donor.auth.registerDonor');    //Return registration form in "donor" > "auth" folder
+        return view('donor.registerDonor');    //Return registration form in "donor" > "auth" folder
     }
 
     /**

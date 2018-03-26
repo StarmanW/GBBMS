@@ -5,12 +5,18 @@
 @endsection
 
 @section('additionalCSS')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'>
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{{'/assets/additional/css/normalize.css'}}">
     <link rel="stylesheet" href="{{'/assets/additional/css/login-page_style.css'}}">
     <link rel="stylesheet" href="{{'/assets/additional/css/login-page_responsive.css'}}">
+    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
 @endsection
+
 @section('contents')
 <div class="login-page_container">
     <!--       Donor sign in Side      -->
@@ -47,7 +53,7 @@
                         </div>
                         <div class="submit-button button-div-center">
                             <button type="submit" class="btn btn-sm btn-success signin-tab-btn">SIGN IN</button>
-                            <button type="button" class="btn btn-sm btn-primary signin-tab-btn">SIGN UP</button>
+                            <a href="/donor/register"><button type="button" class="btn btn-sm btn-primary signin-tab-btn">SIGN UP</button></a>
                         </div>
                     </div>
                 </form>
@@ -134,7 +140,29 @@
     </div>
 </div>
 @endsection
+
 @section('additionalJS')
     <script src="{{'/assets/additional/js/jquery-1.12.1.min.js'}}"></script>
     <script src="{{'/assets/additional/js/login-page_script.js'}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+    @if (count($errors) > 0)
+    <script>
+        //Function to display error message when using donor registration form
+        alertify.alert().setting({
+            'transition': 'zoom',
+            'movable': false,
+            'modal': true,
+            'labels': 'OK'
+        }).setHeader("Invalid email/password").show();
+
+        //Parse the json data
+        var msg = JSON.parse(JSON.stringify({!! $errors !!}));
+
+        //Loop through the data and display the message
+        Object.keys(msg).forEach(function (key) {
+            $('.ajs-content').append("- " + msg[key][0] + "<br/>");
+        });
+    </script>
+    @endif
 @endsection

@@ -19,20 +19,8 @@ Route::get('/donation/detail', function () {
     return view('donor.donate-history-details');
 });
 
-Route::get('/profile', function () {
-    return view('donor.donor-profile');
-});
-
 Route::get('/event', function () {
     return view('donor.event-details-donor');
-});
-
-Route::get('/home', function () {
-    return view('donor.home');
-});
-
-Route::get('/registration', function () {
-    return view('donor.registerDonor');
 });
 
 Route::get('/reservation', function () {
@@ -48,36 +36,48 @@ Route::get('/upcoming-events', function () {
 });
 //TEST END
 
+
 //Login Route
 Route::get('/login', function () {
-    return view('login');
+    if (Auth::guard('donor')->check()) {
+        return redirect('/donor/home');
+    } elseif (Auth::guard('staff')->check()) {
+        return redirect('/staff/home');
+    } else {
+        return view('login');
+    }
 });
 
-//Donor Routes
-Route::group(['prefix' => 'donor'], function () {
+//Donor Login & Register Route
+Route::get('/donor/register', 'DonorAuth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/donor/register', 'DonorAuth\RegisterController@register');
+Route::get('/donor/login', 'DonorAuth\LoginController@showLoginForm')->name('login');
+Route::post('/donor/login', 'DonorAuth\LoginController@login');
 
-    //Donor Login
-    Route::get('/login', 'DonorAuth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'DonorAuth\LoginController@login');
+//Donor Reset Password
+Route::post('/donor/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+Route::post('/donor/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
+Route::get('/donor/password/reset', 'DonorAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::get('/donor/password/reset/{token}', 'DonorAuth\ResetPasswordController@showResetForm');
+
+//Donor Routes grouped under "/donor/..."
+Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
+
     Route::post('/logout', 'DonorAuth\LoginController@logout')->name('logout');
 
-    //Donor Register
-    Route::get('/register', 'DonorAuth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'DonorAuth\RegisterController@register');
+    Route::get('/profile', 'DonorController@edit');
+    Route::post('/profile', 'DonorController@update');
 
-    //Donor Reset Password
-    Route::post('/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-    Route::post('/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
-    Route::get('/password/reset', 'DonorAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-    Route::get('/password/reset/{token}', 'DonorAuth\ResetPasswordController@showResetForm');
 });
 
-//Staff Routes
+
+//Staff Login
+Route::get('/staff/login', 'StaffAuth\LoginController@showLoginForm')->name('login');
+Route::post('/staff/login', 'StaffAuth\LoginController@login');
+
+//Staff Routes grouped under "/staff/..."
 Route::group(['prefix' => 'staff'], function () {
 
-    //Staff Login
-    Route::get('/login', 'StaffAuth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'StaffAuth\LoginController@login');
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
     //Staff Register

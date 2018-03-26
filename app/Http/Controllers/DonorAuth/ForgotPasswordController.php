@@ -5,9 +5,9 @@ namespace App\Http\Controllers\DonorAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
 
-class ForgotPasswordController extends Controller
-{
+class ForgotPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -26,8 +26,7 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('donor.guest');
     }
 
@@ -36,9 +35,8 @@ class ForgotPasswordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLinkRequestForm()
-    {
-        return view('donor.auth.passwords.email');
+    public function showLinkRequestForm() {
+        return view('login');
     }
 
     /**
@@ -46,8 +44,26 @@ class ForgotPasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
-    public function broker()
-    {
+    public function broker() {
         return Password::broker('donors');
+    }
+
+    public function sendResetLinkEmail(Request $request) {
+        $this->validateEmail($request);
+
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $response = $this->broker()->sendResetLink(
+            $request->only('emailAddress')
+        );
+
+        return $response == Password::RESET_LINK_SENT
+            ? $this->sendResetLinkResponse($response)
+            : $this->sendResetLinkFailedResponse($request, $response);
+    }
+
+    protected function validateEmail(Request $request) {
+        $this->validate($request, ['emailAddress' => 'required|email']);
     }
 }

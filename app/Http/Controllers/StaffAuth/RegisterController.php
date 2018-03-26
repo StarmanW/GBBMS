@@ -49,9 +49,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:staff',
-            'password' => 'required|min:6|confirmed',
+            'staffPos' => ['required', 'boolean'],
+			'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
+            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staffs', 'regex:/\d{12}/'],
+            'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
+            'emailAddress' => 'required|email|max:255|unique:staffs',
+            'birthDate' => 'required|date',
+            'password' => 'required|min:6|max:255|confirmed',
+            'homeAddress' => 'required|max:500'
         ]);
     }
 
@@ -63,10 +69,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+		//Generate donor ID, get year and get the latest donor count
+        $staffID = 'D' . date('y') . sprintf('%04d', count(Staff::all()) + 1);
+		
+		//Return the created staff instance and store in DB
         return Staff::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+			'staffID' => $staffID,
+            'staffPos' => $data['staffPos'],
+			'firstName' => $data['firstName'],
+			'lastName' => $data['lastName'],
+			'ICNum' => $data['ICNum'],
+			'phoneNum' => $data['phoneNum'],
+            'emailAddress' => $data['emailAddress'],
+			'birthDate' => $data['birthDate'],
             'password' => bcrypt($data['password']),
+			'homeAddress' => $data['homeAddress'],
+			'donorAccStatus' => 1,
         ]);
     }
 
@@ -77,7 +95,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('staff.auth.register');
+        return view('staff.auth.registerStaff');	//Return registration form in "staff" > "auth" folder
     }
 
     /**

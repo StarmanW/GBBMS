@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 
-class ResetPasswordController extends Controller
-{
+class ResetPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -36,8 +35,7 @@ class ResetPasswordController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('donor.guest');
     }
 
@@ -46,12 +44,11 @@ class ResetPasswordController extends Controller
      *
      * If no token is present, display the link request form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
+     * @param  \Illuminate\Http\Request $request
+     * @param  string|null $token
      * @return \Illuminate\Http\Response
      */
-    public function showResetForm(Request $request, $token = null)
-    {
+    public function showResetForm(Request $request, $token = null) {
         return view('donor.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
@@ -62,9 +59,21 @@ class ResetPasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
-    public function broker()
-    {
+    public function broker() {
         return Password::broker('donors');
+    }
+
+
+    /**
+     * Get the password reset credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function credentials(Request $request) {
+        return $request->only(
+            'emailAddress', 'password', 'password_confirmation', 'token'
+        );
     }
 
     /**
@@ -72,8 +81,7 @@ class ResetPasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
+    protected function guard() {
         return Auth::guard('donor');
     }
 }

@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('staff.auth.login');
+        return redirect('login');
     }
 
     /**

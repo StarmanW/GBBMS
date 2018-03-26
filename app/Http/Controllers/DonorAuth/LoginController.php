@@ -46,7 +46,7 @@ class LoginController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function showLoginForm() {
-        return view('login');
+        return redirect('login');
     }
 
     /**
@@ -58,9 +58,15 @@ class LoginController extends Controller {
         return Auth::guard('donor');
     }
 
+    //Overwrite default username function which returns "email"
+    public function username() {
+        return 'emailAddress';
+    }
+
     //Overwrite default logout function to redirect to "/login"
     public function logout(Request $request) {
         Auth::logout();
+        $request->session()->invalidate();
         return redirect('/login');
     }
 }

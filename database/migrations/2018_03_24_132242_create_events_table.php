@@ -15,7 +15,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->string('eventID', 10)->primary();
-            $table->string('eventName', 255)->nullable(false);
+            $table->string('eventName')->nullable(false);
             $table->date('eventDate')->nullable(false);
             $table->time('eventStartTime')->nullable(false);
             $table->time('eventEndTime')->nullable(false);
