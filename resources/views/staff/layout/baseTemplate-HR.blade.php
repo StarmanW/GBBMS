@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<section class="menu cid-qMsMqKrpYp" once="menu" id="menu1-24">
+<section class="menu cid-qLZn3ksm57" once="menu" id="menu1-i">
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,36 +38,48 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="/donor/home">
-                            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
+                        <!-- TEMP LINK -->
+                        <a href="login.html">
+                            <img src="/assets/images/gLogo" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="/donor/home">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="homepage-hr.html">Gleneagles Kota Kinabalu</a>
                     </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="upcoming-event-list.html">UPCOMING EVENTS</a>
-                    <!-- TEMP LINK -->
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="donate-history.html">VIEW DONATION HISTORY</a>
+                    <a class="nav-link link text-white display-4" href="dashboard.html">DASHBOARD</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item dropdown open">
-                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="/donor/profile">View Profile
+                        <a class="text-white dropdown-item display-4" href="registration.html">Registration
                             <!-- TEMP LINK -->
                             <br>
                         </a>
-                        <a class="nav-link link text-white display-4" href="/donor/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="text-white dropdown-item display-4" href="">View Lists
+                            <!-- TEMP LINK -->
+                            <br>
+                        </a>
+                        <a class="text-white dropdown-item display-4" href="">View Reports</a>
+                        <!-- TEMP LINK -->
+                    </div>
+                </li>
+                <li class="nav-item dropdown open">
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">Zion Tseu</a>
+                    <div class="dropdown-menu">
+                        <a class="text-white dropdown-item display-4" href="staff-profile.html">View Profile
+                            <!-- TEMP LINK -->
+                            <br>
+                        </a>
+                        <a class="nav-link link text-white display-4" href="/staff/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="mbri-lock mbr-iconfont mbr-iconfont-btn"></span>Logout
                         </a>
-                        <form id="logout-form" action="/donor/logout" method="POST" style="display: none;">
+                        <form id="logout-form" action="/staff/logout" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </div>
@@ -84,7 +96,8 @@
         <div class="media-container-row content text-white">
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
-                    <a href="/donor/home">
+                    <!-- TEMP LINK -->
+                    <a href="homepage-hr.html">
                         <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                     </a>
                 </div>

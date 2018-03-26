@@ -9,7 +9,7 @@
     <link rel="stylesheet" href={{"assets/additional/css/profile.css"}} type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <section class="testimonials5 cid-qM5et8Bfce" id="testimonials5-17" data-rv-view="1335">
         <div class="mbr-overlay" style="opacity: 0.15; background-color:#000000;"></div>
         <div class="container">
