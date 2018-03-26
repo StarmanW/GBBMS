@@ -9,7 +9,7 @@
     <link rel="stylesheet" href={{"assets/additional/css/homepage.css"}} type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <section class="features13 cid-qMsMnVkOEI" id="features13-21">
         <div class="mbr-overlay" style="opacity: 0.2; background-color:#adadad;"></div>
         <div class="container">

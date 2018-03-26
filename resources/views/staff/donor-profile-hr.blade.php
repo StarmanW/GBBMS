@@ -14,7 +14,7 @@
     <link rel="stylesheet" href={{"assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <section class="testimonials5 cid-qMsLJzqWLk" id="testimonials5-1v">
         <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
         <div class="container">

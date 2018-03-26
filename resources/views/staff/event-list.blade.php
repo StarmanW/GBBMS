@@ -5,14 +5,14 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href={{"assets/datatables/data-tables.bootstrap4.min.css"}}>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href={{"assets/additional/css/table-list.css"}} type="text/css">
     <link rel="stylesheet" href={{"assets/additional/css/sidebar.css"}} type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <a href="./homepage-hr.html" class="w3-bar-item" id="homepageStyle">

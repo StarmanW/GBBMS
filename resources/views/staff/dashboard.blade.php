@@ -9,7 +9,7 @@
     <link rel="stylesheet" href={{"assets/additional/css/dashboard.css"}} type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <section class="cid-qLZoPtxl7o mbr-fullscreen mbr-parallax-background" id="header2-j">
         <div class="container align-center">
             <div class="card" id="cardHeader">
