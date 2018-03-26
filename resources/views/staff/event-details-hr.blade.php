@@ -1,13 +1,13 @@
-@extends('baseTemplates')
+@extends('staff.layout.baseTemplate-HR')
 
 @section('title')
     <title>Event Details</title>
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href={{"assets/additional/css/profile.css"}} type="text/css">
-    <link rel="stylesheet" href={{"assets/additional/css/registerForm.css"}} type="text/css">
-    <link rel="stylesheet" href={{"assets/additional/css/notify.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')

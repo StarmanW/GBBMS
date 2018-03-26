@@ -1,12 +1,12 @@
-@extends('baseTemplates')
+@extends('staff.layout.baseTemplate-HR')
 
 @section('title')
     <title>HR - Dashboard</title>
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href={{"assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css"}}>
-    <link rel="stylesheet" href={{"assets/additional/css/dashboard.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css"}}>
+    <link rel="stylesheet" href={{"/assets/additional/css/dashboard.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -82,8 +82,8 @@
 @endsection
 
 @section('additionalJS')
-    <script src={{"assets/additional/js/canvasjs.js"}}></script>
-    <script src={{"assets/additional/js/bloodGraph.js"}}></script>
+    <script src={{"/assets/additional/js/canvasjs.js"}}></script>
+    <script src={{"/assets/additional/js/bloodGraph.js"}}></script>
     <script>
         window.onload = renderGraph();
         //window.onload = renderGraph(bloodDetails);        //TODO - To be uncommented later after having real data from DB
