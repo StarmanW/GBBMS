@@ -6,36 +6,36 @@ use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function index()
+//    {
+//        //
+//    }
+//
+//    /**
+//     * Show the form for creating a new resource.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function create()
+//    {
+//        //
+//    }
+//
+//    /**
+//     * Store a newly created resource in storage.
+//     *
+//     * @param  \Illuminate\Http\Request  $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function store(Request $request)
+//    {
+//        //
+//    }
 
 	/**
 	* Create new controller instance
@@ -81,8 +81,10 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $staff = Staff::find(Auth::user()->staffID);
+
         //validate data
-		$this->validate($request,
+        $validator = Validator::make($request->all(),
 		[
 			'staffPos' => ['required', 'boolean'],
 			'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
@@ -91,27 +93,53 @@ class StaffController extends Controller
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:staffs',
             'birthDate' => 'required|date',
-            'password' => 'required|min:6|max:255|confirmed',
+            'gender' => ['required', 'boolean'],
+            'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required|max:500'
 		]);
-		
-		//set staff details
-		$staff->staffPos = $request->input('staffPos');
-		$staff->firstName = $request->input('firstName');
-		$staff->lastName = $request->input('lastName');
-		$staff->ICNum = $request->input('ICNum');
-		$staff->phoneNum = $request->input('phoneNum');
-		$staff->emailAddress = $request->input('emailAddress');
-		$staff->birthDate = $request->input('birthDate');
-		$staff->password = $request->input('password');
-		$staff->homeAddress = $request->input('homeAddress');
-		
-		//redirect to donor profile with update status and message
-		if($donor->save())
-			return redirect('/profile')->with('success', 'Staff (' . $id . ') has been successfully updated!');
-		else
-			return redirect('/profile')->with('failure', 'Oops, staff (' . $id . ') was not updated successfully.');
-			
+
+		if($validator->fails())
+		    return redirect()->back()->withErrors($validator)->withInput();
+		else {
+
+            //Handle file upload
+            if ($request->hasFile('profileImage')) {
+                //Get filename
+                $fileNameWithExt = $request->file('profileImage')->getClientOriginalName();
+                //Get just filename
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                //Get just extension
+                $extension = $request->file('profileImage')->getClientOriginalExtension();
+                //Filename to store, add timestamp for uniqueness of images that
+                //might have the same name.
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+                //Upload Image
+                /*
+                 * By default, storage folder is not accessible.
+                 * Required to run "php artisan storage:link" command to create a sym link
+                 * between the storage folder and the public folder.
+                 */
+                $path = $request->file('profileImage')->storeAs('public/profileImage', $fileNameToStore);
+            }
+
+            //set staff details
+            $staff->staffPos = $request->input('staffPos');
+            $staff->firstName = $request->input('firstName');
+            $staff->lastName = $request->input('lastName');
+            $staff->ICNum = $request->input('ICNum');
+            $staff->phoneNum = $request->input('phoneNum');
+            $staff->emailAddress = $request->input('emailAddress');
+            $staff->birthDate = $request->input('birthDate');
+            $staff->gender = $request->input('gender');
+            $staff->profileImage = $request->input('profileImage');
+            $staff->homeAddress = $request->input('homeAddress');
+
+            //redirect to donor profile with update status and message
+            if ($staff->save())
+                return redirect('/staff/profile')->with('success', 'Profile details has been successfully updated!');
+            else
+                return redirect('/staff/profile')->with('failure', 'Oops, Profile details was not updated successfully.');
+        }
     }
 
 	/**
@@ -123,6 +151,8 @@ class StaffController extends Controller
      */
     public function deactivate(Request $request, $id)
     {
+        $staff = Staff::find(Auth::user()->staffID);
+
         //validate data
 		$this->validate($request,
 		[
@@ -140,14 +170,14 @@ class StaffController extends Controller
 		
     }
 	
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function destroy($id)
+//    {
+//        //
+//    }
 }
