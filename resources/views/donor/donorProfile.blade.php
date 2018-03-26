@@ -83,7 +83,10 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="deactivateDonorAccPrompt('Donor 1');">Deactivate Account</button>
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="deactivateDonorAccPrompt('{{$donor->firstName}} {{$donor->lastName}}');">Deactivate Account</button>
+                                        <form method="POST" action="/donor/profile/deactivate" id="deactivateDonorAcc" style="display: none;">
+                                            {{csrf_field()}}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +109,7 @@
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/donor/profile" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                            {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
                             <br />

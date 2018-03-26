@@ -63,6 +63,28 @@ class LoginController extends Controller {
         return 'emailAddress';
     }
 
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * Overwrite to check donor account status
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request) {
+        $request->session()->regenerate();
+        $this->clearLoginAttempts($request);
+
+        //Verify whether donor account is deactivated
+        if ($this->guard()->user()->donorAccStatus === 0) {
+            $request->session()->invalidate();
+            return redirect('/login')->with('deactivated', "Your donor account has been deactivated, please contact the support staff to reactivate.");
+        } else {
+            return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
+        }
+    }
+
     //Overwrite default logout function to redirect to "/login"
     public function logout(Request $request) {
         Auth::logout();

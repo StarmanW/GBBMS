@@ -123,10 +123,33 @@ class DonorController extends Controller {
                 $donor->profileImage = $fileNameToStore;
             }
             $donor->homeAddress = $request->input('homeAddress');
-            $donor->save();
 
-            return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
+            if($donor->save())
+                return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
+            else
+                return redirect('/donor/profile')->with('failure', 'Oops, Profile details was not updated successfully.');
         }
+    }
+
+
+    /**
+     * Update donor account status for deactivation.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function deactivate(Request $request) {
+        //Set donor account status
+        $donor = Auth::user();
+        $donor->donorAccStatus = 0;
+
+        //redirect to donor login
+        if ($donor->save()) {
+            Auth::logout();                         //Log user out
+            $request->session()->invalidate();      //Invalidate the session
+            return redirect('/login')->with('success');
+        } else
+            return redirect('/login')->with('failure');
     }
 
 //    /**
