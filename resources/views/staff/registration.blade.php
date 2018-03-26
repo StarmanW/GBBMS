@@ -5,8 +5,8 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="assets/additional/css/scrollToTop.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/scrollToTop.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -170,5 +170,5 @@
 @endsection
 
 @section('additionalJS')
-    <script src="assets/additional/js/noBackDate.js"></script>
+    <script src="/assets/additional/js/noBackDate.js"></script>
 @endsection

@@ -5,17 +5,17 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="assets/additional/css/table-list.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/table-list.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
 @endsection
 
 @section('contents')
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <a href="./homepage-hr.html" class="w3-bar-item" id="homepageStyle">
-            <img src="assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 5rem;"> Gleneagles KK
+            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 5rem;"> Gleneagles KK
         </a>
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
@@ -147,8 +147,8 @@
 @endsection
 
 @section('additionalJS')
-    <script src="assets/datatables/jquery.data-tables.min.js"></script>
-    <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
+    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
+    <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
     <script>
         //Menu Toggle Script
         function w3_open() {

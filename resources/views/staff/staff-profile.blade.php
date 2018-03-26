@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css"/>
-    <link rel="stylesheet" href="assets/additional/css/registerForm.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/profile.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/notify.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -32,7 +32,7 @@
                     <div class="panel-item">
                         <div class="card-block">
                             <div class="testimonial-photo">
-                                <img src="assets/images/mbr-1-1620x1080.jpg" alt="" title="" media-simple="true">
+                                <img src="/assets/images/mbr-1-1620x1080.jpg" alt="" title="" media-simple="true">
                             </div>
                             <div class="profile-table-wrap">
                                 <table class="table profile-table" id="" cellspacing="0">
@@ -194,7 +194,7 @@
 @endsection
 
 @section('additionalJS')
-    <script src="assets/additional/js/staff_util.js"></script>
+    <script src="/assets/additional/js/staff_util.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(count($errors) > 0)

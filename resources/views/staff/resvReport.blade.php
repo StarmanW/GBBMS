@@ -5,12 +5,12 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="assets/additional/css/dashboard.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/resv-list.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/resv-report.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/resv-list.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/resv-report.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -24,7 +24,7 @@
         <hr id="sideBarHR">
 
         <a href="./annualReport.html" class="w3-bar-item w3-button">Annual Report</a>
-        <a href="./monthlyReport.html" class="w3-bar-item w3-button">Monthly Report</a>
+        <a href="monthlyReport.blade.php" class="w3-bar-item w3-button">Monthly Report</a>
         <a href="./exceptReport.html" class="w3-bar-item w3-button">Reservation Cancellation Report</a>
         <a href="./resvReport.html" class="w3-bar-item w3-button">Reservation List</a>
     </div>
@@ -136,10 +136,10 @@
 @endsection
 
 @section('additionalJS')
-    <script src="assets/datatables/jquery.data-tables.min.js"></script>
-    <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
-    <script src="assets/additional/js/canvasjs.js"></script>
-    <script src="assets/additional/js/reportGraphAnnual.js"></script>
+    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
+    <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
+    <script src="/assets/additional/js/canvasjs.js"></script>
+    <script src="/assets/additional/js/reportGraphAnnual.js"></script>
 
     <script>
         //Menu Toggle Script

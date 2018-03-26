@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="assets/images/gLogo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/gLogo.png" type="image/x-icon">
     <meta name="description" content="">
     <title>Monthly Report</title>
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-    <link rel="stylesheet" href="assets/tether/tether.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="assets/socicon/css/styles.css">
-    <link rel="stylesheet" href="assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="assets/theme/css/style.css">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="/assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+    <link rel="stylesheet" href="/assets/web/assets/mobirise-icons/mobirise-icons.css">
+    <link rel="stylesheet" href="/assets/tether/tether.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="/assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="/assets/theme/css/style.css">
+    <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="assets/additional/css/scrollToTop.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/dashboard.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/scrollToTop.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                     <span class="navbar-logo">
                         <!-- TEMP LINK -->
                         <a href="login.html">
-                            <img src="assets/images/gleneagles-singapore-thumb-img-1-262x262.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
+                            <img src="/assets/images/gleneagles-singapore-thumb-img-1-262x262.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                     <span class="navbar-caption-wrap">
@@ -143,7 +143,7 @@
                     <div class="media-wrap">
                         <!-- TEMP LINK -->
                         <a href="homepage-hr.html">
-                            <img src="assets/images/gLogo.png" alt="Gleneagles Logo" title="">
+                            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                         </a>
                     </div>
                 </div>
@@ -202,18 +202,18 @@
         </a>
     </div>
 
-    <script src="assets/web/assets/jquery/jquery.min.js"></script>
-    <script src="assets/popper/popper.min.js"></script>
-    <script src="assets/tether/tether.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/dropdown/js/script.min.js"></script>
-    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-    <script src="assets/parallax/jarallax.min.js"></script>
-    <script src="assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="assets/theme/js/script.js"></script>
-    <script src="assets/additional/js/scrolltotop.js"></script>
-    <script src="assets/additional/js/canvasjs.js"></script>
-    <script src="assets/additional/js/reportGraph.js"></script>
+    <script src="/assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="/assets/popper/popper.min.js"></script>
+    <script src="/assets/tether/tether.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/dropdown/js/script.min.js"></script>
+    <script src="/assets/touchswipe/jquery.touch-swipe.min.js"></script>
+    <script src="/assets/parallax/jarallax.min.js"></script>
+    <script src="/assets/smoothscroll/smooth-scroll.js"></script>
+    <script src="/assets/theme/js/script.js"></script>
+    <script src="/assets/additional/js/scrolltotop.js"></script>
+    <script src="/assets/additional/js/canvasjs.js"></script>
+    <script src="/assets/additional/js/reportGraph.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <script>

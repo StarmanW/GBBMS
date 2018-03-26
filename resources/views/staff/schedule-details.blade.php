@@ -5,8 +5,8 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="assets/additional/css/profile.css" type="text/css">
-    <link rel="stylesheet" href="assets/additional/css/reservation-details.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/reservation-details.css" type="text/css">
 @endsection
 
 @section('contents')
