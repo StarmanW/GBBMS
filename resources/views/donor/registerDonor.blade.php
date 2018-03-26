@@ -35,7 +35,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>First Name</label>
-                                                    <input type="text" name="firstName" placeholder="John"
+                                                    <input type="text" name="firstName" placeholder="John" value="{{old('firstName')}}"
                                                            class="form-control" pattern="[A-Za-z\-@ ]{2,}"
                                                            title="Alphabetic, @ and - symbols only. E.g. - John"
                                                            required="required">
@@ -43,7 +43,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Last Name</label>
-                                                    <input type="text" name="lastName" placeholder="Doe"
+                                                    <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName'}}"
                                                            class="form-control" pattern="[A-Za-z\-@ ]{2,}"
                                                            title="Alphabetic, @ and - symbols only. E.g. - Smith"
                                                            required="required">
@@ -53,7 +53,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>IC Number</label>
-                                                    <input type="text" name="ICNum" placeholder="981213125523"
+                                                    <input type="text" name="ICNum" placeholder="981213125523" value="{{old('ICNum'}}"
                                                            class="form-control" pattern="\d{12}"
                                                            title="Numeric only. E.g. 985564127789"
                                                            maxlength="12" required="required">
@@ -61,7 +61,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Contact Number</label>
-                                                    <input type="text" name="phoneNum" placeholder="0186559875"
+                                                    <input type="text" name="phoneNum" placeholder="0186559875" value="{{old('phoneNum'}}"
                                                            class="form-control" pattern="([0-9]|[0-9\-]){3,20}"
                                                            title="Numeric and '-' symbols only. E.g. 014-8897875"
                                                            required="required">
@@ -71,7 +71,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Email</label>
-                                                    <input type="email" name="emailAddress"
+                                                    <input type="email" name="emailAddress" value="{{old('emailAddress'}}"
                                                            placeholder="email@hotmail.com" class="form-control"
                                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                                            title="E.g. - john@hotmail.com" required="required">
@@ -80,7 +80,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Birth Date</label>
-                                                    <input class="form-control" type="date" name="birthDate"
+                                                    <input class="form-control" type="date" name="birthDate" value="{{old('birthDate'}}"
                                                            required="required">
                                                 </div>
                                             </div>
@@ -104,33 +104,33 @@
                                                     <span style="color:red;">*</span>Blood Type</label>
                                                 <select name="bloodType" class="form-control" required="required">
                                                     <option disabled selected value>Select blood type</option>
-                                                    <option value="1">A+</option>
-                                                    <option value="2">A-</option>
-                                                    <option value="3">B+</option>
-                                                    <option value="4">B-</option>
-                                                    <option value="5">O+</option>
-                                                    <option value="6">O-</option>
-                                                    <option value="7">AB+</option>
-                                                    <option value="8">AB-</option>
+                                                    <option value="1" @if(old('bloodType') === 1) {{'selected'}}@endif>A+</option>
+                                                    <option value="2" @if(old('bloodType') === 2) {{'selected'}}@endif>A-</option>
+                                                    <option value="3" @if(old('bloodType') === 3) {{'selected'}}@endif>B+</option>
+                                                    <option value="4" @if(old('bloodType') === 4) {{'selected'}}@endif>B-</option>
+                                                    <option value="5" @if(old('bloodType') === 5) {{'selected'}}@endif>O+</option>
+                                                    <option value="6" @if(old('bloodType') === 6) {{'selected'}}@endif>O-</option>
+                                                    <option value="7" @if(old('bloodType') === 7) {{'selected'}}@endif>AB+</option>
+                                                    <option value="8" @if(old('bloodType') === 8) {{'selected'}}@endif>AB-</option>
                                                 </select>
                                             </div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-sm-6 form-group">
                                                     <label><span style="color:red;">*</span>Gender</label><br/>
-                                                    <input type="radio" name="gender" required="required" value="1" checked>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                                    <input type="radio" name="gender" required="required" value="0">&nbsp;&nbsp;Female<br>
+                                                    <input type="radio" name="gender" required="required" value="1" @if(old('gender') === 1) {{'checked'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                                    <input type="radio" name="gender" required="required" value="0" @if(old('gender') === 0) {{'checked'}}@endif>&nbsp;&nbsp;Female<br>
                                                 </div>
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         Profile Picture</label>
-                                                        <input name="profileImage" class="form-control" type="file">
+                                                        <input name="profileImage" class="form-control" value="{{old('profileImage'}}" type="file">
                                                 </div>
                                             </div>
                                             <div class="row" style="margin:auto">
                                                 <label>
                                                     <span style="color:red;">*</span>Home Address</label>
-                                                <textarea name="homeAddress" class="form-control"
+                                                <textarea name="homeAddress" class="form-control" value="{{old('homeAddress'}}"
                                                           style="height:200px;resize: none;"></textarea>
                                             </div>
                                         </div>
