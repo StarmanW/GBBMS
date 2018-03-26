@@ -105,7 +105,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/donor/profile">
+                        <form method="POST" action="/donor/profile" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
@@ -167,6 +167,18 @@
                                     </select>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label><span style="color:red;">*</span>Gender</label><br/>
+                                        <input type="radio" name="gender" required="required" value="1" @if($donor->gender === 1) {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="0" @if($donor->gender === 2) {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label>
+                                            Profile Picture</label>
+                                        <input name="profileImage" class="form-control" type="file">
+                                    </div>
+                                </div>
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Home Address</label>

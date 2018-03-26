@@ -81,12 +81,35 @@ class DonorController extends Controller {
             'emailAddress' => 'required|email|max:255',
             'birthDate' => 'required|date',
             'bloodType' => ['required', 'regex:/[1-8]{1}/'],
+            'gender' => ['required', 'boolean'],
+            'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
+
+            //Handle file upload
+            if ($request->hasFile('profileImage')) {
+                //Get filename
+                $fileNameWithExt = $request->file('profileImage')->getClientOriginalName();
+                //Get just filename
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                //Get just extension
+                $extension = $request->file('profileImage')->getClientOriginalExtension();
+                //Filename to store, add timestamp for uniqueness of images that
+                //might have the same name.
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+                //Upload Image
+                /*
+                 * By default, storage folder is not accessible.
+                 * Required to run "php artisan storage:link" command to create a sym link
+                 * between the storage folder and the public folder.
+                 */
+                $path = $request->file('profileImage')->storeAs('public/profileImage', $fileNameToStore);
+            }
+
             //Set member details
             $donor->firstName = $request->input('firstName');
             $donor->lastName = $request->input('lastName');
@@ -95,10 +118,13 @@ class DonorController extends Controller {
             $donor->emailAddress = $request->input('emailAddress');
             $donor->birthDate = $request->input('birthDate');
             $donor->bloodType = $request->input('bloodType');
+            $donor->gender = $request->input('gender');
+            if ($request->hasFile('profileImage')) {
+                $donor->profileImage = $fileNameToStore;
+            }
             $donor->homeAddress = $request->input('homeAddress');
             $donor->save();
 
-            //return redirect('/member/' . $id . '/edit')->with('success', 'Member (' . $id . ') has been successfully updated!');
             return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
         }
     }

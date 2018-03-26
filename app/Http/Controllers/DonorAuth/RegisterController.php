@@ -73,8 +73,9 @@ class RegisterController extends Controller {
         //Generate donor ID, get year and get the latest donor count
         $donorID = 'D' . date('y') . sprintf('%04d', count(Donor::all()) + 1);
 
+
         //Handle file upload
-        if ($data['profileImage'] !== null) {
+        if (isset($data['profileImage']) && $data['profileImage'] !== null) {
             //Get filename
             $fileNameWithExt = $data['profileImage']->getClientOriginalName();
             //Get just filename
