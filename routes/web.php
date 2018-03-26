@@ -11,6 +11,8 @@
 |
 */
 //TEST
+
+//Donor test
 Route::get('/donation', function () {
     return view('donor.donate-history');
 });
@@ -34,6 +36,37 @@ Route::get('/reservation/detail', function () {
 Route::get('/upcoming-events', function () {
     return view('donor.upcoming-event-list');
 });
+
+//Staff test
+Route::get('/manage', function () {
+    return view('staff.blood-management');
+});
+
+Route::get('/dash', function () {
+    return view('staff.dashboard');
+});
+
+Route::get('/donor/profile', function () {
+    return view('staff.donor-profile-hr');
+});
+
+Route::get('/donor', function () {
+    return view('staff.donor-list');
+});
+
+Route::get('/event', function () {
+    return view('staff.event-list');
+});
+
+Route::get('/event/detail', function () {
+    return view('staff.event-details-hr');
+});
+
+Route::get('/home/hr', function () {
+    return view('staff.home-hr');
+});
+
+
 //TEST END
 
 
