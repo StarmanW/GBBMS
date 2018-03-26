@@ -1,14 +1,20 @@
+@extends('staff.layout.baseTemplate-HR')
+
+@section('title')
+    <title>Staff Profile</title>
+@endsection
+
 @section('additionalCSS')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css"/>   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css"/>
     <link rel="stylesheet" href="assets/additional/css/registerForm.css" type="text/css">
     <link rel="stylesheet" href="assets/additional/css/profile.css" type="text/css">
     <link rel="stylesheet" href="assets/additional/css/notify.css" type="text/css">
 @endsection
 
-@section('content')
+@section('contents')
     <section class="testimonials5 cid-qMsL85WpiQ" id="testimonials5-1u">
         <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
         <div class="container">
@@ -190,4 +196,13 @@
 @section('additionalJS')
     <script src="assets/additional/js/staff_util.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-@section
+
+    @if(count($errors) > 0)
+        <script>
+            $('#squarespaceModal').modal('show');
+            staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
+        </script>
+    @elseif(session('success'))
+        <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
+    @endif
+@endsection

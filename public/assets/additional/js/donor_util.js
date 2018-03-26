@@ -1,8 +1,8 @@
 //Function to prompt the user for deactivation confirmation
-function deactivateDonorAccPrompt(member_id) {
-    alertify.confirm("Confirm to deactivate donor " + member_id + " account?", function (e) {
+function deactivateDonorAccPrompt(donorName) {
+    alertify.confirm("Confirm to deactivate donor (" + donorName + ") account?", function (e) {
         if (e) {
-            $('#deleteMember').submit();
+            $('#deactivateDonorAcc').submit();
         }
     }).setting({
         'transition': 'zoom',

@@ -90,7 +90,7 @@
         <hr id="sideBarHR">
 
         <a href="./annualReport.html" class="w3-bar-item w3-button">Annual Report</a>
-        <a href="./monthlyReport.html" class="w3-bar-item w3-button">Monthly Report</a>
+        <a href="monthlyReport.blade.php" class="w3-bar-item w3-button">Monthly Report</a>
         <a href="./exceptReport.html" class="w3-bar-item w3-button">Reservation Cancellation Report</a>
         <a href="./resvReport.html" class="w3-bar-item w3-button">Reservation List</a>
     </div>
