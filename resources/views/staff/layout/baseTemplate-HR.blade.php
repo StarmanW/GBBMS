@@ -41,7 +41,7 @@
                     <span class="navbar-logo">
                         <!-- TEMP LINK -->
                         <a href="login.html">
-                            <img src="/assets/images/gLogo" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
+                            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
