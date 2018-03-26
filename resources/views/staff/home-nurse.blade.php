@@ -4,7 +4,7 @@
     <title>Home - Nurse</title>
 @endsection
 
-@section('additionalCSS)
+@section('additionalCSS')
     <link rel="stylesheet" href="/assets/additional/css/hover-image.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/homepage.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/homepage-nurse.css" type="text/css">

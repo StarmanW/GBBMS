@@ -12,7 +12,7 @@
 */
 //TEST
 
-//Donor test
+/**** DONOR TEST SECTION ****/
 Route::get('/donation', function () {
     return view('donor.donate-history');
 });
@@ -37,7 +37,7 @@ Route::get('/upcoming-events', function () {
     return view('donor.upcoming-event-list');
 });
 
-//Staff test
+/**** STAFF TEST SECTION ****/
 Route::get('/manage', function () {
     return view('staff.blood-management');
 });
@@ -66,6 +66,34 @@ Route::get('/home/hr', function () {
     return view('staff.home-hr');
 });
 
+/**** NURSE TEST SECTION ****/
+Route::get('/home/nurse', function () {
+    return view('staff.home-nurse');
+});
+
+Route::get('/staff/registration', function () {
+    return view('staff.registration');
+});
+
+Route::get('/staff/schedule/detail', function () {
+    return view('staff.schedule-details');
+});
+
+Route::get('/staff/schedule', function () {
+    return view('staff.schedule-list');
+});
+
+Route::get('/staff/list', function () {
+    return view('staff.staff-list');
+});
+
+Route::get('/staff/hr/profile', function () {
+    return view('staff.staff-profile');
+});
+
+Route::get('/staff/nurse/profile', function () {
+    return view('staff.staff-profile-nurse');
+});
 
 //TEST END
 
