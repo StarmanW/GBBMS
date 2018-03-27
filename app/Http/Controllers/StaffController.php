@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
-{
+class StaffController extends Controller {
 //    /**
 //     * Display a listing of the resource.
 //     *
@@ -37,23 +36,22 @@ class StaffController extends Controller
 //        //
 //    }
 
-	/**
-	* Create new controller instance
-	*
-	* @return void
-	*/
-	public function __construct() {
-		$this->middleware('auth:staff');
-	}
-	
+    /**
+     * Create new controller instance
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware('auth:staff');
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $staff = Staff::where("staffID", $id)->get();
         return view('staff.staff-profile')->with('staff', $staff);
     }
@@ -61,46 +59,44 @@ class StaffController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $staff = Staff::find($id);
 
-		$data = ['staff' => $staff];
-		return view('staff.staff-profile')->with('staff', $staff);
+        $data = ['staff' => $staff];
+        return view('staff.staff-profile')->with('staff', $staff);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $staff = Staff::find(Auth::user()->staffID);
 
         //validate data
         $validator = Validator::make($request->all(),
-		[
-			'staffPos' => ['required', 'boolean'],
-			'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staffs', 'regex:/\d{12}/'],
-            'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-            'emailAddress' => 'required|email|max:255|unique:staffs',
-            'birthDate' => 'required|date',
-            'gender' => ['required', 'boolean'],
-            'profileImage' => 'image|nullable|max:1999',
-            'homeAddress' => 'required|max:500'
-		]);
+            [
+                'staffPos' => ['required', 'boolean'],
+                'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
+                'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staffs', 'regex:/\d{12}/'],
+                'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
+                'emailAddress' => 'required|email|max:255|unique:staffs',
+                'birthDate' => 'required|date',
+                'gender' => ['required', 'boolean'],
+                'profileImage' => 'image|nullable|max:1999',
+                'homeAddress' => 'required|max:500'
+            ]);
 
-		if($validator->fails())
-		    return redirect()->back()->withErrors($validator)->withInput();
-		else {
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else {
 
             //Handle file upload
             if ($request->hasFile('profileImage')) {
@@ -134,7 +130,7 @@ class StaffController extends Controller
             $staff->profileImage = $request->input('profileImage');
             $staff->homeAddress = $request->input('homeAddress');
 
-            //redirect to donor profile with update status and message
+            //redirect to staff profile with update status and message
             if ($staff->save())
                 return redirect('/staff/profile')->with('success', 'Profile details has been successfully updated!');
             else
@@ -142,34 +138,33 @@ class StaffController extends Controller
         }
     }
 
-	/**
-     * Update donor account status for deactivation.
+    /**
+     * Update staff account status for deactivation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Request $request, $id)
-    {
+    public function deactivate(Request $request, $id) {
         $staff = Staff::find(Auth::user()->staffID);
 
         //validate data
-		$this->validate($request,
-		[
-            'staffAccStatus' => 'required|boolean'
-		]);
-		
-		//set staff account status
-		$staff->staffAccStatus = $request->input('staffAccStatus');
-		
-		//redirect to donor login
-		if($staff->save())
-			return redirect('/login')->with('success');
-		else
-			return redirect('/login')->with('failure');
-		
+        $this->validate($request,
+            [
+                'staffAccStatus' => 'required|boolean'
+            ]);
+
+        //set staff account status
+        $staff->staffAccStatus = $request->input('staffAccStatus');
+
+        //redirect to staff login
+        if ($staff->save())
+            return redirect('/login')->with('success');
+        else
+            return redirect('/login')->with('failure');
+
     }
-	
+
 //    /**
 //     * Remove the specified resource from storage.
 //     *

@@ -63,7 +63,6 @@ class ResetPasswordController extends Controller {
         return Password::broker('donors');
     }
 
-
     /**
      * Get the password reset credentials from the request.
      *

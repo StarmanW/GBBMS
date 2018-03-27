@@ -78,7 +78,6 @@ class Donor extends Authenticatable {
         return $bloodTypeString;
     }
 
-
     /**
      * Method to return the email for password reset
      *

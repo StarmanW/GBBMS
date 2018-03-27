@@ -18,7 +18,7 @@ class RedirectIfNotStaff
 	public function handle($request, Closure $next, $guard = 'staff')
 	{
 	    if (!Auth::guard($guard)->check()) {
-	        return redirect('staff/login');
+	        return redirect('/login');
 	    }
 
 	    return $next($request);

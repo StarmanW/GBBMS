@@ -4,11 +4,11 @@ namespace App\Http\Controllers\StaffAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -36,8 +36,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('staff.guest', ['except' => 'logout']);
     }
 
@@ -46,8 +45,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLoginForm()
-    {
+    public function showLoginForm() {
         return redirect('login');
     }
 
@@ -56,8 +54,41 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
+    protected function guard() {
         return Auth::guard('staff');
+    }
+
+    //Overwrite default username function which returns "email"
+    public function username() {
+        return 'emailAddress';
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * Overwrite to check staff account status
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request) {
+        $request->session()->regenerate();
+        $this->clearLoginAttempts($request);
+
+        //Verify whether staff account is deactivated
+        if ($this->guard()->user()->staffAccStatus === 0) {
+            $request->session()->invalidate();
+            return redirect('/login')->with('deactivated', "Your staff account has been deactivated, please contact the support staff to reactivate.");
+        } else {
+            return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
+        }
+    }
+
+    //Overwrite default logout function to redirect to "/login"
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/login');
     }
 }

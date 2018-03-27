@@ -142,7 +142,6 @@
 <script src="{{'/assets/smoothscroll/smooth-scroll.js'}}"></script>
 <script src="{{'/assets/theme/js/script.js'}}"></script>
 <script src="{{'/assets/additional/js/scrolltotop.js'}}"></script>
-
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- Scripts -->
 <script>

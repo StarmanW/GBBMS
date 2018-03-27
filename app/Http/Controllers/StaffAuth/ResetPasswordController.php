@@ -68,6 +68,18 @@ class ResetPasswordController extends Controller
     }
 
     /**
+     * Get the password reset credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function credentials(Request $request) {
+        return $request->only(
+            'emailAddress', 'password', 'password_confirmation', 'token'
+        );
+    }
+
+    /**
      * Get the guard to be used during password reset.
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard

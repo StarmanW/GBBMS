@@ -164,5 +164,15 @@
             $('.ajs-content').append("- " + msg[key][0] + "<br/>");
         });
     </script>
+    @elseif(session('deactivated'))
+    <script>
+        //Function to display error message when using donor registration form
+        alertify.alert('{{session('deactivated')}}').setting({
+            'transition': 'zoom',
+            'movable': false,
+            'modal': true,
+            'labels': 'OK'
+        }).setHeader("Account Deactivated").show();
+    </script>
     @endif
 @endsection
