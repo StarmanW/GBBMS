@@ -75,13 +75,15 @@ class StaffEventController extends Controller
             $event->eventStartTime = $request->input('eventStartTime');
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
-            $event->eventStatus = 1;
+            $event->eventStatus = true;
+
+            if($event->save())
+                return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
+            else
+                return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
         }
 
-        if($event->save())
-            return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
-        else
-            return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
+
     }
 
     /**
