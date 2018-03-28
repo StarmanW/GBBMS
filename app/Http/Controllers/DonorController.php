@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DonorController extends Controller {
+
+    /**
+     * Create new controller instance
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware('auth:donor');
+    }
+
 //    /**
 //     * Display a listing of the resource.
 //     *
@@ -40,14 +50,15 @@ class DonorController extends Controller {
 //    }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $donors = Donor::where("donorID", $id)->get();
-        return view('donor.donor_profile')->with('donors', $donors);
+    public function store(Request $request)
+    {
+        $donor = Donor::find(Auth::user()->donorID);
+        return view('donor.donorProfile')->with('donor', $donor);
     }
 
     /**
@@ -57,9 +68,7 @@ class DonorController extends Controller {
      */
     public function edit() {
         $donor = Donor::find(Auth::user()->donorID);
-        if ($donor !== null) {
-            return view('donor.donorProfile')->with('donor', $donor);
-        }
+        return view('donor.donorProfile')->with('donor', $donor);
     }
 
     /**

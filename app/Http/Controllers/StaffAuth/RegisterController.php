@@ -35,7 +35,8 @@ class RegisterController extends Controller {
      * @return void
      */
     public function __construct() {
-        $this->middleware('staff');
+        //authenticate user
+        $this->middleware('auth:staff');
     }
 
     /**
@@ -49,9 +50,9 @@ class RegisterController extends Controller {
             'staffPos' => ['required', 'boolean'],
             'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
             'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staffs', 'regex:/\d{12}/'],
+            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/\d{12}/'],
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-            'emailAddress' => 'required|email|max:255|unique:staffs',
+            'emailAddress' => 'required|email|max:255|unique:staff',
             'birthDate' => 'required|date',
             'password' => 'required|min:6|max:255|confirmed',
             'gender' => ['required', 'boolean'],

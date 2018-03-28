@@ -35,6 +35,7 @@ class RegisterController extends Controller {
      * @return void
      */
     public function __construct() {
+        //authenticate user
         $this->middleware('donor.guest');
     }
 

@@ -3,17 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class StaffController extends Controller {
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
+
+    /**
+     * Create new controller instance
+     *
+     * @return void
+     */
+    public function __construct() {
+        //authenticate user
+        $this->middleware('auth:staff');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //get all staffs and paginate for list page
+        $staffs = DB::table('staff')->paginate(15);
+        return view('staff.staff-list')->with('staffs', $staffs);
+    }
 //
 //    /**
 //     * Show the form for creating a new resource.
@@ -37,22 +53,14 @@ class StaffController extends Controller {
 //    }
 
     /**
-     * Create new controller instance
-     *
-     * @return void
-     */
-    public function __construct() {
-        $this->middleware('auth:staff');
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $staff = Staff::where("staffID", $id)->get();
+        //get one staff for profile page
+        $staff = Staff::find($id);
         return view('staff.staff-profile')->with('staff', $staff);
     }
 
@@ -63,9 +71,8 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+        //get one staff for edit
         $staff = Staff::find($id);
-
-        $data = ['staff' => $staff];
         return view('staff.staff-profile')->with('staff', $staff);
     }
 
@@ -77,6 +84,7 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        //get current user staff
         $staff = Staff::find(Auth::user()->staffID);
 
         //validate data
@@ -85,9 +93,9 @@ class StaffController extends Controller {
                 'staffPos' => ['required', 'boolean'],
                 'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staffs', 'regex:/\d{12}/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/\d{12}/'],
                 'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-                'emailAddress' => 'required|email|max:255|unique:staffs',
+                'emailAddress' => 'required|email|max:255|unique:staff',
                 'birthDate' => 'required|date',
                 'gender' => ['required', 'boolean'],
                 'profileImage' => 'image|nullable|max:1999',
@@ -146,6 +154,7 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate(Request $request, $id) {
+        //get current user staff
         $staff = Staff::find(Auth::user()->staffID);
 
         //validate data
