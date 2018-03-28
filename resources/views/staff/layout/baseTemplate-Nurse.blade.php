@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('title')
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+    <link rel="stylesheet" href="/assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
     <link rel="stylesheet" href="/assets/web/assets/mobirise-icons/mobirise-icons.css">
     <link rel="stylesheet" href="/assets/tether/tether.min.css">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
@@ -68,10 +68,10 @@
                             <!-- TEMP LINK -->
                             <br>
                         </a>
-                        <a class="nav-link link text-white display-4" href="/staff/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="nav-link link text-white display-4" href="/staff/nurse/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="mbri-lock mbr-iconfont mbr-iconfont-btn"></span>Logout
                         </a>
-                        <form id="logout-form" action="/staff/logout" method="POST" style="display: none;">
+                        <form id="logout-form" action="/staff/nurse/logout" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </div>

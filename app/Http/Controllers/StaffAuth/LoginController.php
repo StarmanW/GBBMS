@@ -29,7 +29,7 @@ class LoginController extends Controller {
      *
      * @var string
      */
-    public $redirectTo = '/staff/home';
+    public $redirectTo = '/staff/hr/home';
 
     /**
      * Create a new controller instance.
@@ -46,7 +46,7 @@ class LoginController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function showLoginForm() {
-        return redirect('login');
+        return redirect('/login');
     }
 
     /**
@@ -61,6 +61,24 @@ class LoginController extends Controller {
     //Overwrite default username function which returns "email"
     public function username() {
         return 'emailAddress';
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * Customized to verify staff position and redirect to
+     * appropriate webpage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  mixed $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user) {
+        if ($user->staffPos === 1) {
+            return redirect()->intended('/staff/hr/home');
+        } elseif ($user->staffPos === 0) {
+            return redirect()->intended('/staff/nurse/home');
+        }
     }
 
     /**

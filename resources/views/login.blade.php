@@ -92,6 +92,7 @@
             <p class="form-title">STAFF SIGN IN</p>
             <div class="section-form">
                 <form class="staffLogin-form" method="POST" action="/staff/login">
+                    {{ csrf_field() }}
                     <div class="container">
                         <div class="row">
                             <label>
@@ -118,6 +119,7 @@
                 </form>
 
                 <form class="staffForget-form" method="POST" action="/staff/password/email">
+                    {{ csrf_field() }}
                     <p class="forget-title">Forgotten Your Password</p>
                     <div class="container">
                         <div class="row">

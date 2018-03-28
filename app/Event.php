@@ -26,4 +26,9 @@ class Event extends Model {
     public function eventSchedules() {
         return $this->hasMany('App\EventSchedule');
     }
+
+    //One-To-Many EventSchedule Relationship
+    public function rooms() {
+        return $this->belongsTo('App\Room', 'roomID', 'roomID');
+    }
 }

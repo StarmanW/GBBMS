@@ -43,7 +43,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Last Name</label>
-                                                    <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName'}}"
+                                                        <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName')}}"
                                                            class="form-control" pattern="[A-Za-z\-@ ]{2,}"
                                                            title="Alphabetic, @ and - symbols only. E.g. - Smith"
                                                            required="required">
@@ -53,7 +53,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>IC Number</label>
-                                                    <input type="text" name="ICNum" placeholder="981213125523" value="{{old('ICNum'}}"
+                                                    <input type="text" name="ICNum" placeholder="981213125523" value="{{old('ICNum')}}"
                                                            class="form-control" pattern="\d{12}"
                                                            title="Numeric only. E.g. 985564127789"
                                                            maxlength="12" required="required">
@@ -61,7 +61,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Contact Number</label>
-                                                    <input type="text" name="phoneNum" placeholder="0186559875" value="{{old('phoneNum'}}"
+                                                    <input type="text" name="phoneNum" placeholder="0186559875" value="{{old('phoneNum')}}"
                                                            class="form-control" pattern="([0-9]|[0-9\-]){3,20}"
                                                            title="Numeric and '-' symbols only. E.g. 014-8897875"
                                                            required="required">
@@ -71,7 +71,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Email</label>
-                                                    <input type="email" name="emailAddress" value="{{old('emailAddress'}}"
+                                                    <input type="email" name="emailAddress" value="{{old('emailAddress')}}"
                                                            placeholder="email@hotmail.com" class="form-control"
                                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                                            title="E.g. - john@hotmail.com" required="required">
@@ -80,7 +80,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Birth Date</label>
-                                                    <input class="form-control" type="date" name="birthDate" value="{{old('birthDate'}}"
+                                                    <input class="form-control" type="date" name="birthDate" value="{{old('birthDate')}}"
                                                            required="required">
                                                 </div>
                                             </div>
@@ -124,13 +124,13 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         Profile Picture</label>
-                                                        <input name="profileImage" class="form-control" value="{{old('profileImage'}}" type="file">
+                                                        <input name="profileImage" class="form-control" value="{{old('profileImage')}}" type="file">
                                                 </div>
                                             </div>
                                             <div class="row" style="margin:auto">
                                                 <label>
                                                     <span style="color:red;">*</span>Home Address</label>
-                                                <textarea name="homeAddress" class="form-control" value="{{old('homeAddress'}}"
+                                                <textarea name="homeAddress" class="form-control" value="{{old('homeAddress')}}"
                                                           style="height:200px;resize: none;"></textarea>
                                             </div>
                                         </div>
