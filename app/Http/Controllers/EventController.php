@@ -23,7 +23,14 @@ class EventController extends Controller
      */
     public function index()
     {
+        //get 3 upcoming events from events table for homepage
 
+        //get events after current date and sort by date in ascending order
+        $events = DB::table('events')->where('eventStatus', '=', 'true')->whereDate('eventDate', '>' , DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+
+        //get nearest 3 events to current date
+        $eventList = array($events[0], $events[1], $events[2]);
+        return view('donor.home')->with('eventList', $eventList);
     }
 
 //    /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Event;
 use App\Room;
+use Symfony\Component\Console\Helper\Table;
 
 class StaffEventController extends Controller
 {
@@ -33,6 +34,23 @@ class StaffEventController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexShort()
+    {
+        //get 3 upcoming events from events table for homepage
+
+        //get events after current date and sort by date in ascending order
+        $events = DB::table('events')->where('eventStatus', '=', 'true')->whereDate('eventDate', '>' , DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+
+        //get nearest 3 events to current date
+        $eventList = array($events[0], $events[1], $events[2]);
+        return view('staff.home-hr')->with('eventList', $eventList);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,7 +58,7 @@ class StaffEventController extends Controller
     public function create()
     {
         //get all rooms for registration page
-        $rooms = Room::all();
+        $rooms = Room::where('roomStatus', '=', 'true');
         return view('staff.registration')->with('rooms', $rooms);
     }
 
