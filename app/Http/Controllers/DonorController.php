@@ -144,9 +144,9 @@ class DonorController extends Controller {
         if ($donor->save()) {
             Auth::logout();                         //Log user out
             $request->session()->invalidate();      //Invalidate the session
-            return redirect('/login')->with('success');
+            return redirect('/login')->with('success', 'Your account has been successfully deactivated!');
         } else
-            return redirect('/login')->with('failure');
+            return redirect('/login')->with('failure', 'Your account was not deactivated.');
     }
 
 //    /**
