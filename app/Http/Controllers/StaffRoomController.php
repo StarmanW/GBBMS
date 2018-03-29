@@ -54,7 +54,7 @@ class StaffRoomController extends Controller
         ]);
 
         //generate roomID
-        $roomID = sprintf('%02', $request->input('floor')) . $request->input('quadrant') . (int(substr($request->input('roomID'), -3)) + 1);
+        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . (int(substr($request->input('roomID'), -3)) + 1);
 
         $room = new Room();
 
