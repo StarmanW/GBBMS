@@ -13,12 +13,17 @@
 
 //Login Route
 Route::get('/login', function () {
+
+    //Validate if donor is authenticated
     if (Auth::guard('donor')->check()) {
         return redirect('/donor/home');
-    } elseif (Auth::guard('staff')->check()) {
-        return redirect('/staff/home');
+    } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
+        if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
+            return redirect('/staff/hr/home');
+        elseif (Auth::guard('staff')->user()->staffPos === 0)   //Verify staff position is Nurse
+            return redirect('/staff/nurse/home');
     } else {
-        return view('login');
+        return view('login');                              //Redirect default guest to login page
     }
 })->name('login');
 
@@ -85,8 +90,15 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
         return view('staff.home-hr');
     });
 
+    //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
+    //Profile edit and deactivate
+    Route::get('/profile', 'StaffController@edit');
+    Route::post('/profile/deactivate', 'StaffController@deactivate');
+
+
+    /***** REGISTER SECTION *****/
     //Staff Register
     Route::get('/registration', 'StaffEventController@create')->name('register');
     Route::post('/registration', 'StaffAuth\RegisterController@register');
@@ -97,31 +109,26 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Room register
     Route::post('/registration/room', 'StaffRoomController@store');
 
-    Route::get('/dashboard', function () {
-        return view('staff.dashboard');
-    });
 
-    Route::get('/profile', 'StaffController@edit');
-    Route::post('/profile/deactivate', 'StaffController@deactivate');
+    /***** LIST SECTION *****/
+    Route::get('/list/donor', 'StaffDonorController@index');
+    Route::get('/list/event', 'StaffEventController@index');
 
     Route::get('/list/staff', function () {
         return view('staff.staff-list');
-    });
-
-    Route::get('/list/donor', function () {
-        return view('staff.donor-list');
     });
 
     Route::get('/list/donor/{id}', function () {
         return view('staff.donor-profile-hr');
     });
 
-    Route::get('/list/event', function () {
-        return view('staff.event-list');
-    });
-
     Route::get('/list/event/{id}', function () {
         return view('staff.event-details-hr');
+    });
+
+
+    Route::get('/dashboard', function () {
+        return view('staff.dashboard');
     });
 });
 

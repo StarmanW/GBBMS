@@ -14,14 +14,14 @@
 @section('contents')
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
-        <a href="./home" class="w3-bar-item" id="homepageStyle">
-            <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 5rem;"> Gleneagles KK
+        <a href="./homepage-hr.html" class="w3-bar-item" id="homepageStyle">
+            <img src="assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 5rem;"> Gleneagles KK
         </a>
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
-        <a href="./list/donor" class="w3-bar-item w3-button">Donor List</a>
-        <a href="./list/staff" class="w3-bar-item w3-button">Staff List</a>
-        <a href="./list/event" class="w3-bar-item w3-button">Event List</a>
+        <a href="./donor" class="w3-bar-item w3-button">Donor List</a>
+        <a href="./staff" class="w3-bar-item w3-button">Staff List</a>
+        <a href="./event" class="w3-bar-item w3-button">Event List</a>
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
     </div>
 
@@ -37,22 +37,23 @@
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Staff List</h2>
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
-                <div class="table-wrapper">
-                    <div class="container">
-                        <div class="row search">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
-                                <div class="dataTables_filter">
-                                    <label class="searchInfo mbr-fonts-style display-7">Search:</label>
-                                    <input class="form-control input-sm" disabled="">
+                <div class="table-backpanel">
+                    <div class="table-wrapper">
+                        <div class="container">
+                            <div class="row search">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="dataTables_filter">
+                                        <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                        <input class="form-control input-sm" disabled="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="container scroll">
-                        <table class="table isSearch" cellspacing="0">
-                            <thead>
+                        <div class="container scroll">
+                            <table class="table isSearch" cellspacing="0">
+                                <thead>
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Staff ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Staff Name</th>
@@ -62,9 +63,9 @@
                                     <th class="head-item mbr-fonts-style display-7">Account Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody>
+                                <tbody>
                                 <tr>
                                     <td class="body-item mbr-fonts-style display-7">SH15001</td>
                                     <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
@@ -122,22 +123,23 @@
                                         <i class="fa fa-bars" aria-hidden="true"></i>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container table-info-container">
-                        <div class="row info">
-                            <div class="col-md-6">
-                                <div class="dataTables_info mbr-fonts-style display-7">
-                                    <span class="infoBefore">Showing</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoAfter">entries</span>
-                                    <span class="infoFilteredBefore">(filtered from</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoFilteredAfter"> total entries)</span>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="container table-info-container">
+                            <div class="row info">
+                                <div class="col-md-6">
+                                    <div class="dataTables_info mbr-fonts-style display-7">
+                                        <span class="infoBefore">Showing</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoAfter">entries</span>
+                                        <span class="infoFilteredBefore">(filtered from</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoFilteredAfter"> total entries)</span>
+                                    </div>
                                 </div>
+                                <div class="col-md-6"></div>
                             </div>
-                            <div class="col-md-6"></div>
                         </div>
                     </div>
                 </div>

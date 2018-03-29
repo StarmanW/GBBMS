@@ -57,11 +57,11 @@
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/registration">Registration
+                        <a class="text-white dropdown-item display-4" href="./registration">Registration
                             <!-- TEMP LINK -->
                             <br>
                         </a>
-                        <a class="text-white dropdown-item display-4" href="">View Lists
+                        <a class="text-white dropdown-item display-4" href="./list/donor">View Lists
                             <!-- TEMP LINK -->
                             <br>
                         </a>
@@ -72,11 +72,11 @@
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/profile">View Profile
+                        <a class="text-white dropdown-item display-4" href="./profile">View Profile
                             <!-- TEMP LINK -->
                             <br>
                         </a>
-                        <a class="nav-link link text-white display-4" href="/staff/hr/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="nav-link link text-white display-4" href="./logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="mbri-lock mbr-iconfont mbr-iconfont-btn"></span>Logout
                         </a>
                         <form id="logout-form" action="/staff/hr/logout" method="POST" style="display: none;">

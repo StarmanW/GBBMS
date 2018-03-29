@@ -20,9 +20,9 @@
         </a>
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
-        <a href="./donor-list.html" class="w3-bar-item w3-button">Donor List</a>
-        <a href="./staff-list.html" class="w3-bar-item w3-button">Staff List</a>
-        <a href="./event-list.html" class="w3-bar-item w3-button">Event List</a>
+        <a href="./donor" class="w3-bar-item w3-button">Donor List</a>
+        <a href="./staff" class="w3-bar-item w3-button">Staff List</a>
+        <a href="./event" class="w3-bar-item w3-button">Event List</a>
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
     </div>
 
@@ -38,22 +38,23 @@
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
-                <div class="table-wrapper">
-                    <div class="container">
-                        <div class="row search">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
-                                <div class="dataTables_filter">
-                                    <label class="searchInfo mbr-fonts-style display-7">Search:</label>
-                                    <input class="form-control input-sm" disabled="">
+                <div class="table-backpanel">
+                    <div class="table-wrapper">
+                        <div class="container">
+                            <div class="row search">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="dataTables_filter">
+                                        <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                        <input class="form-control input-sm" disabled="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="container scroll">
-                        <table class="table isSearch" cellspacing="0">
-                            <thead>
+                        <div class="container scroll">
+                            <table class="table isSearch" cellspacing="0">
+                                <thead>
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Donor ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Donor Name</th>
@@ -63,93 +64,41 @@
                                     <th class="head-item mbr-fonts-style display-7">Account Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D160012</td>
-                                    <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
-                                    <td class="body-item mbr-fonts-style display-7">O Positive</td>
-                                    <td class="body-item mbr-fonts-style display-7">samuelwkf-sn16@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">019-864-2235</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <a href="./donor-profile-hr.html">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D160005</td>
-                                    <td class="body-item mbr-fonts-style display-7">Shrilina Koo Yung Ja</td>
-                                    <td class="body-item mbr-fonts-style display-7">A Negative</td>
-                                    <td class="body-item mbr-fonts-style display-7">shirlinakyj-sa16@student.tarc.edu.my</td>
-                                    <td class="body-item mbr-fonts-style display-7">014-245-7855</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D170052</td>
-                                    <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
-                                    <td class="body-item mbr-fonts-style display-7">AB Positive</td>
-                                    <td class="body-item mbr-fonts-style display-7">xXNoSkopeXx@outlook.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">013-574-7855</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D150124</td>
-                                    <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
-                                    <td class="body-item mbr-fonts-style display-7">B Positive</td>
-                                    <td class="body-item mbr-fonts-style display-7">PepeTheFrog@hotmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">019-152-5543</td>
-                                    <td class="body-item mbr-fonts-style display-7">Deactivated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D160054</td>
-                                    <td class="body-item mbr-fonts-style display-7">Teo Kien Lung</td>
-                                    <td class="body-item mbr-fonts-style display-7">A Positive</td>
-                                    <td class="body-item mbr-fonts-style display-7">imrichaf@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">019-154-7562</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">D170420</td>
-                                    <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
-                                    <td class="body-item mbr-fonts-style display-7">O Positive</td>
-                                    <td class="body-item mbr-fonts-style display-7">ididdrugs98@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">014-548-7878</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container table-info-container">
-                        <div class="row info">
-                            <div class="col-md-6">
-                                <div class="dataTables_info mbr-fonts-style display-7">
-                                    <span class="infoBefore">Showing</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoAfter">entries</span>
-                                    <span class="infoFilteredBefore">(filtered from</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoFilteredAfter"> total entries)</span>
+                                <tbody>
+                                @foreach($donors as $donor)
+                                    <tr>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->donorID}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->firstName}} {{$donor->lastName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->getBloodTypeString()}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->emailAddress}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->phoneNum}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->donorAccStatus}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">
+                                            <a href="./list/donor/{{$donor->donorID}}">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="container table-info-container">
+                            <div class="row info">
+                                <div class="col-md-6">
+                                    <div class="dataTables_info mbr-fonts-style display-7">
+                                        <span class="infoBefore">Showing</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoAfter">entries</span>
+                                        <span class="infoFilteredBefore">(filtered from</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoFilteredAfter"> total entries)</span>
+                                    </div>
                                 </div>
+                                <div class="col-md-6"></div>
                             </div>
-                            <div class="col-md-6"></div>
                         </div>
                     </div>
                 </div>

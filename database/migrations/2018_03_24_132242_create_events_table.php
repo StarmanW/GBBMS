@@ -19,8 +19,8 @@ class CreateEventsTable extends Migration
             $table->date('eventDate')->nullable(false);
             $table->time('eventStartTime')->nullable(false);
             $table->time('eventEndTime')->nullable(false);
-            $table->string('roomID', 10)->nullable(false)->unique();
-            $table->boolean('eventStatus')->nullable(false);
+            $table->string('roomID', 10)->nullable(false);
+            $table->integer('eventStatus')->nullable(false);
             $table->timestamps();
         });
     }

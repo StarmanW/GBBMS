@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Event;
 use App\Room;
@@ -26,7 +27,7 @@ class StaffEventController extends Controller {
      */
     public function index() {
         //get all from events table and paginate for list page
-        $events = DB::table('events')->paginate(15);
+        $events = Event::paginate(15);
         return view('staff.event-list')->with('events', $events);
     }
 

@@ -51,28 +51,28 @@ class Donor extends Authenticatable {
 
         switch ($this->bloodType) {
             case 1:
-                $bloodTypeString = "A+";
+                $bloodTypeString = "A Positive";
                 break;
             case 2:
-                $bloodTypeString = "A-";
+                $bloodTypeString = "A Negative";
                 break;
             case 3:
-                $bloodTypeString = "B+";
+                $bloodTypeString = "B Positive";
                 break;
             case 4:
-                $bloodTypeString = "B-";
+                $bloodTypeString = "B Negative";
                 break;
             case 5:
-                $bloodTypeString = "O+";
+                $bloodTypeString = "O Positive";
                 break;
             case 6:
-                $bloodTypeString = "O-";
+                $bloodTypeString = "O Negative";
                 break;
             case 7:
-                $bloodTypeString = "AB+";
+                $bloodTypeString = "AB Positive";
                 break;
             case 8:
-                $bloodTypeString = "AB-";
+                $bloodTypeString = "AB Negative";
                 break;
         }
         return $bloodTypeString;

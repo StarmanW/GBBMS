@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class StaffController extends Controller {
@@ -28,7 +27,7 @@ class StaffController extends Controller {
     public function index()
     {
         //get all staffs and paginate for list page
-        $staffs = DB::table('staff')->paginate(15);
+        $staffs = Staff::paginate(15);
         return view('staff.staff-list')->with('staffs', $staffs);
     }
 //

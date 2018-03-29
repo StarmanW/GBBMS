@@ -24,7 +24,7 @@ class StaffDonorController extends Controller
      */
     public function index()
     {
-        $donors = DB::table('donor')->paginate(15);
+        $donors = Donor::paginate(15);
         return view('staff.donor-list')->with('donors', $donors);
     }
 //

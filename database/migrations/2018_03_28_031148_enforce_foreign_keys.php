@@ -12,7 +12,7 @@ class EnforceForeignKeys extends Migration {
      */
     public function up() {
         //Add foreign keys
-        Schema::table('event_schedules', function ($table) {
+        Schema::table('event_schedules', function (Blueprint $table) {
             $table->foreign('staffID')->references('staffID')->on('staff');
             $table->foreign('eventID')->references('eventID')->on('events');
         });
@@ -22,12 +22,12 @@ class EnforceForeignKeys extends Migration {
             $table->foreign('eventID')->references('eventID')->on('events');
         });
 
-        Schema::table('blood', function ($table) {
+        Schema::table('blood', function (Blueprint $table) {
             $table->foreign('donorID')->references('donorID')->on('donors');
             $table->foreign('eventID')->references('eventID')->on('events');
         });
 
-        Schema::table('events', function ($table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->foreign('roomID')->references('roomID')->on('room');
         });
     }
@@ -39,7 +39,7 @@ class EnforceForeignKeys extends Migration {
      */
     public function down() {
         //Remove all the foreign keys
-        Schema::table('event_schedules', function ($table) {
+        Schema::table('event_schedules', function (Blueprint $table) {
             $table->dropForeign('staffID');
             $table->dropForeign('eventID');
         });
@@ -47,12 +47,12 @@ class EnforceForeignKeys extends Migration {
             $table->dropForeign('donorID');
             $table->dropForeign('eventID');
         });
-        Schema::table('blood', function ($table) {
+        Schema::table('blood', function (Blueprint $table) {
             $table->dropForeign('donorID');
             $table->dropForeign('eventID');
         });
 
-        Schema::table('events', function ($table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->dropForeign('roomID');
         });
     }

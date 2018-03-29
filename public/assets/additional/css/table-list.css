@@ -32,3 +32,8 @@ table .fa-calendar-check.active {
     color: white;
     background-color: #0d6786;
 }
+
+.table-backpanel {
+    background-color: #e5e5e5;
+    padding-top: 15px;
+}

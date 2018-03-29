@@ -20,9 +20,9 @@
         </a>
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
-        <a href="./donor-list.html" class="w3-bar-item w3-button">Donor List</a>
-        <a href="./staff-list.html" class="w3-bar-item w3-button">Staff List</a>
-        <a href="./event-list.html" class="w3-bar-item w3-button">Event List</a>
+        <a href="./donor" class="w3-bar-item w3-button">Donor List</a>
+        <a href="./staff" class="w3-bar-item w3-button">Staff List</a>
+        <a href="./event" class="w3-bar-item w3-button">Event List</a>
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
     </div>
 
@@ -38,22 +38,23 @@
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event List</h2>
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
-                <div class="table-wrapper">
-                    <div class="container">
-                        <div class="row search">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
-                                <div class="dataTables_filter">
-                                    <label class="searchInfo mbr-fonts-style display-7">Search:</label>
-                                    <input class="form-control input-sm" disabled="">
+                <div class="table-backpanel">
+                    <div class="table-wrapper">
+                        <div class="container">
+                            <div class="row search">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="dataTables_filter">
+                                        <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                        <input class="form-control input-sm" disabled="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="container scroll">
-                        <table class="table isSearch" cellspacing="0">
-                            <thead>
+                        <div class="container scroll">
+                            <table class="table isSearch" cellspacing="0">
+                                <thead>
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Event ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Event Name</th>
@@ -62,67 +63,40 @@
                                     <th class="head-item mbr-fonts-style display-7">Event Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody>
+                                <tbody>
+                                @foreach($events as $event)
                                 <tr>
-                                    <td class="body-item mbr-fonts-style display-7">E180124</td>
-                                    <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
-                                    <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventStatus}}</td>
                                     <td class="body-item mbr-fonts-style display-7">
                                         <a href="./event-details-hr.html">
                                             <i class="fa fa-bars" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">E181285</td>
-                                    <td class="body-item mbr-fonts-style display-7">Blood Week June 2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">20-Jun-2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">11.00 Am to 5.00 PM</td>
-                                    <td class="body-item mbr-fonts-style display-7">Cancelled</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">E184523</td>
-                                    <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive October 2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">15-Oct-2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                                    <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">E174523</td>
-                                    <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive December 2017</td>
-                                    <td class="body-item mbr-fonts-style display-7">18-Dec-2018</td>
-                                    <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                                    <td class="body-item mbr-fonts-style display-7">Finished</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container table-info-container">
-                        <div class="row info">
-                            <div class="col-md-6">
-                                <div class="dataTables_info mbr-fonts-style display-7">
-                                    <span class="infoBefore">Showing</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoAfter">entries</span>
-                                    <span class="infoFilteredBefore">(filtered from</span>
-                                    <span class="inactive infoRows"></span>
-                                    <span class="infoFilteredAfter"> total entries)</span>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="container table-info-container">
+                            <div class="row info">
+                                <div class="col-md-6">
+                                    <div class="dataTables_info mbr-fonts-style display-7">
+                                        <span class="infoBefore">Showing</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoAfter">entries</span>
+                                        <span class="infoFilteredBefore">(filtered from</span>
+                                        <span class="inactive infoRows"></span>
+                                        <span class="infoFilteredAfter"> total entries)</span>
+                                    </div>
                                 </div>
+                                <div class="col-md-6"></div>
                             </div>
-                            <div class="col-md-6"></div>
                         </div>
                     </div>
                 </div>

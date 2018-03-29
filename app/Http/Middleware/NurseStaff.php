@@ -18,6 +18,8 @@ class NurseStaff {
             return $next($request);
         } elseif (Auth::check() && Auth::user()->staffPos == 1) {
             return redirect('/staff/hr/home');
+        } else {
+            return redirect('/login');
         }
     }
 }

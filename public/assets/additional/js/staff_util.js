@@ -2,7 +2,7 @@
 function deactivateStaffAccPrompt(staffName) {
     alertify.confirm("Confirm to deactivate staff (" + staffName + ") account?", function (e) {
         if (e) {
-            $('#deleteMember').submit();
+            $('#deactivateStaffAcc').submit();
         }
     }).setting({
         'transition': 'zoom',
