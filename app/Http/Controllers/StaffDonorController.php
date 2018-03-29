@@ -24,7 +24,7 @@ class StaffDonorController extends Controller
      */
     public function index()
     {
-        $donors = Donor::all();
+        $donors = DB::table('donor')->paginate(15);
         return view('staff.donor-list')->with('donors', $donors);
     }
 //
@@ -37,7 +37,7 @@ class StaffDonorController extends Controller
 //    {
 //        //
 //    }
-
+//
 //    /**
 //     * Store a newly created resource in storage.
 //     *
