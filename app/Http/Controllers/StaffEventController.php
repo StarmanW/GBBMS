@@ -157,6 +157,7 @@ class StaffEventController extends Controller
         {
             //set new event details
             $event = new Event();
+            $event->eventName = $request->input('eventName');
             $event->eventDate = $request->input('eventDate');
             $event->eventStartTime = $request->input('eventStartTime');
             $event->eventEndTime = $request->input('eventEndTime');
