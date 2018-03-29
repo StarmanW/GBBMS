@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Event;
 use App\Room;
-use Symfony\Component\Console\Helper\Table;
 
 class StaffEventController extends Controller
 {
@@ -77,9 +76,9 @@ class StaffEventController extends Controller
         [
             'eventName' => ['required', 'string', 'max:255'],
             'eventDate' => ['required', 'date'],
-            'eventStartTime' => ['required', 'time'],
-            'eventEndTime' => ['required', 'time'],
-            'roomID' => ['required', 'string', 'regex:^(\d{2})([1234]{1})(\d{4})$']
+            'eventStartTime' => ['required', 'date_format:H:i'],
+            'eventEndTime' => ['required', 'date_format:H:i'],
+            'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
         ]);
 
         if($validator->fails())

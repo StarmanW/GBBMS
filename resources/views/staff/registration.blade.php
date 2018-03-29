@@ -35,7 +35,7 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="/staff/hr/registration">
+                                            <form method="POST" action="./registration">
                                                 {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
@@ -125,7 +125,7 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="">
+                                            <form method="POST" action="./registration/event">
                                                 {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
@@ -134,7 +134,7 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Event Name</label>
-                                                        <input type="text" name="fName" placeholder="John" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                                        <input type="text" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
                                                             required="required">
                                                     </div>
                                                     <br>
@@ -159,12 +159,12 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Room</label>
-                                                        <select name="position" class="form-control" required="required">
+                                                        <select name="roomID" class="form-control" required="required">
                                                             <option disabled selected value>Select Room Number</option>
-                                                            <option value="5">Room 1-4</option>
-                                                            <option value="4">Room 1-8</option>
-                                                            <option value="3">Room 1-12</option>
-                                                            <option value="2">Room 1-16</option>
+                                                            <option value="0120001">Room 1</option>
+                                                            <option value="0120002">Room 2</option>
+                                                            <option value="0120003">Room 3</option>
+                                                            <option value="0120004">Room 4</option>
                                                         </select>
                                                     </div>
                                                 </div>

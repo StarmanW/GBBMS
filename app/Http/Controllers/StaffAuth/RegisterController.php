@@ -55,7 +55,6 @@ class RegisterController extends Controller {
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:staff',
             'birthDate' => 'required|date',
-            'password' => 'required|min:6|max:255|confirmed',
             'gender' => ['required', 'boolean'],
             'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required|max:500'

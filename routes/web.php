@@ -88,8 +88,10 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
     //Staff Register
-    Route::get('/registration', 'StaffAuth\RegisterController@showRegistrationForm')->name('register');
+    Route::get('/registration', 'StaffEventController@create')->name('register');
     Route::post('/registration', 'StaffAuth\RegisterController@register');
+
+    Route::post('/registration/event', 'StaffEventController@store');
 
     Route::get('/dashboard', function () {
         return view('staff.dashboard');
