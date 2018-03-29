@@ -91,6 +91,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::get('/registration', 'StaffEventController@create')->name('register');
     Route::post('/registration', 'StaffAuth\RegisterController@register');
 
+    //Event Register
     Route::post('/registration/event', 'StaffEventController@store');
 
     Route::get('/dashboard', function () {
