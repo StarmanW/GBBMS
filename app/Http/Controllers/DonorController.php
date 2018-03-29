@@ -50,18 +50,6 @@ class DonorController extends Controller {
 //    }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $donor = Donor::find(Auth::user()->donorID);
-        return view('donor.donorProfile')->with('donor', $donor);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @return \Illuminate\Http\Response

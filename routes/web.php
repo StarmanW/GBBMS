@@ -88,20 +88,15 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
     //Staff Register
-    Route::get('/register', 'StaffAuth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'StaffAuth\RegisterController@register');
+    Route::get('/registration', 'StaffAuth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('/registration', 'StaffAuth\RegisterController@register');
 
     Route::get('/dashboard', function () {
         return view('staff.dashboard');
     });
 
-    Route::get('/registration', function () {
-        return view('staff.registration');
-    });
-
-    Route::get('/profile', function () {
-        return view('staff.staff-profile');
-    });
+    Route::get('/profile', 'StaffController@edit');
+    Route::post('/profile/deactivate', 'StaffController@deactivate');
 
     Route::get('/list/staff', function () {
         return view('staff.staff-list');
@@ -133,15 +128,14 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
 
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
-    Route::get('/profile', function () {
-        return view('staff.staff-profile');
-    });
+    Route::get('/profile', 'StaffController@edit');
+    Route::post('/profile/deactivate', 'StaffController@deactivate');
 
     Route::get('/schedule', function () {
         return view('staff.schedule-list');
     });
 
-    Route::get('/manage', function () {
+    Route::get('/manage-blood', function () {
         return view('staff.blood-management');
     });
 

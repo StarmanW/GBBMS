@@ -5,10 +5,10 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
@@ -32,18 +32,18 @@
                     <div class="panel-item">
                         <div class="card-block">
                             <div class="testimonial-photo">
-                                <img src="/assets/images/mbr-1-1620x1080.jpg" alt="" title="" media-simple="true">
+                                <img src="/storage/profileImage/{{$staff->profileImage}}" alt="" title="" media-simple="true">
                             </div>
                             <div class="profile-table-wrap">
                                 <table class="table profile-table" id="" cellspacing="0">
                                     <tbody>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Staff ID</th>
-                                            <td class="body-item mbr-fonts-style display-7">SH15001</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Name</th>
-                                            <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->firstName}} {{$staff->lastName}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Password</th>
@@ -53,34 +53,41 @@
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">IC Number</th>
-                                            <td class="body-item mbr-fonts-style display-7">981012-12-1245</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->ICNum}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Gender</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->gender}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Birth Date</th>
-                                            <td class="body-item mbr-fonts-style display-7">12-Oct-1997</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($staff->birthDate), "d-M-Y")}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Position</th>
-                                            <td class="body-item mbr-fonts-style display-7">Human Resource Manager</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Email Address</th>
-                                            <td class="body-item mbr-fonts-style display-7">zions-sh15@gmail.com</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->emailAddress}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Contact Number</th>
-                                            <td class="body-item mbr-fonts-style display-7">019-553-5413</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->phoneNum}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Home Address</th>
-                                            <td class="body-item mbr-fonts-style display-7">H/s no. 3, lorong 15, phase 2, Taman Cantek, Kota Kinabalu, Sabah, Malaysia</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->homeAddress}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('Staff 1');">Deactivate Account</button>
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
+                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                            {{csrf_field()}}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -155,16 +162,16 @@
                                         <span style="color:red;">*</span>Position</label>
                                     <select name="staffPos" class="form-control" required="required">
                                         <option disabled selected value>Select member position</option>
-                                        <option value="1" @if($staff->staffPos === 1) {{"selected"}} @endif>Human Resource Manager</option>
-                                        <option value="0" @if($staff->staffPos === 0) {{"selected"}} @endif>Nurse</option>
+                                        <option value="1" @if($staff->staffPos === "1") {{"selected"}} @endif>Human Resource Manager</option>
+                                        <option value="0" @if($staff->staffPos === "0") {{"selected"}} @endif>Nurse</option>
                                     </select>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === 1) {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === 2) {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
+                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === "1") {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === "0") {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>
@@ -175,7 +182,7 @@
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Home Address</label>
-                                    <textarea name="homeAddress" class="form-control" value="{{$staff->homeAddress}}" style="height:200px;resize: none;"></textarea>
+                                    <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;">{{$staff->homeAddress}}</textarea>
                                 </div>
                             </div>
                             <br />

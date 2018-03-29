@@ -131,7 +131,7 @@ class StaffEventController extends Controller
                 'eventDate' => ['required', 'date'],
                 'eventStartTime' => ['required', 'time'],
                 'eventEndTime' => ['required', 'time'],
-                'roomID' => ['required', 'string', 'regex:^(\d{2})([1234]{1})(\d{4})$']
+                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
             ]);
 
         if($validator->fails())

@@ -48,7 +48,7 @@
                                 <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
                                 <td class="body-item mbr-fonts-style display-7">Upcoming</td>
                                 <td class="body-item mbr-fonts-style display-7">
-                                    <a href="./schedule-details.html"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                    <a href="./schedule"><i class="fa fa-bars" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                             <tr>
