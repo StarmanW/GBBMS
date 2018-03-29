@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\StaffAuth;
 
 use App\Staff;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -105,15 +106,28 @@ class RegisterController extends Controller {
             'phoneNum' => $data['phoneNum'],
             'emailAddress' => $data['emailAddress'],
             'birthDate' => $data['birthDate'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['ICNum']),
             'gender' => $data['gender'],
             'profileImage' => $fileNameToStore,
             'homeAddress' => $data['homeAddress'],
+            'staffPos' => $data['staffPos'],
             'staffAccStatus' => 1,
         ]);
 
         //Return the created staff instance and store in DB
         return $staff;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request) {
+        $this->validator($request->all())->validate();
+        $this->create($request->all());
+        return redirect('/staff/hr/registration')->with('success', 'Nurse successfully registered!');
     }
 
     /**

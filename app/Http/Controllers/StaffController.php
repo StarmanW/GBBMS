@@ -67,12 +67,11 @@ class StaffController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit() {
         //get one staff for edit
-        $staff = Staff::find($id);
+        $staff = Staff::find(Auth::user()->donorID);
         return view('staff.staff-profile')->with('staff', $staff);
     }
 
@@ -154,24 +153,17 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate(Request $request, $id) {
-        //get current user staff
-        $staff = Staff::find(Auth::user()->staffID);
-
-        //validate data
-        $this->validate($request,
-            [
-                'staffAccStatus' => 'required|boolean'
-            ]);
-
-        //set staff account status
-        $staff->staffAccStatus = $request->input('staffAccStatus');
+        //Set donor account status
+        $staff = Auth::user();
+        $staff->staffAccStatus = 0;
 
         //redirect to staff login
-        if ($staff->save())
+        if ($staff->save()) {
+            Auth::logout();                         //Log user out
+            $request->session()->invalidate();      //Invalidate the session
             return redirect('/login')->with('success');
-        else
+        } else
             return redirect('/login')->with('failure');
-
     }
 
 //    /**
