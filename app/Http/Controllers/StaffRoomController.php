@@ -54,7 +54,8 @@ class StaffRoomController extends Controller
         ]);
 
         //generate roomID
-        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . (int(substr($request->input('roomID'), -3)) + 1);
+        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . (count(Room::all()) + 1);
+        //(int(substr($request->input('roomID'), -3)) + 1)
 
         $room = new Room();
 
@@ -134,13 +135,44 @@ class StaffRoomController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deactivate(Request $request, $id)
     {
-        //
+        //find room
+        $room = Room::find($id);
+
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'roomStatus' => ['required', 'boolean']
+        ]);
+
+        //set room details
+        if($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else
+        {
+            $room->roomStatus = false;
+
+            if($room->save())
+                return redirect('/staff/hr/registration')->with('success', 'Room deactivated successfully!');
+            else
+                return redirect('/staff/hr/registration')->with('failure', 'Room was not deactivated.');
+        }
     }
+
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function destroy($id)
+//    {
+//        //
+//    }
 }
