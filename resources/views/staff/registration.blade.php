@@ -22,11 +22,14 @@
                         <br />
                         <div class="form-container">
                             <ul class="row nav nav-tabs">
-                                <li class="active col-md-6" id="multitab-left">
+                                <li class="active col-md-4" id="multitab-left">
                                     <a data-toggle="tab" href="#nurse" class="multitab-btn">Register Nurse</a>
                                 </li>
-                                <li class="col-md-6">
-                                    <a data-toggle="tab" href="#event" class="multitab-btn">Add New Blood Donation Event</a>
+                                <li class="col-md-4" id="multitab-left">
+                                    <a data-toggle="tab" href="#event" class="multitab-btn" style="padding:0;">Add New Blood Donation Event</a>
+                                </li>
+                                <li class="col-md-4">
+                                    <a data-toggle="tab" href="#room" class="multitab-btn">Add New Room</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -100,8 +103,8 @@
                                                             <span style="color:red;">*</span>Position</label>
                                                         <select name="staffPos" class="form-control" required="required">
                                                             <option disabled selected value>Select member position</option>
-                                                            <option value="1" selected @if(old('staffPos') === 1) {{'selected'}}@endif>Human Resource Manager</option>
-                                                            <option value="0" @if(old('staffPos') === 0) {{'selected'}}@endif>Nurse</option>
+                                                            <option value="1" selected @if(old('staffPos') === "1") {{'selected'}}@endif>Human Resource Manager</option>
+                                                            <option value="0" @if(old('staffPos') === "0") {{'selected'}}@endif>Nurse</option>
                                                         </select>
                                                     </div>
                                                     <br>
@@ -134,26 +137,26 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Event Name</label>
-                                                        <input type="text" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
+                                                        <input type="text" value="{{old('eventName')}}" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
                                                             required="required">
                                                     </div>
                                                     <br>
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Event Date</label>
-                                                        <input class="form-control" type="date" name="eventDate" id="eventDate" required="required">
+                                                        <input class="form-control" value="{{old('eventDate')}}" type="date" name="eventDate" id="eventDate" required="required">
                                                     </div>
                                                     <br>
                                                     <div class="row">
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Start Time</label>
-                                                            <input class="form-control" type="time" name="eventStartTime" id="eventStartTime">
+                                                            <input class="form-control" value="{{old('eventStartTime')}}" type="time" name="eventStartTime" id="eventStartTime">
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>End Time</label>
-                                                            <input class="form-control" type="time" name="eventEndTime" id="eventEndTime">
+                                                            <input class="form-control" value="{{old('eventEndTime')}}" type="time" name="eventEndTime" id="eventEndTime">
                                                         </div>
                                                     </div>
                                                     <div class="row" style="margin:auto">
@@ -162,9 +165,42 @@
                                                         <select name="roomID" class="form-control" required="required">
                                                             <option disabled selected value>Select Room Number</option>
                                                             @foreach($rooms as $room)
-                                                                <option value="{{$room->roomID}}">Room {{$room->roomID}} - Floor {{$room->floor }}, Quadrant {{$room->quadrant}}</option>
+                                                                <option value="{{$room->roomID}}" @if(old('roomID') === $room->roomID) {{"selected"}} @endif>Room {{$room->roomID}} - Floor {{$room->floor }}, Quadrant {{$room->quadrant}}</option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="submit-button">
+                                                    <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>
+                                                    <button type="reset" class="btn btn-lg btn-primary form-btn">Reset</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="room" class="tab-pane fade">
+                                    <h1 class="well">New Room</h1>
+                                    <hr style="border-top:1px solid gray;" />
+                                    <div class="col-lg-12 well">
+                                        <div class="row">
+                                            <form method="POST" action="./registration/room">
+                                                {{ csrf_field() }}
+                                                <p style="color:red; float: left;">"*" Required fields</p>
+                                                <br />
+                                                <br />
+                                                <div class="col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 form-group">
+                                                            <label>
+                                                                <span style="color:red;">*</span>Quadrant</label>
+                                                            <input class="form-control" type="number" value="{{old('quadrant')}}" min="0" max="4" name="quadrant" id="quadrant">
+                                                        </div>
+                                                        <div class="col-sm-6 form-group">
+                                                            <label>
+                                                                <span style="color:red;">*</span>Floor</label>
+                                                            <input class="form-control" type="number" value="{{old('floor')}}" min="0" name="floor" id="floor">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <br />
@@ -192,6 +228,12 @@
             $('#nurse').removeClass('active show');
             $('#event').addClass('active show');
             @php session()->forget('eventTab'); @endphp
+        </script>
+    @elseif(session('roomTab'))
+        <script>
+            $('#nurse').removeClass('active show');
+            $('#room').addClass('active show');
+            @php session()->forget('roomTab'); @endphp
         </script>
     @endif
 

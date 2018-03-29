@@ -64,6 +64,9 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        //Set the current registration tab into session
+        session(['eventTab' => 'true']);
+
         //generate event ID
         $eventID = 'E' . date('y') . sprintf('%04d', count(Event::all()) + 1);
 
@@ -73,7 +76,7 @@ class StaffEventController extends Controller {
                 'eventDate' => ['required', 'date'],
                 'eventStartTime' => ['required', 'date_format:H:i'],
                 'eventEndTime' => ['required', 'date_format:H:i'],
-                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
+                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{3})$/']
             ]);
 
         if ($validator->fails())
@@ -88,8 +91,6 @@ class StaffEventController extends Controller {
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
             $event->eventStatus = true;
-
-            session(['eventTab' => 'true']);
 
             if ($event->save())
                 return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');

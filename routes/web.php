@@ -94,6 +94,9 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Event Register
     Route::post('/registration/event', 'StaffEventController@store');
 
+    //Room register
+    Route::post('/registration/room', 'StaffRoomController@store');
+
     Route::get('/dashboard', function () {
         return view('staff.dashboard');
     });
