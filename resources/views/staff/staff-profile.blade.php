@@ -162,16 +162,16 @@
                                         <span style="color:red;">*</span>Position</label>
                                     <select name="staffPos" class="form-control" required="required">
                                         <option disabled selected value>Select member position</option>
-                                        <option value="1" @if($staff->staffPos === "1") {{"selected"}} @endif>Human Resource Manager</option>
-                                        <option value="0" @if($staff->staffPos === "0") {{"selected"}} @endif>Nurse</option>
+                                        <option value="1" @if($staff->staffPos === 1) {{"selected"}} @endif>Human Resource Manager</option>
+                                        <option value="0" @if($staff->staffPos === 0) {{"selected"}} @endif>Nurse</option>
                                     </select>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === "1") {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === "0") {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
+                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === 1) {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === 0) {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>
@@ -188,7 +188,7 @@
                             <br />
                             <span style="text-align:center">
                                 <div class="submit-button">
-                                    <button type="submit" class="btn btn-sm btn-primary profile-btn ">Submit</button>
+                                    <button type="submit" class="btn btn-sm btn-success profile-btn ">Submit</button>
                                     <button type="reset" class="btn btn-sm btn-primary profile-btn ">Reset</button>
                                 </div>
                             </span>

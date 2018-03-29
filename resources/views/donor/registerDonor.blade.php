@@ -13,7 +13,7 @@
 @endsection
 @section('contents')
     <section class="header4 cid-qM5bcKLKIf mbr-fullscreen mbr-parallax-background" id="header4-z">
-        <div class="mbr-overlay" style="opacity: 0.2; background-color: black;"></div>  
+        <div class="mbr-overlay" style="opacity: 0.2; background-color: black;"></div>
         <div class="container align-center">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">
@@ -43,7 +43,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         <span style="color:red;">*</span>Last Name</label>
-                                                        <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName')}}"
+                                                    <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName')}}"
                                                            class="form-control" pattern="[A-Za-z\-@ ]{2,}"
                                                            title="Alphabetic, @ and - symbols only. E.g. - Smith"
                                                            required="required">
@@ -90,7 +90,7 @@
                                                         <span style="color:red;">*</span>Password</label>
                                                     <input type="password" name="password" id="password"
                                                            class="form-control" required="required">
-                                                           <p style="font-size:15px">Minimum 6 words and maximum 255 words</p>
+                                                    <p style="font-size:15px">Minimum 6 words and maximum 255 words</p>
                                                 </div>
                                                 <div class="col-sm-6 form-group">
                                                     <label>
@@ -124,7 +124,7 @@
                                                 <div class="col-sm-6 form-group">
                                                     <label>
                                                         Profile Picture</label>
-                                                        <input name="profileImage" class="form-control" value="{{old('profileImage')}}" type="file">
+                                                    <input name="profileImage" class="form-control" value="{{old('profileImage')}}" type="file">
                                                 </div>
                                             </div>
                                             <div class="row" style="margin:auto">
@@ -148,11 +148,58 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="requirementModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-center" style="display: block">
+                    <h3 class="modal-title" id="lineModalLabel">Requirements</h3>
+                </div>
+                <div class="modal-body" style="padding: 20px">
+                    According to the <b>National Blood Centre's (PDN) guidelines</b>, a person must be within the age of 18 to 60 years old for first-time donors, while the age limit extends to 65 years old for those who have donated blood previously.
+                    <br/><br/>
+                    Those who are 17 years old may donate blood but they would need to obtain a written consent from their parents or guardians.
+                    <br/><br/>
+                    <b>Other requirements include</b>:
+                    <ul>
+                        <li>Body weight of at least 45 kg.</li>
+                        <li>In good physical and mental health with no chronic medical illness.</li>
+                        <li>Not on long-term medications and has not been intoxicated by alcohol within 24 hours prior to donation.</li>
+                        <li>Should not be fasting and have had enough sleep (minimum 5 hours) the night before donating.</li>
+                    </ul>
+                    <b>You're not allowed to donate blood if:</b>
+                    <ul>
+                        <li>You lived in the United Kindom (England, Northern Ireland, Scotland, Wales, Isle of Man or the Channel Islands) or the Republic of Ireland from 1980 to 1996 for a period of six months (cumulative) or more.</li>
+                        <li>You have been living in Europe from 1980 to the present for a period of five years (accumulated) or more.</li>
+                        <li>You are menstruating, pregnant, breastfeeding, or experienced a miscarriage six months prior to the donation.</li>
+                    </ul>
+                    <b>Additionally, a medical officer will also reject blood donation from those who are in a:</b>
+                    <ul>
+                        <li>Homosexual relationship</li>
+                        <li>Bisexual relationship</li>
+                        <li>Commercial sex relationship</li>
+                        <li>Multiple sexual partners</li>
+                        <li>Drug abuse (Intravenous)</li>
+                        <li>Sexual contact with those mentioned above</li>
+                    </ul>
+                </div>
+                <div class="submit-button">
+                    <button class="btn btn-primary btn-sm" type="submit" class="close" data-dismiss="modal">Accept</button>
+                    <button class="btn btn-secondary btn-sm" type="button" onclick="window.location.href = '/login';">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('additionalJS')
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
     <script src="{{asset('/assets/additional/js/donor_util.js')}}"></script>
+
+    <script>
+        window.onload = $('#requirementModal').modal('show');
+    </script>
+
     @if(count($errors) > 0)
         <script>donorFormError('Empty/Invalid Data Entered', {!! $errors !!});</script>
     @endif

@@ -150,7 +150,7 @@
 
     @if (count($errors) > 0)
     <script>
-        //Function to display error message when using donor registration form
+        //Function to display invalid login credentials
         alertify.alert().setting({
             'transition': 'zoom',
             'movable': false,
@@ -167,14 +167,34 @@
         });
     </script>
     @elseif(session('deactivated'))
+        <script>
+            //Function to display messages stating the account is deactivated
+            alertify.alert('{{session('deactivated')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Account Deactivated").show();
+        </script>
+    @elseif(session('success'))
     <script>
-        //Function to display error message when using donor registration form
-        alertify.alert('{{session('deactivated')}}').setting({
+        //Function to display account successfully deactivated message
+        alertify.alert('{{session('success')}}').setting({
             'transition': 'zoom',
             'movable': false,
             'modal': true,
             'labels': 'OK'
         }).setHeader("Account Deactivated").show();
     </script>
+    @elseif(session('failure'))
+        <script>
+            //Function to display error message when deactivating account
+            alertify.alert('{{session('success')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Account Deactivation Unsuccessful").show();
+        </script>
     @endif
 @endsection

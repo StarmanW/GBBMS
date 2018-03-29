@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,7 +72,7 @@ class StaffController extends Controller {
      */
     public function edit() {
         //get one staff for edit
-        $staff = Staff::find(Auth::user()->donorID);
+        $staff = Staff::find(Auth::user()->staffID);
         return view('staff.staff-profile')->with('staff', $staff);
     }
 
@@ -125,7 +126,7 @@ class StaffController extends Controller {
                 $path = $request->file('profileImage')->storeAs('public/profileImage', $fileNameToStore);
             }
 
-            //set staff details
+            //Set staff details
             $staff->staffPos = $request->input('staffPos');
             $staff->firstName = $request->input('firstName');
             $staff->lastName = $request->input('lastName');
