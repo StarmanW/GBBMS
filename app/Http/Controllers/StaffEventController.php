@@ -89,6 +89,8 @@ class StaffEventController extends Controller {
             $event->roomID = $request->input('roomID');
             $event->eventStatus = true;
 
+            session(['eventTab' => 'true']);
+
             if ($event->save())
                 return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
             else

@@ -162,7 +162,7 @@
                                                         <select name="roomID" class="form-control" required="required">
                                                             <option disabled selected value>Select Room Number</option>
                                                             @foreach($rooms as $room)
-                                                                <option value="{{$room->roomID}}">Room 1</option>
+                                                                <option value="{{$room->roomID}}">Room {{$room->roomID}} - Floor {{$room->floor }}, Quadrant {{$room->quadrant}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -186,6 +186,15 @@
 @endsection
 
 @section('additionalJS')
+
+    @if(session('eventTab'))
+        <script>
+            $('#nurse').removeClass('active show');
+            $('#event').addClass('active show');
+            @php session()->forget('eventTab'); @endphp
+        </script>
+    @endif
+
     <script src="/assets/additional/js/noBackDate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
     <script src="{{asset('/assets/additional/js/donor_util.js')}}"></script>
