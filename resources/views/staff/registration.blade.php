@@ -161,10 +161,9 @@
                                                             <span style="color:red;">*</span>Room</label>
                                                         <select name="roomID" class="form-control" required="required">
                                                             <option disabled selected value>Select Room Number</option>
-                                                            <option value="0120001">Room 1</option>
-                                                            <option value="0120002">Room 2</option>
-                                                            <option value="0120003">Room 3</option>
-                                                            <option value="0120004">Room 4</option>
+                                                            @foreach($rooms as $room)
+                                                                <option value="{{$room->roomID}}">Room 1</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>

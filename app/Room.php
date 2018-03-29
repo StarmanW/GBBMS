@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model {
 
+    //Defining custom table
+    protected $table = 'room';
+
     //Defining custom PK field for Blood, otherwise it will default to "id"
     protected $primaryKey = 'roomID';
 

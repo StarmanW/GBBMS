@@ -53,7 +53,7 @@ class StaffEventController extends Controller {
      */
     public function create() {
         //get all rooms for registration page
-        $rooms = Room::where('roomStatus', '=', 'true');
+        $rooms = Room::where('roomStatus', '=', 1)->get();
         return view('staff.registration')->with('rooms', $rooms);
     }
 
@@ -65,7 +65,7 @@ class StaffEventController extends Controller {
      */
     public function store(Request $request) {
         //generate event ID
-        $eventID = 'E' . date('y') . sprintf('%04', count(Event::all()) + 1);
+        $eventID = 'E' . date('y') . sprintf('%04d', count(Event::all()) + 1);
 
         $validator = Validator::make($request->all(),
             [
