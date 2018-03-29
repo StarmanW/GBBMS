@@ -66,7 +66,7 @@ class StaffRoomController extends Controller
             $room->roomID = $roomID;
             $room->quadrant = $request->input('quadrant');
             $room->floor = $request->input('floor');
-            $room->roomUsed = false;
+            $room->roomStatus = true;
 
             if($room->save())
                 return redirect('/staff/hr/registration')->with('success', 'Room created successfully!');
@@ -107,6 +107,7 @@ class StaffRoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //find room
         $room = Room::find($id);
 
         //validate data
@@ -123,7 +124,7 @@ class StaffRoomController extends Controller
             $room->roomID = $request->input('roomID');
             $room->quadrant = $request->input('quadrant');
             $room->floor = $request->input('floor');
-            $room->roomUsed = $request->input('roomUsed');
+            $room->roomStatus = $request->input('roomStatus');
 
             if($room->save())
                 return redirect('/staff/hr/registration')->with('success', 'Room updated successfully!');
