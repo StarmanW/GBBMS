@@ -107,7 +107,29 @@ class StaffRoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $room = Room::find($id);
+
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'quadrant' => ['required', 'integer', 'max:1'],
+            'floor' => ['required', 'integer', 'max:2'],
+        ]);
+
+        //set room details
+        if($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else
+        {
+            $room->roomID = $request->input('roomID');
+            $room->quadrant = $request->input('quadrant');
+            $room->floor = $request->input('floor');
+            $room->roomUsed = $request->input('roomUsed');
+
+            if($room->save())
+                return redirect('/staff/hr/registration')->with('success', 'Room updated successfully!');
+            else
+                return redirect('/staff/hr/registration')->with('failure', 'Room was not updated.');
+        }
     }
 
     /**
