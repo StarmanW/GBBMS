@@ -45,6 +45,27 @@ class Staff extends Authenticatable {
         $this->notify(new StaffResetPassword($token));
     }
 
+    //Get Gender in string
+    public function getGender() {
+        $gender = 'None';
+        if($this->gender === 1) {
+            $gender = 'M';
+        } elseif($this->gender === 0) {
+            $gender = 'F';
+        }
+        return $gender;
+    }
+
+    //Get Staff Position in string
+    public function getStaffPosition() {
+        $staffPosition = 'None';
+        if($this->staffPos === 1) {
+            $staffPosition = 'HR Manager';
+        } elseif($this->staffPos === 0) {
+            $staffPosition = 'Nurse';
+        }
+        return $staffPosition;
+    }
 
     /**
      * Method to return the email for password reset

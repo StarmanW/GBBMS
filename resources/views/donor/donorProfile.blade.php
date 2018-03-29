@@ -59,7 +59,7 @@
                                     </tr>
                                     <tr>
                                         <th class="body-item mbr-fonts-style display-7">Gender</th>
-                                        <td class="body-item mbr-fonts-style display-7">{{$donor->gender}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->getGender()}}</td>
                                     </tr>
                                     <tr>
                                         <th class="body-item mbr-fonts-style display-7">Birth Date</th>

@@ -57,7 +57,7 @@
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Gender</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->gender}}</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->getGender()}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Birth Date</th>
@@ -65,7 +65,7 @@
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Position</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$staff->getStaffPosition()}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Email Address</th>

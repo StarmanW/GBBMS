@@ -78,6 +78,17 @@ class Donor extends Authenticatable {
         return $bloodTypeString;
     }
 
+    //Get Gender in string
+    public function getGender() {
+        $gender = 'None';
+        if($this->gender === 1) {
+            $gender = 'M';
+        } elseif($this->gender === 0) {
+            $gender = 'F';
+        }
+        return $gender;
+    }
+
     /**
      * Method to return the email for password reset
      *
