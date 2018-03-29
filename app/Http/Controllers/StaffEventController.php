@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Event;
 use App\Room;
 
-class StaffEventController extends Controller
-{
+class StaffEventController extends Controller {
 
     /**
      * Create new controller instance
@@ -25,8 +24,7 @@ class StaffEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //get all from events table and paginate for list page
         $events = DB::table('events')->paginate(15);
         return view('staff.event-list')->with('events', $events);
@@ -37,12 +35,11 @@ class StaffEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexShort()
-    {
+    public function indexShort() {
         //get 3 upcoming events from events table for homepage
 
         //get events after current date and sort by date in ascending order
-        $events = DB::table('events')->where('eventStatus', '=', 'true')->whereDate('eventDate', '>' , DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+        $events = DB::table('events')->where('eventStatus', '=', 'true')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
 
         //get nearest 3 events to current date
         $eventList = array($events[0], $events[1], $events[2]);
@@ -54,8 +51,7 @@ class StaffEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //get all rooms for registration page
         $rooms = Room::where('roomStatus', '=', 'true');
         return view('staff.registration')->with('rooms', $rooms);
@@ -64,53 +60,49 @@ class StaffEventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //generate event ID
         $eventID = 'E' . date('y') . sprintf('%04', count(Event::all()) + 1);
 
         $validator = Validator::make($request->all(),
-        [
-            'eventName' => ['required', 'string', 'max:255'],
-            'eventDate' => ['required', 'date'],
-            'eventStartTime' => ['required', 'date_format:H:i'],
-            'eventEndTime' => ['required', 'date_format:H:i'],
-            'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
-        ]);
+            [
+                'eventName' => ['required', 'string', 'max:255'],
+                'eventDate' => ['required', 'date'],
+                'eventStartTime' => ['required', 'date_format:H:i'],
+                'eventEndTime' => ['required', 'date_format:H:i'],
+                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
+            ]);
 
-        if($validator->fails())
+        if ($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
-        else
-        {
+        else {
             //set event details
             $event = new Event();
             $event->eventID = $eventID;
+            $event->eventName = $request->input('eventName');
             $event->eventDate = $request->input('eventDate');
             $event->eventStartTime = $request->input('eventStartTime');
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
             $event->eventStatus = true;
 
-            if($event->save())
+            if ($event->save())
                 return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
             else
                 return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
         }
-
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //get one event for detail page
         $event = Event::where("eventID", $id)->get();
         return view('staff.event-details-hr')->with('event', $event);
@@ -119,11 +111,10 @@ class StaffEventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //get one event for edit
         $event = Staff::find($id);
         return view('staff.event-details-hr')->with('event', $event);
@@ -132,12 +123,11 @@ class StaffEventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //get event
         $event = Event::find($id);
 
@@ -151,12 +141,10 @@ class StaffEventController extends Controller
                 'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
             ]);
 
-        if($validator->fails())
+        if ($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
-        else
-        {
+        else {
             //set new event details
-            $event = new Event();
             $event->eventName = $request->input('eventName');
             $event->eventDate = $request->input('eventDate');
             $event->eventStartTime = $request->input('eventStartTime');
@@ -164,7 +152,7 @@ class StaffEventController extends Controller
             $event->roomID = $request->input('roomID');
             $event->eventStatus = $request->input('eventStatus');
 
-            if($event->save())
+            if ($event->save())
                 return redirect('/staff/hr/registration')->with('success', 'Event updated successfully!');
             else
                 return redirect('/staff/hr/registration')->with('failure', 'Event was not updated.');
@@ -174,20 +162,19 @@ class StaffEventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Request $request, $id)
-    {
+    public function deactivate(Request $request, $id) {
         //find event
         $event = Event::find($id);
 
         //validate data
         $this->validate($request,
-        [
-            'eventStatus' => 'required|boolean'
-        ]);
+            [
+                'eventStatus' => 'required|boolean'
+            ]);
 
         //set event status
         $event->eventStatus = $request->input('eventStatus');
