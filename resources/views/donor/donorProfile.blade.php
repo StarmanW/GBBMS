@@ -58,6 +58,10 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->ICNum}}</td>
                                     </tr>
                                     <tr>
+                                        <th class="body-item mbr-fonts-style display-7">Gender</th>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->gender}}</td>
+                                    </tr>
+                                    <tr>
                                         <th class="body-item mbr-fonts-style display-7">Birth Date</th>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donor->birthDate), "d-M-Y")}}</td>
                                     </tr>

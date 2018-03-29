@@ -39,26 +39,25 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <!-- TEMP LINK -->
-                        <a href="login.html">
+                        <a href="./home">
                             <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="homepage-hr.html">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="/staff/hr/home">Gleneagles Kota Kinabalu</a>
                     </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="dashboard.html">DASHBOARD</a>
+                    <a class="nav-link link text-white display-4" href="./dashboard">DASHBOARD</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="registration.html">Registration
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/registration">Registration
                             <!-- TEMP LINK -->
                             <br>
                         </a>
@@ -71,9 +70,9 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown open">
-                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">Zion Tseu</a>
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="staff-profile.html">View Profile
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/profile">View Profile
                             <!-- TEMP LINK -->
                             <br>
                         </a>
@@ -98,7 +97,7 @@
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
                     <!-- TEMP LINK -->
-                    <a href="homepage-hr.html">
+                    <a href="/staff/hr/home">
                         <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                     </a>
                 </div>

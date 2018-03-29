@@ -46,20 +46,20 @@
                         </a>
                     </span>
                     <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="homepage-hr.html">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="./home">Gleneagles Kota Kinabalu</a>
                     </span>
                 </div>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                     <li class="nav-item">
-                        <a class="nav-link link text-white display-4" href="dashboard.html">DASHBOARD</a>
+                        <a class="nav-link link text-white display-4" href="./dashboard">DASHBOARD</a>
                         <!-- TEMP LINK -->
                     </li>
                     <li class="nav-item dropdown open">
                         <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
                         <div class="dropdown-menu">
-                            <a class="text-white dropdown-item display-4" href="registration.html">Registration
+                            <a class="text-white dropdown-item display-4" href="./registration">Registration
                                 <!-- TEMP LINK -->
                                 <br>
                             </a>

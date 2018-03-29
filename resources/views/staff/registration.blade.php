@@ -5,7 +5,10 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="/assets/additional/css/scrollToTop.css" type="text/css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
 @endsection
 
@@ -32,7 +35,8 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="">
+                                            <form method="POST" action="/staff/hr/registration">
+                                                {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
                                                 <br />
@@ -41,13 +45,13 @@
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>First Name</label>
-                                                            <input type="text" name="firstName" placeholder="John" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                                            <input type="text" name="firstName" placeholder="John" value="{{old('firstName')}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
                                                                 required="required">
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Last Name</label>
-                                                            <input type="text" name="lastName" placeholder="Doe" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Smith"
+                                                            <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName')}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Smith"
                                                                 required="required">
                                                         </div>
                                                     </div>
@@ -55,13 +59,13 @@
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>IC Number</label>
-                                                            <input type="text" name="ICNum" placeholder="981213125523" class="form-control" pattern="\d{12}" title="Numeric only. E.g. 985564127789"
+                                                            <input type="text" name="ICNum" placeholder="981213125523" value="{{old('ICNum')}}" class="form-control" pattern="\d{12}" title="Numeric only. E.g. 985564127789"
                                                                 maxlength="12" required="required">
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Contact Number</label>
-                                                            <input type="text" name="phoneNum" placeholder="0186559875" class="form-control" pattern="([0-9]|[0-9\-]){3,20}" title="Numeric and '-' symbols only. E.g. 014-8897875"
+                                                            <input type="text" name="phoneNum" placeholder="0186559875" value="{{old('phoneNum')}}" class="form-control" pattern="([0-9]|[0-9\-]){3,20}" title="Numeric and '-' symbols only. E.g. 014-8897875"
                                                                 required="required">
                                                         </div>
                                                     </div>
@@ -69,14 +73,26 @@
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Email</label>
-                                                            <input type="email" name="emailAddress" placeholder="email@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                                            <input type="email" name="emailAddress" placeholder="email@hotmail.com" value="{{old('emailAddress')}}" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                                                 title="E.g. - john@hotmail.com" required="required">
                                                         </div>
 
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Birth Date</label>
-                                                            <input class="form-control" type="date" name="birthDate" required="required">
+                                                            <input class="form-control" type="date" value="{{old('birthDate')}}" name="birthDate" required="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 form-group">
+                                                            <label><span style="color:red;">*</span>Gender</label><br/>
+                                                            <input type="radio" name="gender" required="required" value="1" @if(old('gender') === "1") {{'checked'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                                            <input type="radio" name="gender" required="required" value="0" @if(old('gender') === "0") {{'checked'}}@endif>&nbsp;&nbsp;Female<br>
+                                                        </div>
+                                                        <div class="col-sm-6 form-group">
+                                                            <label>
+                                                                Profile Picture</label>
+                                                            <input name="profileImage" class="form-control" value="{{old('profileImage')}}" type="file">
                                                         </div>
                                                     </div>
                                                     <div class="row" style="margin:auto">
@@ -84,15 +100,15 @@
                                                             <span style="color:red;">*</span>Position</label>
                                                         <select name="staffPos" class="form-control" required="required">
                                                             <option disabled selected value>Select member position</option>
-                                                            <option value="1">Human Resource Manager</option>
-                                                            <option value="0">Nurse</option>
+                                                            <option value="1" selected @if(old('staffPos') === 1) {{'selected'}}@endif>Human Resource Manager</option>
+                                                            <option value="0" @if(old('staffPos') === 0) {{'selected'}}@endif>Nurse</option>
                                                         </select>
                                                     </div>
                                                     <br>
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Home Address</label>
-                                                        <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;"></textarea>
+                                                        <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;">{{old('homeAddress')}}</textarea>
                                                     </div>
                                                 </div>
                                                 <br />
@@ -110,6 +126,7 @@
                                     <div class="col-lg-12 well">
                                         <div class="row">
                                             <form method="POST" action="">
+                                                {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
                                                 <br />
@@ -171,4 +188,19 @@
 
 @section('additionalJS')
     <script src="/assets/additional/js/noBackDate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+    <script src="{{asset('/assets/additional/js/donor_util.js')}}"></script>
+    @if(count($errors) > 0)
+        <script>donorFormError('Empty/Invalid Data Entered', {!! $errors !!});</script>
+    @elseif(session('success'))
+        <script>
+            //Display Staff Profile Update Success message
+            alertify.alert('{{session('success')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Registration Successful").show();
+        </script>
+    @endif
 @endsection

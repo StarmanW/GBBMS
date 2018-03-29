@@ -118,8 +118,8 @@
                                             <div class="row">
                                                 <div class="col-sm-6 form-group">
                                                     <label><span style="color:red;">*</span>Gender</label><br/>
-                                                    <input type="radio" name="gender" required="required" value="1" @if(old('gender') === 1) {{'checked'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                                    <input type="radio" name="gender" required="required" value="0" @if(old('gender') === 0) {{'checked'}}@endif>&nbsp;&nbsp;Female<br>
+                                                    <input type="radio" name="gender" required="required" value="1" @if(old('gender') === "1") {{'checked'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                                    <input type="radio" name="gender" required="required" value="0" @if(old('gender') === "0") {{'checked'}}@endif>&nbsp;&nbsp;Female<br>
                                                 </div>
                                                 <div class="col-sm-6 form-group">
                                                     <label>
@@ -130,8 +130,7 @@
                                             <div class="row" style="margin:auto">
                                                 <label>
                                                     <span style="color:red;">*</span>Home Address</label>
-                                                <textarea name="homeAddress" class="form-control" value="{{old('homeAddress')}}"
-                                                          style="height:200px;resize: none;"></textarea>
+                                                <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;">{{old('homeAddress')}}</textarea>
                                             </div>
                                         </div>
                                         <br/>
