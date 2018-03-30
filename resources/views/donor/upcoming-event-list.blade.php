@@ -1,14 +1,13 @@
-@extends('baseTemplates')
+@extends('donor.layout.baseTemplate')
 
 @section('title')
     <title>Upcoming Events</title>
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href={{"assets/datatables/data-tables.bootstrap4.min.css"}}>
-
-    <link rel="stylesheet" href={{"assets/additional/css/table-list.css"}} type="text/css">
-    <link rel="stylesheet" href={{"assets/additional/css/sidebar.css"}} type="text/css">
+    <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/additional/css/table-list.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -108,7 +107,7 @@
 @endsection
 
 @section('additionalJS')
-    <script src={{"assets/datatables/jquery.data-tables.min.js"}}></script>
-    <script src={{"assets/datatables/data-tables.bootstrap4.min.js"}}></script>
+    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
+    <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
     <!-- <script src="assets/theme/js/script.js"></script> TEMPORARY REMOVED DUE TO WEIRD SLIDE UP -->
 @endsection

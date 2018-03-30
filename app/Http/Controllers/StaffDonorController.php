@@ -56,8 +56,8 @@ class StaffDonorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $donors = Donor::find($id);
-        return view('staff.donor-profile')->with('donors', $donors);
+        $donor = Donor::find($id);
+        return view('staff.donor-profile-hr')->with('donor', $donor);
     }
 
 //    /**

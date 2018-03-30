@@ -13,7 +13,6 @@
 
 //Login Route
 Route::get('/login', function () {
-
     //Validate if donor is authenticated
     if (Auth::guard('donor')->check()) {
         return redirect('/donor/home');
@@ -112,20 +111,15 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
 
     /***** LIST SECTION *****/
     Route::get('/list/donor', 'StaffDonorController@index');
+    Route::get('/list/donor/{id}', 'StaffDonorController@show');
     Route::get('/list/event', 'StaffEventController@index');
+    Route::get('/list/event/{id}', 'StaffEventController@show');
+    Route::post('/list/event/{id}', 'StaffEventController@update');
+    Route::post('/list/event/{id}/cancel', 'StaffEventController@update');
 
     Route::get('/list/staff', function () {
         return view('staff.staff-list');
     });
-
-    Route::get('/list/donor/{id}', function () {
-        return view('staff.donor-profile-hr');
-    });
-
-    Route::get('/list/event/{id}', function () {
-        return view('staff.event-details-hr');
-    });
-
 
     Route::get('/dashboard', function () {
         return view('staff.dashboard');

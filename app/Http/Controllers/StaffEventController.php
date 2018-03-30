@@ -110,7 +110,13 @@ class StaffEventController extends Controller {
     public function show($id) {
         //get one event for detail page
         $event = Event::find($id);
-        return view('staff.event-details-hr')->with('event', $event);
+        $rooms = Room::all();
+
+        $data = [
+            'event' => $event,
+            'rooms' => $rooms
+        ];
+        return view('staff.event-details-hr')->with('data', $data);
     }
 
     /**
@@ -141,9 +147,9 @@ class StaffEventController extends Controller {
             [
                 'eventName' => ['required', 'string', 'max:255'],
                 'eventDate' => ['required', 'date'],
-                'eventStartTime' => ['required', 'time'],
-                'eventEndTime' => ['required', 'time'],
-                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{4})$/']
+                'eventStartTime' => ['required', 'date_format:H:i'],
+                'eventEndTime' => ['required', 'date_format:H:i'],
+                'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{3})$/']
             ]);
 
         if ($validator->fails())
@@ -155,12 +161,11 @@ class StaffEventController extends Controller {
             $event->eventStartTime = $request->input('eventStartTime');
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
-            $event->eventStatus = $request->input('eventStatus');
 
             if ($event->save())
-                return redirect('/staff/hr/registration')->with('success', 'Event updated successfully!');
+                return redirect('/staff/hr/list/event/' . $event->eventID)->with('success', 'Event updated successfully!');
             else
-                return redirect('/staff/hr/registration')->with('failure', 'Event was not updated.');
+                return redirect('/staff/hr/list/event/' . $event->eventID)->with('failure', 'Event was not updated.');
         }
     }
 

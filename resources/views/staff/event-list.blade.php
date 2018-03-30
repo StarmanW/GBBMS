@@ -60,6 +60,7 @@
                                     <th class="head-item mbr-fonts-style display-7">Event Name</th>
                                     <th class="head-item mbr-fonts-style display-7">Date</th>
                                     <th class="head-item mbr-fonts-style display-7">Time</th>
+                                    <th class="head-item mbr-fonts-style display-7">Room</th>
                                     <th class="head-item mbr-fonts-style display-7">Event Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
@@ -72,7 +73,8 @@
                                     <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventStatus}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                     <td class="body-item mbr-fonts-style display-7">
                                         <a href="/staff/hr/list/event/{{$event->eventID}}">
                                             <i class="fa fa-bars" aria-hidden="true"></i>

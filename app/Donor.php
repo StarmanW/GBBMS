@@ -116,7 +116,7 @@ class Donor extends Authenticatable {
 
     //One-To-Many Reservation Relationship
     public function reservations() {
-        return $this->hasMany('App\Reservation');
+        return $this->hasMany('App\Reservation', 'donorID');
     }
 
     //One-To-Many Blood Relationship

@@ -12,6 +12,25 @@ class Event extends Model {
     //Set incrementing to false, otherwise the PK field will be cast to INTEGER
     public $incrementing = false;
 
+    //Function to get event status in string
+    public function getEventStatus() {
+        $eventStatus = 'None';
+
+        switch($this->eventStatus) {
+            case 0:
+                $eventStatus = 'Completed';
+                break;
+            case 1:
+                $eventStatus = 'Created';
+                break;
+            case 2:
+                $eventStatus = 'Cancelled';
+                break;
+        }
+
+        return $eventStatus;
+    }
+
     //One-To-Many Reservation Relationship
     public function reservations() {
         return $this->hasMany('App\Reservation');

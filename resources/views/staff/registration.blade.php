@@ -165,7 +165,7 @@
                                                         <select name="roomID" class="form-control" required="required">
                                                             <option disabled selected value>Select Room Number</option>
                                                             @foreach($rooms as $room)
-                                                                <option value="{{$room->roomID}}" @if(old('roomID') === $room->roomID) {{"selected"}} @endif>Room {{$room->roomID}} - Floor {{$room->floor }}, Quadrant {{$room->quadrant}}</option>
+                                                                <option value="{{$room->roomID}}" @if(old('roomID') === $room->roomID) {{"selected"}} @endif>Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

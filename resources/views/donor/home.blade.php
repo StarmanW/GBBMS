@@ -1,5 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
+
 @section('title')<title>Home - Donor</title>@endsection
 
 @section('additionalCSS')
@@ -21,6 +22,7 @@
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Upcoming Events</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
+
                 <!-- TEMP LINK -->
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./donate-history.html';">
                     <!-- TEMP LINK -->

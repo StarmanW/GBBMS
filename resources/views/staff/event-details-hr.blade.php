@@ -5,9 +5,13 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
-    <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
-    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -32,27 +36,27 @@
                                     <tbody>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Event ID</th>
-                                            <td class="body-item mbr-fonts-style display-7">E180124</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$data['event']->eventID}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Event Name</th>
-                                            <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$data['event']->eventName}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Date</th>
-                                            <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($data['event']->eventDate), "d-M-Y")}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Time</th>
-                                            <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($data['event']->eventStartTime), "h:i A")}} to {{date_format(date_create($data['event']->eventEndTime), "h:i A")}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Room</th>
-                                            <td class="body-item mbr-fonts-style display-7">0340012</td>
+                                            <td class="body-item mbr-fonts-style display-7">Room {{substr($data['event']->rooms->roomID, 3)}}, Quadrant {{$data['event']->rooms->quadrant}}, Floor {{$data['event']->rooms->floor}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Status</th>
-                                            <td class="body-item mbr-fonts-style display-7">Upcoming</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$data['event']->getEventStatus()}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Nurses On Duty</th>
@@ -93,31 +97,34 @@
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
-                                        <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('Donor 1');">Cancel Event</button>
+                                        <button data-toggle="modal" data-target="#updateEventModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventName}}');">Cancel Event</button>
+                                        <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}/cancel" id="cancelEventForm" style="display: none;">
+                                            {{csrf_field()}}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- line modal -->
-        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="updateEventModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="lineModalLabel"></h3>
+                        <h3 class="modal-title" id="lineModalLabel">Editing event {{$data['event']->eventID}}</h3>
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">Close</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="">
+                        <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}">
+                            {{ csrf_field() }}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
                             <br />
@@ -125,37 +132,36 @@
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Event Name</label>
-                                    <input type="text" name="fName" placeholder="John" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                    <input type="text" name="eventName" value="{{$data['event']->eventName}}" placeholder="John" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
                                         required="required">
                                 </div>
                                 <br>
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Event Date</label>
-                                    <input class="form-control" type="date" name="eventDate" id="eventDate" required="required">
+                                    <input class="form-control" value="{{$data['event']->eventDate}}" type="date" name="eventDate" id="eventDate" required="required">
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label>
                                             <span style="color:red;">*</span>Start Time</label>
-                                        <input class="form-control" type="time" name="eventStartTime" id="eventStartTime">
+                                        <input class="form-control" value="{{date_format(date_create($data['event']->eventStartTime), "h:i")}}" type="time" name="eventStartTime" id="eventStartTime">
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>
                                             <span style="color:red;">*</span>End Time</label>
-                                        <input class="form-control" type="time" name="eventEndTime" id="eventEndTime">
+                                        <input class="form-control" value="{{date_format(date_create($data['event']->eventEndTime), "h:i")}}" type="time" name="eventEndTime" id="eventEndTime">
                                     </div>
                                 </div>
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Room</label>
-                                    <select name="position" class="form-control" required="required">
+                                    <select name="roomID" class="form-control" required="required">
                                         <option disabled selected value>Select Room Number</option>
-                                        <option value="5">Room 1-4</option>
-                                        <option value="4">Room 1-8</option>
-                                        <option value="3">Room 1-12</option>
-                                        <option value="2">Room 1-16</option>
+                                        @foreach($data['rooms'] as $room)
+                                            <option value="{{$room->roomID}}" @if($data['event']->roomID === $room->roomID) {{"selected"}} @endif>Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -170,4 +176,18 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('additionalJS')
+    <script src="/assets/additional/js/event_util.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+    @if(count($errors) > 0)
+        <script>
+            $('#updateEventModal').modal('show');
+            eventUpdateFormError('Empty/Invalid Data Entered', {!! $errors !!});
+        </script>
+    @elseif(session('success'))
+        <script>eventUpdateSuccess("{{session('success')}}");</script>
+    @endif
 @endsection

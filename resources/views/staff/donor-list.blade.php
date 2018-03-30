@@ -58,8 +58,8 @@
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Donor ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Donor Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">Gender</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood Type</th>
-                                    <th class="head-item mbr-fonts-style display-7">Email Address</th>
                                     <th class="head-item mbr-fonts-style display-7">Phone Number</th>
                                     <th class="head-item mbr-fonts-style display-7">Account Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
@@ -71,8 +71,8 @@
                                     <tr>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->donorID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->firstName}} {{$donor->lastName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->getGender()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->getBloodTypeString()}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{$donor->emailAddress}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->phoneNum}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->donorAccStatus}}</td>
                                         <td class="body-item mbr-fonts-style display-7">

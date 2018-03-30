@@ -64,7 +64,6 @@
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                                 </thead>
-
                                 <tbody>
                                 <tr>
                                     <td class="body-item mbr-fonts-style display-7">SH15001</td>
