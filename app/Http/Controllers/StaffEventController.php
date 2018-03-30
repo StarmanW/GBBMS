@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -183,8 +184,13 @@ class StaffEventController extends Controller {
         //set event status
         $event->eventStatus = $request->input('eventStatus');
 
+        //find related reservation id
+        $reservation = Reservation::where('resvStatus', '=', '1')->where('eventID', '=', $event->eventID);
+        //set related reservation status
+        $reservation->resvStatus = 4;
+
         //redirect to registration page
-        if ($event->save())
+        if ($event->save() && $reservation->save())
             return redirect('/staff/hr/registration')->with('success', 'Event has been successfully cancelled!');
         else
             return redirect('/staff/hr/registration')->with('failure', 'Event was not cancelled.');
