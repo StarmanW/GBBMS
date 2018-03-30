@@ -5,6 +5,7 @@ namespace App;
 use App\Notifications\DonorResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class Donor extends Authenticatable {
     use Notifiable;
