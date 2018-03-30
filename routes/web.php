@@ -115,7 +115,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::get('/list/event', 'StaffEventController@index');
     Route::get('/list/event/{id}', 'StaffEventController@show');
     Route::post('/list/event/{id}', 'StaffEventController@update');
-    Route::post('/list/event/{id}/cancel', 'StaffEventController@update');
+    Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
     Route::get('/list/staff', function () {
         return view('staff.staff-list');
