@@ -43,10 +43,10 @@ Route::get('/donor/password/reset/{token}', 'DonorAuth\ResetPasswordController@s
 Route::post('/staff/login', 'StaffAuth\LoginController@login');
 
 //Staff Reset Password Route
-Route::post('/password/email', 'StaffAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-Route::post('/password/reset', 'StaffAuth\ResetPasswordController@reset')->name('password.email');
-Route::get('/password/reset', 'StaffAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::get('/password/reset/{token}', 'StaffAuth\ResetPasswordController@showResetForm');
+Route::post('/staff/password/email', 'StaffAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+Route::post('/staff/password/reset', 'StaffAuth\ResetPasswordController@reset')->name('password.email');
+Route::get('/staff/password/reset', 'StaffAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::get('/staff/password/reset/{token}', 'StaffAuth\ResetPasswordController@showResetForm');
 
 
 //Donor Routes grouped under "/donor/..."

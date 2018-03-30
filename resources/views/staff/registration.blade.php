@@ -38,7 +38,7 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="./registration">
+                                            <form method="POST" action="/staff/hr/registration">
                                                 {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
@@ -128,7 +128,7 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="./registration/event">
+                                            <form method="POST" action="/staff/hr/registration/event">
                                                 {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />
@@ -184,7 +184,7 @@
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
-                                            <form method="POST" action="./registration/room">
+                                            <form method="POST" action="/staff/hr/registration/room">
                                                 {{ csrf_field() }}
                                                 <p style="color:red; float: left;">"*" Required fields</p>
                                                 <br />

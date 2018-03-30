@@ -16,7 +16,7 @@
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-1">Welcome, {{Auth::user()->firstName}}</h2>
 
             <div class="media-container-row container">
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./dashboard';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/dashboard';">
                     <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-desktop fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
@@ -24,7 +24,7 @@
                     <h4 class="card-title py-2 mbr-fonts-style display-2">HR<br/>Dashboard</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./list/donor';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/list/donor';">
                     <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-file-alt fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                     <h4 class="card-title py-2 mbr-fonts-style display-2">View<br/>Lists</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./profile';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/profile';">
                     <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-address-book fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>

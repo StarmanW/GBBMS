@@ -18,7 +18,7 @@
 
             <div class="media-container-row container">
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
-                     onclick="window.location='./schedule';">
+                     onclick="window.location='/staff/nurse/schedule';">
                     <div class="card-img">
                         <i class="fa fa-calendar-alt fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>
@@ -26,7 +26,7 @@
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
-                     onclick="window.location='./manage-blood';">
+                     onclick="window.location='/staff/nurse/manage-blood';">
                     <div class="card-img">
                         <i class="fa fa-tint fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
                     </div>
@@ -35,7 +35,7 @@
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
-                     onclick="window.location='./profile';">
+                     onclick="window.location='/staff/nurse/profile';">
                     <div class="card-img">
                         <i class="fa fa-address-book fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>
                     </div>

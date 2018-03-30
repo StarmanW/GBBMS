@@ -66,13 +66,13 @@
                     <h3 class="card-title">Management Section</h3>
                 </div>
                 <div class="card-body">
-                    <a href="registration.html" target="_blank">        <!-- TEMP LINK -->
+                    <a href="/staff/hr/registration" target="_blank">        <!-- TEMP LINK -->
                         <button type="button" class="btn btn-lg btn-primary">Registration</button>
                     </a>
-                    <a href="" target="_blank">                         <!-- TEMP LINK -->
+                    <a href="/staff/hr/list/donor" target="_blank">                         <!-- TEMP LINK -->
                         <button type="button" class="btn btn-lg btn-primary">View Lists</button>
                     </a>
-                    <a href="" target="_blank">                         <!-- TEMP LINK -->
+                    <a href="./report/" target="_blank">                         <!-- TEMP LINK -->
                         <button type="button" class="btn btn-lg btn-primary">Reports</button>
                     </a>
                 </div>

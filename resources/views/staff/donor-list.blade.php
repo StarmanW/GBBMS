@@ -15,14 +15,14 @@
 @section('contents')
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
-        <a href="./homepage-hr.html" class="w3-bar-item" id="homepageStyle">
+        <a href="/staff/hr/home" class="w3-bar-item" id="homepageStyle">
             <img src="assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 5rem;"> Gleneagles KK
         </a>
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
-        <a href="./donor" class="w3-bar-item w3-button">Donor List</a>
-        <a href="./staff" class="w3-bar-item w3-button">Staff List</a>
-        <a href="./event" class="w3-bar-item w3-button">Event List</a>
+        <a href="/staff/hr/list/donor" class="w3-bar-item w3-button">Donor List</a>
+        <a href="/staff/hr/list/staff" class="w3-bar-item w3-button">Staff List</a>
+        <a href="/staff/hr/list/event" class="w3-bar-item w3-button">Event List</a>
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
     </div>
 
@@ -76,7 +76,7 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->phoneNum}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->donorAccStatus}}</td>
                                         <td class="body-item mbr-fonts-style display-7">
-                                            <a href="./list/donor/{{$donor->donorID}}">
+                                            <a href="/staff/hr/list/donor/{{$donor->donorID}}">
                                                 <i class="fa fa-bars" aria-hidden="true"></i>
                                             </a>
                                         </td>

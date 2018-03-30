@@ -145,56 +145,19 @@
 
 @section('additionalJS')
     <script src="{{'/assets/additional/js/jquery-1.12.1.min.js'}}"></script>
+    <script src="{{'/assets/additional/js/login_util.js'}}"></script>
     <script src="{{'/assets/additional/js/login-page_script.js'}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if (count($errors) > 0)
-    <script>
-        //Function to display invalid login credentials
-        alertify.alert().setting({
-            'transition': 'zoom',
-            'movable': false,
-            'modal': true,
-            'labels': 'OK'
-        }).setHeader("Invalid email/password").show();
-
-        //Parse the json data
-        var msg = JSON.parse(JSON.stringify({!! $errors !!}));
-
-        //Loop through the data and display the message
-        Object.keys(msg).forEach(function (key) {
-            $('.ajs-content').append("- " + msg[key][0] + "<br/>");
-        });
-    </script>
+        <script>loginInvalid({!! $errors !!});</script>
+    @elseif(session('status'))
+        <script>passResetStatus('{{session('status')}}');</script>
     @elseif(session('deactivated'))
-        <script>
-            //Function to display messages stating the account is deactivated
-            alertify.alert('{{session('deactivated')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Account Deactivated").show();
-        </script>
+        <script>deactivated('{{session('deactivated')}}');</script>
     @elseif(session('success'))
-    <script>
-        //Function to display account successfully deactivated message
-        alertify.alert('{{session('success')}}').setting({
-            'transition': 'zoom',
-            'movable': false,
-            'modal': true,
-            'labels': 'OK'
-        }).setHeader("Account Deactivated").show();
-    </script>
+        <script>deactivationSuccess('{{session('success')}}');</script>
     @elseif(session('failure'))
-        <script>
-            //Function to display error message when deactivating account
-            alertify.alert('{{session('success')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Account Deactivation Unsuccessful").show();
-        </script>
+        <script>deactivationFailure('{{session('failure')}}');</script>
     @endif
 @endsection
