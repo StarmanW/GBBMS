@@ -109,7 +109,7 @@ class StaffEventController extends Controller {
      */
     public function show($id) {
         //get one event for detail page
-        $event = Event::where("eventID", $id)->get();
+        $event = Event::find($id);
         return view('staff.event-details-hr')->with('event', $event);
     }
 
