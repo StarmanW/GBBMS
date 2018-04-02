@@ -92,8 +92,9 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
-    //Profile edit and deactivate
+    //Profile view, edit and deactivate
     Route::get('/profile', 'StaffController@edit');
+    Route::post('/profile', 'StaffController@update');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
 

@@ -1,3 +1,6 @@
+* {
+    outline:none !important;
+}
 
 .table td {
     padding: .60rem;

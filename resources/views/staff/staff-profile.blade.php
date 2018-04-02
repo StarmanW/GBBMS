@@ -109,7 +109,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/staff/profile" enctype="multipart/form-data">
+                        <form method="POST" action="/staff/hr/profile" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />

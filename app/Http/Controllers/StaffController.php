@@ -82,7 +82,7 @@ class StaffController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request) {
         //get current user staff
         $staff = Staff::find(Auth::user()->staffID);
 
@@ -92,9 +92,9 @@ class StaffController extends Controller {
                 'staffPos' => ['required', 'boolean'],
                 'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/\d{12}/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,'.Auth::user()->staffID.',staffID', 'regex:/\d{12}/'],
                 'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-                'emailAddress' => 'required|email|max:255|unique:staff',
+                'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,'.Auth::user()->staffID.',staffID',
                 'birthDate' => 'required|date',
                 'gender' => ['required', 'boolean'],
                 'profileImage' => 'image|nullable|max:1999',
@@ -134,14 +134,16 @@ class StaffController extends Controller {
             $staff->emailAddress = $request->input('emailAddress');
             $staff->birthDate = $request->input('birthDate');
             $staff->gender = $request->input('gender');
-            $staff->profileImage = $request->input('profileImage');
+            if ($request->hasFile('profileImage')) {
+                $staff->profileImage = $fileNameToStore;
+            }
             $staff->homeAddress = $request->input('homeAddress');
 
             //redirect to staff profile with update status and message
             if ($staff->save())
-                return redirect('/staff/profile')->with('success', 'Profile details has been successfully updated!');
+                return redirect('/staff/hr/profile')->with('success', 'Profile details has been successfully updated!');
             else
-                return redirect('/staff/profile')->with('failure', 'Oops, Profile details was not updated successfully.');
+                return redirect('/staff/hr/profile')->with('failure', 'Oops, Profile details was not updated successfully.');
         }
     }
 
