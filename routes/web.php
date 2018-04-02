@@ -77,6 +77,10 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
         return view('donor.resv-list');
     });
 
+    Route::get('/reservation/current', function () {
+        return view('donor.resv-current');
+    });
+
     Route::get('/reservation/detail', function () {
         return view('donor.resv-details');
     });
