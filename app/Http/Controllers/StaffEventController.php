@@ -41,7 +41,7 @@ class StaffEventController extends Controller {
         //get 3 upcoming events from events table for homepage
 
         //get events after current date and sort by date in ascending order
-        $events = DB::table('events')->where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
 
         //get nearest 3 events to current date
         $eventList = array($events[0], $events[1], $events[2]);
