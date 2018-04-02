@@ -80,7 +80,7 @@ class EventController extends Controller
     public function show($id)
     {
         //get one event for detail page
-        $event = Event::where("eventID", $id)->get(); //change to find?
+        $event = Event::find($id);
         return view('donor.event-details-donor')->with('event', $event);
     }
 
