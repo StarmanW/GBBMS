@@ -72,7 +72,7 @@ class ReservationController extends Controller
         $resv->resvStatus = 1;
 
         if ($resv->save())
-            return redirect('/donor/upcoming-events')->with('success', 'Reservation created successfully!');
+            return redirect('/donor/event/' . $resv->eventID)->with('success', 'Reservation created successfully!');
         else
             return redirect('/donor/upcoming-events')->with('failure', 'Reservation was not created.');
     }
@@ -125,10 +125,11 @@ class ReservationController extends Controller
         $resv = Reservation::find($id);
         $resv->resvStatus = 3;
 
+        //make new current reservation page first
         if($resv->save())
-            return redirect('/donor/reservation')->with('success', 'Reservation created successfully!');
+            return redirect('/donor/reservation/current')->with('success', 'Reservation created successfully!');
         else
-            return redirect('/donor/reservation')->with('failure', 'Reservation was not created.');
+            return redirect('/donor/reservation/current')->with('failure', 'Reservation was not created.');
     }
 
 //    /**
