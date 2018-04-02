@@ -64,6 +64,9 @@ class ReservationController extends Controller
         //get last donation date
         $lastDonation = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 0);
 
+        //get current date
+        $currentDate = Carbon::now();
+
         foreach ($lastDonation as $donation) {
             //get event date
             $donationEventDate = $donation->events->eventDate;
@@ -71,9 +74,9 @@ class ReservationController extends Controller
             //get date 3 months from last donation
             $threeMntsFrmDate = $donationEventDate->addMonths(3);
 
-            if(Carbon::now() <= $threeMntsFrmDate) {
+            if($currentDate <= $threeMntsFrmDate) {
                 //get date difference
-                $dateDiff = $threeMntsFrmDate->diff(Carbon::now())->days + 1;
+                $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
                 return redirect('/donor/-upcoming-events')->with('failure', 'You have donated blood at ' . $donationEventDate . ' Please try again after ' . $dateDiff . ' days.');
             }
