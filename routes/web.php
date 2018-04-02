@@ -119,7 +119,9 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::get('/list/donor/{id}', 'StaffDonorController@show');
 
     Route::get('/list/staff', 'StaffController@index');
-    Route::get('/list/staff/{id}', 'StaffController@index');
+    Route::get('/list/staff/{id}', 'StaffController@show');
+    Route::post('/list/staff/{id}', 'StaffController@updateHR');
+    Route::post('/list/staff/{id}/deactivate', 'StaffController@deactivateHR');
 
     Route::get('/list/event', 'StaffEventController@index');
     Route::get('/list/event/{id}', 'StaffEventController@show');

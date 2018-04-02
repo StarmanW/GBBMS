@@ -18,26 +18,6 @@ class StaffRoomController extends Controller {
         $this->middleware('auth:staff');
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
-//    {
-//        //
-//    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -50,12 +30,13 @@ class StaffRoomController extends Controller {
 
         //validate data
         $validator = Validator::make($request->all(), [
+            'roomNo' => ['required', 'integer', 'regex:/^[0-9]{0,3}$/'],
             'quadrant' => ['required', 'integer', 'regex:/^[1-4]$/'],
             'floor' => ['required', 'integer', 'regex:/^[0-9]{0,2}$/'],
         ]);
 
         //generate roomID
-        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', (count(Room::all()) + 1));
+        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', $request->input('roomNo'));
 
         //set room details
         if ($validator->fails())
@@ -73,17 +54,6 @@ class StaffRoomController extends Controller {
                 return redirect('/staff/hr/registration')->with('failure', 'Room was not created.');
         }
     }
-
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -147,14 +117,4 @@ class StaffRoomController extends Controller {
 
     }
 
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }

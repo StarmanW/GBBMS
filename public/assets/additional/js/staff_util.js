@@ -42,3 +42,13 @@ function staffUpdateProfileSuccess(successMsg) {
         'labels': 'OK'
     }).setHeader("Profile Details Updated!").show();
 }
+
+//Function to display staff account deactivation message by HR Manager
+function staffAccDeactivationHR(message) {
+    alertify.alert(message).setting({
+        'transition': 'zoom',
+        'movable': false,
+        'modal': true,
+        'labels': 'OK'
+    }).setHeader("Staff Account Deactivation").show();
+}

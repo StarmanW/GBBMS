@@ -57,6 +57,7 @@
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Staff ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Staff Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">Gender</th>
                                     <th class="head-item mbr-fonts-style display-7">Position</th>
                                     <th class="head-item mbr-fonts-style display-7">Email Address</th>
                                     <th class="head-item mbr-fonts-style display-7">Phone Number</th>
@@ -69,6 +70,7 @@
                                     <tr>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->firstName}} {{$staff->lastName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->getGender()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->getStaffPosition()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->emailAddress}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->phoneNum}}</td>

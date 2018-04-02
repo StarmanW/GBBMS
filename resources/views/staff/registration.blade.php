@@ -191,6 +191,12 @@
                                                 <br />
                                                 <div class="col-sm-12">
                                                     <div class="row">
+                                                            <label>
+                                                                <span style="color:red;">*</span>Room No.</label>
+                                                            <input class="form-control" type="number" value="{{old('roomNo')}}" min="0" name="roomNo" id="roomNo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Quadrant</label>

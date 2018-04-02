@@ -74,6 +74,14 @@
                                             <th class="body-item mbr-fonts-style display-7">Home Address</th>
                                             <td class="body-item mbr-fonts-style display-7">{{$donor->homeAddress}}</td>
                                         </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Account Status</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{$donor->getAccStatus()}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Account Created at</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donor->created_at), "d-M-Y h:i:s A")}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
