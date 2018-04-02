@@ -1,7 +1,7 @@
 @extends('staff.layout.baseTemplate-HR')
 
 @section('title')
-    <title>Donor Profile</title>
+    <title>{{$donor->donorID}} Donor Profile</title>
 @endsection
 
 @section('additionalCSS')
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="media-container-row">
                 <div class="title col-12 align-center">
-                    <h2 class="pb-3 mbr-fonts-style display-2">Donor {{$donor->donorID}} Profile</h2>
+                    <h2 class="pb-3 mbr-fonts-style display-2">Donor Profile</h2>
                 </div>
             </div>
         </div>

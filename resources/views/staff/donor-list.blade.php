@@ -36,10 +36,10 @@
                 <i class="fa fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
-                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
                 <div class="table-backpanel">
                     <div class="table-wrapper">
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
                         <div class="container">
                             <div class="row search">
                                 <div class="col-md-6"></div>
@@ -74,7 +74,7 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->getGender()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->getBloodTypeString()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->phoneNum}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{$donor->donorAccStatus}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$donor->getAccStatus()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">
                                             <a href="/staff/hr/list/donor/{{$donor->donorID}}">
                                                 <i class="fa fa-bars" aria-hidden="true"></i>

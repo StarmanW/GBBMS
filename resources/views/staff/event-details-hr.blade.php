@@ -189,5 +189,9 @@
         </script>
     @elseif(session('success'))
         <script>eventUpdateSuccess("{{session('success')}}");</script>
+    @elseif(session('cancelSuccess'))
+        <script>cancelEventSuccess("{{session('cancelSuccess')}}");</script>
+    @elseif(session('cancelFailure'))
+        <script>cancelEventFailure("{{session('cancelFailure')}}");</script>
     @endif
 @endsection

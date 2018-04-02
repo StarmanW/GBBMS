@@ -35,10 +35,10 @@
                 <i class="fa  fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
-                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Staff List</h2>
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
                 <div class="table-backpanel">
                     <div class="table-wrapper">
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Staff List</h2>
                         <div class="container">
                             <div class="row search">
                                 <div class="col-md-6"></div>
@@ -65,63 +65,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">SH15001</td>
-                                    <td class="body-item mbr-fonts-style display-7">Zion Tseu</td>
-                                    <td class="body-item mbr-fonts-style display-7">HR Manager</td>
-                                    <td class="body-item mbr-fonts-style display-7">zions-sh15@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">019-553-5413</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <a href="/staff/hr/list/staff/staffIDHere">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">SN16002</td>
-                                    <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
-                                    <td class="body-item mbr-fonts-style display-7">Nurse</td>
-                                    <td class="body-item mbr-fonts-style display-7">samuelwkf-sn16@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">012-446-5856</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">SN17001</td>
-                                    <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
-                                    <td class="body-item mbr-fonts-style display-7">Nurse</td>
-                                    <td class="body-item mbr-fonts-style display-7">chongjh-sn17@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">013-124-9875</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">SN18030</td>
-                                    <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
-                                    <td class="body-item mbr-fonts-style display-7">Nurse</td>
-                                    <td class="body-item mbr-fonts-style display-7">enjiuntej-sn18@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">019-542-1123</td>
-                                    <td class="body-item mbr-fonts-style display-7">Activated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7">SN17035</td>
-                                    <td class="body-item mbr-fonts-style display-7">Teo Kien Lung</td>
-                                    <td class="body-item mbr-fonts-style display-7">Nurse</td>
-                                    <td class="body-item mbr-fonts-style display-7">teokl-sn17@gmail.com</td>
-                                    <td class="body-item mbr-fonts-style display-7">016-856-4231</td>
-                                    <td class="body-item mbr-fonts-style display-7">Deactivated</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
+                                @foreach($staffs as $staff)
+                                    <tr>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->firstName}} {{$staff->lastName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->getStaffPosition()}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->emailAddress}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->phoneNum}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$staff->getAccStatus()}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">
+                                            <a href="/staff/hr/list/staff/{{$staff->staffID}}">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

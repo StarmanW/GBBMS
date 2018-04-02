@@ -40,5 +40,25 @@ function eventUpdateSuccess(successMsg) {
         'movable': false,
         'modal': true,
         'labels': 'OK'
-    }).setHeader("Event Details Updated!").show();
+    }).setHeader("Event Details Updated").show();
+}
+
+//Display Event Cancellation Success message
+function cancelEventSuccess(successMsg) {
+    alertify.alert(successMsg).setting({
+        'transition': 'zoom',
+        'movable': false,
+        'modal': true,
+        'labels': 'OK'
+    }).setHeader("Event Cancelled").show();
+}
+
+//Display Event Cancellation Success message
+function cancelEventFailure(successMsg) {
+    alertify.alert(successMsg).setting({
+        'transition': 'zoom',
+        'movable': false,
+        'modal': true,
+        'labels': 'OK'
+    }).setHeader("Event Cancellation Failed").show();
 }

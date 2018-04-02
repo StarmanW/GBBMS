@@ -132,30 +132,19 @@ class StaffRoomController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Request $request, $id) {
+    public function deactivate($id) {
         //find room
         $room = Room::find($id);
+        $room->roomStatus = false;
 
-        //validate data
-        $validator = Validator::make($request->all(), [
-            'roomStatus' => ['required', 'boolean']
-        ]);
+        if ($room->save())
+            return redirect('/staff/hr/registration')->with('success', 'Room deactivated successfully!');
+        else
+            return redirect('/staff/hr/registration')->with('failure', 'Room was not deactivated.');
 
-        //set room details
-        if ($validator->fails())
-            return redirect()->back()->withErrors($validator)->withInput();
-        else {
-            $room->roomStatus = false;
-
-            if ($room->save())
-                return redirect('/staff/hr/registration')->with('success', 'Room deactivated successfully!');
-            else
-                return redirect('/staff/hr/registration')->with('failure', 'Room was not deactivated.');
-        }
     }
 
 //    /**

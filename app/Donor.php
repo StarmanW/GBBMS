@@ -79,6 +79,21 @@ class Donor extends Authenticatable {
         return $bloodTypeString;
     }
 
+    //Get account status in string
+    public function getAccStatus() {
+        $accStatus = 'None';
+
+        switch($this->donorAccStatus) {
+            case 1:
+                $accStatus = 'Active';
+                break;
+            case 0:
+                $accStatus = 'Deactivated';
+                break;
+        }
+        return $accStatus;
+    }
+
     //Get Gender in string
     public function getGender() {
         $gender = 'None';

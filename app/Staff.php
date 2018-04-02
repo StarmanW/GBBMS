@@ -68,6 +68,21 @@ class Staff extends Authenticatable {
         return $staffPosition;
     }
 
+    //Get account status in string
+    public function getAccStatus() {
+        $accStatus = 'None';
+
+        switch($this->staffAccStatus) {
+            case 1:
+                $accStatus = 'Active';
+                break;
+            case 0:
+                $accStatus = 'Deactivated';
+                break;
+        }
+        return $accStatus;
+    }
+
     /**
      * Method to return the email for password reset
      *

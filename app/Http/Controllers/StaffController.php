@@ -79,7 +79,6 @@ class StaffController extends Controller {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request) {
@@ -151,10 +150,9 @@ class StaffController extends Controller {
      * Update staff account status for deactivation.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Request $request, $id) {
+    public function deactivate(Request $request) {
         //Set donor account status
         $staff = Auth::user();
         $staff->staffAccStatus = 0;

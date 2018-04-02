@@ -57,6 +57,10 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::post('/profile', 'DonorController@update');
     Route::post('/profile/deactivate', 'DonorController@deactivate');
 
+    Route::get('/reservation/current', function () {
+        return view('donor.resv-current');
+    });
+
     Route::get('/donation', function () {
         return view('donor.donate-history');
     });
@@ -113,14 +117,15 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     /***** LIST SECTION *****/
     Route::get('/list/donor', 'StaffDonorController@index');
     Route::get('/list/donor/{id}', 'StaffDonorController@show');
+
+    Route::get('/list/staff', 'StaffController@index');
+    Route::get('/list/staff/{id}', 'StaffController@index');
+
     Route::get('/list/event', 'StaffEventController@index');
     Route::get('/list/event/{id}', 'StaffEventController@show');
     Route::post('/list/event/{id}', 'StaffEventController@update');
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
-    Route::get('/list/staff', function () {
-        return view('staff.staff-list');
-    });
 
     Route::get('/dashboard', function () {
         return view('staff.dashboard');
