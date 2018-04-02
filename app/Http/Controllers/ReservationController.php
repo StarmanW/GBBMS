@@ -57,11 +57,30 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //generate reservation id
-        $resvID = 'R' . date(y) . sprintf('%04d', count(Reservation::all()));
-
         //get current user id
         $donor = Donor::find(Auth::user()->donorID);
+
+        //check eligibility
+        //get last donation date
+        $lastDonation = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 0);
+
+        foreach ($lastDonation as $donation) {
+            //get event date
+            $donationEventDate = $donation->events->eventDate;
+
+            //get date 3 months from last donation
+            $threeMntsFrmDate = $donationEventDate->addMonths(3);
+
+            if(Carbon::now() <= $threeMntsFrmDate) {
+                //get date difference
+                $dateDiff = $threeMntsFrmDate->diff(Carbon::now())->days + 1;
+
+                return redirect('/donor/-upcoming-events')->with('failure', 'You have donated blood at ' . $donationEventDate . ' Please try again after ' . $dateDiff . ' days.');
+            }
+        }
+
+        //generate reservation id
+        $resvID = 'R' . date(y) . sprintf('%04d', count(Reservation::all()));
 
         //create reservation
         $resv = new Reservation();
