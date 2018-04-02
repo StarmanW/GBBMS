@@ -102,7 +102,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="lineModalLabel"></h3>
+                        <h3 class="modal-title" id="lineModalLabel">Editing User Profile</h3>
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">Close</span>

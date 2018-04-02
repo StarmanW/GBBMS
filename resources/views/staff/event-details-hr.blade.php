@@ -132,7 +132,7 @@
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Event Name</label>
-                                    <input type="text" name="eventName" value="{{$data['event']->eventName}}" placeholder="John" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                    <input type="text" name="eventName" value="{{$data['event']->eventName}}" placeholder="John" class="form-control" pattern="[A-Za-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
                                         required="required">
                                 </div>
                                 <br>

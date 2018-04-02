@@ -137,7 +137,7 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Event Name</label>
-                                                        <input type="text" value="{{old('eventName')}}" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
+                                                        <input type="text" value="{{old('eventName')}}" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
                                                             required="required">
                                                     </div>
                                                     <br>
