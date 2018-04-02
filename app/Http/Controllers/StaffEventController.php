@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\EventSchedule;
 use App\Reservation;
+use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -93,8 +95,33 @@ class StaffEventController extends Controller {
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
             $event->eventStatus = 1;
+            $eventSaveStats = $event->save();
 
-            if ($event->save())
+            //Variable $evSchedSaveStats for verifying all 5 event schedule records are created successfully
+            //Array $staffIDs for storing randomly generated staff IDs.
+            $evSchedSaveStats = 0;
+            $staffIDs = [];
+            $staffs = Staff::where('staffPos', '=', 0)->get();                  //Retrieve all staff
+
+            for($i = 0; $i < count($staffs); $i++) {
+                $staffIDs[$i] = $staffs[rand(0, count($staffs) - 1)]->staffID;  //Randomly select a staff index and store into temp variable
+            }
+
+            $staffIDs = array_unique($staffIDs);                                //Filter out duplicated staff IDs in array
+
+            //For loop to create 5 new event schedule records and
+            //store each of the staff IDs using the keys
+            //(Otherwise it is not in sequence after filtered. E.g. - 0,1,2,5,8)
+            for($i = 0; $i < 5; $i++) {
+                $eventSchedule = new EventSchedule();
+                $eventSchedule->schedID = 'ES' . sprintf('%04d', count(EventSchedule::all()) + 1);
+                $eventSchedule->staffID = $staffIDs[array_keys($staffIDs)[$i]];
+                $eventSchedule->eventID = $event->eventID;
+                $eventSchedule->save();
+                $evSchedSaveStats++;
+            }
+
+            if ($eventSaveStats === true && $evSchedSaveStats === 5)
                 return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
             else
                 return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
@@ -111,24 +138,14 @@ class StaffEventController extends Controller {
         //get one event for detail page
         $event = Event::find($id);
         $rooms = Room::all();
+        $eventScheds = EventSchedule::where('eventID', '=', $event->eventID)->get();
 
         $data = [
             'event' => $event,
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'eventScheds' => $eventScheds
         ];
         return view('staff.event-details-hr')->with('data', $data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //get one event for edit
-        $event = Staff::find($id);
-        return view('staff.event-details-hr')->with('event', $event);
     }
 
     /**
@@ -203,14 +220,4 @@ class StaffEventController extends Controller {
                 return redirect('/staff/hr/list/event/' .  $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
     }
 
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }

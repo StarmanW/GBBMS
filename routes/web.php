@@ -57,10 +57,6 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::post('/profile', 'DonorController@update');
     Route::post('/profile/deactivate', 'DonorController@deactivate');
 
-    Route::get('/reservation/current', function () {
-        return view('donor.resv-current');
-    });
-
     Route::get('/donation', function () {
         return view('donor.donate-history');
     });

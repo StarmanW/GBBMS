@@ -69,26 +69,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($data['eventScheds'] as $eventSched)
                                                         <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN16002</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
+                                                            <td class="body-item mbr-fonts-style display-7">{{$eventSched->staffs->staffID}}</td>
+                                                            <td class="body-item mbr-fonts-style display-7">{{$eventSched->staffs->firstName}} {{$eventSched->staffs->lastName}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17001</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18030</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17035</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Lee Jun Kai</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18012</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Ritchie Reginald</td>
-                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </td>
