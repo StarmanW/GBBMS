@@ -7,6 +7,7 @@ use App\Donor;
 use App\Event;
 use App\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BloodController extends Controller
 {
@@ -66,7 +67,37 @@ class BloodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'bloodBagID' => ['required', 'string', 'max:8', 'min:8', 'regex:/((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN){3})(\d{6})/'],
+                'bloodVol' => ['required', 'integer', 'max:3'], //validate integer range?
+                'remarks' => ['nullable', 'string', 'max:255']
+            ]);
+
+        $blood = Blood::find($request->bloodBagID);
+        $donor = Donor::find($request->donorID);
+        $event = Event::find($request->eventID);
+        if ($blood !== null)
+            return redirect()->back()->with('failure', 'Blood Bag ID ' . $blood->bloodBagID . ' already exist, please try again.');
+        else if ($donor === null)
+            return redirect()->back()->with('failure', 'No donor with ID' . $request->donorID . ' is found. Please try again.');
+        else if ($event === null)
+            return redirect()->back()->with('failure', 'No event with ID ' . $request->eventID . ' is found. Please try again.');
+        else if ($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else {
+            $blood = new Blood();
+            $blood->bloodBagID = $request->input('bloodBagID');
+            $blood->donorID = $donor-donorID;
+            $blood->eventID = $event->eventID;
+            $blood->bloodVol = $request->input('bloodVol');
+            $blood->remarks = $request->input('remarks');
+
+            if ($blood->save() === true)
+                return redirect('/staff/nurse/manage-blood')->with('success', 'Blood donation created successfully!');
+            else
+                return redirect('/staff/nurse/manage-blood')->with('failure', 'Blood donation was not created.');
+        }
     }
 
     //Update and deactivate for blood management?
