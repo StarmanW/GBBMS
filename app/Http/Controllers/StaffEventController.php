@@ -47,7 +47,23 @@ class StaffEventController extends Controller {
 
         //get nearest 3 events to current date
         $eventList = array($events[0], $events[1], $events[2]);
-        return view('staff.home-hr')->with('eventList', $eventList);
+        return view('staff.homepage-hr')->with('eventList', $eventList);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexShortNurse() {
+        //get 3 upcoming events from events table for homepage
+
+        //get events after current date and sort by date in ascending order
+        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+
+        //get nearest 3 events to current date
+        $eventList = array($events[0], $events[1], $events[2]);
+        return view('staff.homepage-nurse')->with('eventList', $eventList);
     }
 
     /**
