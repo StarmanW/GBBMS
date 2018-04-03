@@ -52,9 +52,11 @@
 
             <div class="container timelines-container" mbri-timelines="">
 
+                <?php $order = "left" ?>
                 @foreach ($eventList as $event)
+                    <?php $order = ($order == "left") ? 'right' : 'left' ?>
                     <div class="row timeline-element reverse separline">
-                            <div class="timeline-date-panel col-xs-12 col-md-6 align-left">
+                            <div class="timeline-date-panel col-xs-12 col-md-6 align-{{$order}}">
                             <div class="time-line-date-content">
                                 <p class="mbr-timeline-date mbr-fonts-style display-5">{{date_format(date_create($event->eventDate), "d-M-Y")}}</p>
                             </div>
