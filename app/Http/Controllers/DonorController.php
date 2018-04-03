@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Donor;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class DonorController extends Controller {
@@ -17,37 +18,6 @@ class DonorController extends Controller {
     public function __construct() {
         $this->middleware('auth:donor');
     }
-
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -128,6 +98,46 @@ class DonorController extends Controller {
         }
     }
 
+    /**
+     * Update the donor's password
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request) {
+
+        $donor = Donor::find(Auth::user()->donorID);
+
+        //Verify current password input field
+        if (!(Hash::check($request['currentPass'], Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error", "Your current password does not match with the password you provided.");
+        }
+
+        //Verify if new password is the current (old) password
+        if(strcmp($request['currentPass'], $request['newPass']) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+        }
+
+        //Validate Data
+        session(['passValidation' => 'true']);          //Set passValidation to true so the correct modal will be displayed
+        $validator = Validator::make($request->all(), [
+            'currentPass' => 'required|min:6|max:255',
+            'newPass' => 'required|min:6|max:255|confirmed'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            //Set donor new password
+            $donor->password = bcrypt($request['newPass']);
+            if($donor->save())
+                return redirect()->back()->with('success', 'Password successfully changed!');
+            else
+                return redirect()->back()->with('error', 'Oops, password was not successfully changed.');
+        }
+    }
 
     /**
      * Update donor account status for deactivation.
@@ -148,15 +158,4 @@ class DonorController extends Controller {
         } else
             return redirect('/login')->with('failure', 'Your account was not deactivated.');
     }
-
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }

@@ -55,6 +55,7 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
 
     Route::get('/profile', 'DonorController@edit');
     Route::post('/profile', 'DonorController@update');
+    Route::post('/profile/password', 'DonorController@changePassword');
     Route::post('/profile/deactivate', 'DonorController@deactivate');
 
     Route::get('/donation', function () {
