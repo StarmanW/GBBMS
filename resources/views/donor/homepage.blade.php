@@ -52,17 +52,19 @@
 
             <div class="container timelines-container" mbri-timelines="">
 
-                <?php $order = "left" ?>
+                <?php $orderDate = "left" ?>
+                <?php $orderInfo = "right" ?>
                 @foreach ($eventList as $event)
-                    <?php $order = ($order == "left") ? 'right' : 'left' ?>
+                    <?php $orderDate = ($orderDate == "left") ? 'right' : 'left' ?>
+                    <?php $orderInfo = ($orderInfo == "right") ? 'left' : 'right' ?>
                     <div class="row timeline-element reverse separline">
-                            <div class="timeline-date-panel col-xs-12 col-md-6 align-{{$order}}">
+                            <div class="timeline-date-panel col-xs-12 col-md-6 align-{{$orderDate}}">
                             <div class="time-line-date-content">
                                 <p class="mbr-timeline-date mbr-fonts-style display-5">{{date_format(date_create($event->eventDate), "d-M-Y")}}</p>
                             </div>
                         </div>
                         <span class="iconBackground"></span>
-                        <div class="col-xs-12 col-md-6 align-right">
+                        <div class="col-xs-12 col-md-6 align-{{$orderInfo}}">
                             <div class="timeline-text-content">
                                 <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">{{$event->eventName}}</h4>
                                 <table class="activity-table">
