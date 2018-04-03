@@ -48,7 +48,7 @@
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Password</th>
                                             <td class="body-item mbr-fonts-style display-7">
-                                                <button type="submit" class="btn btn-sm btn-primary profile-table-btn">Reset Password</button>
+                                                <button data-toggle="modal" data-target="#changePasswordForm" type="button" name="edit" class="btn btn-sm btn-primary chgnPass-btn">Change Password</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -105,7 +105,7 @@
             </div>
         </div>
 
-        <!-- line modal -->
+        <!-- Update staff profile form modal -->
         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -200,6 +200,47 @@
                                     <button type="reset" class="btn btn-sm btn-primary profile-btn ">Reset</button>
                                 </div>
                             </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Password form -->
+        <div class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="lineModalLabel">Change Password</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/staff/profile/password" enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <p style="color:red; float: left;">"*" Required fields</p>
+                            <br />
+                            <br />
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <label><span style="color:red;">*</span> Current Password</label>
+                                    <input type="password" name="currentPass" class="form-control" required="required">
+                                </div>
+                                <div class="row">
+                                    <label><span style="color:red;">*</span> New Password</label>
+                                    <input type="password" name="newPass" class="form-control" required="required">
+                                </div>
+                                <div class="row">
+                                    <label><span style="color:red;">*</span> Confirm New Password</label>
+                                    <input type="password" name="newPass_confirmation" class="form-control" required="required">
+                                </div>
+                                <br/>
+                                <div class="submit-button div-button-center">
+                                    <button type="submit" class="btn btn-lg btn-success profile-btn">Submit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
