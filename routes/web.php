@@ -15,7 +15,7 @@
 Route::get('/login', function () {
     //Validate if donor is authenticated
     if (Auth::guard('donor')->check()) {
-        return redirect('/donor/home');
+        return redirect('/donor/homepage');
     } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
         if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
             return redirect('/staff/hr/home');
@@ -57,6 +57,8 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::post('/profile', 'DonorController@update');
     Route::post('/profile/password', 'DonorController@changePassword');
     Route::post('/profile/deactivate', 'DonorController@deactivate');
+
+    Route::get('/homepage', 'EventController@indexShort');
 
     Route::get('/donation', function () {
         return view('donor.donate-history');
