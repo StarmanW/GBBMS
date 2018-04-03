@@ -39,12 +39,12 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="/staff/hr/home">
+                        <a href="/staff/hr/homepage">
                             <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="/staff/hr/home">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="/staff/hr/homepage">Gleneagles Kota Kinabalu</a>
                     </span>
             </div>
         </div>
@@ -97,7 +97,7 @@
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
                     <!-- TEMP LINK -->
-                    <a href="/staff/hr/home">
+                    <a href="/staff/hr/homepage">
                         <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                     </a>
                 </div>

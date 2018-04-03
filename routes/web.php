@@ -18,9 +18,9 @@ Route::get('/login', function () {
         return redirect('/donor/homepage');
     } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
         if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
-            return redirect('/staff/hr/home');
+            return redirect('/staff/hr/homepage');
         elseif (Auth::guard('staff')->user()->staffPos === 0)   //Verify staff position is Nurse
-            return redirect('/staff/nurse/home');
+            return redirect('/staff/nurse/homepage');
     } else {
         return view('login');                              //Redirect default guest to login page
     }
@@ -51,6 +51,7 @@ Route::get('/staff/password/reset/{token}', 'StaffAuth\ResetPasswordController@s
 //Donor Routes grouped under "/donor/..."
 Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
 
+    //Homepage
     Route::post('/logout', 'DonorAuth\LoginController@logout')->name('logout');
 
     Route::get('/profile', 'DonorController@edit');
@@ -92,9 +93,8 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
 //HR Manager Routes grouped under "/staff/hr/..."
 Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']], function () {
 
-    Route::get('/home', function () {
-        return view('staff.home-hr');
-    });
+    //Homepage
+    Route::get('/homepage', 'StaffEventController@indexShort');
 
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
@@ -103,7 +103,6 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::get('/profile', 'StaffController@edit');
     Route::post('/profile', 'StaffController@update');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
-
 
     /***** REGISTER SECTION *****/
     //Staff Register
@@ -140,9 +139,8 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
 //Nurse Routes grouped under "/staff/nurse/..."
 Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseStaff']], function () {
 
-    Route::get('/home', function () {
-        return view('staff.home-nurse');
-    });
+    //Homepage
+    Route::get('/homepage', 'StaffEventController@indexShortNurse');
 
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 

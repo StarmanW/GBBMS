@@ -41,13 +41,13 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="homepage-nurse.html">
+                        <a href="/staff/nurse/homepage">
                             <img src="/assets/images/gLogo.png" alt="Gleneagles Logo"
                                  title="" style="height: 3.8rem;">
                         </a>
                     </span>
                 <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-white display-7" href="homepage-nurse.html">Gleneagles Kota Kinabalu</a>
+                        <a class="navbar-caption text-white display-7" href="/staff/nurse/homepage">Gleneagles Kota Kinabalu</a>
                     </span>
             </div>
         </div>
@@ -88,7 +88,7 @@
         <div class="media-container-row content text-white">
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
-                    <a href="/staff/homepage-nurse">
+                    <a href="/staff/nurse/homepage">
                         <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                     </a>
                 </div>
