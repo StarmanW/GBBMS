@@ -67,13 +67,15 @@ class BloodController extends Controller
      */
     public function store(Request $request)
     {
+        //validate data
         $validator = Validator::make($request->all(),
             [
                 'bloodBagID' => ['required', 'string', 'max:8', 'min:8', 'regex:/((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN){3})(\d{6})/'],
-                'bloodVol' => ['required', 'integer', 'max:3'], //validate integer range?
+                'bloodVol' => ['required', 'integer', 'max:3', 'between:0,500'],
                 'remarks' => ['nullable', 'string', 'max:255']
             ]);
 
+        //find records by id
         $blood = Blood::find($request->bloodBagID);
         $donor = Donor::find($request->donorID);
         $event = Event::find($request->eventID);
@@ -99,8 +101,6 @@ class BloodController extends Controller
                 return redirect('/staff/nurse/manage-blood')->with('failure', 'Blood donation was not created.');
         }
     }
-
-    //Update and deactivate for blood management?
 
 //    /**
 //     * Display the specified resource.
