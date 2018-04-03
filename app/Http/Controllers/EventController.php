@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -24,12 +25,11 @@ class EventController extends Controller
      */
     public function index()
     {
-        //get all upcoming events from events table for upcoming event ist page
+        //get all upcoming events from events table for upcoming event list page
 
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>' , DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
 
-        //get nearest 3 events to current date
         return view('donor.upcoming-event-list')->with('eventList', $events);
     }
 
@@ -47,7 +47,7 @@ class EventController extends Controller
 
         //get nearest 3 events to current date
         $eventList = array($events[0], $events[1], $events[2]);
-        return view('donor.home')->with('eventList', $eventList);
+        return view('donor.homepage')->with('eventList', $eventList);
     }
 
 //    /**
