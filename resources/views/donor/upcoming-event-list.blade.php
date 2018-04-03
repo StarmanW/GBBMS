@@ -5,9 +5,14 @@
 @endsection
 
 @section('additionalCSS')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">
     <link rel="stylesheet" href="/assets/additional/css/table-list.css" type="text/css">
     <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -35,54 +40,33 @@
                                 <th class="head-item mbr-fonts-style display-7">Event Name</th>
                                 <th class="head-item mbr-fonts-style display-7">Date</th>
                                 <th class="head-item mbr-fonts-style display-7">Time</th>
+                                <th class="head-item mbr-fonts-style display-7">Room</th>
                                 <th class="head-item mbr-fonts-style display-7">Event Status</th>
                                 <th class="head-item mbr-fonts-style display-7"></th>
                             </tr>
                         </thead>
 
                         <tbody>
+                            @foreach($eventList as $event)
                             <tr>
-                                <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
-                                <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
-                                <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
-                                <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
+                                <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                 <td class="body-item mbr-fonts-style display-7 button-column">
-                                    <a href="">
+                                    <a href="#" onclick="$('#reserve{{$event->eventID}}').submit();">
                                         <i class="fa fa-calendar-check" aria-hidden="true" title="Reserve now"></i>
                                     </a>
-                                    <a href="./event-details-donor.html">
+                                    <form method="post" action="/donor/{{$event->eventID}}/reserve" id="reserve{{$event->eventID}}" style="display: none;">
+                                        {{csrf_field()}}
+                                    </form>
+                                    <a href="/donor/upcoming-events/{{$event->eventID}}">
                                         <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="body-item mbr-fonts-style display-7">Blood Week June 2018</td>
-                                <td class="body-item mbr-fonts-style display-7">20-Jun-2018</td>
-                                <td class="body-item mbr-fonts-style display-7">11.00 Am to 5.00 PM</td>
-                                <td class="body-item mbr-fonts-style display-7">Cancelled</td>
-                                <td class="body-item mbr-fonts-style display-7 button-column">
-                                    <a href="">
-                                        <i class="fa fa-calendar-check" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive October 2018</td>
-                                <td class="body-item mbr-fonts-style display-7">15-Oct-2018</td>
-                                <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                                <td class="body-item mbr-fonts-style display-7">Ready for booking</td>
-                                <td class="body-item mbr-fonts-style display-7 button-column">
-                                    <a href="">
-                                        <i class="fa fa-calendar-check" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -109,5 +93,27 @@
 @section('additionalJS')
     <script src="/assets/datatables/jquery.data-tables.min.js"></script>
     <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
-    <!-- <script src="assets/theme/js/script.js"></script> TEMPORARY REMOVED DUE TO WEIRD SLIDE UP -->
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+    @if(session('success'))
+        <script>
+            //Display Donor password update message
+            alertify.alert('{{session('success')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Change Password").show();
+        </script>
+    @elseif(session('failure'))
+        <script>
+            //Display Donor password update message
+            alertify.alert('{{session('failure')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Change Password").show();
+        </script>
+    @endif
 @endsection

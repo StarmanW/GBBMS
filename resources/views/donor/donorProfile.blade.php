@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <!-- line modal -->
+        <!-- Update donor profile form modal -->
         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">

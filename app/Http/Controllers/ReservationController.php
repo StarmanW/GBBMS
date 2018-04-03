@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class ReservationController extends Controller
-{
+class ReservationController extends Controller {
 
     /**
      * Create new controller instance
@@ -28,8 +27,7 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
@@ -52,61 +50,61 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  string $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store($id) {
+
         //get current user id
         $donor = Donor::find(Auth::user()->donorID);
 
         //check eligibility
         //get last donation date
-        $lastDonation = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 0);
+        //->orWhere('resvStatus', '=', 1)
+        $lastDonation = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 0)->get();
 
         //get current date
         $currentDate = Carbon::now();
 
         foreach ($lastDonation as $donation) {
             //get event date
-            $donationEventDate = $donation->events->eventDate;
+            $donationEventDate = Carbon::createFromTimestamp(strtotime($donation->events->eventDate));
 
             //get date 3 months from last donation
             $threeMntsFrmDate = $donationEventDate->addMonths(3);
 
-            if($currentDate <= $threeMntsFrmDate) {
+            if ($currentDate <= $threeMntsFrmDate) {
                 //get date difference
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
-                return redirect('/donor/-upcoming-events')->with('failure', 'You have donated blood at ' . $donationEventDate . ' Please try again after ' . $dateDiff . ' days.');
+                return redirect('/donor/upcoming-events')->with('failure', 'You have donated blood at ' . date_format($donationEventDate, 'd F Y') . ' Please try again after ' . $dateDiff . ' days.');
             }
         }
 
         //generate reservation id
-        $resvID = 'R' . date(y) . sprintf('%04d', count(Reservation::all()));
+        $resvID = 'R' . date('y') . sprintf('%04d', count(Reservation::all()) + 1);
 
         //create reservation
         $resv = new Reservation();
         $resv->resvID = $resvID;
         $resv->donorID = $donor->donorID;
-        $resv->eventID = $request->input('eventID');
+        $resv->eventID = $id;
         $resv->resvDateTime = Carbon::now();
         $resv->resvStatus = 1;
 
         if ($resv->save())
-            return redirect('/donor/event/' . $resv->eventID)->with('success', 'Reservation created successfully!');
+            return redirect('/donor/upcoming-events/' . $resv->eventID)->with('success', 'Reservation has been successfully made!');
         else
-            return redirect('/donor/upcoming-events')->with('failure', 'Reservation was not created.');
+            return redirect('/donor/upcoming-events')->with('failure', 'Oops, reservation was not successfully made.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //find and return reservation to reservation details page
         $reservation = Reservation::find($id);
         return view('donor.resv-details')->with('reservation', $reservation);
@@ -139,16 +137,15 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function deactivate($id)
-    {
+    public function deactivate($id) {
         $resv = Reservation::find($id);
         $resv->resvStatus = 3;
 
         //make new current reservation page first
-        if($resv->save())
+        if ($resv->save())
             return redirect('/donor/reservation/current')->with('success', 'Reservation created successfully!');
         else
             return redirect('/donor/reservation/current')->with('failure', 'Reservation was not created.');
