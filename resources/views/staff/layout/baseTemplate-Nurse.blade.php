@@ -54,17 +54,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="schedule-list.html">VIEW SCHEDULES</a>
+                    <a class="nav-link link text-white display-4" href="./schedule">VIEW SCHEDULES</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="blood-management.html">MANAGE DONATION</a>
+                    <a class="nav-link link text-white display-4" href="./manage-blood">MANAGE DONATION</a>
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu"
                        aria-expanded="true">Chong Jia Herng</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="staff-profile-nurse.html">View Profile
+                        <a class="text-white dropdown-item display-4" href="./profile">View Profile
                             <!-- TEMP LINK -->
                             <br>
                         </a>
