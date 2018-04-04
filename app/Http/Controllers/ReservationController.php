@@ -37,6 +37,36 @@ class ReservationController extends Controller {
         return view('donor.resv-list')->with('resvs', $resvs);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexShort() {
+        //find id of current user
+        $donor = Donor::find(Auth::user()->donorID);
+
+        //get all reservations for reservation history list page
+        $resvs = DB::table('reservations')
+            ->select();
+
+        $resv = array();
+
+        for($i = 0; $i < count($resvs); $i++) {
+            if($resvs[$i]->events->eventDate > Carbon::now()) {
+                $resv[$i] = $resvs[$i];
+            }
+        }
+
+        $unsortedResv = array_sort($resv);
+
+        $resvList = [$unsortedResv[0], $unsortedResv[1], $unsortedResv[2]];
+
+        dd($resvList);
+
+        return view('donor.resv-list')->with('resvList', $resvList);
+    }
+
 //    /**
 //     * Show the form for creating a new resource.
 //     *
@@ -78,7 +108,7 @@ class ReservationController extends Controller {
 
         foreach ($lastDonation as $donation) {
             //get event date
-            $donationEventDate = Carbon::createFromDate(strtotime($donation->events->eventDate));
+            $donationEventDate = Carbon::createFromTimestamp(strtotime($donation->events->eventDate));
 
             //get date 3 months from last donation
             $threeMntsFrmDate = $donationEventDate->addMonths(3);
@@ -87,7 +117,7 @@ class ReservationController extends Controller {
                 //get date difference
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
-                return redirect('/donor/upcoming-events')->with('failure', 'You have donated blood at ' . date_format($donationEventDate, 'd F Y') . ' Please try again after ' . $dateDiff . ' days.');
+                return redirect('/donor/upcoming-events')->with('failure', 'You have donated blood at ' . date_format(date_create($donation->events->eventDate), 'd F Y') . ' Please try again after ' . $dateDiff . ' days. (After ' . date_format($donationEventDate, 'd F Y') . ')');
             }
         }
 

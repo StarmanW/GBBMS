@@ -103,7 +103,7 @@
                 'movable': false,
                 'modal': true,
                 'labels': 'OK'
-            }).setHeader("Change Password").show();
+            }).setHeader("Blood Donation Reservation").show();
         </script>
     @elseif(session('failure'))
         <script>
@@ -113,7 +113,7 @@
                 'movable': false,
                 'modal': true,
                 'labels': 'OK'
-            }).setHeader("Change Password").show();
+            }).setHeader("Blood Donation Reservation").show();
         </script>
     @endif
 @endsection
