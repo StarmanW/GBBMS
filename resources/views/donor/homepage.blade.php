@@ -15,7 +15,7 @@
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-1">Welcome, {{Auth::user()->firstName}}</h2>
             <div class="media-container-row container">
                 <!-- TEMP LINK -->
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./upcoming-event-list.html';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/donor/upcoming-events';">
                     <div class="card-img">
                         <i class="fa fa-calendar-alt fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>

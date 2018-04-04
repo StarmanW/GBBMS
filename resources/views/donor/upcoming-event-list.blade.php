@@ -18,72 +18,77 @@
 @section('contents')
     <section class="section-table cid-qMsL032wYA" id="table1-1t">
         <div class="container container-table">
-            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Upcoming Event List</h2>
+            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Upcoming Events</h2>
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
-            <div class="table-wrapper">
-                <div class="container">
-                    <div class="row search">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                            <div class="dataTables_filter">
-                                <label class="searchInfo mbr-fonts-style display-7">Search:</label>
-                                <input class="form-control input-sm" disabled="">
+            <div class="table-backpanel">
+                <div class="table-wrapper">
+                    <div class="container">
+                        <div class="row search">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <div class="dataTables_filter">
+                                    <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                                    <input class="form-control input-sm" disabled="">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="container scroll">
-                    <table class="table isSearch" cellspacing="0">
-                        <thead>
-                            <tr class="table-heads ">
-                                <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                <th class="head-item mbr-fonts-style display-7">Date</th>
-                                <th class="head-item mbr-fonts-style display-7">Time</th>
-                                <th class="head-item mbr-fonts-style display-7">Room</th>
-                                <th class="head-item mbr-fonts-style display-7">Event Status</th>
-                                <th class="head-item mbr-fonts-style display-7"></th>
-                            </tr>
-                        </thead>
+                    <div class="container scroll">
+                        <table class="table isSearch" cellspacing="0">
+                            <thead>
+                                <tr class="table-heads ">
+                                    <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">Date</th>
+                                    <th class="head-item mbr-fonts-style display-7">Time</th>
+                                    <th class="head-item mbr-fonts-style display-7">Room</th>
+                                    <th class="head-item mbr-fonts-style display-7">Event Status</th>
+                                    <th class="head-item mbr-fonts-style display-7"></th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            @foreach($eventList as $event)
-                            <tr>
-                                <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
-                                <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
-                                <td class="body-item mbr-fonts-style display-7 button-column">
-                                    <a href="#" onclick="$('#reserve{{$event->eventID}}').submit();">
-                                        <i class="fa fa-calendar-check" aria-hidden="true" title="Reserve now"></i>
-                                    </a>
-                                    <form method="post" action="/donor/{{$event->eventID}}/reserve" id="reserve{{$event->eventID}}" style="display: none;">
-                                        {{csrf_field()}}
-                                    </form>
-                                    <a href="/donor/upcoming-events/{{$event->eventID}}">
-                                        <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="container table-info-container">
-                    <div class="row info">
-                        <div class="col-md-6">
-                            <div class="dataTables_info mbr-fonts-style display-7">
-                                <span class="infoBefore">Showing</span>
-                                <span class="inactive infoRows"></span>
-                                <span class="infoAfter">entries</span>
-                                <span class="infoFilteredBefore">(filtered from</span>
-                                <span class="inactive infoRows"></span>
-                                <span class="infoFilteredAfter"> total entries)</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6"></div>
+                            <tbody>
+                                @foreach($eventList as $event)
+                                <tr>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
+                                        <a href="#" onclick="$('#reserve{{$event->eventID}}').submit();">
+                                            <i class="fa fa-calendar-check" aria-hidden="true" title="Reserve now"></i>
+                                        </a>
+                                        <form method="post" action="/donor/{{$event->eventID}}/reserve" id="reserve{{$event->eventID}}" style="display: none;">
+                                            {{csrf_field()}}
+                                        </form>
+                                        <a href="/donor/upcoming-events/{{$event->eventID}}">
+                                            <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                    <div class="container table-info-container">
+                        <div class="row info">
+                            <div class="col-md-6">
+                                <div class="dataTables_info mbr-fonts-style display-7">
+                                    <span class="infoBefore">Showing</span>
+                                    <span class="inactive infoRows"></span>
+                                    <span class="infoAfter">entries</span>
+                                    <span class="infoFilteredBefore">(filtered from</span>
+                                    <span class="inactive infoRows"></span>
+                                    <span class="infoFilteredAfter"> total entries)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container pagination" style="padding-bottom:2%;">
+                    {{$eventList->links()}}
                 </div>
             </div>
         </div>

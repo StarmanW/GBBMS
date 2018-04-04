@@ -25,7 +25,7 @@ class EventController extends Controller {
     public function index() {
         //get all upcoming events from events table for upcoming event list page
         //get events after current date and sort by date in ascending order
-        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->paginate(15);
 
         //get nearest 3 events to current date
         return view('donor.upcoming-event-list')->with('eventList', $events);

@@ -10,6 +10,10 @@
     text-align: right;
 }
 
+.pagination {
+    margin:auto !important;
+}
+
 table .fa-bars,
 table .fa-calendar-check,
 table .fa-calendar-times {

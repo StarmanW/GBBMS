@@ -101,6 +101,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="container pagination" style="padding-bottom:2%;">
+                        {{$staffs->links()}}
+                    </div>
                 </div>
             </div>
         </section>

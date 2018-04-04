@@ -100,6 +100,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="container pagination" style="padding-bottom:2%;">
+                        {{$events->links()}}
+                    </div>
                 </div>
             </div>
         </section>

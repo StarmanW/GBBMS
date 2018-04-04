@@ -1,4 +1,4 @@
-@extends('baseTemplates')
+@extends('donor.layout.baseTemplate')
 
 @section('title')
 <title>Donation History</title>

@@ -136,6 +136,6 @@ class Donor extends Authenticatable {
 
     //One-To-Many Blood Relationship
     public function bloods() {
-        return $this->hasMany('App\Blood');
+        return $this->hasMany('App\Blood', 'donorID', 'donorID');
     }
 }

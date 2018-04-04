@@ -12,6 +12,30 @@ class Reservation extends Model {
     //Set incrementing to false, otherwise the PK field will be cast to INTEGER
     public $incrementing = false;
 
+    public function getResvStatus() {
+        $resvStatus = 'None';
+
+        switch ($this->resvStatus) {
+            case 0:
+                $resvStatus = 'Completed';
+                break;
+            case 1:
+                $resvStatus = 'Reserved';
+                break;
+            case 2:
+                $resvStatus = 'Did not attend';
+                break;
+            case 3:
+                $resvStatus = 'Donor cancelled';
+                break;
+            case 4:
+                $resvStatus = 'Event cancelled';
+                break;
+        }
+
+        return $resvStatus;
+    }
+
     //Many-to-One Donor Relationship
     public function donors() {
         return $this->belongsTo('App\Donor', 'donorID', 'donorID');

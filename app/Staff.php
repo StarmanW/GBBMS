@@ -108,7 +108,8 @@ class Staff extends Authenticatable {
     }
 
     //One-To-Many EventSchedule Relationship
-    public function staffs() {
-        return $this->hasMany('App\EventSchedule');
+    public function eventSchedules() {
+        return $this->hasMany('App\EventSchedule', 'staffID', 'staffID');
     }
+
 }

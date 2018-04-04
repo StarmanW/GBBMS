@@ -1,4 +1,4 @@
-@extends('baseTemplates')
+@extends('donor.layout.baseTemplate')
 
 @section('title')
     <title>Reservation Details</title>
@@ -31,40 +31,40 @@
 										<th colspan="2" class="title">Reservation</th>
 										<tr>
                                             <th class="body-item mbr-fonts-style display-7">Reservation ID</th>
-                                            <td class="body-item mbr-fonts-style display-7">R180012</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$reservation->resvID}}</td>
                                         </tr>
 										<tr>
                                             <th class="body-item mbr-fonts-style display-7">Date Reserved</th>
-                                            <td class="body-item mbr-fonts-style display-7">12-Jan-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($reservation->resvDateTime), "d-M-Y")}}</td>
                                         </tr>
 										<tr>
                                             <th class="body-item mbr-fonts-style display-7">Reservation Status</th>
-                                            <td class="body-item mbr-fonts-style display-7">Reserved</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$reservation->getResvStatus()}}</td>
                                         </tr>
 										<th colspan="2" class="title">Event</th>
 										<tr>
                                             <th class="body-item mbr-fonts-style display-7">Event ID</th>
-                                            <td class="body-item mbr-fonts-style display-7">E180124</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$reservation->events->eventID}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Event Name</th>
-                                            <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$reservation->events->eventName}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Date</th>
-                                            <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($reservation->events->eventDate), "d-M-Y")}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Time</th>
-                                            <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($reservation->events->eventStartTime), "h:i A")}} to {{date_format(date_create($reservation->events->eventEndTime), "h:i A")}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Room</th>
-                                            <td class="body-item mbr-fonts-style display-7">0340012</td>
+                                            <td class="body-item mbr-fonts-style display-7">Room {{substr($reservation->events->rooms->roomID, 3)}}, Quadrant {{$reservation->events->rooms->quadrant}}, Floor {{$reservation->events->rooms->floor}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Status</th>
-                                            <td class="body-item mbr-fonts-style display-7">Upcoming</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{$reservation->events->getEventStatus()}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Nurses On Duty</th>
@@ -77,26 +77,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    @foreach($reservation->events->eventSchedules as $evScheds)
                                                         <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN16002</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
+                                                            <td class="body-item mbr-fonts-style display-7">{{$evScheds->staffs->staffID}}</td>
+                                                            <td class="body-item mbr-fonts-style display-7">{{$evScheds->staffs->firstName}} {{$evScheds->staffs->lastName}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17001</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18030</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17035</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Lee Jun Kai</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18012</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Ritchie Reginald</td>
-                                                        </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </td>
@@ -105,9 +91,8 @@
                                 </table>
 								<div class="card">
                                     <div class="card-body">
-                                        <a href="">
-                                            <button type="submit" class="btn btn-sm btn-secondary">Cancel Reservation</button>
-                                        </a>
+                                        <button type="submit" class="btn btn-sm btn-secondary">Cancel Reservation</button>
+                                        <a href="/donor/reservation"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                     </div>
                                 </div>
                             </div>

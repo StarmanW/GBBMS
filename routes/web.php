@@ -52,40 +52,35 @@ Route::get('/staff/password/reset/{token}', 'StaffAuth\ResetPasswordController@s
 Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
 
     //Homepage
+    Route::get('/homepage', 'EventController@indexShort');
+
+    //Logout
     Route::post('/logout', 'DonorAuth\LoginController@logout')->name('logout');
 
+    //Donor profile view, edit and deactivate
     Route::get('/profile', 'DonorController@edit');
     Route::post('/profile', 'DonorController@update');
     Route::post('/profile/password', 'DonorController@changePassword');
     Route::post('/profile/deactivate', 'DonorController@deactivate');
 
-    Route::get('/homepage', 'EventController@indexShort');
+    //Upcoming events and booking of events
+    Route::get('/upcoming-events', 'EventController@index');
+    Route::get('/upcoming-events/{id}', 'EventController@show');
+    Route::post('{id}/reserve', 'ReservationController@store');
 
+    //Reservation
+    Route::get('/reservation', 'ReservationController@index');
+    Route::get('/reservation/current', 'ReservationController@resvCurrent');
+    Route::get('/reservation/{id}', 'ReservationController@show');
+
+    //Donor blood donation
     Route::get('/donation', function () {
         return view('donor.donate-history');
     });
-
     Route::get('/donation/detail', function () {
         return view('donor.donate-history-details');
     });
 
-    Route::get('/event', function () {
-        return view('donor.event-details-donor');
-    });
-
-    Route::get('/reservation', 'ReservationController@indexShort');
-
-    Route::get('/reservation/current', function () {
-        return view('donor.resv-current');
-    });
-
-    Route::get('/reservation/detail', function () {
-        return view('donor.resv-details');
-    });
-
-    Route::get('/upcoming-events', 'EventController@index');
-    Route::get('/upcoming-events/{id}', 'EventController@show');
-    Route::post('{id}/reserve', 'ReservationController@store');
 });
 
 //HR Manager Routes grouped under "/staff/hr/..."
@@ -97,7 +92,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
-    //Profile view, edit and deactivate
+    //Staff profile view, edit and deactivate
     Route::get('/profile', 'StaffController@edit');
     Route::post('/profile', 'StaffController@update');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
@@ -155,6 +150,4 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/manage-blood', function () {
         return view('staff.blood-management');
     });
-
-
 });

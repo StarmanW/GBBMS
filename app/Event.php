@@ -21,7 +21,7 @@ class Event extends Model {
                 $eventStatus = 'Completed';
                 break;
             case 1:
-                $eventStatus = 'Created';
+                $eventStatus = 'Upcoming';
                 break;
             case 2:
                 $eventStatus = 'Cancelled';
@@ -43,7 +43,7 @@ class Event extends Model {
 
     //One-To-Many EventSchedule Relationship
     public function eventSchedules() {
-        return $this->hasMany('App\EventSchedule');
+        return $this->hasMany('App\EventSchedule', 'eventID', 'eventID');
     }
 
     //One-To-Many EventSchedule Relationship

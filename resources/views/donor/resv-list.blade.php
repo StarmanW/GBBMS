@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-@extends('baseTemplates')
+@extends('donor.layout.baseTemplate')
 
 @section('title')
     <title>Reservation List</title>
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href={{"assets/datatables/data-tables.bootstrap4.min.css"}}>
-    <link rel="stylesheet" href={{"assets/additional/css/table-list.css"}} type="text/css">
-    <link rel="stylesheet" href={{"assets/additional/css/sidebar.css"}} type="text/css">
+    <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/additional/css/table-list.css" type="text/css">
+    <link rel="stylesheet" href="/assets/additional/css/sidebar.css" type="text/css">
 @endsection
 
 @section('contents')
@@ -45,38 +45,20 @@
                         </thead>
 
                         <tbody>
+                        @foreach($resvs as $resv)
                             <tr>
-                                <td class="body-item mbr-fonts-style display-7">R180245</td>
-                                <td class="body-item mbr-fonts-style display-7">KK Charity Blood Drive April 2018</td>
-                                <td class="body-item mbr-fonts-style display-7">23-Apr-2018</td>
-                                <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$resv->events->eventName}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventDate), "d-M-Y")}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}} to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
                                 <td class="body-item mbr-fonts-style display-7">Reserved</td>
                                 <td class="body-item mbr-fonts-style display-7">
-                                    <a href="./resv-details.html">
+                                    <a href="/donor/reservation/{{$resv->resvID}}">
                                         <i class="fa fa-bars" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="body-item mbr-fonts-style display-7">R182457</td>
-                                <td class="body-item mbr-fonts-style display-7">TARCIAN Blood Drive September 2018</td>
-                                <td class="body-item mbr-fonts-style display-7">11-Sep-2018</td>
-                                <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                                <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                                <td class="body-item mbr-fonts-style display-7">
-                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="body-item mbr-fonts-style display-7">R182453</td>
-                                <td class="body-item mbr-fonts-style display-7">TARCIAN Blood Drive May 2019</td>
-                                <td class="body-item mbr-fonts-style display-7">28-May-2019</td>
-                                <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                                <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                                <td class="body-item mbr-fonts-style display-7">
-                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -101,6 +83,6 @@
 @endsection
 
 @section('additionalJS')
-    <script src={{"assets/datatables/jquery.data-tables.min.js"}}></script>
-    <script src={{"assets/datatables/data-tables.bootstrap4.min.js"}}></script>
+    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
+    <script src="/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
 @endsection

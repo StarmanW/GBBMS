@@ -17,6 +17,6 @@ class Room extends Model {
 
     //Many-to-One Event Relationship
     public function events() {
-        return $this->hasMany('App\Event');
+        return $this->hasMany('App\Event', 'eventID', 'eventID');
     }
 }

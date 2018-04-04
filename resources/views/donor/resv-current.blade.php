@@ -45,39 +45,20 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td class="body-item mbr-fonts-style display-7">R180245</td>
-                            <td class="body-item mbr-fonts-style display-7">KK Charity Blood Drive April 2018</td>
-                            <td class="body-item mbr-fonts-style display-7">23-Apr-2018</td>
-                            <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                            <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                            <td class="body-item mbr-fonts-style display-7">
-                                <a href=""><i class="fa fa-calendar-times" aria-hidden="true" title="Cancel reserve now"></i></a>
-                                <a href=""><i class="fa fa-bars" aria-hidden="true" title="Reservation details"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="body-item mbr-fonts-style display-7">R182457</td>
-                            <td class="body-item mbr-fonts-style display-7">TARCIAN Blood Drive September 2018</td>
-                            <td class="body-item mbr-fonts-style display-7">11-Sep-2018</td>
-                            <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                            <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                            <td class="body-item mbr-fonts-style display-7">
-                                <a href=""><i class="fa fa-calendar-times" aria-hidden="true" title="Cancel reserve now"></i></a>
-                                <a href=""><i class="fa fa-bars" aria-hidden="true" title="Reservation details"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="body-item mbr-fonts-style display-7">R182453</td>
-                            <td class="body-item mbr-fonts-style display-7">TARCIAN Blood Drive May 2019</td>
-                            <td class="body-item mbr-fonts-style display-7">28-May-2019</td>
-                            <td class="body-item mbr-fonts-style display-7">10.00 AM to 4.00 PM</td>
-                            <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                            <td class="body-item mbr-fonts-style display-7">
-                                <a href=""><i class="fa fa-calendar-times" aria-hidden="true" title="Cancel reserve now"></i></a>
-                                <a href=""><i class="fa fa-bars" aria-hidden="true" title="Reservation details"></i></a>
-                            </td>
-                        </tr>
+                        @foreach($resvs as $resv)
+                            <tr>
+                                <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$resv->events->eventName}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventDate), "d-M-Y")}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}} to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
+                                <td class="body-item mbr-fonts-style display-7">Reserved</td>
+                                <td class="body-item mbr-fonts-style display-7">
+                                    <a href="/donor/reservation/{{$resv->resvID}}">
+                                        <i class="fa fa-bars" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
