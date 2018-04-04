@@ -145,9 +145,10 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/profile', 'StaffController@edit');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
-    Route::get('/schedule', function () {
-        return view('staff.schedule-list');
-    });
+    Route::get('/schedule', 'StaffScheduleController@index');
+//    Route::get('/schedule', function () {
+//        return view('staff.schedule-list');
+//    });
 
     Route::get('/manage-blood', function () {
         return view('staff.blood-management');
