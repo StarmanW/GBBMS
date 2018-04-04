@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Donor;
 use App\Reservation;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -148,7 +147,14 @@ class ReservationController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id) {
+    public function show($id) {
+
+        if(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation/current$', url()->previous()) === 1) {
+            session(['isResvCurr' => true]);
+        } elseif(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation$', url()->previous()) === 1) {
+            session(['isResvHistory' => true]);
+        }
+
         //find and return reservation to reservation details page
         $reservation = Reservation::find($id);
         return view('donor.resv-details')->with('reservation', $reservation);
@@ -190,8 +196,8 @@ class ReservationController extends Controller {
 
         //make new current reservation page first
         if ($resv->save())
-            return redirect('/donor/reservation/current')->with('success', 'Reservation created successfully!');
+            return redirect()->back()->with('success', 'Reservation has been successfully cancelled!');
         else
-            return redirect('/donor/reservation/current')->with('failure', 'Reservation was not created.');
+            return redirect()->back()->with('failure', 'Reservation was not successfully cancelled.');
     }
 }

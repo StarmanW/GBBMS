@@ -72,6 +72,7 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::get('/reservation', 'ReservationController@index');
     Route::get('/reservation/current', 'ReservationController@resvCurrent');
     Route::get('/reservation/{id}', 'ReservationController@show');
+    Route::post('/reservation/{id}/cancel', 'ReservationController@deactivate');
 
     //Donor blood donation
     Route::get('/donation', function () {
