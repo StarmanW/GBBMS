@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/donor/upcoming-events">Upcoming Events</a>
+                    <a class="nav-link link text-white display-4" href="./upcoming-events">Upcoming Events</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item">
@@ -59,7 +59,7 @@
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="resv-list.html">Reservation History</a>
+                    <a class="nav-link link text-white display-4" href="./reservation">Reservation History</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item dropdown open">

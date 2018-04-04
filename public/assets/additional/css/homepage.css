@@ -8,7 +8,8 @@
 @media only screen and (min-width: 200px) and (max-width: 580px) {
     #fa-card-icon-1,
 	#fa-card-icon-2,
-	#fa-card-icon-3 {
+	#fa-card-icon-3,
+	#fa-card-icon-4 {
 		margin-top: .2em;
 	}
 }
@@ -16,14 +17,16 @@
 @media only screen and (min-width: 450px) and (max-width: 1200px) {
     #fa-card-icon-1,
 	#fa-card-icon-2,
-	#fa-card-icon-3 {
+	#fa-card-icon-3,
+	#fa-card-icon-4 {
 		margin-top: .2em;
 	}
 }
 @media only screen and (min-width: 1200px) {
-    #fa-card-icon-1,
+	#fa-card-icon-1,
 	#fa-card-icon-2,
-	#fa-card-icon-3 {
+	#fa-card-icon-3,
+	#fa-card-icon-4 {
 		margin-top: .05em;
 	}
 }

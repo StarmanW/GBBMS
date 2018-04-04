@@ -4,8 +4,8 @@
 @section('title')<title>Home - Donor</title>@endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="/assets/additional/css/hover-image.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/homepage.css" type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/hover-image.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/homepage.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -14,28 +14,30 @@
         <div class="container">
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-1">Welcome, {{Auth::user()->firstName}}</h2>
             <div class="media-container-row container">
-                <!-- TEMP LINK -->
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/donor/upcoming-events';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./upcoming-events';">
                     <div class="card-img">
                         <i class="fa fa-calendar-alt fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Upcoming Events</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-
-                <!-- TEMP LINK -->
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./donate-history.html';">
-                    <!-- TEMP LINK -->
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./reservation/curent';">
                     <div class="card-img">
-                        <i class="fa fa-file-alt fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
+                        <i class="fa fa-calendar-check fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="card-title py-2 mbr-fonts-style display-2">Current<br>Reservation</h4>
+                    <p class="mbr-text mbr-fonts-style display-7"></p>
+                </div>
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./reservation';">
+                    <div class="card-img">
+                        <i class="fa fa-file-alt fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>
                     </div>
                     <h4 class="card-title py-2 mbr-fonts-style display-2">View<br/>Lists</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-                <!-- TEMP LINK -->
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/donor/profile';">
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./profile';">
                     <div class="card-img">
-                        <i class="fa fa-address-book fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>
+                        <i class="fa fa-address-book fa-5x" id="fa-card-icon-4" aria-hidden="true"></i>
                     </div>
                     <h4 class="card-title py-2 mbr-fonts-style display-2">User<br/>Profile</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
