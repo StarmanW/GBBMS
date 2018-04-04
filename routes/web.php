@@ -140,22 +140,21 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     //Homepage
     Route::get('/homepage', 'StaffEventController@indexShortNurse');
 
+    //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
+    //Profile view, edit and deactivate
     Route::get('/profile', 'StaffController@edit');
+    Route::post('/profile', 'StaffController@update');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
-    Route::get('/schedule', 'StaffScheduleController@index');
-//    Route::get('/schedule', function () {
-//        return view('staff.schedule-list');
-//    });
+    /***** LIST SECTION *****/
+    Route::get('/list/schedule', 'StaffScheduleController@index');
+    Route::get('/list/schedule/{id}', 'StaffScheduleController@show');
 
     Route::get('/manage-blood', function () {
         return view('staff.blood-management');
     });
 
-    Route::get('/schedule/detail', function () {
-        return view('staff.schedule-details');
-    });
 
 });

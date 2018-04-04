@@ -53,18 +53,19 @@ class StaffScheduleController extends Controller
 //    {
 //        //
 ////    }
-//
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-////    }
-//
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $schedule = EventSchedule::find($id);
+        return view('staff.schedule-details')->with('schedule', $schedule);
+    }
+
 //    /**
 //     * Show the form for editing the specified resource.
 //     *

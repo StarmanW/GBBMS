@@ -53,7 +53,9 @@
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventStartTime), 'h:i A')}} to {{date_format(date_create($schedule->events->eventEndTime), 'h:i A')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$schedule->events->getEventStatus()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">
-                                            <a href="/staff/nurse/schedule"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                            <a href="/staff/nurse/list/schedule/{{$schedule->schedID}}">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
