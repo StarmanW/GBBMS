@@ -18,7 +18,7 @@ class RedirectIfDonor
 	public function handle($request, Closure $next, $guard = 'donor')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('donor/home');
+	        return redirect('donor/homepage');
 	    }
 
 	    return $next($request);

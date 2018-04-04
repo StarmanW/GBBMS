@@ -29,7 +29,7 @@ class LoginController extends Controller {
      *
      * @var string
      */
-    public $redirectTo = '/staff/hr/home';
+    public $redirectTo = '/staff/hr/homepage';
 
     /**
      * Create a new controller instance.
@@ -75,9 +75,9 @@ class LoginController extends Controller {
      */
     protected function authenticated(Request $request, $user) {
         if ($user->staffPos === 1) {
-            return redirect()->intended('/staff/hr/home');
+            return redirect()->intended('/staff/hr/homepage');
         } elseif ($user->staffPos === 0) {
-            return redirect()->intended('/staff/nurse/home');
+            return redirect()->intended('/staff/nurse/homepage');
         }
     }
 

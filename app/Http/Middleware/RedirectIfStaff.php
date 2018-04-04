@@ -18,7 +18,7 @@ class RedirectIfStaff
 	public function handle($request, Closure $next, $guard = 'staff')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('staff/home');
+	        return redirect('staff/homepage');
 	    }
 
 	    return $next($request);

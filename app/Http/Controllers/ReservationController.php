@@ -58,6 +58,16 @@ class ReservationController extends Controller {
         //get current user id
         $donor = Donor::find(Auth::user()->donorID);
 
+        //Check for duplicate reservation
+        $duplicateResv = Reservation::where('donorID', '=', $donor->donorID)
+            ->where('eventID', '=', $id)
+            ->where('resvStatus', '=', 1)->get();
+
+        //If returned result is not 0, redirect back with failure message
+        if(count($duplicateResv) !== 0) {
+            return redirect()->back()->with('failure', 'Duplicated reservation, you have already reserved for this donation.');
+        }
+
         //check eligibility
         //get last donation date
         //->orWhere('resvStatus', '=', 1)
@@ -68,7 +78,7 @@ class ReservationController extends Controller {
 
         foreach ($lastDonation as $donation) {
             //get event date
-            $donationEventDate = Carbon::createFromTimestamp(strtotime($donation->events->eventDate));
+            $donationEventDate = Carbon::createFromDate(strtotime($donation->events->eventDate));
 
             //get date 3 months from last donation
             $threeMntsFrmDate = $donationEventDate->addMonths(3);

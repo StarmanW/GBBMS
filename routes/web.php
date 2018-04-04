@@ -85,9 +85,9 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
         return view('donor.resv-details');
     });
 
-    Route::get('/upcoming-events', function () {
-        return view('donor.upcoming-event-list');
-    });
+    Route::get('/upcoming-events', 'EventController@index');
+    Route::get('/upcoming-events/{id}', 'EventController@show');
+    Route::post('{id}/reserve', 'ReservationController@store');
 });
 
 //HR Manager Routes grouped under "/staff/hr/..."
