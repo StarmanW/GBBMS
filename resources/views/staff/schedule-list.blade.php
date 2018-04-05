@@ -52,9 +52,12 @@
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventDate), 'd-M-Y')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventStartTime), 'h:i A')}} to {{date_format(date_create($schedule->events->eventEndTime), 'h:i A')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$schedule->events->getEventStatus()}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">
+                                        <td class="body-item mbr-fonts-style display-7 button-column">
+                                            <a href="/staff/nurse/event/{{$schedule->schedID}}/manage-blood">
+                                                <i class="fa fa-tint" aria-hidden="true" title=""></i>
+                                            </a>
                                             <a href="/staff/nurse/list/schedule/{{$schedule->schedID}}">
-                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                <i class="fa fa-bars" aria-hidden="true" title=""></i>
                                             </a>
                                         </td>
                                     </tr>

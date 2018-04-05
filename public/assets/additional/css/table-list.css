@@ -16,7 +16,9 @@
 
 table .fa-bars,
 table .fa-calendar-check,
-table .fa-calendar-times {
+table .fa-calendar-times,
+table .fa-tint{
+    color: #505050;
     display: inline-block;    
     width: 1.8rem;
     height: 1.5rem;
@@ -40,7 +42,11 @@ table .fa-calendar-check.active,
 table .fa-calendar-times:hover,
 table .fa-calendar-times:focus,
 table .fa-calendar-times.focus,
-table .fa-calendar-times.active {
+table .fa-calendar-times.active,
+table .fa-tint:hover,
+table .fa-tint:focus,
+table .fa-tint.focus,
+table .fa-tint.active{
     color: white;
     background-color: #0d6786;
 }
