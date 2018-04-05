@@ -26,10 +26,10 @@ class ReservationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        //get all reservations for reservation history list page
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
-        //get all reservations for reservation history list page
         $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '>', 1)->paginate(15);
 
         return view('donor.resv-list')->with('resvs', $resvs);
@@ -41,10 +41,10 @@ class ReservationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function resvCurrent() {
+        //get all reservations for reservation history list page
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
-        //get all reservations for reservation history list page
         $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '<', 2)->paginate(15);
 
         return view('donor.resv-current')->with('resvs', $resvs);
@@ -56,10 +56,10 @@ class ReservationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function indexShort() {
+        //get all reservations for reservation history list page
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
-        //get all reservations for reservation history list page
         $resvs = DB::table('reservations')
             ->select();
 
@@ -88,6 +88,7 @@ class ReservationController extends Controller {
      */
     public function store($id) {
 
+        //receive and store reservation detail in DB
         //get current user id
         $donor = Donor::find(Auth::user()->donorID);
 
@@ -149,13 +150,13 @@ class ReservationController extends Controller {
      */
     public function show($id) {
 
+        //find and return reservation to reservation details page
         if(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation/current$', url()->previous()) === 1) {
             session(['isResvCurr' => true]);
         } elseif(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation$', url()->previous()) === 1) {
             session(['isResvHistory' => true]);
         }
 
-        //find and return reservation to reservation details page
         $reservation = Reservation::find($id);
         return view('donor.resv-details')->with('reservation', $reservation);
     }
@@ -191,6 +192,7 @@ class ReservationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate($id) {
+        //deactivate a reservation recor without deleting
         $resv = Reservation::find($id);
         $resv->resvStatus = 3;
 
