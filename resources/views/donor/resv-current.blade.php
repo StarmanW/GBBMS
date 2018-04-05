@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-
 @extends('donor.layout.baseTemplate')
 
 @section('title')
