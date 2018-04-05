@@ -60,8 +60,9 @@
                                         </div>
                                         <br />
                                         <div class="submit-button">
-                                            <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>
-                                            <button type="reset" class="btn btn-lg btn-primary form-btn">Reset</button>
+                                                <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>
+                                                <button type="reset" class="btn btn-lg btn-primary form-btn">Reset</button>
+                                                <button type="button" class="btn btn-lg btn-secondary form-btn conclude-btn">Conclude Event</button>
                                         </div>
                                     </form>
                                 </div>

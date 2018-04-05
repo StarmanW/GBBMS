@@ -130,6 +130,9 @@ li a {
     .form-btn {
         width:70%
     }
+    .conclude-btn {
+        width: 70%;
+    }
     .multitab-btn {
         padding: 5% 0;
     }
@@ -155,6 +158,9 @@ li a {
     .form-btn {
         width:60%
     }
+    .conclude-btn {
+        width: 65%;
+    }
     #multitab-left {
         border-right:1px solid;
     }
@@ -176,6 +182,9 @@ li a {
     /*tab selection*/
     .form-btn {
         width:30%
+    }
+    .conclude-btn {
+        width: 65%;
     }
     #multitab-left {
         border-right:1px solid
