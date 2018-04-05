@@ -25,15 +25,15 @@
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Upcoming Schedules</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
-                     onclick="window.location='./manage-blood';">
-                    <div class="card-img">
-                        <i class="fa fa-tint fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
-                    </div>
-                    <h4 class="card-title py-2 mbr-fonts-style display-2 card-text-2">Manage
-                        <br/>Blood Donation</h4>
-                    <p class="mbr-text mbr-fonts-style display-7"></p>
-                </div>
+                {{--<div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"--}}
+                     {{--onclick="window.location='./manage-blood';">--}}
+                    {{--<div class="card-img">--}}
+                        {{--<i class="fa fa-tint fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>--}}
+                    {{--</div>--}}
+                    {{--<h4 class="card-title py-2 mbr-fonts-style display-2 card-text-2">Manage--}}
+                        {{--<br/>Blood Donation</h4>--}}
+                    {{--<p class="mbr-text mbr-fonts-style display-7"></p>--}}
+                {{--</div>--}}
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
                      onclick="window.location='./profile';">
                     <div class="card-img">
@@ -54,6 +54,7 @@
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">Upcoming Activities</h2>
             <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style display-5"></h3>
             <div class="container timelines-container" mbri-timelines="">
+                {{--set info card position--}}
                 <?php $order = "" ?>
                 @foreach ($eventList as $event)
                     <?php $order = ($order == "reverse") ? '' : 'reverse' ?>
@@ -98,7 +99,10 @@
                                             <p class="mbr-timeline-text mbr-fonts-style display-7">Time&emsp;:</p>
                                         </td>
                                         <td>
-                                            <p class="mbr-timeline-text mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</p>
+                                            <p class="mbr-timeline-text mbr-fonts-style display-7">
+                                                {{date_format(date_create($event->eventStartTime), "h:i A")}} to
+                                                {{date_format(date_create($event->eventEndTime), "h:i A")}}
+                                            </p>
                                         </td>
                                     </tr>
                                     </tbody>
