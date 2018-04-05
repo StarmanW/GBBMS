@@ -84,6 +84,7 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        //get event details and save to DB
         //Set the current registration tab into session
         session(['eventTab' => 'true']);
 
@@ -172,6 +173,7 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        //update event details
         //get event
         $event = Event::find($id);
 
@@ -209,6 +211,7 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate($id) {
+        //deactivate event without deleting
         //Find event based on ID
         $event = Event::find($id);
 
@@ -235,5 +238,7 @@ class StaffEventController extends Controller {
         } else
                 return redirect('/staff/hr/list/event/' .  $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
     }
+
+
 
 }
