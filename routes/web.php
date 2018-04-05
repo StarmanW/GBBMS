@@ -148,7 +148,8 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/list/schedule', 'StaffScheduleController@index');
     Route::get('/list/schedule/{id}', 'StaffScheduleController@show');
 
-    Route::get('/manage-blood', function () {
-        return view('staff.blood-management');
-    });
+    /***** MANAGE BLOOD SECTION *****/
+    Route::get('/event/{id}/manage-blood', 'BloodController@create');
+    Route::post('/event/{id}/manage-blood', 'BloodController@store');
+
 });

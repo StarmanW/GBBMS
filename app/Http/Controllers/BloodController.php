@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Blood;
 use App\Donor;
 use App\Event;
+use App\EventSchedule;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,14 +50,17 @@ class BloodController extends Controller
     {
         //get all donor id for blood management page
 
-        $event = Event::find($id);
-        $reservations = Reservation::where('eventID', '=', $event->eventID);
+        $schedule = EventSchedule::find($id);
 
-        $donorIDs = array();
+        $event = Event::find($schedule->eventID);
+
+        $reservations = Reservation::where('eventID', '=', $event->eventID)->get();
+
+        $donors = array();
         for ($i = 0; $i < count($reservations); $i++)
-            $donorIDs[$i] = $reservations[$i]->donors->donorID;
+            $donors[$i] = $reservations[$i]->donors;
 
-        return view('staff.blood-management')->with('donorIDs', $donorIDs);
+        return view('staff.blood-management')->with('donors', $donors);
     }
 
     /**
@@ -70,8 +74,8 @@ class BloodController extends Controller
         //validate data
         $validator = Validator::make($request->all(),
             [
-                'bloodBagID' => ['required', 'string', 'max:8', 'min:8', 'regex:/((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN){3})(\d{6})/'],
-                'bloodVol' => ['required', 'integer', 'max:3', 'between:0,500'],
+                'bloodBagID' => ['required', 'string', 'max:9', 'min:9', 'regex:^((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN))(\d{6})$'],
+                'bloodVol' => ['required', 'integer', 'between:0,500'],
                 'remarks' => ['nullable', 'string', 'max:255']
             ]);
 
@@ -79,6 +83,9 @@ class BloodController extends Controller
         $blood = Blood::find($request->bloodBagID);
         $donor = Donor::find($request->donorID);
         $event = Event::find($request->eventID);
+//        dd($request->bloodBagID);
+        dd($request->donorID);
+        dd($request->eventID);
         if ($blood !== null)
             return redirect()->back()->with('failure', 'Blood Bag ID ' . $blood->bloodBagID . ' already exist, please try again.');
         else if ($donor === null)

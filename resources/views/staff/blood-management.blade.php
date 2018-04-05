@@ -22,16 +22,21 @@
                             <hr style="border-top:1px solid gray;" />
                             <div class="col-lg-12 well">
                                 <div class="row">
-                                    <form method="POST" action="">
+                                    <form method="POST" action="./manage-blood">
+                                        {{csrf_field()}}
                                         <p style="color:red; float: left;">"*" Required fields</p>
                                         <br />
                                         <br />
                                         <div class="col-sm-12">
+                                            {{----------------------------------------------------------------}}
+                                            <input type="text" value="">
+                                            {{----------------------------------------------------------------}}
                                             <div class="row" style="margin:auto">
                                                 <label>
                                                     <span style="color:red;">*</span>Blood Bag ID</label>
-                                                <input type="text" name="fName" placeholder="NA16AA00001" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
-                                                    required="required">
+                                                <input type="text" name="fName" placeholder="NAN160001" class="form-control"
+                                                       pattern="^((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN))(\d{6})$" title="Blood type, followed by year and 4 numbers"
+                                                       required="required">
                                             </div>
                                             <br>
                                             <div class="row" style="margin:auto">
@@ -39,10 +44,9 @@
                                                     <span style="color:red;">*</span>Donor ID</label>
                                                     <select name="donor-id" class="form-control" required="required">
                                                         <option>Select a donor ID</option>
-                                                        <option>DNOPAA0001 Samuel Wong Kim Foong</option>
-                                                        <option>DNANEC0002 Shrilina Koo Yung Ja</option>
-                                                        <option>DABPER0004 Zion Tseu</option>
-                                                        <option>DNBPEF0005 Chong Jia Herng</option>
+                                                        @foreach($donors as $donor)
+                                                            <option>{{$donor->donorID}} ({{$donor->firstName}} {{$donor->lastName}})</option>
+                                                        @endforeach
                                                     </select>
                                             </div>
                                             <br>
@@ -62,7 +66,7 @@
                                         <div class="submit-button">
                                                 <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>
                                                 <button type="reset" class="btn btn-lg btn-primary form-btn">Reset</button>
-                                                <button type="button" class="btn btn-lg btn-secondary form-btn conclude-btn">Conclude Event</button>
+                                                <button type="button" class="btn btn-lg btn-secondary form-btn conclude-btn" onclick="">Conclude Event</button>
                                         </div>
                                     </form>
                                 </div>
