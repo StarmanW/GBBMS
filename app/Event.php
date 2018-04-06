@@ -33,12 +33,12 @@ class Event extends Model {
 
     //One-To-Many Reservation Relationship
     public function reservations() {
-        return $this->hasMany('App\Reservation');
+        return $this->hasMany('App\Reservation', 'eventID', 'eventID');
     }
 
     //One-To-Many Blood Relationship
     public function bloods() {
-        return $this->hasMany('App\Blood');
+        return $this->hasMany('App\Blood', 'eventID', 'eventID');
     }
 
     //One-To-Many EventSchedule Relationship

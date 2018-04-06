@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Donor;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -75,6 +76,11 @@ class DonorController extends Controller {
                  * between the storage folder and the public folder.
                  */
                 $path = $request->file('profileImage')->storeAs('public/profileImage', $fileNameToStore);
+
+                //Deletes the old profile image
+                if ($donor->profileImage !== 'defaultProfileImage.jpg') {
+                    File::delete(public_path() . '\storage\profileImage\\' . $donor->profileImage);
+                }
             }
 
             //Set member details

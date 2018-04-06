@@ -52,28 +52,23 @@
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/staff/hr/dashboard">DASHBOARD</a>
-                    <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
                     <div class="dropdown-menu">
                         <a class="text-white dropdown-item display-4" href="/staff/hr/registration">Registration
-                            <!-- TEMP LINK -->
                             <br>
                         </a>
                         <a class="text-white dropdown-item display-4" href="/staff/hr/list/donor">View Lists
-                            <!-- TEMP LINK -->
                             <br>
                         </a>
                         <a class="text-white dropdown-item display-4" href="">View Reports</a>
-                        <!-- TEMP LINK -->
                     </div>
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>
                     <div class="dropdown-menu">
                         <a class="text-white dropdown-item display-4" href="/staff/hr/profile">View Profile
-                            <!-- TEMP LINK -->
                             <br>
                         </a>
                         <a class="nav-link link text-white display-4" href="/staff/hr/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -96,7 +91,6 @@
         <div class="media-container-row content text-white">
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
-                    <!-- TEMP LINK -->
                     <a href="/staff/hr/homepage">
                         <img src="/assets/images/gLogo.png" alt="Gleneagles Logo" title="">
                     </a>

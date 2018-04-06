@@ -219,7 +219,7 @@ class StaffEventController extends Controller {
         $event->eventStatus = 2;
 
         //Find related reservation id
-        $reservation = Reservation::where('resvStatus', '=', '1')->where('eventID', '=', $event->eventID);
+        $reservation = Reservation::where('resvStatus', '=', '1')->where('eventID', '=', $event->eventID)->get();
 
         //Set related reservation status
         $count = 0;     //Counter for validation

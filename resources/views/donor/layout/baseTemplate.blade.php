@@ -55,12 +55,15 @@
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="donate-history.html">Donation History</a>
+                    <a class="nav-link link text-white display-4" href="/donor/donation">Donation History</a>
                     <!-- TEMP LINK -->
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="./reservation">Reservation History</a>
-                    <!-- TEMP LINK -->
+                <li class="nav-item dropdown open">
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">Reservation</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="text-white dropdown-item display-4" href="/donor/reservation/current">Current Reservation</a>
+                        <a class="text-white dropdown-item display-4" href="/donor/reservation">Reservation History</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">{{Auth::user()->firstName}}</a>

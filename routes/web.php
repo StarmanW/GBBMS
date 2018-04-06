@@ -75,12 +75,8 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::post('/reservation/{id}/cancel', 'ReservationController@deactivate');
 
     //Donor blood donation
-    Route::get('/donation', function () {
-        return view('donor.donate-history');
-    });
-    Route::get('/donation/detail', function () {
-        return view('donor.donate-history-details');
-    });
+    Route::get('/donation', 'DonorHistoryController@index');
+    Route::get('/donation/{id}/detail', 'DonorHistoryController@show');
 
 });
 
@@ -124,7 +120,6 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/list/event/{id}', 'StaffEventController@update');
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
-
     Route::get('/dashboard', function () {
         return view('staff.dashboard');
     });
@@ -151,5 +146,4 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     /***** MANAGE BLOOD SECTION *****/
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
     Route::post('/event/{id}/manage-blood', 'BloodController@store');
-
 });

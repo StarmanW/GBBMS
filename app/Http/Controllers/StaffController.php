@@ -142,6 +142,11 @@ class StaffController extends Controller {
                  * between the storage folder and the public folder.
                  */
                 $path = $request->file('profileImage')->storeAs('public/profileImage', $fileNameToStore);
+
+                //Deletes the old profile image
+                if ($staff->profileImage !== 'defaultProfileImage.jpg') {
+                    File::delete(public_path() . '\storage\profileImage\\' . $staff->profileImage);
+                }
             }
 
             //Set staff details
@@ -275,6 +280,4 @@ class StaffController extends Controller {
         } else
             return redirect()->back()->with('failureHRDeactivate', 'Oops, an error has occurred while deactivating staff ('. $staff->staffID .')account.');
     }
-
-
 }
