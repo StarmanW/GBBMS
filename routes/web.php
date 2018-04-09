@@ -33,10 +33,10 @@ Route::get('/donor/register', 'DonorAuth\RegisterController@showRegistrationForm
 Route::post('/donor/register', 'DonorAuth\RegisterController@register');
 
 //Donor Reset Password Route
-Route::post('/donor/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-Route::post('/donor/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
 Route::get('/donor/password/reset', 'DonorAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 Route::get('/donor/password/reset/{token}', 'DonorAuth\ResetPasswordController@showResetForm');
+Route::post('/donor/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+Route::post('/donor/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
 
 //Staff Login Route
 Route::post('/staff/login', 'StaffAuth\LoginController@login');
@@ -129,7 +129,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
 Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseStaff']], function () {
 
     //Homepage
-    Route::get('/homepage', 'StaffEventController@indexShortNurse');
+    Route::get('/homepage', 'StaffEventController@indexShort');
 
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');

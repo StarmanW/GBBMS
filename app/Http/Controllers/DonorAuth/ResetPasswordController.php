@@ -50,7 +50,7 @@ class ResetPasswordController extends Controller {
      */
     public function showResetForm(Request $request, $token = null) {
         return view('donor.auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
+            ['token' => $token, 'emailAddress' => $request->emailAddress]
         );
     }
 
@@ -73,6 +73,32 @@ class ResetPasswordController extends Controller {
         return $request->only(
             'emailAddress', 'password', 'password_confirmation', 'token'
         );
+    }
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules() {
+        return [
+            'token' => 'required',
+            'emailAddress' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ];
+    }
+
+    /**
+     * Get the response for a failed password reset.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  string $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetFailedResponse(Request $request, $response) {
+        return redirect()->back()
+            ->withInput($request->only('emailAddress'))
+            ->withErrors(['emailAddress' => trans($response)]);
     }
 
     /**
