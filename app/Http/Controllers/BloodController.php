@@ -57,7 +57,12 @@ class BloodController extends Controller {
         for ($i = 0; $i < count($reservations); $i++)
             $donors[$i] = $reservations[$i]->donors;
 
-        return view('staff.blood-management')->with('donors', $donors);
+        $data = [
+            'donors' => $donors,
+            'eventID' => $event->eventID
+        ];
+
+        return view('staff.blood-management')->with('data', $data);
     }
 
     /**
@@ -67,10 +72,11 @@ class BloodController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
         //validate data
         $validator = Validator::make($request->all(),
             [
-                'bloodBagID' => ['required', 'string', 'max:9', 'min:9', 'regex:^((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN))(\d{6})$'],
+                'bloodBagID' => ['required', 'string', 'max:9', 'min:9', 'regex:/^((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN))(\d{6})$/'],
                 'bloodVol' => ['required', 'integer', 'between:0,500'],
                 'remarks' => ['nullable', 'string', 'max:255']
             ]);
@@ -78,10 +84,8 @@ class BloodController extends Controller {
         //find records by id
         $blood = Blood::find($request->bloodBagID);
         $donor = Donor::find($request->donorID);
-        $event = Event::find($request->eventID);
-//        dd($request->bloodBagID);
-        dd($request->donorID);
-        dd($request->eventID);
+        $event = Event::find(session('eventID'));
+
         if ($blood !== null)
             return redirect()->back()->with('failure', 'Blood Bag ID ' . $blood->bloodBagID . ' already exist, please try again.');
         else if ($donor === null)
@@ -93,15 +97,15 @@ class BloodController extends Controller {
         else {
             $blood = new Blood();
             $blood->bloodBagID = $request->input('bloodBagID');
-            $blood->donorID = $donor - donorID;
+            $blood->donorID = $donor->donorID;
             $blood->eventID = $event->eventID;
             $blood->bloodVol = $request->input('bloodVol');
             $blood->remarks = $request->input('remarks');
 
             if ($blood->save() === true)
-                return redirect('/staff/nurse/manage-blood')->with('success', 'Blood donation created successfully!');
+                return redirect()->back()->with('success', 'Blood donation created successfully!');
             else
-                return redirect('/staff/nurse/manage-blood')->with('failure', 'Blood donation was not created.');
+                return redirect()->back()->with('failure', 'Blood donation was not created.');
         }
     }
 

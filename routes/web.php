@@ -120,9 +120,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/list/event/{id}', 'StaffEventController@update');
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
-    Route::get('/dashboard', function () {
-        return view('staff.dashboard');
-    });
+    Route::get('/dashboard', 'ReportController@index');
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
@@ -146,4 +144,5 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     /***** MANAGE BLOOD SECTION *****/
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
     Route::post('/event/{id}/manage-blood', 'BloodController@store');
+    Route::post('/event/{id}/conclude', 'ConcludeEventController@update');
 });

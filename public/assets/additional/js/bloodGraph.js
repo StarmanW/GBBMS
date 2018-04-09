@@ -1,6 +1,9 @@
-function renderGraph(bloodDetails = null) {
+function renderGraph(bloodDetails) {
     $('.canvasjs-chart-credit').remove();
-    
+
+    //Parse the JSON data (Blood count for each blood type)
+    var bloodsCount = JSON.parse(bloodDetails);
+
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light2", // "light1", "light2", "dark1", "dark2"
@@ -19,14 +22,14 @@ function renderGraph(bloodDetails = null) {
             legendMarkerColor: "red",
             legendText: "Scale: 100 = One Hundred Blood Package",
             dataPoints: [
-                { y: 920, label: "A-" },
-                { y: 300, label: "A+" },
-                { y: 150, label: "B-" },
-                { y: 50, label: "B+"},
-                { y: 223, label: "AB-" },
-                { y: 520, label: "AB+" },
-                { y: 660, label: "O-" },
-                { y: 550, label: "O+" }
+                { y: bloodsCount[0], label: "-A" },
+                { y: bloodsCount[1], label: "A+" },
+                { y: bloodsCount[2], label: "B-" },
+                { y: bloodsCount[3], label: "B+"},
+                { y: bloodsCount[4], label: "AB-" },
+                { y: bloodsCount[5], label: "AB+" },
+                { y: bloodsCount[6], label: "O-" },
+                { y: bloodsCount[7], label: "O+" }
             ]
         }]
     });

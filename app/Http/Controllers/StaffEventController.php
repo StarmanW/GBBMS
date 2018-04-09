@@ -124,6 +124,7 @@ class StaffEventController extends Controller {
                 $eventSchedule->schedID = 'ES' . sprintf('%04d', count(EventSchedule::all()) + 1);
                 $eventSchedule->staffID = $staffIDs[array_keys($staffIDs)[$i]];
                 $eventSchedule->eventID = $event->eventID;
+                $eventSchedule->schedStatus = 1;
                 $eventSchedule->save();
                 $evSchedSaveStats++;
             }

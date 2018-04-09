@@ -21,28 +21,28 @@
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>203</h2>
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{$data['donorCount']}}</h2>
                                 <h4>Donors</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 12</h2>
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{$data['nurseCount']}}</h2>
                                 <h4>Nurses</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 33</h2>
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{$data['eventCount']}}</h2>
                                 <h4>Blood Donation Events</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
-                                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
+                                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{$data['bloodCount']}}</h2>
                                 <h4>Blood Packages</h4>
                             </div>
                         </div>
@@ -85,7 +85,6 @@
     <script src={{"/assets/additional/js/canvasjs.js"}}></script>
     <script src={{"/assets/additional/js/bloodGraph.js"}}></script>
     <script>
-        window.onload = renderGraph();
-        //window.onload = renderGraph(bloodDetails);        //TODO - To be uncommented later after having real data from DB
+        window.onload = renderGraph('{!! json_encode($data['totalBlood']) !!}');    //Encode blood type count into json data
     </script>
 @endsection

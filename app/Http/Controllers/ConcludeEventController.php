@@ -17,76 +17,22 @@ class ConcludeEventController extends Controller {
         $this->middleware('auth:staff');
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for editing the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function edit($id)
-//    {
-//        //
-//    }
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update($id) {
         //set current event status to completed
         //and donor reservation status to 'did not attend' for donors that did not attend
 
         //set event status
-        $event = Event::find($request->eventID);
+        $event = Event::find($id);
         $event->eventStatus = 0;
 
         //set donor reservation status
-        $reservations = Reservation::where('eventID', '=', $request->eventID)->where('resvStatus', '=', 1)->get();
+        $reservations = Reservation::where('eventID', '=', $event->eventID)->where('resvStatus', '=', 1)->get();
 
         $resvSaveStats = 0;
         foreach ($reservations as $reservation) {
@@ -96,20 +42,13 @@ class ConcludeEventController extends Controller {
                 $resvSaveStats++;
         }
 
+        //set staff schedule status
+        $schedule = find($id);
+        $schedule->schedStatus = 0;
+
         if ($event->save() && $resvSaveStats === count($reservations))
             return redirect('/staff/nurse/homepage')->with('success', 'Event has been successfully concluded!');
         else
-            return redirect('/staff/nurse/manage-blood')->with('failure', 'Event was not concluded, please try again.');
+            return redirect()->back()->with('failure', 'Event was not concluded, please try again.');
     }
-
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }
