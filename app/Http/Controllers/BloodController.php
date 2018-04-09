@@ -10,8 +10,7 @@ use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class BloodController extends Controller
-{
+class BloodController extends Controller {
     /**
      * Create new controller instance
      *
@@ -27,8 +26,7 @@ class BloodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //get all blood amount for each blood type and return to dashboard page
 
         $bloods = Blood::all();
@@ -46,8 +44,7 @@ class BloodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
+    public function create($id) {
         //get all donor id for blood management page
 
         $schedule = EventSchedule::find($id);
@@ -66,11 +63,10 @@ class BloodController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //validate data
         $validator = Validator::make($request->all(),
             [
@@ -97,7 +93,7 @@ class BloodController extends Controller
         else {
             $blood = new Blood();
             $blood->bloodBagID = $request->input('bloodBagID');
-            $blood->donorID = $donor-donorID;
+            $blood->donorID = $donor - donorID;
             $blood->eventID = $event->eventID;
             $blood->bloodVol = $request->input('bloodVol');
             $blood->remarks = $request->input('remarks');

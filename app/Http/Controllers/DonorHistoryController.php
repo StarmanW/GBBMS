@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DonorHistoryController extends Controller {
 
-
     /**
      * Create new controller instance
      *
@@ -19,7 +18,7 @@ class DonorHistoryController extends Controller {
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the donation history list for donor
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,7 +28,7 @@ class DonorHistoryController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * Display the specific donation history for a donor
      *
      * @param  int $id
      * @return \Illuminate\Http\Response

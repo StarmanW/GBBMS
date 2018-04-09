@@ -7,8 +7,7 @@ use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StaffScheduleController extends Controller
-{
+class StaffScheduleController extends Controller {
     /**
      * Create new controller instance
      *
@@ -24,8 +23,7 @@ class StaffScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //get all schedule with current user staff and return to schedule list page
         $staff = Staff::find(Auth::user()->staffID);
 
@@ -57,11 +55,10 @@ class StaffScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $schedule = EventSchedule::find($id);
         return view('staff.schedule-details')->with('schedule', $schedule);
     }

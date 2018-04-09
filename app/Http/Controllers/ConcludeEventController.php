@@ -6,8 +6,7 @@ use App\Event;
 use App\Reservation;
 use Illuminate\Http\Request;
 
-class ConcludeEventController extends Controller
-{
+class ConcludeEventController extends Controller {
     /**
      * Create new controller instance
      *
@@ -74,12 +73,11 @@ class ConcludeEventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //set current event status to completed
         //and donor reservation status to 'did not attend' for donors that did not attend
 
@@ -94,7 +92,7 @@ class ConcludeEventController extends Controller
         foreach ($reservations as $reservation) {
             $reservation->resvStatus = 2;
 
-            if($reservation->save())
+            if ($reservation->save())
                 $resvSaveStats++;
         }
 

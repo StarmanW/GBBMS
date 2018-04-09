@@ -65,8 +65,8 @@ class ReservationController extends Controller {
 
         $resv = array();
 
-        for($i = 0; $i < count($resvs); $i++) {
-            if($resvs[$i]->events->eventDate > Carbon::now()) {
+        for ($i = 0; $i < count($resvs); $i++) {
+            if ($resvs[$i]->events->eventDate > Carbon::now()) {
                 $resv[$i] = $resvs[$i];
             }
         }
@@ -98,7 +98,7 @@ class ReservationController extends Controller {
             ->where('resvStatus', '=', 1)->get();
 
         //If returned result is not 0, redirect back with failure message
-        if(count($duplicateResv) !== 0) {
+        if (count($duplicateResv) !== 0) {
             return redirect()->back()->with('failure', 'Duplicated reservation, you have already reserved for this donation.');
         }
 
@@ -151,9 +151,9 @@ class ReservationController extends Controller {
     public function show($id) {
 
         //find and return reservation to reservation details page
-        if(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation/current$', url()->previous()) === 1) {
+        if (preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation/current$', url()->previous()) === 1) {
             session(['isResvCurr' => true]);
-        } elseif(preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation$', url()->previous()) === 1) {
+        } elseif (preg_match('$https?:\/\/' . $_SERVER['HTTP_HOST'] . '/donor/reservation$', url()->previous()) === 1) {
             session(['isResvHistory' => true]);
         }
 

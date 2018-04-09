@@ -110,7 +110,7 @@ class StaffEventController extends Controller {
             $staffIDs = [];
             $staffs = Staff::where('staffPos', '=', 0)->get();                  //Retrieve all staff
 
-            for($i = 0; $i < count($staffs); $i++) {
+            for ($i = 0; $i < count($staffs); $i++) {
                 $staffIDs[$i] = $staffs[rand(0, count($staffs) - 1)]->staffID;  //Randomly select a staff index and store into temp variable
             }
 
@@ -119,7 +119,7 @@ class StaffEventController extends Controller {
             //For loop to create 5 new event schedule records and
             //store each of the staff IDs using the keys
             //(Otherwise it is not in sequence after filtered. E.g. - 0,1,2,5,8)
-            for($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $eventSchedule = new EventSchedule();
                 $eventSchedule->schedID = 'ES' . sprintf('%04d', count(EventSchedule::all()) + 1);
                 $eventSchedule->staffID = $staffIDs[array_keys($staffIDs)[$i]];
@@ -213,22 +213,21 @@ class StaffEventController extends Controller {
 
         //Set related reservation status
         $count = 0;     //Counter for validation
-        foreach($reservation as $resv) {
+        foreach ($reservation as $resv) {
             $resv->resvStatus = 4;
             $resv->save();
             $count++;
         }
 
         //redirect to registration page
-        if($count !== 0) {
+        if ($count !== 0) {
             if ($event->save() && $count === count($reservation))
-                return redirect('/staff/hr/list/event/' .  $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+                return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
         } elseif ($event->save()) {
-                return redirect('/staff/hr/list/event/' .  $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
         } else
-                return redirect('/staff/hr/list/event/' .  $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
+            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
     }
-
 
 
 }

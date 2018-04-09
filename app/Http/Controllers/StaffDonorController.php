@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Donor;
 
-class StaffDonorController extends Controller
-{
+class StaffDonorController extends Controller {
 
     /**
      * Create new controller instance
@@ -22,8 +21,7 @@ class StaffDonorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $donors = Donor::paginate(15);
         return view('staff.donor-list')->with('donors', $donors);
     }
