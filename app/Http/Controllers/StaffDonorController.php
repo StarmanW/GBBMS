@@ -22,7 +22,7 @@ class StaffDonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $donors = Donor::paginate(15);
+        $donors = Donor::paginate(10);
         return view('staff.donor-list')->with('donors', $donors);
     }
 

@@ -39,13 +39,13 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                         <span class="navbar-logo">
-                            <a href="/login">
+                            <a href="/">
                                 <img src="{{'/assets/images/gLogo.png'}}" alt="Gleneagles Logo" title=""
                                      style="height: 3.8rem;">
                             </a>
                         </span>
                 <span class="navbar-caption-wrap">
-                            <a class="navbar-caption text-white display-4" href="/login">Gleneagles Kota Kinabalu</a>
+                            <a class="navbar-caption text-white display-4" href="/">Gleneagles Kota Kinabalu</a>
                         </span>
             </div>
         </div>
@@ -71,8 +71,7 @@
         <div class="media-container-row content text-white">
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
-                    <!-- TEMP LINK -->
-                    <a href="/login">
+                    <a href="/">
                         <img src="{{'/assets/images/gLogo.png'}}" alt="Gleneagles Logo" title="">
                     </a>
                 </div>

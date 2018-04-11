@@ -31,7 +31,7 @@ class StaffEventController extends Controller {
      */
     public function index() {
         //get all from events table and paginate for list page
-        $events = Event::paginate(15);
+        $events = Event::paginate(10);
         return view('staff.event-list')->with('events', $events);
     }
 

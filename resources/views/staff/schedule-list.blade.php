@@ -6,7 +6,6 @@
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/datatables/data-tables.bootstrap4.min.css"}}>
-
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href={{"/assets/additional/css/table-list.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/sidebar.css"}} type="text/css">
@@ -80,6 +79,9 @@
                                 <div class="col-md-6"></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="container pagination" style="padding-bottom:2%;">
+                        {{$schedules->links()}}
                     </div>
                 </div>
             </div>

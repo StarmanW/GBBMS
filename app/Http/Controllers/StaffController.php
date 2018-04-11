@@ -27,7 +27,7 @@ class StaffController extends Controller {
     public function index()
     {
         //get all staffs and paginate for list page
-        $staffs = Staff::paginate(15);
+        $staffs = Staff::paginate(10);
         return view('staff.staff-list')->with('staffs', $staffs);
     }
 

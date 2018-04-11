@@ -54,7 +54,7 @@ class RegisterController extends Controller {
             'ICNum' => ['required', 'min:12', 'max:12', 'unique:donors', 'regex:/\d{12}/'],
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:donors',
-            'birthDate' => 'required|date',
+            'birthDate' => 'required|date|before:17 years ago',
             'password' => 'required|min:6|max:255|confirmed',
             'bloodType' => ['required', 'regex:/[1-8]{1}/'],
             'gender' => ['required', 'boolean'],
@@ -73,7 +73,6 @@ class RegisterController extends Controller {
 
         //Generate donor ID, get year and get the latest donor count
         $donorID = 'D' . date('y') . sprintf('%04d', count(Donor::all()) + 1);
-
 
         //Handle file upload
         if (isset($data['profileImage']) && $data['profileImage'] !== null) {
