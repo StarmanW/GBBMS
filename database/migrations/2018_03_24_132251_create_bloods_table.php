@@ -18,7 +18,7 @@ class CreateBloodsTable extends Migration
             $table->string('donorID', 10);
             $table->string('eventID', 10);
             $table->float('bloodVol', 8, 2)->nullable(false);
-            $table->string('remarks')->nullable(false);
+            $table->string('remarks');
             $table->timestamps();
         });
     }

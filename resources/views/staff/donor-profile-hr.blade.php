@@ -84,6 +84,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="card">
+                                    <div class="card-body">
+                                            <a href="/donor/reservation/current"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

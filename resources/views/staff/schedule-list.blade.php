@@ -56,7 +56,7 @@
                                             <a href="/staff/nurse/event/{{$schedule->schedID}}/manage-blood">
                                                 <i class="fa fa-tint" aria-hidden="true" title=""></i>
                                             </a>
-                                            <a href="/staff/nurse/list/schedule/{{$schedule->schedID}}">
+                                            <a href="/staff/nurse/schedule/{{$schedule->schedID}}">
                                                 <i class="fa fa-bars" aria-hidden="true" title=""></i>
                                             </a>
                                         </td>

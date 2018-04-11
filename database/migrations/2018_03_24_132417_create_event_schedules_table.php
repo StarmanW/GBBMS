@@ -17,6 +17,7 @@ class CreateEventSchedulesTable extends Migration
             $table->string('schedID', 10)->primary();
             $table->string('staffID', 10);
             $table->string('eventID', 10);
+            $table->boolean('schedStatus')->default(1)->nullable(false);
             $table->timestamps();
         });
     }

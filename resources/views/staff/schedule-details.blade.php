@@ -28,70 +28,63 @@
                             <div class="profile-table-wrap">
                                 <table class="table profile-table">
                                     <tbody>
-                                            <th colspan="2" class="title">Event</th>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Event ID</th>
-                                                <td class="body-item mbr-fonts-style display-7">E180124</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Event Name</th>
-                                                <td class="body-item mbr-fonts-style display-7">Kota Kinabalu Charity Blood Drive May 2018</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Date</th>
-                                                <td class="body-item mbr-fonts-style display-7">12-May-2018</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Time</th>
-                                                <td class="body-item mbr-fonts-style display-7">10.30 AM to 4.00 PM</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Room</th>
-                                                <td class="body-item mbr-fonts-style display-7">0340012</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="body-item mbr-fonts-style display-7">Status</th>
-                                                <td class="body-item mbr-fonts-style display-7">Upcoming</td>
-                                            </tr>
-                                            <th class="body-item mbr-fonts-style display-7">Nurses On Duty</th>
-                                            <td class="body-item mbr-fonts-style display-7">
-                                                <table class="table profile-table-nurse">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nurse ID</th>
-                                                            <th>Nurse Name</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN16002</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Samuel Wong Kim Foong</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17001</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Chong Jia Herng</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18030</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Enjiun Tan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN17035</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Lee Jun Kai</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="body-item mbr-fonts-style display-7">SN18012</td>
-                                                            <td class="body-item mbr-fonts-style display-7">Ritchie Reginald</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
+                                    <th colspan="2" class="title">Event</th>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Event ID</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{$schedule->events->eventID}}</td>
                                         </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Event Name</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{$schedule->events->eventName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Date</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventDate), "d-M-Y")}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Time</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventStartTime), "h:i A")}} to {{date_format(date_create($schedule->events->eventEndTime), "h:i A")}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Room</th>
+                                            <td class="body-item mbr-fonts-style display-7">Room {{substr($schedule->events->rooms->roomID, 3)}}, Quadrant {{$schedule->events->rooms->quadrant}}, Floor {{$schedule->events->rooms->floor}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="body-item mbr-fonts-style display-7">Status</th>
+                                            <td class="body-item mbr-fonts-style display-7">{{$schedule->events->getEventStatus()}}</td>
+                                        </tr>
+                                    <th class="body-item mbr-fonts-style display-7">Nurses On Duty</th>
+                                        <td class="body-item mbr-fonts-style display-7">
+                                            <table class="table profile-table-nurse">
+                                                <thead>
+                                                <tr>
+                                                    <th>Nurse ID</th>
+                                                    <th>Nurse Name</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($schedule->events->eventSchedules as $nurse)
+                                                    <tr>
+                                                        <td class="body-item mbr-fonts-style display-7">{{$nurse->staffs->staffID}}</td>
+                                                        <td class="body-item mbr-fonts-style display-7">{{$nurse->staffs->firstName}} {{$nurse->staffs->lastName}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
                                     </tbody>
                                 </table>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <a href="/staff/nurse/schedule">
+                                            <button type="button" class="btn btn-sm btn-primary profile-btn">
+                                                Back
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

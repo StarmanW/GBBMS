@@ -18,22 +18,13 @@
 
             <div class="media-container-row container">
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
-                     onclick="window.location='./list/schedule';">
+                     onclick="window.location='./schedule';">
                     <div class="card-img">
                         <i class="fa fa-calendar-alt fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Upcoming Schedules</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
-                {{--<div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"--}}
-                     {{--onclick="window.location='./manage-blood';">--}}
-                    {{--<div class="card-img">--}}
-                        {{--<i class="fa fa-tint fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>--}}
-                    {{--</div>--}}
-                    {{--<h4 class="card-title py-2 mbr-fonts-style display-2 card-text-2">Manage--}}
-                        {{--<br/>Blood Donation</h4>--}}
-                    {{--<p class="mbr-text mbr-fonts-style display-7"></p>--}}
-                {{--</div>--}}
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
                      onclick="window.location='./profile';">
                     <div class="card-img">

@@ -20,7 +20,7 @@ class ReportController extends Controller {
         $bloods = Blood::all();
 
         //save total of each blood type to array
-        $totalBlood = array(0,0,0,0,0,0,0,0);
+        $totalBlood = array(0, 0, 0, 0, 0, 0, 0, 0);
         for ($i = 1; $i <= 8; $i++) {
             for ($j = 0; $j < count($bloods); $j++) {
                 if ($bloods[$j]->donors->bloodType === $i) {

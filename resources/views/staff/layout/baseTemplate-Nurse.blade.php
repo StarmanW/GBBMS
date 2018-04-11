@@ -57,12 +57,9 @@
                     <a class="nav-link link text-white display-4" href="./schedule">VIEW SCHEDULES</a>
                     <!-- TEMP LINK -->
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="./manage-blood">MANAGE DONATION</a>
-                </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu"
-                       aria-expanded="true">Chong Jia Herng</a>
+                       aria-expanded="true">{{\Illuminate\Support\Facades\Auth::user()->firstName}}</a>
                     <div class="dropdown-menu">
                         <a class="text-white dropdown-item display-4" href="./profile">View Profile
                             <!-- TEMP LINK -->
