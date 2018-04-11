@@ -208,7 +208,6 @@
                                                             <input class="form-control" type="number" value="{{old('floor')}}" min="0" name="floor" id="floor">
                                                         </div>
                                                     </div>
-                                                </div>
                                                 <br />
                                                 <div class="submit-button">
                                                     <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>

@@ -39,7 +39,6 @@
                 </div>
 
                 <div class="media-content">
-
                     <h3 class="mbr-section-subtitle align-left mbr-white mbr-light pb-3 mbr-fonts-style display-2">
                         Register as a new Donor now!</h3>
                     <div class="mbr-section-text mbr-white pb-3 ">
