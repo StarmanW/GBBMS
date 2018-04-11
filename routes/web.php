@@ -11,48 +11,49 @@
 |
 */
 
-//Login Route
-Route::get('/login', function () {
-    //Validate if donor is authenticated
-    if (Auth::guard('donor')->check()) {
-        return redirect('/donor/homepage');
-    } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
-        if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
-            return redirect('/staff/hr/homepage');
-        elseif (Auth::guard('staff')->user()->staffPos === 0)   //Verify staff position is Nurse
-            return redirect('/staff/nurse/homepage');
-    } else {
-        return view('login');                              //Redirect default guest to login page
-    }
-})->name('login');
-
 /***** Non-Auth Routes *****/
-//Main homepage
-Route::get('/', function() {
-    return view('index');
+Route::group(['middleware' => ['guest']], function () {
+
+    //Main homepage
+    Route::get('/', function () {
+        return view('index');
+    });
+
+    //Login Route
+    Route::get('/login', function () {
+        //Validate if donor is authenticated
+        if (Auth::guard('donor')->check()) {
+            return redirect('/donor/homepage');
+        } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
+            if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
+                return redirect('/staff/hr/homepage');
+            elseif (Auth::guard('staff')->user()->staffPos === 0)   //Verify staff position is Nurse
+                return redirect('/staff/nurse/homepage');
+        } else {
+            return view('login');                              //Redirect default guest to login page
+        }
+    })->name('login');
+
+    //Donor Login & Register Route
+    Route::post('/donor/login', 'DonorAuth\LoginController@login');
+    Route::get('/donor/register', 'DonorAuth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('/donor/register', 'DonorAuth\RegisterController@register');
+
+    //Donor Reset Password Route
+    Route::get('/donor/password/reset', 'DonorAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+    Route::get('/donor/password/reset/{token}', 'DonorAuth\ResetPasswordController@showResetForm');
+    Route::post('/donor/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+    Route::post('/donor/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
+
+    //Staff Login Route
+    Route::post('/staff/login', 'StaffAuth\LoginController@login');
+
+    //Staff Reset Password Route
+    Route::post('/staff/password/email', 'StaffAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+    Route::post('/staff/password/reset', 'StaffAuth\ResetPasswordController@reset')->name('password.email');
+    Route::get('/staff/password/reset', 'StaffAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+    Route::get('/staff/password/reset/{token}', 'StaffAuth\ResetPasswordController@showResetForm');
 });
-
-
-//Donor Login & Register Route
-Route::post('/donor/login', 'DonorAuth\LoginController@login');
-Route::get('/donor/register', 'DonorAuth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/donor/register', 'DonorAuth\RegisterController@register');
-
-//Donor Reset Password Route
-Route::get('/donor/password/reset', 'DonorAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::get('/donor/password/reset/{token}', 'DonorAuth\ResetPasswordController@showResetForm');
-Route::post('/donor/password/email', 'DonorAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-Route::post('/donor/password/reset', 'DonorAuth\ResetPasswordController@reset')->name('password.email');
-
-//Staff Login Route
-Route::post('/staff/login', 'StaffAuth\LoginController@login');
-
-//Staff Reset Password Route
-Route::post('/staff/password/email', 'StaffAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-Route::post('/staff/password/reset', 'StaffAuth\ResetPasswordController@reset')->name('password.email');
-Route::get('/staff/password/reset', 'StaffAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::get('/staff/password/reset/{token}', 'StaffAuth\ResetPasswordController@showResetForm');
-
 
 //Donor Routes grouped under "/donor/..."
 Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
@@ -127,6 +128,11 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
     Route::get('/dashboard', 'ReportController@index');
+
+    //Fallback route for error
+    Route::fallback(function(){
+        return response()->view('errors.500', [], 500);
+    });
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
@@ -151,4 +157,9 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
     Route::post('/event/{id}/manage-blood', 'BloodController@store');
     Route::post('/event/{id}/conclude', 'ConcludeEventController@update');
+
+    //Fallback route for error
+    Route::fallback(function(){
+        return response()->view('errors.500', [], 500);
+    });
 });
