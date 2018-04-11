@@ -12,7 +12,7 @@
                     <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Uh Oh!</h1>
                     <hr />
                     <p class="mbr-text pb-3 mbr-fonts-style display-2 blackFont">
-                        Whoops, looks like something went wrong.
+                        Sorry, the page you are looking for could not be found.
                     </p>
                     <div class="card">
                         <div class="card-body">

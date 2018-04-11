@@ -1,4 +1,4 @@
-@extends('staff.layout.baseTemplate-HR')
+@extends(((Auth::user()->staffPos === 1) ? 'staff.layout.baseTemplate-HR' : 'staff.layout.baseTemplate-Nurse'))
 
 @section('title')
     <title>Staff Profile</title>

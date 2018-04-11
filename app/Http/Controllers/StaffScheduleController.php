@@ -26,7 +26,7 @@ class StaffScheduleController extends Controller {
     public function index() {
         //get all schedule with current user staff and return to schedule list page
         $staff = Staff::find(Auth::user()->staffID);
-        $schedules = EventSchedule::where('staffID', '=', $staff->staffID)->where('schedStatus', '=', '1')->get();
+        $schedules = EventSchedule::where('staffID', '=', $staff->staffID)->where('schedStatus', '=', '1')->paginate(10);
 
         return view('staff.schedule-list')->with('schedules', $schedules);
     }

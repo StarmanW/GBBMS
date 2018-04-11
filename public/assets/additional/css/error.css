@@ -1,9 +1,17 @@
 .main-wrapper {
-    margin: 10%;
+    margin: 50px 20px;
     padding: 40px 20px;
     background-color: #efefef;
 }
 
 .blackFont {
     color: black;
+}
+
+@media only screen and (min-width: 1200px) {
+    .main-wrapper {
+        margin: 10%;
+        padding: 40px 20px;
+        background-color: #efefef;
+    }
 }
