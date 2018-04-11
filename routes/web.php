@@ -27,6 +27,12 @@ Route::get('/login', function () {
 })->name('login');
 
 /***** Non-Auth Routes *****/
+//Main homepage
+Route::get('/', function() {
+    return view('index');
+});
+
+
 //Donor Login & Register Route
 Route::post('/donor/login', 'DonorAuth\LoginController@login');
 Route::get('/donor/register', 'DonorAuth\RegisterController@showRegistrationForm')->name('register');
@@ -138,8 +144,8 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
     /***** LIST SECTION *****/
-    Route::get('/list/schedule', 'StaffScheduleController@index');
-    Route::get('/list/schedule/{id}', 'StaffScheduleController@show');
+    Route::get('/schedule', 'StaffScheduleController@index');
+    Route::get('/schedule/{id}', 'StaffScheduleController@show');
 
     /***** MANAGE BLOOD SECTION *****/
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
