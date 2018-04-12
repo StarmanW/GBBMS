@@ -149,7 +149,6 @@ return [
 
         /* Additional Package Service Providers */
         Collective\Html\HtmlServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
         /* Application Service Providers */
         App\Providers\AppServiceProvider::class,
@@ -211,7 +210,6 @@ return [
         //Additional Aliases
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
     ],
 
 ];
