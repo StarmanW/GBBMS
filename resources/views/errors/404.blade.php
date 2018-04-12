@@ -9,9 +9,9 @@
         <div class="container align-center">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10 main-wrapper">
-                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">Uh Oh!</h1>
+                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Uh Oh!</h1>
                     <hr />
-                    <p class="mbr-text pb-3 mbr-fonts-style display-5 blackFont">
+                    <p class="mbr-text pb-3 mbr-fonts-style display-2 blackFont">
                         Sorry, the page you are looking for could not be found.
                     </p>
                     <div class="card">
