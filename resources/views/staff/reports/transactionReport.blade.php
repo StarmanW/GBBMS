@@ -1,7 +1,7 @@
 @extends('staff.layout.baseTemplate-HR')
 
 @section('title')
-    <title>Reservation Cancellation Report</title>
+    <title>Reservation List Report</title>
 @endsection
 
 @section('additionalCSS')
@@ -40,10 +40,10 @@
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
                 <div class="table-backpanel">
                     <div class="table-wrapper">
-                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Reservation Cancellation Report</h2>
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event ({{$resvs[0]->eventID}}) Reservation Report</h2>
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-                            <span style="text-align: center"><a href="./exception/{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
-                            <span style="text-align: center"><a href="./exception"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
+                            <span style="text-align: center"><a href="./transaction/{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
+                            <span style="text-align: center"><a href="./transaction"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
                         </h2>
                         <div class="container">
                             <div class="row search">
@@ -70,7 +70,7 @@
                                     <th class="head-item mbr-fonts-style display-7">Reservation ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Donor ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Donor Name</th>
-                                    <th class="head-item mbr-fonts-style display-7">Cancelled On</th>
+                                    <th class="head-item mbr-fonts-style display-7">Reservation Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -85,7 +85,7 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$resv->donors->donorID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$resv->donors->firstName}} {{$resv->donors->lastName}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{$resv->updated_at}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$resv->getResvStatus()}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

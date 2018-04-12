@@ -15,11 +15,10 @@
 </htmlpageheader>
 
 <div style="text-align: center;">
-    <h2 style="margin-bottom: 2.5%;">Exception Report <br/> Event ({{$resvs[0]->eventID}}) Reservation Cancellation Report</h2>
+    <h2 style="margin-bottom: 2.5%;">Transaction Report <br/> Event ({{$resvs[0]->eventID}}) Reservation Report</h2>
 </div>
 
 <div>
-
     <section class="section-table cid-qMsKYUfsjq" id="table1-1s">
         <div class="container container-table">
             <div class="table-wrapper">
@@ -33,9 +32,9 @@
                             <th class="head-item mbr-fonts-style display-7">Event Time</th>
                             <th class="head-item mbr-fonts-style display-7">Event Room</th>
                             <th class="head-item mbr-fonts-style display-7">Reservation ID</th>
-                            <th class="head-item mbr-fonts-style display-7">Donor Name</th>
                             <th class="head-item mbr-fonts-style display-7">Donor ID</th>
-                            <th class="head-item mbr-fonts-style display-7">Cancelled On</th>
+                            <th class="head-item mbr-fonts-style display-7">Donor Name</th>
+                            <th class="head-item mbr-fonts-style display-7">Reservation Status</th>
                         </thead>
                         <tbody>
                         @foreach($resvs as $key => $resv)
@@ -56,7 +55,7 @@
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->donors->donorID}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->donors->firstName}} {{$resv->donors->lastName}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{$resv->updated_at}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{$resv->getResvStatus()}}</td>
                             </tr>
                         @endforeach
                         </tbody>

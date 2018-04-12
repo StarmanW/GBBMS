@@ -129,12 +129,16 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::get('/dashboard', 'ReportController@index');
 
     //Reports route
-    Route::get('/report/exception', 'ReportController@exceptionReport');
-    Route::get('/report/exception/{id}', 'ReportController@exceptionReport');
+    //Exception Report
+    Route::get('/report/exception', 'ReportController@exceptionReportIndex');
+    Route::post('/report/exception', 'ReportController@exceptionReport');
     Route::get('/report/exception/{id}/print', 'ReportController@exceptionReportPrint');
 
-    //Test report
-    Route::get('/report', 'TestReport@generate_pdf');
+    //Transaction Report
+    Route::get('/report/transaction', 'ReportController@transactionReportIndex');
+    Route::post('/report/transaction', 'ReportController@transactionReport');
+    Route::get('/report/transaction/{id}/print', 'ReportController@transactionReportPrint');
+
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."

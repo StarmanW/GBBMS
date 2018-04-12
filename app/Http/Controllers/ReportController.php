@@ -7,6 +7,7 @@ use App\Donor;
 use App\Event;
 use App\Reservation;
 use App\Staff;
+use Illuminate\Support\Facades\Validator;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -42,10 +43,30 @@ class ReportController extends Controller {
         return view('staff.dashboard')->with('data', $data);
     }
 
-    public function exceptionReport($id) {
-        //Retrieve all reservation records that are cancelled by donor
-        $resvs = Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $id)->paginate(10);
-        return view('staff.reports.exceptionReport')->with('resvs', $resvs);
+    /***** Exception Report - Reservation Cancellation for each events *****/
+    public function exceptionReportIndex() {
+        $events = Event::all();
+        return view('staff.reports.exceptionReportIndex')->with('events', $events);
+    }
+
+    public function exceptionReport(Request $request) {
+        //Validate event ID
+        $validator = Validator::make($request->all(), [
+            'eventID' => ['required', 'regex:/E\d{6}/']
+        ]);
+
+        //Return the appropriate response
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            //Retrieve all reservation records that are cancelled by donor
+            $resvs = Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $request['eventID'])->paginate(10);
+
+            if (count($resvs) === 0)
+                return redirect()->back()->with('emptyResv', true);
+            else
+                return view('staff.reports.exceptionReport')->with('resvs', $resvs);
+        }
     }
 
     public function exceptionReportPrint($id) {
@@ -55,4 +76,41 @@ class ReportController extends Controller {
         $pdf = PDF::loadView('staff.reports.exceptionReportPrint', $data);
         return $pdf->stream('Event ('. $id . ') Reservation Cancellation Report.pdf');
     }
+
+
+    /***** Transaction Report - Reservation list for each events *****/
+    public function transactionReportIndex() {
+        $events = Event::all();
+        return view('staff.reports.transactionReportIndex')->with('events', $events);
+    }
+
+    public function transactionReport(Request $request) {
+        //Validate event ID
+        $validator = Validator::make($request->all(), [
+            'eventID' => ['required', 'regex:/E\d{6}/']
+        ]);
+
+        //Return the appropriate response
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            //Retrieve all reservation records that are cancelled by donor
+            $resvs = Reservation::where('eventID', '=', $request['eventID'])->paginate(10);
+
+            if (count($resvs) === 0)
+                return redirect()->back()->with('emptyResv', true);
+            else
+                return view('staff.reports.transactionReport')->with('resvs', $resvs);
+        }
+    }
+
+    public function transactionReportPrint($id) {
+        $data = [
+            'resvs' => Reservation::where('eventID', '=', $id)->get()
+        ];
+        $pdf = PDF::loadView('staff.reports.transactionReportPrint', $data);
+        return $pdf->stream('Event ('. $id . ') Reservation List Report.pdf');
+    }
+
+
 }
