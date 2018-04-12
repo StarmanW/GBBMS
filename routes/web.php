@@ -112,7 +112,6 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Room register
     Route::post('/registration/room', 'StaffRoomController@store');
 
-
     /***** LIST SECTION *****/
     Route::get('/list/donor', 'StaffDonorController@index');
     Route::get('/list/donor/{id}', 'StaffDonorController@show');
@@ -128,11 +127,6 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
     Route::get('/dashboard', 'ReportController@index');
-
-    //Fallback route for error
-    Route::fallback(function(){
-        return response()->view('errors.500', [], 500);
-    });
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
@@ -157,9 +151,4 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
     Route::post('/event/{id}/manage-blood', 'BloodController@store');
     Route::post('/event/{id}/conclude', 'ConcludeEventController@update');
-
-    //Fallback route for error
-    Route::fallback(function(){
-        return response()->view('errors.500', [], 500);
-    });
 });
