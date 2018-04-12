@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Blood;
 use App\Donor;
 use App\Event;
+use App\Reservation;
 use App\Staff;
+use PDF;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller {
@@ -38,5 +40,19 @@ class ReportController extends Controller {
         ];
 
         return view('staff.dashboard')->with('data', $data);
+    }
+
+    public function exceptionReport($id) {
+        //Retrieve all reservation records that are cancelled by donor
+        $resvs = Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $id)->paginate(10);
+        return view('staff.reports.exceptionReport')->with('resvs', $resvs);
+    }
+
+    public function exceptionReportPrint($id) {
+        $data = [
+            'resvs' => Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $id)->get()
+        ];
+        $pdf = PDF::loadView('staff.reports.exceptionReportPrint', $data);
+        return $pdf->stream('Event ('. $id . ') Reservation Cancellation Report.pdf');
     }
 }

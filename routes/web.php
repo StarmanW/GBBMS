@@ -127,6 +127,14 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
 
     Route::get('/dashboard', 'ReportController@index');
+
+    //Reports route
+    Route::get('/report/exception', 'ReportController@exceptionReport');
+    Route::get('/report/exception/{id}', 'ReportController@exceptionReport');
+    Route::get('/report/exception/{id}/print', 'ReportController@exceptionReportPrint');
+
+    //Test report
+    Route::get('/report', 'TestReport@generate_pdf');
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
