@@ -54,7 +54,7 @@ class RegisterController extends Controller {
             'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/\d{12}/'],
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:staff',
-            'birthDate' => 'required|date',
+            'birthDate' => 'required|date|before:18 years ago',
             'gender' => ['required', 'boolean'],
             'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required|max:500'

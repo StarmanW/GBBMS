@@ -111,7 +111,7 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Home Address</label>
-                                                        <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;">{{old('homeAddress')}}</textarea>
+                                                        <textarea name="homeAddress" class="form-control" required="required" style="height:200px;resize: none;">{{old('homeAddress')}}</textarea>
                                                     </div>
                                                 </div>
                                                 <br />
