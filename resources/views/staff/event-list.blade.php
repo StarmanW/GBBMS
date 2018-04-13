@@ -33,7 +33,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKYUfsjq" id="table1-1s">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event List</h2>

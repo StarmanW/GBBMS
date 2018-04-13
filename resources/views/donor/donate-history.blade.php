@@ -54,7 +54,7 @@
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donateHist->events->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$donateHist->bloodVol}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$donateHist->remarks}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
                                         <a href="/donor/donation/{{$donateHist->bloodBagID}}/detail">
                                             <i class="fa fa-bars" aria-hidden="true" title="Donation details"></i>
                                         </a>

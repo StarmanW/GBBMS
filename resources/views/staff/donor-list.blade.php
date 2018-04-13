@@ -31,7 +31,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKEFTWPJ" id="table1-1p">
             <a onclick="w3_open()">
-                <i class="fa fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
