@@ -34,7 +34,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKT09Rch" id="table1-1q">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="form-container container align-center" style="width:50%">
                 <h2 class="well">Summary Report</h2>
