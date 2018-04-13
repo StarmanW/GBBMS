@@ -39,7 +39,7 @@ class StaffRoomController extends Controller {
         if ($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
         else {
-            //generate roomID
+            //Generate roomID
             $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', $request->input('roomNo'));
 
             if(Room::find($roomID) !== null) {

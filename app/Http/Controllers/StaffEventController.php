@@ -42,17 +42,23 @@ class StaffEventController extends Controller {
      */
     public function indexShort() {
         //get 3 upcoming events from events table for homepage
-
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
 
-        //get nearest 3 events to current date
-        $eventList = array($events[0], $events[1], $events[2]);
-
-        if (Auth::user()->staffPos === 1) {
-            return view('staff.homepage-hr')->with('eventList', $eventList);
-        } elseif (Auth::user()->staffPos === 0) {
-            return view('staff.homepage-nurse')->with('eventList', $eventList);
+        if(count($events) > 0) {
+            //get nearest 3 events to current date
+            $eventList = array($events[0], $events[1], $events[2]);
+            if (Auth::user()->staffPos === 1) {
+                return view('staff.homepage-hr')->with('eventList', $eventList);
+            } elseif (Auth::user()->staffPos === 0) {
+                return view('staff.homepage-nurse')->with('eventList', $eventList);
+            }
+        } else {
+            if (Auth::user()->staffPos === 1) {
+                return view('staff.homepage-hr');
+            } elseif (Auth::user()->staffPos === 0) {
+                return view('staff.homepage-nurse');
+            }
         }
     }
 
