@@ -85,6 +85,7 @@
                                     <div class="card-body">
                                         <button data-toggle="modal" data-target="#updateEventModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
                                         <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventName}}');">Cancel Event</button>
+                                        <a href="/staff/hr/list/event"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}/cancel" id="cancelEventForm" style="display: none;">
                                             {{csrf_field()}}
                                         </form>

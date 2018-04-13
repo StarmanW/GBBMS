@@ -93,6 +93,7 @@
                                     <div class="card-body">
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
                                         <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
+                                        <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
