@@ -24,11 +24,11 @@
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
         <br>
 
-        <span style="text-align: center; color: white" class="w3-bar-item">View Reports</span>
+        <span style="text-align: center; color: white" class="w3-bar-item">Reservations</span>
         <hr id="sideBarHR">
 
-        <a href="/donor/reservation/current" class="w3-bar-item w3-button">Current Reservation</a>
         <a href="/donor/reservation" class="w3-bar-item w3-button">Reservation History</a>
+        <a href="/donor/reservation/current" class="w3-bar-item w3-button">Current Reservation</a>
     </div>
 
     <!-- Sidebar overlay -->
