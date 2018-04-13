@@ -1,3 +1,7 @@
+.table th {
+    width: 220px;
+}
+
 .profile-table-wrap{
     overflow: auto;
 }
