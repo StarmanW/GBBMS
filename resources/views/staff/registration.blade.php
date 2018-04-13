@@ -227,6 +227,10 @@
 @endsection
 
 @section('additionalJS')
+    <script src={{"/assets/additional/js/noBackDate.js"}}></script>
+    <script src="{{'/assets/additional/js/donor_util.js'}}"></script>
+    <script src="{{'/assets/additional/js/hr_registration_util.js'}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(session('eventTab'))
         <script>
@@ -242,20 +246,13 @@
         </script>
     @endif
 
-    <script src={{"/assets/additional/js/noBackDate.js"}}></script>
-    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-    <script src="{{asset('/assets/additional/js/donor_util.js')}}"></script>
     @if(count($errors) > 0)
         <script>donorFormError('Empty/Invalid Data Entered', {!! $errors !!});</script>
     @elseif(session('success'))
-        <script>
-            //Display Staff Profile Update Success message
-            alertify.alert('{{session('success')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Registration Successful").show();
-        </script>
+        <script>registrationSuccess('{{session('success')}}')</script>
+    @elseif(session('roomAddFailed'))
+        <script>roomAddFailure('{{session('roomAddFailed')}}')</script>
+    @elseif(session('roomAddDup'))
+        <script>roomAddDuplicated('{{session('roomAddDup')}}')</script>
     @endif
 @endsection

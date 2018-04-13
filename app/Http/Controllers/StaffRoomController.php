@@ -35,23 +35,27 @@ class StaffRoomController extends Controller {
             'floor' => ['required', 'integer', 'regex:/^[0-9]{0,2}$/'],
         ]);
 
-        //generate roomID
-        $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', $request->input('roomNo'));
-
         //set room details
         if ($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
         else {
+            //generate roomID
+            $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', $request->input('roomNo'));
+
+            if(Room::find($roomID) !== null) {
+                return redirect('/staff/hr/registration')->withInput()->with('roomAddDup', 'The room has already existed in the system.');
+            }
+
             $room = new Room();
             $room->roomID = $roomID;
             $room->quadrant = $request->input('quadrant');
             $room->floor = $request->input('floor');
             $room->roomStatus = true;
 
-            if ($room->save())
+            if ($room->save() === true)
                 return redirect('/staff/hr/registration')->with('success', 'Room created successfully!');
             else
-                return redirect('/staff/hr/registration')->with('failure', 'Room was not created.');
+                return redirect('/staff/hr/registration')->with('roomAddFailed', 'Room creation was unsuccessfully.');
         }
     }
 
@@ -116,5 +120,4 @@ class StaffRoomController extends Controller {
             return redirect('/staff/hr/registration')->with('failure', 'Room was not deactivated.');
 
     }
-
 }
