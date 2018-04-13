@@ -50,7 +50,7 @@
                                 @if(session('emptyRecord') === true)
                                     <span style="color:red;">The selected date/month does not have any records found.</span>
                                 @endif
-                                <div class="row" style="margin:auto">
+                                <div class="row">
                                     <label><span style="color:red;">*</span>Report Timeline</label>
                                     <select name="reportTimeline" class="form-control" id="reportTimeline" required="required">
                                         <option disabled selected value>Select report timeline</option>
@@ -62,7 +62,6 @@
                                     @endif
                                 </div><br/>
                                 <div class="row">
-                                    <div class="col-md-6 form-group">
                                         <label><span style="color:red;">*</span>Select Year</label>
                                         <select name="year" class="form-control" id="year" required="required">
                                             <option disabled selected value id="defaultSelect">Select year</option>
@@ -70,18 +69,8 @@
                                         @if($errors->has('year'))
                                             <span style="color:red;">Please select an appropriate year</span>
                                         @endif
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label><span style="color:red;">*</span>Select Month</label>
-                                        <select name="month" class="form-control" id="month" required="required" disabled>
-                                            <option disabled selected value id="defaultSelect">Select month</option>
-                                        </select>
-                                        @if($errors->has('month'))
-                                            <span style="color:red;">Please select an appropriate month</span>
-                                        @endif
-                                    </div>
                                 </div><br/>
-                                <div class="row" style="margin:auto">
+                                <div class="row">
                                     <label><span style="color:red;">*</span>Select Report</label>
                                     <select name="report" class="form-control" required="required">
                                         <option disabled selected value>Select a report</option>
@@ -120,32 +109,13 @@
             document.getElementById("mySidebar").style.display = "none";
             document.getElementById("myOverlay").style.display = "none";
         }
-    </script>
 
-    <script>
+        //Initialize year option
         $(document).ready(function () {
-            var monthNameList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            for (var i = 0; i < 12; i++) {
-                $("#month").append('<option value="' + (i+1) + '">' + monthNameList[i] + '</option>');
-            }
-
             var year = new Date().getFullYear();
             for (var i = year; i > (year - ({{$eventTimeline}} - (year-1))); i--) {
                 $("#year").append('<option value="' + i + '">' + i + '</option>');
             }
-
-            $("#reportTimeline").change(function () {
-                var val = $(this).val();
-                if (val === "annual") {
-                    $('#month').prop('disabled', true);
-                } else if (val === "monthly") {
-                    $('#month').prop('disabled', false);
-                }
-            });
         });
-
-
-
-
     </script>
 @endsection

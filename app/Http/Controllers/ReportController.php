@@ -123,48 +123,27 @@ class ReportController extends Controller {
 
     //Function to display transaction report on web
     public function summaryReport(Request $request) {
-        //Validate event ID
-        if ($request['reportTimeline'] === "annual") {
-            $validator = Validator::make($request->all(), [
-                'reportTimeline' => ['required', 'regex:/^(annual|monthly)$/'],
-                'year' => ['required', 'date_format:"Y"'],
-                'report' => ['required', 'regex:/^(resvList|blood)$/'],
-            ]);
-        } else {
-            $validator = Validator::make($request->all(), [
-                'reportTimeline' => ['required', 'regex:/^(annual|monthly)$/'],
-                'year' => ['required', 'date_format:"Y"'],
-                'month' => ['required', 'digits:2', 'between:1,12'],
-                'report' => ['required', 'regex:/^(resvList|blood)$/'],
-            ]);
-        }
+        //Validate input
+        $validator = Validator::make($request->all(), [
+            'reportTimeline' => ['required', 'regex:/^(annual|monthly)$/'],
+            'year' => ['required', 'date_format:"Y"'],
+            'report' => ['required', 'regex:/^(resvList|blood)$/'],
+        ]);
 
         //Return the appropriate response
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            if ($request['reportTimeline'] === 'annual') {
-                switch ($request['report']) {
-                    case "resvList":
-                        $records = Event::whereYear('eventDate', '=', $request['year'])->paginate(10);
-                        session(['rType' => 'resvList']);
-                        break;
-                    case "blood":
-                        $records = Blood::whereYear('created_at', '=', $request['year'])->paginate(10);
-                        session(['rType' => 'blood']);
-                        break;
-                }
-            } elseif ($request['reportTimeline'] === 'monthly') {
-                switch ($request['report']) {
-                    case "revList":
-                        $records = Reservation::whereYear('resvDateTime', '=', $request['year'])->whereMonth('resvDateTime', '=', $request['month'])->paginate(10);
-                        break;
-                    case "blood":
-                        $records = Blood::whereYear('created_at', '=', $request['year'])->whereMonth('resvDateTime', '=', $request['month'])->paginate(10);
-                        break;
-                }
+            switch ($request['report']) {
+                case "resvList":
+                    $records = Event::whereYear('eventDate', '=', $request['year'])->paginate(10);
+                    session(['rType' => 'resvList']);
+                    break;
+                case "blood":
+                    $records = Blood::whereYear('created_at', '=', $request['year'])->paginate(10);
+                    session(['rType' => 'blood']);
+                    break;
             }
-
 
             //Verify records variable is 0 or not, else return the result
             if (count($records) === 0)
