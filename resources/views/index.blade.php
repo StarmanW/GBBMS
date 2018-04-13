@@ -18,7 +18,7 @@
                     <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Gleaneagles Blood Donation</h1>
                     <div class="">
                         <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                            1 Blood bag saves 1 lives
+                            <i>Donating one unit of blood can save three lives.</i>
                         </p>
                     </div>
                 </div>
