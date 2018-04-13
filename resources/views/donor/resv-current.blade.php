@@ -56,7 +56,7 @@
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}} to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">Reserved</td>
-                                    <td class="body-item mbr-fonts-style display-7">
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
                                         <a href="#" onclick="cancellationPrompt('{{$resv->resvID}}');">
                                             <i class="fa fa-calendar-times" aria-hidden="true" title="Cancel reservation now"></i>
                                         </a>

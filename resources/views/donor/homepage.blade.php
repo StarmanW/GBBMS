@@ -28,6 +28,8 @@
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Current<br>Reservation</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
+            </div>
+            <div class="media-container-row container">
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='./reservation';">
                     <div class="card-img">
                         <i class="fa fa-file-alt fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>

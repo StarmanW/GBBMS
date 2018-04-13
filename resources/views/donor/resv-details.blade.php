@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
     <link rel="stylesheet" href={{"assets/additional/css/profile.css"}} type="text/css">
-	<link rel="stylesheet" href="/assets/additional/css/reservation-details.css" type="text/css">
+	<link rel="stylesheet" href={{"/assets/additional/css/reservation-details.css"}} type="text/css">
 @endsection
 
 @section('contents')
