@@ -113,7 +113,7 @@
                     <div class="container align-center">
                         <div class="row justify-content-md-center">
                             <div class="mbr-white col-md-10 main-wrapper" style="padding: 40px;margin: 10%;background-color: rgba(52, 52, 52, 0.5);">
-                                <h2 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style">No upcoming event right now</h2>
+                                <h2 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style">No upcoming events right now</h2>
                             </div>
                         </div>
                     </div>
