@@ -72,7 +72,7 @@
                     <a href="/staff/hr/list/donor" target="_blank">                         <!-- TEMP LINK -->
                         <button type="button" class="btn btn-lg btn-primary">View Lists</button>
                     </a>
-                    <a href="./report/" target="_blank">                         <!-- TEMP LINK -->
+                    <a href="/staff/hr/report/summary" target="_blank">                         <!-- TEMP LINK -->
                         <button type="button" class="btn btn-lg btn-primary">Reports</button>
                     </a>
                 </div>

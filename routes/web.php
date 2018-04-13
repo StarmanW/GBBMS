@@ -142,7 +142,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Summary Report
     Route::get('/report/summary', 'ReportController@summaryReportIndex');
     Route::post('/report/summary', 'ReportController@summaryReport');
-    Route::get('/report/summary/{id}/print', 'ReportController@transactionReportPrint');
+    Route::get('/report/summary/{year}/{rType}/print', 'ReportController@summaryReportPrint');
 
 });
 

@@ -51,26 +51,6 @@
                                     <span style="color:red;">The selected date/month does not have any records found.</span>
                                 @endif
                                 <div class="row">
-                                    <label><span style="color:red;">*</span>Report Timeline</label>
-                                    <select name="reportTimeline" class="form-control" id="reportTimeline" required="required">
-                                        <option disabled selected value>Select report timeline</option>
-                                        <option value="annual">Annual Report</option>
-                                        <option value="monthly">Monthly Report</option>
-                                    </select>
-                                    @if($errors->has('reportTimeline'))
-                                        <span style="color:red;">Please select an appropriate report timeline</span>
-                                    @endif
-                                </div><br/>
-                                <div class="row">
-                                        <label><span style="color:red;">*</span>Select Year</label>
-                                        <select name="year" class="form-control" id="year" required="required">
-                                            <option disabled selected value id="defaultSelect">Select year</option>
-                                        </select>
-                                        @if($errors->has('year'))
-                                            <span style="color:red;">Please select an appropriate year</span>
-                                        @endif
-                                </div><br/>
-                                <div class="row">
                                     <label><span style="color:red;">*</span>Select Report</label>
                                     <select name="report" class="form-control" required="required">
                                         <option disabled selected value>Select a report</option>
@@ -79,6 +59,15 @@
                                     </select>
                                     @if($errors->has('reportType'))
                                         <span style="color:red;">Please select an appropriate report type</span>
+                                    @endif
+                                </div><br/>
+                                <div class="row">
+                                    <label><span style="color:red;">*</span>Select Year</label>
+                                    <select name="year" class="form-control" id="year" required="required">
+                                        <option disabled selected value id="defaultSelect">Select year</option>
+                                    </select>
+                                    @if($errors->has('year'))
+                                        <span style="color:red;">Please select an appropriate year</span>
                                     @endif
                                 </div><br/>
                             </div>

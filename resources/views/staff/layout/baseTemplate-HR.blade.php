@@ -62,7 +62,7 @@
                         <a class="text-white dropdown-item display-4" href="/staff/hr/list/donor">View Lists
                             <br>
                         </a>
-                        <a class="text-white dropdown-item display-4" href="">View Reports</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/report/summary">View Reports</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown open">

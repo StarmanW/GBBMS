@@ -99,6 +99,7 @@ class BloodController extends Controller {
             $blood->bloodBagID = $request->input('bloodBagID');
             $blood->donorID = $donor->donorID;
             $blood->eventID = $event->eventID;
+            $blood->bloodType = $donor->bloodType;
             $blood->bloodVol = $request->input('bloodVol');
             $blood->remarks = $request->input('remarks');
 
@@ -108,49 +109,4 @@ class BloodController extends Controller {
                 return redirect()->back()->with('failure', 'Blood donation was not created.');
         }
     }
-
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for editing the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function edit($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function update(Request $request, $id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 }

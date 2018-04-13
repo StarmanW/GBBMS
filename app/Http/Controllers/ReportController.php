@@ -74,7 +74,7 @@ class ReportController extends Controller {
             'resvs' => Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $id)->get()
         ];
         $pdf = PDF::loadView('staff.reports.exception.exceptionReportPrint', $data);
-        return $pdf->stream('Event ('. $id . ') Reservation Cancellation Report.pdf');
+        return $pdf->stream('Event (' . $id . ') Reservation Cancellation Report.pdf');
     }
 
     /***** Transaction Report - Reservation list for each events *****/
@@ -111,7 +111,7 @@ class ReportController extends Controller {
             'resvs' => Reservation::where('eventID', '=', $id)->get()
         ];
         $pdf = PDF::loadView('staff.reports.transaction.transactionReportPrint', $data);
-        return $pdf->stream('Event ('. $id . ') Reservation Report.pdf');
+        return $pdf->stream('Event (' . $id . ') Reservation Report.pdf');
     }
 
     /***** Summary Report - Reservation list for each events *****/
@@ -125,7 +125,6 @@ class ReportController extends Controller {
     public function summaryReport(Request $request) {
         //Validate input
         $validator = Validator::make($request->all(), [
-            'reportTimeline' => ['required', 'regex:/^(annual|monthly)$/'],
             'year' => ['required', 'date_format:"Y"'],
             'report' => ['required', 'regex:/^(resvList|blood)$/'],
         ]);
@@ -150,6 +149,29 @@ class ReportController extends Controller {
                 return redirect()->back()->with('emptyRecord', true);
             else
                 return view('staff.reports.summary.annualReport')->with('records', $records);
+        }
+    }
+
+
+    //Function to display transaction report on web
+    public function summaryReportPrint($year, $rType) {
+        switch ($rType) {
+            case "resvList":
+                $data = [
+                    'records' => Event::whereYear('eventDate', '=', $year)->get()
+                ];
+                session(['rType' => 'resvList']);
+                $pdf = PDF::loadView('staff.reports.summary.annualReportPrint', $data);
+                return $pdf->stream($year . ' Reservation Report.pdf');
+                break;
+            case "blood":
+                $data = [
+                    'records' => Blood::whereYear('created_at', '=', $year)->get()
+                ];
+                session(['rType' => 'blood']);
+                $pdf = PDF::loadView('staff.reports.summary.annualReportPrint', $data);
+                return $pdf->stream($year . ' Donated Bloods Report.pdf');
+                break;
         }
     }
 }
