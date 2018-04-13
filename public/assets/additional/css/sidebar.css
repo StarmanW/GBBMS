@@ -42,7 +42,7 @@ body {
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
-    color: rgba(0, 0, 0, 0.6);
+    color: #505050;
     background-color: rgba(255, 255, 255, .8);
 }
 

@@ -16,7 +16,7 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <br><br><br><br>
-        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close <span style="float: right;">&times;</span></button>
         <br>
 
         <span style="text-align: center; color: white" class="w3-bar-item">View Reports</span>

@@ -16,14 +16,14 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <br><br><br><br>
-        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close <span style="float: right">&times;</span></button>
         <br>
 
         <span style="text-align: center; color: white" class="w3-bar-item">View List</span>
         <hr id="sideBarHR">
-        <a href="/staff/hr/list/donor" class="w3-bar-item w3-button">Donor List</a>
-        <a href="/staff/hr/list/staff" class="w3-bar-item w3-button">Staff List</a>
-        <a href="/staff/hr/list/event" class="w3-bar-item w3-button">Event List</a>
+        <a href="/staff/hr/list/staff" class="w3-bar-item w3-button">Staff List <i class="fa fa-user-md" style="float: right" id="sidebar-toggle" aria-hidden="true"></i></a>
+        <a href="/staff/hr/list/donor" class="w3-bar-item w3-button">Donor List <i class="fa fa-tint" style="float: right" id="sidebar-toggle" aria-hidden="true"></i></a>
+        <a href="/staff/hr/list/event" class="w3-bar-item w3-button">Event List <i class="fa fa-calendar-alt" style="float: right" id="sidebar-toggle" aria-hidden="true"></i></a>
     </div>
 
     <!-- Page Content -->
@@ -33,7 +33,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKYUfsjq" id="table1-1s">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event List</h2>

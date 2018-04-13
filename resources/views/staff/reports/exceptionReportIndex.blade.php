@@ -16,7 +16,7 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <br><br><br><br>
-        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close <span style="float: right;">&times;</span></button>
         <br>
 
         <span style="text-align: center; color: white" class="w3-bar-item">View Reports</span>
@@ -35,7 +35,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKT09Rch" id="table1-1q">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="form-container container align-center" style="width:50%">
                 <h2 class="well">Exception Report <br/> (Reservation Cancellation) <br/><br/> Select an Event</h2>
