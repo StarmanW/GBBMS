@@ -57,7 +57,7 @@ body {
 
 @media only screen and (min-width: 200px) and (max-width: 580px) {
     .fa-angle-up {
-        top: 80px;
+        top: 90px;
         height: 30px;
         width: 30px;
         margin-left: .5%;

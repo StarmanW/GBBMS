@@ -151,12 +151,12 @@
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Start Time</label>
-                                                            <input class="form-control" value="{{old('eventStartTime')}}" type="time" name="eventStartTime" id="eventStartTime">
+                                                            <input class="form-control" value="{{old('eventStartTime')}}" type="time" name="eventStartTime" id="eventStartTime" required="required">
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>End Time</label>
-                                                            <input class="form-control" value="{{old('eventEndTime')}}" type="time" name="eventEndTime" id="eventEndTime">
+                                                            <input class="form-control" value="{{old('eventEndTime')}}" type="time" name="eventEndTime" id="eventEndTime" required="required">
                                                         </div>
                                                     </div>
                                                     <div class="row" style="margin:auto">
@@ -242,7 +242,7 @@
         </script>
     @endif
 
-    <script src="/assets/additional/js/noBackDate.js"></script>
+    <script src={{"/assets/additional/js/noBackDate.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
     <script src="{{asset('/assets/additional/js/donor_util.js')}}"></script>
     @if(count($errors) > 0)
