@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\EventSchedule;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller {
@@ -27,15 +26,6 @@ class EventController extends Controller {
         //get all upcoming events from events table for upcoming event list page
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->paginate(10);
-
-        //Loop through the list and remove any reserved upcoming blood donation event
-        for ($i = 0; $i < count($events); $i++) {
-            for ($j = 0; $j < count($events[$i]->reservations); $i++) {
-                if ($events[$i]->reservations[$j]->resvStatus === 1 && $events[$i]->reservations[$j]->eventID === $events[$i]->eventID && $events[$i]->reservations[$j]->donorID === Auth::user()->donorID) {
-                    unset($events[$i]);
-                }
-            }
-        }
 
         //get nearest 3 events to current date
         return view('donor.upcoming-event-list')->with('eventList', $events);
