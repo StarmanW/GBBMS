@@ -120,10 +120,10 @@
 @endsection
 
 @section('additionalJS')
-    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
-    <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
-    <script src="/assets/additional/js/reservation_util.js"></script>
-    <script src="assets/theme/js/script.js"></script>
+    <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
+    <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
+    <script src={{"/assets/additional/js/reservation_util.js"}}></script>
+    <script src={{"/assets/theme/js/script.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(session('success'))
