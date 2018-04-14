@@ -23,7 +23,7 @@
                         <div class="form-container">
                             <ul class="row nav nav-tabs">
                                 <li class="active col-md-4" id="multitab-left">
-                                    <a data-toggle="tab" href="#nurse" class="multitab-btn">Register Nurse</a>
+                                    <a data-toggle="tab" href="#nurse" class="multitab-btn">Register Staff</a>
                                 </li>
                                 <li class="col-md-4" id="multitab-left">
                                     <a data-toggle="tab" href="#event" class="multitab-btn" style="padding:0;">Add New Blood Donation Event</a>
@@ -34,7 +34,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="nurse" class="tab-pane fade show active">
-                                    <h1 class="well">Register Nurse</h1>
+                                    <h1 class="well">Register Staff</h1>
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
@@ -100,11 +100,11 @@
                                                     </div>
                                                     <div class="row" style="margin:auto">
                                                         <label>
-                                                            <span style="color:red;">*</span>Position</label>
+                                                            <span style="color:red;">*</span>Staff Position</label>
                                                         <select name="staffPos" class="form-control" required="required">
-                                                            <option disabled selected value>Select member position</option>
-                                                            <option value="1" selected @if(old('staffPos') === "1") {{'selected'}}@endif>Human Resource Manager</option>
-                                                            <option value="0" @if(old('staffPos') === "0") {{'selected'}}@endif>Nurse</option>
+                                                            <option disabled selected value>Select staff position</option>
+                                                            <option value="0" selected @if(old('staffPos') === "0") {{'selected'}}@endif>Nurse</option>
+                                                            <option value="1" @if(old('staffPos') === "1") {{'selected'}}@endif>Human Resource Manager</option>
                                                         </select>
                                                     </div>
                                                     <br>

@@ -14,7 +14,7 @@
     <section class="features13 cid-qMsLYhctpH" id="features13-1y">
         <div class="mbr-overlay" style="opacity: 0.2; background-color:#adadad;"></div>
         <div class="container">
-            <h2 class="mbr-section-title pb-3 mbr-fonts-style display-1">Welcome, Chong</h2>
+            <h2 class="mbr-section-title pb-3 mbr-fonts-style display-1">Welcome, {{Auth::user()->firstName}}</h2>
 
             <div class="media-container-row container">
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"

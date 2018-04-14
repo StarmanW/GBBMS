@@ -94,7 +94,11 @@
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
                                         <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
                                         <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
+                                        @if(Auth::user()->staffPos === 1)
                                         <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        @else
+                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        @endif
                                             {{csrf_field()}}
                                         </form>
                                     </div>
@@ -118,7 +122,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        @if(Auth::user()->staffPos === 1)
                         <form method="POST" action="/staff/hr/profile" enctype="multipart/form-data">
+                        @else
+                        <form method="POST" action="/staff/nurse/profile" enctype="multipart/form-data">
+                        @endif
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
@@ -166,15 +174,17 @@
                                         <input class="form-control" type="date" name="birthDate" value="{{$staff->birthDate}}" required="required">
                                     </div>
                                 </div>
+                                @if(Auth::user()->staffPos === 1)
                                 <div class="row" style="margin:auto">
                                     <label>
-                                        <span style="color:red;">*</span>Position</label>
+                                        <span style="color:red;">*</span>Staff Position</label>
                                     <select name="staffPos" class="form-control" required="required">
-                                        <option disabled selected value>Select member position</option>
-                                        <option value="1" @if($staff->staffPos === 1) {{"selected"}} @endif>Human Resource Manager</option>
+                                        <option disabled selected value>Select staff position</option>
                                         <option value="0" @if($staff->staffPos === 0) {{"selected"}} @endif>Nurse</option>
+                                        <option value="1" @if($staff->staffPos === 1) {{"selected"}} @endif>Human Resource Manager</option>
                                     </select>
                                 </div>
+                                @endif
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">

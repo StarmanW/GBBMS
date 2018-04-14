@@ -108,7 +108,6 @@ class StaffController extends Controller {
         //validate data
         $validator = Validator::make($request->all(),
             [
-                'staffPos' => ['required', 'boolean'],
                 'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,'.Auth::user()->staffID.',staffID', 'regex:/\d{12}/'],
@@ -150,7 +149,6 @@ class StaffController extends Controller {
             }
 
             //Set staff details
-            $staff->staffPos = $request->input('staffPos');
             $staff->firstName = $request->input('firstName');
             $staff->lastName = $request->input('lastName');
             $staff->ICNum = $request->input('ICNum');
@@ -165,9 +163,9 @@ class StaffController extends Controller {
 
             //redirect to staff profile with update status and message
             if ($staff->save())
-                return redirect('/staff/hr/profile')->with('success', 'Staff profile details has been successfully updated!');
+                return redirect()->back()->with('success', 'Staff profile details has been successfully updated!');
             else
-                return redirect('/staff/hr/profile')->with('failure', 'Oops, staff profile details was not updated successfully.');
+                return redirect()->back()->with('failure', 'Oops, staff profile details was not updated successfully.');
         }
     }
 
