@@ -7,9 +7,14 @@
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/datatables/data-tables.bootstrap4.min.css"}}>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href={{"/assets/additional/css/table-list.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/sidebar.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -74,7 +79,15 @@
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
+                                        @if($event->eventStatus===1)
+                                        <a href="#" onclick="cancelEventPrompt('{{$event->eventID}}', '{{$event->eventName}}')">
+                                            <i class="fa fa-calendar-times" aria-hidden="true" title="Cancel event"></i>
+                                        </a>
+                                        <form method="post" action="/staff/hr/list/event/{{$event->eventID}}/cancel" id="cancel{{$event->eventID}}" style="display: none;">
+                                            {{csrf_field()}}
+                                        </form>
+                                        @endif
                                         <a href="/staff/hr/list/event/{{$event->eventID}}">
                                             <i class="fa fa-bars" aria-hidden="true"></i>
                                         </a>
@@ -112,7 +125,8 @@
 @section('additionalJS')
     <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
     <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
-    <!-- <script src="/assets/theme/js/script.js"></script> TEMPORARY REMOVED DUE TO WEIRD SLIDE UP -->
+    <script src={{"/assets/additional/js/event_util.js"}}></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     <script>
         //Menu Toggle Script

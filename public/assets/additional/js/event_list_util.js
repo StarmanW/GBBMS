@@ -10,7 +10,7 @@ function displayReservationStatus(message) {
 
 //Function to display cancellation confirm message
 function reservationPrompt(eventID, eventName) {
-    alertify.confirm("Confirm to make reservation for event " + eventName + " (" + eventID + ")" + "?", function (e) {
+    alertify.confirm("Confirm to make reservation for event \"" + eventName + "\" (" + eventID + ")" + "?", function (e) {
         if (e) {
             $('#reserve' + eventID).submit();
         }
