@@ -56,7 +56,8 @@
                                     <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">
-                                        <a href="#" onclick="$('#reserve{{$event->eventID}}').submit();">
+                                        {{--<a href="#" onclick="$('#reserve{{$event->eventID}}').submit();">--}}
+                                        <a href="#" onclick="reservationPrompt('{{$event->eventID}}', '{{$event->eventName}}')">
                                             <i class="fa fa-calendar-check" aria-hidden="true" title="Reserve now"></i>
                                         </a>
                                         <form method="post" action="/donor/{{$event->eventID}}/reserve" id="reserve{{$event->eventID}}" style="display: none;">
@@ -98,27 +99,12 @@
 @section('additionalJS')
     <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
     <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
+    <script src={{"/assets/additional/js/event_list_util.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(session('success'))
-        <script>
-            //Display Donor password update message
-            alertify.alert('{{session('success')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Blood Donation Reservation").show();
-        </script>
+        <script>displayReservationStatus('{{session('success')}}')</script>
     @elseif(session('failure'))
-        <script>
-            //Display Donor password update message
-            alertify.alert('{{session('failure')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Blood Donation Reservation").show();
-        </script>
+        <script>displayReservationStatus('{{session('failure')}}')</script>
     @endif
 @endsection
