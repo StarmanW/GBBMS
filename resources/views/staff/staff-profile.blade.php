@@ -179,9 +179,9 @@
                                     <label>
                                         <span style="color:red;">*</span>Staff Position</label>
                                     <select name="staffPos" class="form-control" required="required">
-                                        <option disabled selected value>Select staff position</option>
-                                        <option value="0" @if($staff->staffPos === 0) {{"selected"}} @endif>Nurse</option>
-                                        <option value="1" @if($staff->staffPos === 1) {{"selected"}} @endif>Human Resource Manager</option>
+                                        <option disabled=disabled" selected="selected" value>Select staff position</option>
+                                        <option value="0" @if($staff->staffPos === 0) {{'selected="selected"'}} @endif>Nurse</option>
+                                        <option value="1" @if($staff->staffPos === 1) {{'selected="selected"'}} @endif>Human Resource Manager</option>
                                     </select>
                                 </div>
                                 @endif
@@ -189,8 +189,8 @@
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === 1) {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === 0) {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
+                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === 1) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === 0) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Female<br>
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>

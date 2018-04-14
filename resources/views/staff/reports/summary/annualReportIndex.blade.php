@@ -53,7 +53,7 @@
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Select Report</label>
                                     <select name="report" class="form-control" required="required">
-                                        <option disabled selected value>Select a report</option>
+                                        <option disabled="disabled" selected="selected">Select a report</option>
                                         <option value="resvList">Reservation Report</option>
                                         <option value="blood">Bloods Donated</option>
                                     </select>
@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Select Year</label>
                                     <select name="year" class="form-control" id="year" required="required">
-                                        <option disabled selected value id="defaultSelect">Select year</option>
+                                        <option disabled="disabled" selected="selected" id="defaultSelect">Select year</option>
                                     </select>
                                     @if($errors->has('year'))
                                         <span style="color:red;">Please select an appropriate year</span>

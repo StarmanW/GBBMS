@@ -16,15 +16,15 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <br><br><br><br>
-        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close <span style="float: right;">&times;</span></button>
         <br>
 
         <span style="text-align: center; color: white" class="w3-bar-item">View Reports</span>
         <hr id="sideBarHR">
 
-        <a href="/staff/hr/report/summary" class="w3-bar-item w3-button">Summary Report</a>
-        <a href="/staff/hr/report/exception" class="w3-bar-item w3-button">Reservation Cancellation Report</a>
-        <a href="/staff/hr/report/exception" class="w3-bar-item w3-button">Reservation List</a>
+        <a href="/staff/hr/report/summary" class="w3-bar-item w3-button">Summary Report <i class="fa fa-list" style="float: right;" aria-hidden="true"></i></a>
+        <a href="/staff/hr/report/exception" class="w3-bar-item w3-button">Reservation Cancellation Report <i class="fa fa-calendar-times" style="float: right;" aria-hidden="true"></i></a>
+        <a href="/staff/hr/report/transaction" class="w3-bar-item w3-button">Reservation List <i class="fa fa-calendar-check" style="float: right;" aria-hidden="true"></i></a>
     </div>
 
     <!-- Sidebar overlay -->
@@ -34,7 +34,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKT09Rch" id="table1-1q">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="form-container container align-center" style="width:50%">
                 <h2 class="well">Transaction Report <br/> (Reservation List) <br/><br/> Select an Event</h2>
@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Event</label>
                                     <select name="eventID" class="form-control" required="required">
-                                        <option disabled selected value>Select an event</option>
+                                        <option disabled="disabled" selected="selected" value>Select an event</option>
                                         @foreach($events as $event)
                                             <option value="{{$event->eventID}}">{{$event->eventID}} - {{$event->eventName}}</option>
                                         @endforeach

@@ -169,23 +169,23 @@
                                     <label>
                                         <span style="color:red;">*</span>Blood Type</label>
                                     <select name="bloodType" class="form-control" required="required">
-                                        <option disabled selected value>Select blood type</option>
-                                        <option value="1" @if($donor->bloodType === 1) {{"selected"}} @endif>A+</option>
-                                        <option value="2" @if($donor->bloodType === 2) {{"selected"}} @endif>A-</option>
-                                        <option value="3" @if($donor->bloodType === 3) {{"selected"}} @endif>B+</option>
-                                        <option value="4" @if($donor->bloodType === 4) {{"selected"}} @endif>B-</option>
-                                        <option value="5" @if($donor->bloodType === 5) {{"selected"}} @endif>O+</option>
-                                        <option value="6" @if($donor->bloodType === 6) {{"selected"}} @endif>O-</option>
-                                        <option value="7" @if($donor->bloodType === 7) {{"selected"}} @endif>AB+</option>
-                                        <option value="8" @if($donor->bloodType === 8) {{"selected"}} @endif>AB-</option>
+                                        <option disabled="disabled" selected="selected" value>Select blood type</option>
+                                        <option value="1" @if($donor->bloodType === 1) {{'selected="selected"'}} @endif>A+</option>
+                                        <option value="2" @if($donor->bloodType === 2) {{'selected="selected"'}} @endif>A-</option>
+                                        <option value="3" @if($donor->bloodType === 3) {{'selected="selected"'}} @endif>B+</option>
+                                        <option value="4" @if($donor->bloodType === 4) {{'selected="selected"'}} @endif>B-</option>
+                                        <option value="5" @if($donor->bloodType === 5) {{'selected="selected"'}} @endif>O+</option>
+                                        <option value="6" @if($donor->bloodType === 6) {{'selected="selected"'}} @endif>O-</option>
+                                        <option value="7" @if($donor->bloodType === 7) {{'selected="selected"'}} @endif>AB+</option>
+                                        <option value="8" @if($donor->bloodType === 8) {{'selected="selected"'}} @endif>AB-</option>
                                     </select>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($donor->gender === 1) {{"checked"}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                        <input type="radio" name="gender" required="required" value="0" @if($donor->gender === 0) {{"checked"}} @endif>&nbsp;&nbsp;Female<br>
+                                        <input type="radio" name="gender" required="required" value="1" @if($donor->gender === 1) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="0" @if($donor->gender === 0) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Female<br>
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>

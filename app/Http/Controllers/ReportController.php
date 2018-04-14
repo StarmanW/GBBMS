@@ -118,7 +118,12 @@ class ReportController extends Controller {
     //Function to show transaction report index
     public function summaryReportIndex() {
         $eventTimeline = Event::orderBy('created_at', 'ASC')->get();
-        return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', date_format(date_create($eventTimeline[0]->created_at), "Y"));
+
+        if (count($eventTimeline) !== 0) {
+            return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', date_format(date_create($eventTimeline[0]->created_at), "Y"));
+        } else {
+            return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', '');
+        }
     }
 
     //Function to display transaction report on web

@@ -89,8 +89,8 @@
                                                     <div class="row">
                                                         <div class="col-sm-6 form-group">
                                                             <label><span style="color:red;">*</span>Gender</label><br/>
-                                                            <input type="radio" name="gender" required="required" value="1" @if(old('gender') === "1") {{'checked'}}@else{{'checked'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                                            <input type="radio" name="gender" required="required" value="0" @if(old('gender') === "0") {{'checked'}}@endif>&nbsp;&nbsp;Female<br>
+                                                            <input type="radio" name="gender" required="required" value="1" @if(old('gender') === "1") {{'checked="checked"'}}@else{{'checked="checked"'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                                            <input type="radio" name="gender" required="required" value="0" @if(old('gender') === "0") {{'checked="checked"'}}@endif>&nbsp;&nbsp;Female<br>
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
@@ -102,9 +102,9 @@
                                                         <label>
                                                             <span style="color:red;">*</span>Staff Position</label>
                                                         <select name="staffPos" class="form-control" required="required">
-                                                            <option disabled selected value>Select staff position</option>
-                                                            <option value="0" selected @if(old('staffPos') === "0") {{'selected'}}@endif>Nurse</option>
-                                                            <option value="1" @if(old('staffPos') === "1") {{'selected'}}@endif>Human Resource Manager</option>
+                                                            <option disabled="disabled" selected="selected" value>Select staff position</option>
+                                                            <option value="0" selected @if(old('staffPos') === "0") {{'selected="selected"'}}@endif>Nurse</option>
+                                                            <option value="1" @if(old('staffPos') === "1") {{'selected="selected"'}}@endif>Human Resource Manager</option>
                                                         </select>
                                                     </div>
                                                     <br>
@@ -163,9 +163,9 @@
                                                         <label>
                                                             <span style="color:red;">*</span>Room</label>
                                                         <select name="roomID" class="form-control" required="required">
-                                                            <option disabled selected value>Select Room Number</option>
+                                                            <option disabled="disabled" selected="selected" value>Select Room Number</option>
                                                             @foreach($rooms as $room)
-                                                                <option value="{{$room->roomID}}" @if(old('roomID') === $room->roomID) {{"selected"}} @endif>Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
+                                                                <option value="{{$room->roomID}}" @if(old('roomID') === $room->roomID) {{'selected="selected"'}} @endif>Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -193,19 +193,19 @@
                                                     <div class="row">
                                                             <label>
                                                                 <span style="color:red;">*</span>Room No.</label>
-                                                            <input class="form-control" type="number" value="{{old('roomNo')}}" min="0" name="roomNo" id="roomNo">
+                                                            <input class="form-control" type="number" value="{{old('roomNo')}}" min="0" name="roomNo" id="roomNo" required="required">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Quadrant</label>
-                                                            <input class="form-control" type="number" value="{{old('quadrant')}}" min="0" max="4" name="quadrant" id="quadrant">
+                                                            <input class="form-control" type="number" value="{{old('quadrant')}}" min="0" max="4" name="quadrant" id="quadrant" required="required">
                                                         </div>
                                                         <div class="col-sm-6 form-group">
                                                             <label>
                                                                 <span style="color:red;">*</span>Floor</label>
-                                                            <input class="form-control" type="number" value="{{old('floor')}}" min="0" name="floor" id="floor">
+                                                            <input class="form-control" type="number" value="{{old('floor')}}" min="0" name="floor" id="floor" required="required">
                                                         </div>
                                                     </div>
                                                 <br />
