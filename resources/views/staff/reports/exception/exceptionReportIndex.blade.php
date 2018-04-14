@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Event</label>
                                     <select name="eventID" class="form-control" required="required">
-                                        <option disabled="disabled" selected="selected">Select an event</option>
+                                        <option disabled selected value>Select an event</option>
                                         @foreach($events as $event)
                                             <option value="{{$event->eventID}}">{{$event->eventID}} - {{$event->eventName}}</option>
                                         @endforeach

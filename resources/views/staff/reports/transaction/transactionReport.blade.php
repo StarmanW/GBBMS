@@ -15,15 +15,15 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
         <br><br><br><br>
-        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close <span style="float: right;">&times;</span></button>
         <br>
 
         <span style="text-align: center; color: white" class="w3-bar-item">View Reports</span>
         <hr id="sideBarHR">
 
-        <a href="/staff/hr/report/summary" class="w3-bar-item w3-button">Summary Report</a>
-        <a href="/staff/hr/report/exception" class="w3-bar-item w3-button">Reservation Cancellation Report</a>
-        <a href="/staff/hr/report/transaction" class="w3-bar-item w3-button">Reservation List</a>
+        <a href="/staff/hr/report/summary" class="w3-bar-item w3-button">Summary Report <i class="fa fa-list" style="float: right;" aria-hidden="true"></i></a>
+        <a href="/staff/hr/report/exception" class="w3-bar-item w3-button">Reservation Cancellation Report <i class="fa fa-calendar-times" style="float: right;" aria-hidden="true"></i></a>
+        <a href="/staff/hr/report/transaction" class="w3-bar-item w3-button">Reservation List <i class="fa fa-calendar-check" style="float: right;" aria-hidden="true"></i></a>
     </div>
 
     <!-- Page Content -->
@@ -33,7 +33,7 @@
     <div class="w3-container">
         <section class="section-table cid-qMsKT09Rch" id="table1-1q">
             <a onclick="w3_open()">
-                <i class="fa  fa-angle-up fa-3x" id="sidebar-toggle" aria-hidden="true"></i>
+                <i class="fa  fa-angle-up fa-4x" id="sidebar-toggle" aria-hidden="true"></i>
             </a>
             <div class="container container-table">
                 <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
@@ -41,8 +41,8 @@
                     <div class="table-wrapper">
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event ({{$resvs[0]->eventID}}) Reservation Report</h2>
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-                            <span style="text-align: center"><a href="./transaction/{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
-                            <span style="text-align: center"><a href="./transaction"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
+                            <span style="text-align: center"><a href="./{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
+                            <span style="text-align: center"><a href="/staff/hr/report/transaction"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
                         </h2>
                         <div class="container">
                             <div class="row search">

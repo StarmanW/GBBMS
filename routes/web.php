@@ -135,17 +135,20 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Reports route
     //Exception Report
     Route::get('/report/exception', 'ReportController@exceptionReportIndex');
-    Route::post('/report/exception', 'ReportController@exceptionReport');
+    Route::post('/report/exception', 'ReportController@exceptionReportProcessForm');
+    Route::get('/report/exception/{id}', 'ReportController@exceptionReport');
     Route::get('/report/exception/{id}/print', 'ReportController@exceptionReportPrint');
 
     //Transaction Report
     Route::get('/report/transaction', 'ReportController@transactionReportIndex');
-    Route::post('/report/transaction', 'ReportController@transactionReport');
+    Route::post('/report/transaction/', 'ReportController@transactionReportProcessForm');
+    Route::get('/report/transaction/{id}', 'ReportController@transactionReport');
     Route::get('/report/transaction/{id}/print', 'ReportController@transactionReportPrint');
 
     //Summary Report
     Route::get('/report/summary', 'ReportController@summaryReportIndex');
-    Route::post('/report/summary', 'ReportController@summaryReport');
+    Route::post('/report/summary', 'ReportController@summaryReportProcessForm');
+    Route::get('/report/summary/{year}/{rType}', 'ReportController@summaryReport');
     Route::get('/report/summary/{year}/{rType}/print', 'ReportController@summaryReportPrint');
 
     //Fallback route for 404 error

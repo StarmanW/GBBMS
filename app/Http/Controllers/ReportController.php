@@ -7,6 +7,7 @@ use App\Donor;
 use App\Event;
 use App\Reservation;
 use App\Staff;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use PDF;
 use Illuminate\Http\Request;
@@ -47,8 +48,8 @@ class ReportController extends Controller {
         return view('staff.reports.exception.exceptionReportIndex')->with('events', $events);
     }
 
-    //Function to display exception report on web
-    public function exceptionReport(Request $request) {
+    //Function to process exception report form
+    public function exceptionReportProcessForm(Request $request) {
         //Validate event ID
         $validator = Validator::make($request->all(), [
             'eventID' => ['required', 'regex:/E\d{6}/']
@@ -58,14 +59,19 @@ class ReportController extends Controller {
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            //Retrieve all reservation records that are cancelled by donor
-            $resvs = Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $request['eventID'])->paginate(10);
-
-            if (count($resvs) === 0)
-                return redirect()->back()->with('emptyResv', true);
-            else
-                return view('staff.reports.exception.exceptionReport')->with('resvs', $resvs);
+            return Redirect::to('/staff/hr/report/exception/' . $request['eventID']);
         }
+    }
+
+    //Function to display exception report on web
+    public function exceptionReport($id) {
+        //Retrieve all reservation records that are cancelled by donor
+        $resvs = Reservation::where('resvStatus', '=', 3)->where('eventID', '=', $id)->paginate(10);
+
+        if (count($resvs) === 0)
+            return redirect()->back()->with('emptyResv', true);
+        else
+            return view('staff.reports.exception.exceptionReport')->with('resvs', $resvs);
     }
 
     //Function to generate printable exception report
@@ -84,8 +90,8 @@ class ReportController extends Controller {
         return view('staff.reports.transaction.transactionReportIndex')->with('events', $events);
     }
 
-    //Function to display transaction report on web
-    public function transactionReport(Request $request) {
+    //Function to process transaction report form
+    public function transactionReportProcessForm(Request $request) {
         //Validate event ID
         $validator = Validator::make($request->all(), [
             'eventID' => ['required', 'regex:/E\d{6}/']
@@ -95,14 +101,19 @@ class ReportController extends Controller {
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            //Retrieve all reservation records that are cancelled by donor
-            $resvs = Reservation::where('eventID', '=', $request['eventID'])->paginate(10);
-
-            if (count($resvs) === 0)
-                return redirect()->back()->with('emptyResv', true);
-            else
-                return view('staff.reports.transaction.transactionReport')->with('resvs', $resvs);
+            return Redirect::to('/staff/hr/report/transaction/' . $request['eventID']);
         }
+    }
+
+    //Function to display transaction report on web
+    public function transactionReport($id) {
+        //Retrieve all reservation records that are cancelled by donor
+        $resvs = Reservation::where('eventID', '=', $id)->paginate(10);
+
+        if (count($resvs) === 0)
+            return redirect()->back()->with('emptyResv', true);
+        else
+            return view('staff.reports.transaction.transactionReport')->with('resvs', $resvs);
     }
 
     //Function to generate printable transaction report
@@ -118,16 +129,11 @@ class ReportController extends Controller {
     //Function to show transaction report index
     public function summaryReportIndex() {
         $eventTimeline = Event::orderBy('created_at', 'ASC')->get();
-
-        if (count($eventTimeline) !== 0) {
-            return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', date_format(date_create($eventTimeline[0]->created_at), "Y"));
-        } else {
-            return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', '');
-        }
+        return view('staff.reports.summary.annualReportIndex')->with('eventTimeline', date_format(date_create($eventTimeline[0]->created_at), "Y"));
     }
 
-    //Function to display transaction report on web
-    public function summaryReport(Request $request) {
+    //Function to process summary report form
+    public function summaryReportProcessForm(Request $request) {
         //Validate input
         $validator = Validator::make($request->all(), [
             'year' => ['required', 'date_format:"Y"'],
@@ -138,23 +144,28 @@ class ReportController extends Controller {
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            switch ($request['report']) {
-                case "resvList":
-                    $records = Event::whereYear('eventDate', '=', $request['year'])->paginate(10);
-                    session(['rType' => 'resvList']);
-                    break;
-                case "blood":
-                    $records = Blood::whereYear('created_at', '=', $request['year'])->paginate(10);
-                    session(['rType' => 'blood']);
-                    break;
-            }
-
-            //Verify records variable is 0 or not, else return the result
-            if (count($records) === 0)
-                return redirect()->back()->with('emptyRecord', true);
-            else
-                return view('staff.reports.summary.annualReport')->with('records', $records);
+            return Redirect::to('/staff/hr/report/summary/' . $request['year'] . '/' . $request['report']);
         }
+    }
+
+    //Function to display transaction report on web
+    public function summaryReport($year, $rType) {
+        switch ($rType) {
+            case "resvList":
+                $records = Event::whereYear('eventDate', '=', $year)->paginate(10);
+                session(['rType' => 'resvList']);
+                break;
+            case "blood":
+                $records = Blood::whereYear('created_at', '=', $year)->paginate(10);
+                session(['rType' => 'blood']);
+                break;
+        }
+
+        //Verify records variable is 0 or not, else return the result
+        if (count($records) === 0)
+            return redirect('/staff/hr/report/summary')->with('emptyRecord', true);
+        else
+            return view('staff.reports.summary.annualReport')->with('records', $records);
     }
 
 

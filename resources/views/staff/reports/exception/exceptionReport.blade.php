@@ -41,8 +41,8 @@
                     <div class="table-wrapper">
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Event ({{$resvs[0]->eventID}}) Reservation Cancellation Report</h2>
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-                            <span style="text-align: center"><a href="./exception/{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
-                            <span style="text-align: center"><a href="./exception"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
+                            <span style="text-align: center"><a href="./{{$resvs[0]->eventID}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
+                            <span style="text-align: center"><a href="/staff/hr/report/exception"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
                         </h2>
                         <div class="container">
                             <div class="row search">

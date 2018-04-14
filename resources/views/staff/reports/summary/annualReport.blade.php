@@ -49,8 +49,8 @@
                             <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">{{date_format(date_create($records[0]->eventDate), "Y")}} Donated Bloods Report</h2>
                         @endif
                         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-                            <span style="text-align: center"><a href="./summary/{{date_format(date_create($records[0]->eventDate), "Y")}}/{{session('rType')}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
-                            <span style="text-align: center"><a href="./summary"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
+                            <span style="text-align: center"><a href="./{{session('rType')}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
+                            <span style="text-align: center"><a href="/staff/hr/report/summary"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
                         </h2>
                         <div class="container">
                             <div class="row search">

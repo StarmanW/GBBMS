@@ -30,7 +30,7 @@ class ReservationController extends Controller {
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
-        $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '>', 1)->paginate(10);
+        $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '!=', 1)->paginate(10);
 
         return view('donor.resv-list')->with('resvs', $resvs);
     }
@@ -45,7 +45,7 @@ class ReservationController extends Controller {
         //find id of current user
         $donor = Donor::find(Auth::user()->donorID);
 
-        $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '<', 2)->paginate(10);
+        $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 1)->paginate(10);
 
         return view('donor.resv-current')->with('resvs', $resvs);
     }

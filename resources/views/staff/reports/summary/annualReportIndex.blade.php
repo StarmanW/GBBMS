@@ -48,7 +48,7 @@
                             <br />
                             <div class="col-sm-12">
                                 @if(session('emptyRecord') === true)
-                                    <span style="color:red;">The selected date/month does not have any records found.</span>
+                                    <span style="color:red;">The selected year does not have any records found.</span>
                                 @endif
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Select Report</label>
@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <label><span style="color:red;">*</span>Select Year</label>
                                     <select name="year" class="form-control" id="year" required="required">
-                                        <option disabled="disabled" selected="selected" id="defaultSelect">Select year</option>
+                                        <option disabled="disabled" selected="selected" value id="defaultSelect">Select year</option>
                                     </select>
                                     @if($errors->has('year'))
                                         <span style="color:red;">Please select an appropriate year</span>
@@ -102,8 +102,8 @@
         //Initialize year option
         $(document).ready(function () {
             var year = new Date().getFullYear();
-            for (var i = year; i > (year - ({{$eventTimeline}} - (year-1))); i--) {
-                $("#year").append('<option value="' + i + '">' + i + '</option>');
+            for (var i = 0; i <= (year - {{$eventTimeline}}); i++) {
+                $("#year").append('<option value="' + (year - i) + '">' + (year - i) + '</option>');
             }
         });
     </script>
