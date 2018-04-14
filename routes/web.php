@@ -85,6 +85,10 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
     Route::get('/donation', 'DonorHistoryController@index');
     Route::get('/donation/{id}/detail', 'DonorHistoryController@show');
 
+    //Fallback route for 404 error
+    Route::fallback(function(){
+        return response()->view('errors.404', [], 404);
+    });
 });
 
 //HR Manager Routes grouped under "/staff/hr/..."
@@ -144,6 +148,10 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     Route::post('/report/summary', 'ReportController@summaryReport');
     Route::get('/report/summary/{year}/{rType}/print', 'ReportController@summaryReportPrint');
 
+    //Fallback route for 404 error
+    Route::fallback(function(){
+        return response()->view('errors.404', [], 404);
+    });
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
@@ -168,4 +176,9 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     Route::get('/event/{id}/manage-blood', 'BloodController@create');
     Route::post('/event/{id}/manage-blood', 'BloodController@store');
     Route::post('/event/{id}/conclude', 'ConcludeEventController@update');
+
+    //Fallback route for 404 error
+    Route::fallback(function(){
+        return response()->view('errors.404', [], 404);
+    });
 });
