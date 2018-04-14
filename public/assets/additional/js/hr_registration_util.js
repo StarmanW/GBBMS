@@ -27,3 +27,13 @@ function roomAddDuplicated(message) {
         'labels': 'OK'
     }).setHeader("Duplicated Room").show();
 }
+
+function occupiedRoom(message) {
+    //Display message stating occupied day & room
+    alertify.alert(message).setting({
+        'transition': 'zoom',
+        'movable': false,
+        'modal': true,
+        'labels': 'OK'
+    }).setHeader("Occupied Day").show();
+}

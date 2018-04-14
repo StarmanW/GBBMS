@@ -89,7 +89,7 @@ class StaffEventController extends Controller {
 
         $validator = Validator::make($request->all(),
             [
-                'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@ ]{2,}/'],
+                'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@\! ]{2,}/'],
                 'eventDate' => ['required', 'date'],
                 'eventStartTime' => ['required', 'date_format:H:i'],
                 'eventEndTime' => ['required', 'date_format:H:i'],
@@ -99,46 +99,50 @@ class StaffEventController extends Controller {
         if ($validator->fails())
             return redirect()->back()->withErrors($validator)->withInput();
         else {
-            //set event details
-            $event = new Event();
-            $event->eventID = $eventID;
-            $event->eventName = $request->input('eventName');
-            $event->eventDate = $request->input('eventDate');
-            $event->eventStartTime = $request->input('eventStartTime');
-            $event->eventEndTime = $request->input('eventEndTime');
-            $event->roomID = $request->input('roomID');
-            $event->eventStatus = 1;
-            $eventSaveStats = $event->save();
+            if (Event::where('eventDate', '=', $request['eventDate'])->where('roomID', '=', $request['roomID'])->count() !== 0) {
+                return redirect()->back()->with('occupiedRoom', 'An upcoming event has already occupied this room on the selected day.');
+            } else {
+                //Set event details
+                $event = new Event();
+                $event->eventID = $eventID;
+                $event->eventName = $request->input('eventName');
+                $event->eventDate = $request->input('eventDate');
+                $event->eventStartTime = $request->input('eventStartTime');
+                $event->eventEndTime = $request->input('eventEndTime');
+                $event->roomID = $request->input('roomID');
+                $event->eventStatus = 1;
+                $eventSaveStats = $event->save();
 
-            //Variable $evSchedSaveStats for verifying all 5 event schedule records are created successfully
-            //Array $staffIDs for storing randomly generated staff IDs.
-            $evSchedSaveStats = 0;
-            $staffIDs = [];
-            $staffs = Staff::where('staffPos', '=', 0)->get();                  //Retrieve all staff
+                //Variable $evSchedSaveStats for verifying all 5 event schedule records are created successfully
+                //Array $staffIDs for storing randomly generated staff IDs.
+                $evSchedSaveStats = 0;
+                $staffIDs = [];
+                $staffs = Staff::where('staffPos', '=', 0)->get();                  //Retrieve all staff
 
-            for ($i = 0; $i < count($staffs); $i++) {
-                $staffIDs[$i] = $staffs[rand(0, count($staffs) - 1)]->staffID;  //Randomly select a staff index and store into temp variable
+                for ($i = 0; $i < count($staffs); $i++) {
+                    $staffIDs[$i] = $staffs[rand(0, count($staffs) - 1)]->staffID;  //Randomly select a staff index and store into temp variable
+                }
+
+                $staffIDs = array_unique($staffIDs);                                //Filter out duplicated staff IDs in array
+
+                //For loop to create 5 new event schedule records and
+                //store each of the staff IDs using the keys
+                //(Otherwise it is not in sequence after filtered. E.g. - 0,1,2,5,8)
+                for ($i = 0; $i < 5; $i++) {
+                    $eventSchedule = new EventSchedule();
+                    $eventSchedule->schedID = 'ES' . sprintf('%04d', count(EventSchedule::all()) + 1);
+                    $eventSchedule->staffID = $staffIDs[array_keys($staffIDs)[$i]];
+                    $eventSchedule->eventID = $event->eventID;
+                    $eventSchedule->schedStatus = 1;
+                    $eventSchedule->save();
+                    $evSchedSaveStats++;
+                }
+
+                if ($eventSaveStats === true && $evSchedSaveStats === 5)
+                    return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
+                else
+                    return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
             }
-
-            $staffIDs = array_unique($staffIDs);                                //Filter out duplicated staff IDs in array
-
-            //For loop to create 5 new event schedule records and
-            //store each of the staff IDs using the keys
-            //(Otherwise it is not in sequence after filtered. E.g. - 0,1,2,5,8)
-            for ($i = 0; $i < 5; $i++) {
-                $eventSchedule = new EventSchedule();
-                $eventSchedule->schedID = 'ES' . sprintf('%04d', count(EventSchedule::all()) + 1);
-                $eventSchedule->staffID = $staffIDs[array_keys($staffIDs)[$i]];
-                $eventSchedule->eventID = $event->eventID;
-                $eventSchedule->schedStatus = 1;
-                $eventSchedule->save();
-                $evSchedSaveStats++;
-            }
-
-            if ($eventSaveStats === true && $evSchedSaveStats === 5)
-                return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
-            else
-                return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
         }
     }
 
@@ -177,7 +181,7 @@ class StaffEventController extends Controller {
         //validate data
         $validator = Validator::make($request->all(),
             [
-                'eventName' => ['required', 'string', 'max:255'],
+                'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@\! ]{2,}/'],
                 'eventDate' => ['required', 'date'],
                 'eventStartTime' => ['required', 'date_format:H:i'],
                 'eventEndTime' => ['required', 'date_format:H:i'],

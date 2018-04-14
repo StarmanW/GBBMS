@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -137,7 +137,7 @@
                                                     <div class="row" style="margin:auto">
                                                         <label>
                                                             <span style="color:red;">*</span>Event Name</label>
-                                                        <input type="text" value="{{old('eventName')}}" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
+                                                        <input type="text" value="{{old('eventName')}}" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z0-9\-@\! ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
                                                             required="required">
                                                     </div>
                                                     <br>
@@ -254,5 +254,7 @@
         <script>roomAddFailure('{{session('roomAddFailed')}}')</script>
     @elseif(session('roomAddDup'))
         <script>roomAddDuplicated('{{session('roomAddDup')}}')</script>
+    @elseif(session('occupiedRoom'))
+        <script>occupiedRoom('{{session('occupiedRoom')}}')</script>
     @endif
 @endsection
