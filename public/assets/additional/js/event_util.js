@@ -1,8 +1,8 @@
 //Function to prompt the user for deactivation confirmation
-function cancelEventPrompt(eventName) {
-    alertify.confirm("Confirm to cancel event \"" + eventName + "\"?", function (e) {
+function cancelEventPrompt(eventID, eventName) {
+    alertify.confirm("Confirm to cancel event \"" + eventName + "\"" + " (" + eventID + ")" + "?", function (e) {
         if (e) {
-            $('#cancelEventForm').submit();
+            $('#cancel' + eventID).submit();
         }
     }).setting({
         'transition': 'zoom',
