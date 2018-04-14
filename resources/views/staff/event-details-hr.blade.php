@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -83,9 +83,9 @@
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
+                                        <a href="/staff/hr/list/event"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <button data-toggle="modal" data-target="#updateEventModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
                                         <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventName}}');">Cancel Event</button>
-                                        <a href="/staff/hr/list/event"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}/cancel" id="cancelEventForm" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
@@ -166,7 +166,7 @@
 @endsection
 
 @section('additionalJS')
-    <script src="/assets/additional/js/event_util.js"></script>
+    <script src={{"/assets/additional/js/event_util.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(count($errors) > 0)

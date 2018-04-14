@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
-    <link rel="stylesheet" href={{"assets/additional/css/profile.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
 	<link rel="stylesheet" href={{"/assets/additional/css/reservation-details.css"}} type="text/css">
 @endsection
 
@@ -97,11 +97,11 @@
 								<div class="card">
                                     <div class="card-body">
                                         @if(session('isResvCurr'))
-                                            <button type="submit" onclick="cancellationPrompt('{{$reservation->resvID}}');" class="btn btn-sm btn-secondary">Cancel Reservation</button>
+                                            <a href="/donor/reservation/current"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
+                                            <button type="submit" onclick="cancellationPrompt('{{$reservation->resvID}}');" class="btn btn-sm btn-secondary profile-btn">Cancel Reservation</button>
                                             <form method="post" action="/donor/reservation/{{$reservation->resvID}}/cancel" id="cancel{{$reservation->resvID}}" style="display: none;">
                                                 {{csrf_field()}}
                                             </form>
-                                            <a href="/donor/reservation/current"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                             @php session()->forget('isResvCurr'); @endphp
                                         @elseif(session('isResvHistory'))
                                             <a href="/donor/reservation"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>

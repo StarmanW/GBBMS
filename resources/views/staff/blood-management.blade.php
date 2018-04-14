@@ -22,7 +22,7 @@
                         <br />
                         <br />
                         <div class="form-container">
-                            <h1 class="well">Blood Managememt</h1>
+                            <h1 class="well">Blood Management</h1>
                             <hr style="border-top:1px solid gray;" />
                             <div class="col-lg-12 well">
                                 <div class="row">
