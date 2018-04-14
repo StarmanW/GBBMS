@@ -233,11 +233,14 @@ class StaffEventController extends Controller {
         //redirect to registration page
         if ($count !== 0) {
             if ($event->save() && $count === count($reservation))
-                return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+//                return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+                return redirect()->back()->with('cancelSuccess', 'Event has been successfully cancelled!');
         } elseif ($event->save()) {
-            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+//            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
+            return redirect()->back()->with('cancelSuccess', 'Event has been successfully cancelled!');
         } else
-            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
+//            return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
+            return redirect()->back()->with('cancelFailure', 'Event was not cancelled.');
     }
 
 
