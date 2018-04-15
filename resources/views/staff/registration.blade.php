@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div id="event" class="tab-pane fade">
-                                    <h1 class="well">New Blood Donation Event</h1>
+                                    <h1 class="well mbr-section-title mbr-fonts-style align-center pb-3 display-2">New Blood Donation Event</h1>
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
@@ -180,7 +180,7 @@
                                     </div>
                                 </div>
                                 <div id="room" class="tab-pane fade">
-                                    <h1 class="well">New Room</h1>
+                                    <h1 class="well mbr-section-title mbr-fonts-style align-center pb-3 display-2">New Room</h1>
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
