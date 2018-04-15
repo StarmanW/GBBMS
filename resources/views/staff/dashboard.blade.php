@@ -15,8 +15,8 @@
 
         <div class="container align-center">
             <div class="card" id="cardHeader">
-                <div class="card-header main-color-bg">
-                    <h3 class="card-title">Blood Bank Overview</h3>
+                <div class="card-header">
+                    <h3 class="card-title mbr-section-title mbr-fonts-style align-center pb-3 display-2" style="text-align: center">Blood Bank Overview</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -24,28 +24,28 @@
                             <div class="well dash-box">
                                 <h2>
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{$data['donorCount']}}</h2>
-                                <h4>Donors</h4>
+                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Donors</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{$data['nurseCount']}}</h2>
-                                <h4>Nurses</h4>
+                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Nurses</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{$data['eventCount']}}</h2>
-                                <h4>Blood Donation Events</h4>
+                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Donation Events</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
                                 <h2>
                                     <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{$data['bloodCount']}}</h2>
-                                <h4>Blood Packages</h4>
+                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Packages</h4>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <!-- Blood Graph Section -->
             <div class="card">
                 <div class="card-heading" style="border-bottom:1px solid; width:96%; margin:auto">
-                    <h3 class="card-title">Blood Amount Graph</h3>
+                    <h3 class="card-title mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Amount Graph</h3>
                 </div>
                 <div class="card-body">
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
@@ -65,7 +65,7 @@
             <!-- Management Section -->
             <div class="card">
                 <div class="card-heading" style="border-bottom:1px solid; width:96%; margin:auto">
-                    <h3 class="card-title">Management Section</h3>
+                    <h3 class="card-title mbr-section-title mbr-fonts-style align-center pb-3 display-6">Management Section</h3>
                 </div>
                 <div class="card-body">
                     <a href="/staff/hr/registration">
