@@ -274,18 +274,22 @@ class StaffController extends Controller {
      */
     public function deactivateHR($id) {
         //Set staff account status
-        $staff = Staff::find($id);
+        $staff = Staff::where('staffID', '=', $id)->where('staffAccStatus', '=', 1)->get();
 
-        if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1) {
-            return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
+        if ($staff !== 0)
+            return redirect()->back()->with('failure', 'Staff account has already been deactivated.');
+        else
+        {
+            if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1)
+                return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
+
+            $staff->staffAccStatus = 0;
+
+            //redirect to staff login
+            if ($staff->save()) {
+                return redirect()->back()->with('successHRDeactivate', 'Staff ('. $staff->staffID .') account has been successfully deactivated!');
+            } else
+                return redirect()->back()->with('failureHRDeactivate', 'Oops, an error has occurred while deactivating staff ('. $staff->staffID .')account.');
         }
-
-        $staff->staffAccStatus = 0;
-
-        //redirect to staff login
-        if ($staff->save()) {
-            return redirect()->back()->with('successHRDeactivate', 'Staff ('. $staff->staffID .') account has been successfully deactivated!');
-        } else
-            return redirect()->back()->with('failureHRDeactivate', 'Oops, an error has occurred while deactivating staff ('. $staff->staffID .')account.');
     }
 }
