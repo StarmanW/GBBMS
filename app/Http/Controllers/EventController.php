@@ -39,12 +39,11 @@ class EventController extends Controller {
     public function indexShort() {
         //get 3 upcoming events from events table for homepage
         //get events after current date and sort by date in ascending order
-        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->get();
+        $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->take(3)->get();
 
         if(count($events) > 0) {
             //get nearest 3 events to current date
-            $eventList = array($events[0], $events[1], $events[2]);
-            return view('donor.homepage')->with('eventList', $eventList);
+            return view('donor.homepage')->with('eventList', $events);
         } else {
             return view('donor.homepage');
         }
