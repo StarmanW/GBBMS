@@ -82,7 +82,7 @@
                                     <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">
                                         <a href="/staff/hr/list/event/{{$event->eventID}}">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                            <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
                                         </a>
                                     </td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">

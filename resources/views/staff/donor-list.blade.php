@@ -75,7 +75,7 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$donor->getAccStatus()}}</td>
                                         <td class="body-item mbr-fonts-style display-7">
                                             <a href="/staff/hr/list/donor/{{$donor->donorID}}">
-                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                <i class="fa fa-bars" aria-hidden="true" title="Donor details"></i>
                                             </a>
                                         </td>
                                     </tr>
