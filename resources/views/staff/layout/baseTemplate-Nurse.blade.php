@@ -147,7 +147,8 @@
 <script src="/assets/smoothscroll/smooth-scroll.js"></script>
 <script src="/assets/theme/js/script.js"></script>
 <script src="/assets/additional/js/scrolltotop.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+{{--<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>--}}
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 <!-- Scripts -->
 <script>
     window.Laravel = <?php echo json_encode([
