@@ -8,7 +8,7 @@ function renderGraph(bloodDetails) {
         animationEnabled: true,
         theme: "light2", // "light1", "light2", "dark1", "dark2"
         title: {
-            text: "Blood Type's Amount"
+            text: ""
         },
         axisY: {
             title: "Packages"
