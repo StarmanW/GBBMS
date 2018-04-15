@@ -104,6 +104,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'birthDate' => [
+            'before' => 'You must be 17 years old and above to register an account.'
+        ]
     ],
 
     /*
