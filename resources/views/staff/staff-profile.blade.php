@@ -93,11 +93,11 @@
                                     <div class="card-body">
                                         <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
                                         @if(Auth::user()->staffPos === 1)
-                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                         @else
-                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                         @endif
                                             {{csrf_field()}}
                                         </form>
@@ -229,7 +229,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/staff/profile/password" enctype="multipart/form-data">
+                        @if(Auth::user()->staffPos === 1)
+                        <form method="POST" action="/staff/hr/profile/password" enctype="multipart/form-data">
+                        @else
+                        <form method="POST" action="/staff/nurse/profile/password" enctype="multipart/form-data">
+                        @endif
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
@@ -265,11 +269,31 @@
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(count($errors) > 0)
-        <script>
-            $('#squarespaceModal').modal('show');
-            staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
-        </script>
+        @if(session('passValidation'))
+            <script>
+                $('#changePasswordForm').modal('show');
+                staffFormError('Change Password', {!! $errors !!});
+            </script>
+            @php session()->forget('passValidation'); @endphp
+        @else
+            <script>
+                $('#squarespaceModal').modal('show');
+                staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
+            </script>
+        @endif
     @elseif(session('success'))
         <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
+    @elseif(session('failure'))
+        <script>oneHRAcc("{{session('failure')}}");</script>
+    @elseif(session('error'))
+        <script>
+            //Display Donor password update message
+            alertify.alert('{{session('error')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Change Password").show();
+        </script>
     @endif
 @endsection

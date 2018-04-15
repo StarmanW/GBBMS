@@ -125,6 +125,22 @@ class ReservationController extends Controller {
             }
         }
 
+        //Check for recent reservation
+        $recentResv = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 1)->get();
+        //get current date
+        $currentDate = Carbon::now();
+        foreach ($recentResv as $donation) {
+            //get event date
+            $donationEventDate = Carbon::createFromTimestamp(strtotime($donation->events->eventDate));
+            //get date 3 months from last donation
+            $threeMntsFrmDate = $donationEventDate->addMonths(3);
+            if ($currentDate <= $threeMntsFrmDate) {
+                //get date difference
+                $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
+                return redirect('/donor/upcoming-events')->with('failure', 'You have recently reserved a blood donation event that is within the 3 months period. Please try again after ' . $dateDiff . ' days. (After ' . date_format($donationEventDate, 'd F Y') . ')');
+            }
+        }
+
         //generate reservation id
         $resvID = 'R' . date('y') . sprintf('%04d', count(Reservation::all()) + 1);
 

@@ -103,6 +103,7 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
     //Staff profile view, edit and deactivate
     Route::get('/profile', 'StaffController@edit');
     Route::post('/profile', 'StaffController@update');
+    Route::post('/profile/password', 'StaffController@changePassword');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
     /***** REGISTER SECTION *****/
@@ -169,6 +170,7 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     //Profile view, edit and deactivate
     Route::get('/profile', 'StaffController@edit');
     Route::post('/profile', 'StaffController@update');
+    Route::post('/profile/password', 'StaffController@changePassword');
     Route::post('/profile/deactivate', 'StaffController@deactivate');
 
     /***** LIST SECTION *****/

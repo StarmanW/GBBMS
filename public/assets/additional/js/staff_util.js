@@ -52,3 +52,13 @@ function staffAccDeactivationHR(message) {
         'labels': 'OK'
     }).setHeader("Staff Account Deactivation").show();
 }
+
+//Function to display message when the only HR trying to deactivate account
+function oneHRAcc(message) {
+    alertify.alert(message).setting({
+        'transition': 'zoom',
+        'movable': false,
+        'modal': true,
+        'labels': 'OK'
+    }).setHeader("Staff Account Deactivation").show();
+}
