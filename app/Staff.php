@@ -50,9 +50,9 @@ class Staff extends Authenticatable {
     public function getGender() {
         $gender = 'None';
         if($this->gender === 1) {
-            $gender = 'M';
+            $gender = 'Male';
         } elseif($this->gender === 0) {
-            $gender = 'F';
+            $gender = 'Female';
         }
         return $gender;
     }

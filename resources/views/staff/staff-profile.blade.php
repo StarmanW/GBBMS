@@ -229,7 +229,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/staff/profile/password" enctype="multipart/form-data">
+                        @if(Auth::user()->staffPos === 1)
+                        <form method="POST" action="/staff/hr/profile/password" enctype="multipart/form-data">
+                        @else
+                        <form method="POST" action="/staff/nurse/profile/password" enctype="multipart/form-data">
+                        @endif
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br />
@@ -265,13 +269,31 @@
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(count($errors) > 0)
-        <script>
-            $('#squarespaceModal').modal('show');
-            staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
-        </script>
+        @if(session('passValidation'))
+            <script>
+                $('#changePasswordForm').modal('show');
+                staffFormError('Change Password', {!! $errors !!});
+            </script>
+            @php session()->forget('passValidation'); @endphp
+        @else
+            <script>
+                $('#squarespaceModal').modal('show');
+                staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
+            </script>
+        @endif
     @elseif(session('success'))
         <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
     @elseif(session('failure'))
         <script>oneHRAcc("{{session('failure')}}");</script>
+    @elseif(session('error'))
+        <script>
+            //Display Donor password update message
+            alertify.alert('{{session('error')}}').setting({
+                'transition': 'zoom',
+                'movable': false,
+                'modal': true,
+                'labels': 'OK'
+            }).setHeader("Change Password").show();
+        </script>
     @endif
 @endsection
