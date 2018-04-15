@@ -53,16 +53,23 @@
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/staff/hr/dashboard">DASHBOARD</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/staff/hr/registration">REGISTRATION</a>
+                </li>
                 <li class="nav-item dropdown open">
-                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">MANAGEMENT</a>
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">LISTS</a>
                     <div class="dropdown-menu">
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/registration">Registration
-                            <br>
-                        </a>
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/staff">View Lists
-                            <br>
-                        </a>
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/report/summary">View Reports</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/event">Event List</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/staff">Staff List</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/donor">Donor List</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown open">
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">REPORTS</a>
+                    <div class="dropdown-menu">
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/report/summary">Summary</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/report/exception">Reservation Cancellation</a>
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/report/transaction">Reservations</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown open">
