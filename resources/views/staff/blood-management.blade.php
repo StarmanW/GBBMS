@@ -24,7 +24,7 @@
                         <br />
                         <br />
                         <div class="form-container">
-                            <h1 class="well">Blood Management</h1>
+                            <h1 class="well mbr-section-title mbr-fonts-style align-center pb-3 display-2">Blood Management</h1>
                             <hr style="border-top:1px solid gray;" />
                             <div class="col-lg-12 well">
                                 <div class="row">
