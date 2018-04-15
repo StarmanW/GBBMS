@@ -13,9 +13,9 @@
     <!-- /#sidebar-wrapper -->
     <section class="section-table cid-qMsKEFTWPJ" id="table1-1p">
         <div class="container container-table">
-            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
             <div class="table-backpanel">
+                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Donor List</h2>
                 <div class="table-wrapper">
                     <div class="container">
                         <div class="row search">

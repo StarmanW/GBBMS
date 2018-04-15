@@ -13,24 +13,23 @@
 @section('contents')
 <section class="testimonials5 cid-qM5et8Bfce" id="testimonials5-17" data-rv-view="1335">
     <div class="mbr-overlay" style="opacity: 0.1; background-color:black;"></div>
-    <div class="container">
-        <div class="media-container-row">
-            <div class="title col-12 align-center">
-                <h2 class="pb-3 mbr-fonts-style display-1">
-                    Donation History Details
-                </h2>
-            </div>
-        </div>
-    </div>
+
     <div class="container">
         <div class="media-container-column">
             <div class="mbr-testimonial align-center col-12 col-md-10">
                 <div class="panel-item">
+                    <div class="container">
+                        <div class="media-container-row">
+                            <div class="title col-12 align-center">
+                                <h2 class="pb-3 mbr-fonts-style display-2">Donation History Details</h2>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-block">
                         <div class="profile-table-wrap">
                             <table class="table profile-table">
                                 <tbody>
-                                <th colspan="2" class="title">Reservation</th>
+                                <th colspan="2" class="title pb-3 mbr-fonts-style display-2">Reservation</th>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Reservation ID</th>
                                     <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->events->reservations[0]->resvID}}</td>
@@ -39,7 +38,7 @@
                                     <th class="body-item mbr-fonts-style display-7">Date Reserved</th>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donHistDetail->events->reservations[0]->resvDateTime), "d-M-Y")}}</td>
                                 </tr>
-                                <th colspan="2" class="title">Blood Donation</th>
+                                <th colspan="2" class="title pb-3 mbr-fonts-style display-2">Blood Donation</th>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Donated Blood Amount</th>
                                     <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->bloodVol}} ml</td>
@@ -48,7 +47,7 @@
                                     <th class="body-item mbr-fonts-style display-7">Additional Remarks</th>
                                     <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->remarks}}</td>
                                 </tr>
-                                <th colspan="2" class="title">Event</th>
+                                <th colspan="2" class="title pb-3 mbr-fonts-style display-2">Event</th>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Event ID</th>
                                     <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->events->eventID}}</td>
@@ -67,14 +66,12 @@
                                         <table class="table profile-table-nurse">
                                             <thead>
                                             <tr>
-                                                <th>No.</th>
                                                 <th>Nurse Name</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($donHistDetail->events->eventSchedules as $key => $nurses)
                                                 <tr>
-                                                    <td class="body-item mbr-fonts-style display-7">{{$key}}</td>
                                                     <td class="body-item mbr-fonts-style display-7">{{$nurses->staffs->firstName}} {{$nurses->staffs->lastName}}</td>
                                                 </tr>
                                             @endforeach

@@ -15,7 +15,8 @@
     <section class="section-table cid-qMsKT09Rch" id="table1-1q">
 
         <div class="form-container container align-center" style="width:50%">
-            <h2 class="well">Transaction Report <br/> (Reservation List) <br/><br/> Select an Event</h2>
+            <h2 class="well pb-3 mbr-fonts-style display-2">Reservation Report</h2>
+            <h2 class="well pb-3 mbr-fonts-style display-5">Select an Event</h2>
             <hr style="border-top:1px solid gray;"/>
             <div class="col-lg-12 well">
                 <div class="row">

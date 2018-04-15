@@ -17,19 +17,18 @@
 @section('contents')
     <section class="testimonials5 cid-qM5et8Bfce" id="testimonials5-17" data-rv-view="1335">
         <div class="mbr-overlay" style="opacity: 0.15; background-color:#000000;"></div>
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 align-center">
-                    <h2 class="pb-3 mbr-fonts-style display-1">
-                        Event Details
-                    </h2>
-                </div>
-            </div>
-        </div>
+
         <div class="container">
             <div class="media-container-column">
                 <div class="mbr-testimonial align-center col-12 col-md-10">
                     <div class="panel-item">
+                        <div class="container">
+                            <div class="media-container-row">
+                                <div class="title col-12 align-center">
+                                    <h2 class="pb-3 mbr-fonts-style display-2">Event Details</h2>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-block">
                             <div class="profile-table-wrap">
                                 <table class="table profile-table">

@@ -19,9 +19,9 @@
     <!-- Page Content -->
     <section class="section-table cid-qEBSaDdCCZ" id="table1-t" data-rv-view="1214">
         <div class="container container-table">
-            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Your Current Reservations</h2>
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
             <div class="table-backpanel">
+                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Your Current Reservations</h2>
                 <div class="table-wrapper">
                     <div class="container">
                         <div class="row search">
@@ -45,6 +45,7 @@
                                 <th class="head-item mbr-fonts-style display-7">Event Time</th>
                                 <th class="head-item mbr-fonts-style display-7">Reservation Status</th>
                                 <th class="head-item mbr-fonts-style display-7"></th>
+                                <th class="head-item mbr-fonts-style display-7"></th>
                             </tr>
                             </thead>
 
@@ -57,15 +58,19 @@
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}} to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">Reserved</td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">
+                                        <a href="/donor/reservation/{{$resv->resvID}}">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
+                                        @if($resv->resvStatus===1)
                                         <a href="#" onclick="cancellationPrompt('{{$resv->resvID}}');">
-                                            <i class="fa fa-calendar-times" aria-hidden="true" title="Cancel reservation now"></i>
+                                            <i class="fa fa-times" aria-hidden="true" title="Cancel reservation now"></i>
                                         </a>
                                         <form method="post" action="/donor/reservation/{{$resv->resvID}}/cancel" id="cancel{{$resv->resvID}}" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
-                                        <a href="/donor/reservation/{{$resv->resvID}}">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                        </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

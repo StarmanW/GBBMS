@@ -14,9 +14,9 @@
 @section('contents')
     <section class="section-table cid-qEBSaDdCCZ" id="table1-t" data-rv-view="1214">
         <div class="container container-table">
-            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Your Donation History</h2>
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
             <div class="table-backpanel">
+                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Your Donation History</h2>
                 <div class="table-wrapper">
                     <div class="container">
                         <div class="row search">

@@ -11,24 +11,23 @@
 
 @section('contents')
     <section class="testimonials5 cid-qM5et8Bfce" id="testimonials5-17" data-rv-view="1335">
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 align-center">
-                    <h2 class="pb-3 mbr-fonts-style display-1">
-                        Schedule Details
-                    </h2>
-                </div>
-            </div>
-        </div>
+
         <div class="container">
             <div class="media-container-column">
                 <div class="mbr-testimonial align-center col-12 col-md-10">
                     <div class="panel-item">
+                        <div class="container">
+                            <div class="media-container-row">
+                                <div class="title col-12 align-center">
+                                    <h2 class="pb-3 mbr-fonts-style display-2">Schedule Details</h2>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-block">
                             <div class="profile-table-wrap">
                                 <table class="table profile-table">
                                     <tbody>
-                                    <th colspan="2" class="title">Event</th>
+                                    <th colspan="2" class="title pb-3 mbr-fonts-style display-2">Event</th>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Event ID</th>
                                             <td class="body-item mbr-fonts-style display-7">{{$schedule->events->eventID}}</td>

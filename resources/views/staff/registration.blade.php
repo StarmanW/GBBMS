@@ -23,18 +23,18 @@
                         <div class="form-container">
                             <ul class="row nav nav-tabs">
                                 <li class="active col-md-4" id="multitab-left">
-                                    <a data-toggle="tab" href="#nurse" class="multitab-btn">Register Staff</a>
+                                    <a data-toggle="tab" href="#nurse" class="multitab-btn mbr-fonts-style align-center pb-3 display-6">Register Staff</a>
                                 </li>
                                 <li class="col-md-4" id="multitab-left">
-                                    <a data-toggle="tab" href="#event" class="multitab-btn" style="padding:0;">Add New Blood Donation Event</a>
+                                    <a data-toggle="tab" href="#event" class="multitab-btn mbr-fonts-style align-center pb-3 display-6" style="padding:0;">Add New Event</a>
                                 </li>
                                 <li class="col-md-4">
-                                    <a data-toggle="tab" href="#room" class="multitab-btn">Add New Room</a>
+                                    <a data-toggle="tab" href="#room" class="multitab-btn mbr-fonts-style align-center pb-3 display-6">Add New Room</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div id="nurse" class="tab-pane fade show active">
-                                    <h1 class="well">Register Staff</h1>
+                                    <h1 class="well mbr-section-title mbr-fonts-style align-center pb-3 display-2">Register Staff</h1>
                                     <hr style="border-top:1px solid gray;" />
                                     <div class="col-lg-12 well">
                                         <div class="row">
