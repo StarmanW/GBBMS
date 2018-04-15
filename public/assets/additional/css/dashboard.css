@@ -206,3 +206,19 @@ body {
         background-color: #c0392b;
     }
 }
+
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+    .btn-primary {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+    .btn-primary {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .btn-primary {
+        width: 25%;
+    }
+}
