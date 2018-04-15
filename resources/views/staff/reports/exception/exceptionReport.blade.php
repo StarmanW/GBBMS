@@ -77,7 +77,7 @@
                                     <tr>
                                         <td class="body-item mbr-fonts-style display-7">{{$key + 1}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$resv->events->eventID}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{$resv->events->eventName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($resv->events->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventDate), "d-M-Y")}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}} to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
                                         <td class="body-item mbr-fonts-style display-7">Room {{substr($resv->events->rooms->roomID, 3)}}, Quadrant {{$resv->events->rooms->quadrant}}, Floor {{$resv->events->rooms->floor}}</td>

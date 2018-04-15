@@ -40,7 +40,7 @@
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Event Name</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$data['event']->eventName}}</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($data['event']->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                         </tr>
                                         <tr>
                                             <th class="body-item mbr-fonts-style display-7">Date</th>
@@ -86,7 +86,7 @@
                                         <a href="/staff/hr/list/event"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         @if($data['event']->eventStatus===1)
                                         <button data-toggle="modal" data-target="#updateEventModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
-                                            <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventID}}', '{{$data['event']->eventName}}');">Cancel Event</button>
+                                            <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventID}}', '{{html_entity_decode($data['event']->eventName, ENT_QUOTES, 'UTF-8')}}');">Cancel Event</button>
                                             <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}/cancel" id="cancel{{$data['event']->eventID}}" style="display: none;">
                                                 {{csrf_field()}}
                                             </form>
@@ -121,7 +121,7 @@
                                 <div class="row" style="margin:auto">
                                     <label>
                                         <span style="color:red;">*</span>Event Name</label>
-                                    <input type="text" name="eventName" value="{{$data['event']->eventName}}" placeholder="John" class="form-control" pattern="[A-Za-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                    <input type="text" name="eventName" value="{{html_entity_decode($data['event']->eventName, ENT_QUOTES, 'UTF-8')}}" placeholder="John" class="form-control" pattern="[A-Za-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
                                         required="required">
                                 </div>
                                 <br>

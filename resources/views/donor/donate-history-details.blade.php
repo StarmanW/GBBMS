@@ -55,7 +55,7 @@
                                 </tr>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Event Name</th>
-                                    <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->events->eventName}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($donHistDetail->events->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                 </tr>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Date</th>

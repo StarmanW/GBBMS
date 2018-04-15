@@ -57,7 +57,7 @@
                                     <select name="eventID" class="form-control" required="required">
                                         <option disabled selected value>Select an event</option>
                                         @foreach($events as $event)
-                                            <option value="{{$event->eventID}}">{{$event->eventID}} - {{$event->eventName}}</option>
+                                            <option value="{{$event->eventID}}">{{$event->eventID}} - {{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</option>
                                         @endforeach
                                     </select>
                                 </div>
