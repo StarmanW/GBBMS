@@ -75,7 +75,7 @@
                                         <th class="head-item mbr-fonts-style display-7">Event Time</th>
                                         <th class="head-item mbr-fonts-style display-7">Event Room</th>
                                         <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
-                                        <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
+                                        <th class="head-item mbr-fonts-style display-7">Total Donor Absent</th>
                                         <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
                                         <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
                                     </tr>
@@ -89,7 +89,7 @@
                                             <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
                                             <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
                                             <td class="body-item mbr-fonts-style display-7">{{count($event->reservations)}}</td>
-                                            <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 3))}}</td>
+                                            <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 2))}}</td>
                                             <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 3))}}</td>
                                             <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 0))}}</td>
                                         </tr>
