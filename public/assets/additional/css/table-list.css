@@ -39,11 +39,7 @@ table .fa-bars.active,
 table .fa-calendar-times:hover,
 table .fa-calendar-times:focus,
 table .fa-calendar-times.focus,
-table .fa-calendar-times.active,
-table .fa-tint:hover,
-table .fa-tint:focus,
-table .fa-tint.focus,
-table .fa-tint.active {
+table .fa-calendar-times.active {
     color: white;
     background-color: #0d6786;
 }
@@ -62,6 +58,14 @@ table .fa-times.focus,
 table .fa-times.active {
     color: white;
     background-color: #e50039;
+}
+
+table .fa-tint:hover,
+table .fa-tint:focus,
+table .fa-tint.focus,
+table .fa-tint.active {
+    color: white;
+    background-color: #4cae4c;
 }
 
 .table-backpanel {

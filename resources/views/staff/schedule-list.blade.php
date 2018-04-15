@@ -34,11 +34,12 @@
                             <table class="table isSearch" cellspacing="0">
                                 <thead>
                                     <tr class="table-heads ">
-                                        <th class="head-item mbr-fonts-style display-7">Event ID</th>
-                                        <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                        <th class="head-item mbr-fonts-style display-7">ID</th>
+                                        <th class="head-item mbr-fonts-style display-7">Name</th>
                                         <th class="head-item mbr-fonts-style display-7">Date</th>
                                         <th class="head-item mbr-fonts-style display-7">Time</th>
-                                        <th class="head-item mbr-fonts-style display-7">Event Status</th>
+                                        <th class="head-item mbr-fonts-style display-7">Status</th>
+                                        <th class="head-item mbr-fonts-style display-7"></th>
                                         <th class="head-item mbr-fonts-style display-7"></th>
                                     </tr>
                                 </thead>
@@ -52,11 +53,13 @@
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventStartTime), 'h:i A')}} to {{date_format(date_create($schedule->events->eventEndTime), 'h:i A')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$schedule->events->getEventStatus()}}</td>
                                         <td class="body-item mbr-fonts-style display-7 button-column">
-                                            <a href="/staff/nurse/event/{{$schedule->schedID}}/manage-blood">
-                                                <i class="fa fa-tint" aria-hidden="true" title=""></i>
-                                            </a>
                                             <a href="/staff/nurse/schedule/{{$schedule->schedID}}">
                                                 <i class="fa fa-bars" aria-hidden="true" title=""></i>
+                                            </a>
+                                        </td>
+                                        <td class="body-item mbr-fonts-style display-7 button-column">
+                                            <a href="/staff/nurse/event/{{$schedule->schedID}}/manage-blood">
+                                                <i class="fa fa-tint" aria-hidden="true" title=""></i>
                                             </a>
                                         </td>
                                     </tr>
