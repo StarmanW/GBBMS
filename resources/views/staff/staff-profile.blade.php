@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="/assets/additional/css/registerForm.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/profile.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/notify.css" type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -91,9 +91,9 @@
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
+                                        <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
                                         <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
-                                        <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         @if(Auth::user()->staffPos === 1)
                                         <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
                                         @else
@@ -261,7 +261,7 @@
 @endsection
 
 @section('additionalJS')
-    <script src="/assets/additional/js/staff_util.js"></script>
+    <script src={{"/assets/additional/js/staff_util.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
     @if(count($errors) > 0)
