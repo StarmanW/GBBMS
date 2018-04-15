@@ -128,6 +128,11 @@
     <script src={{"/assets/additional/js/event_util.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
+    @if(session('cancelSuccess'))
+        <script>cancelEventSuccess("{{session('cancelSuccess')}}");</script>
+    @elseif(session('cancelFailure'))
+        <script>cancelEventFailure("{{session('cancelFailure')}}");</script>
+    @endif
     <script>
         //Menu Toggle Script
         function w3_open() {

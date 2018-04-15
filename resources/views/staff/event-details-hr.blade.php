@@ -86,8 +86,8 @@
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
-                                        @if($data['event']->eventStatus===1)
                                         <a href="/staff/hr/list/event"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
+                                        @if($data['event']->eventStatus===1)
                                             <button data-toggle="modal" data-target="#updateEventModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn">Edit Event Details</button>
                                             <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn" onclick="cancelEventPrompt('{{$data['event']->eventID}}', '{{$data['event']->eventName}}');">Cancel Event</button>
                                             <form method="POST" action="/staff/hr/list/event/{{$data['event']->eventID}}/cancel" id="cancel{{$data['event']->eventID}}" style="display: none;">
