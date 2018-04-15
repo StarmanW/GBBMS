@@ -59,7 +59,7 @@
                             <span class="iconBackground"></span>
                             <div class="col-xs-12 col-md-6 align-left">
                                 <div class="timeline-text-content">
-                                    <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">{{$event->eventName}}</h4>
+                                    <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</h4>
                                     <table class="activity-table">
                                         <tbody>
                                         <tr>

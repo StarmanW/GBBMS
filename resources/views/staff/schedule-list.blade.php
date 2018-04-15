@@ -48,7 +48,7 @@
                                 @foreach($schedules as $schedule)
                                     <tr>
                                         <td class="body-item mbr-fonts-style display-7">{{$schedule->eventID}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{$schedule->events->eventName}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($schedule->events->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventDate), 'd-M-Y')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($schedule->events->eventStartTime), 'h:i A')}} to {{date_format(date_create($schedule->events->eventEndTime), 'h:i A')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$schedule->events->getEventStatus()}}</td>

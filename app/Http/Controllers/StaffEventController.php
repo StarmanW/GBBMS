@@ -105,7 +105,7 @@ class StaffEventController extends Controller {
                 //Set event details
                 $event = new Event();
                 $event->eventID = $eventID;
-                $event->eventName = $request->input('eventName');
+                $event->eventName = htmlentities($request->input('eventName'), ENT_QUOTES, 'UTF-8');
                 $event->eventDate = $request->input('eventDate');
                 $event->eventStartTime = $request->input('eventStartTime');
                 $event->eventEndTime = $request->input('eventEndTime');
@@ -192,7 +192,7 @@ class StaffEventController extends Controller {
             return redirect()->back()->withErrors($validator)->withInput();
         else {
             //set new event details
-            $event->eventName = $request->input('eventName');
+            $event->eventName = htmlentities($request->input('eventName'), ENT_QUOTES, 'UTF-8');
             $event->eventDate = $request->input('eventDate');
             $event->eventStartTime = $request->input('eventStartTime');
             $event->eventEndTime = $request->input('eventEndTime');

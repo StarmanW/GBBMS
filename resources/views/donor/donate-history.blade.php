@@ -50,7 +50,7 @@
                             <tbody>
                             @foreach($donationHistory as $donateHist)
                                 <tr>
-                                    <td class="body-item mbr-fonts-style display-7">{{$donateHist->events->eventName}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($donateHist->events->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donateHist->events->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$donateHist->bloodVol}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$donateHist->remarks}}</td>
