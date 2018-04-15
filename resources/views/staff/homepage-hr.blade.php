@@ -17,7 +17,6 @@
 
             <div class="media-container-row container">
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/dashboard';">
-                    <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-desktop fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>
@@ -25,7 +24,6 @@
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/list/event';">
-                    <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-file-alt fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
                     </div>
@@ -33,7 +31,6 @@
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image" onclick="window.location='/staff/hr/profile';">
-                    <!-- TEMP LINK -->
                     <div class="card-img">
                         <i class="fa fa-address-book fa-5x" id="fa-card-icon-3" aria-hidden="true"></i>
                     </div>
@@ -48,10 +45,10 @@
     <section class="timeline1 cid-qMsMnVLzFg" id="timeline1-22">
         <div class="mbr-overlay" style="opacity: 0.3; background-color: black;"></div>
         <div class="container align-center">
+            @if(isset($eventList) && count($eventList) > 0)
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">Upcoming Activities</h2>
             <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style display-5"></h3>
             <div class="container timelines-container" mbri-timelines="">
-                @if(isset($eventList) && count($eventList) > 0)
                     <?php $order = "" ?>
                     @foreach ($eventList as $event)
                         <?php $order = ($order == "reverse") ? '' : 'reverse' ?>
@@ -106,13 +103,7 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="container align-center">
-                        <div class="row justify-content-md-center">
-                            <div class="mbr-white col-md-10 main-wrapper" style="padding: 40px;margin: 10%;background-color: rgba(52, 52, 52, 0.5);">
-                                <h2 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style">No upcoming events right now</h2>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">No Upcoming Activities Right Now</h2>
                 @endif
             </div>
         </div>

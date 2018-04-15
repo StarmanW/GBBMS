@@ -42,11 +42,11 @@
     <section class="timeline1 cid-qMsMnVLzFg" id="timeline1-22">
         <div class="mbr-overlay" style="opacity: 0.3; background-color: black;"></div>
         <div class="container align-center">
+            @if(isset($eventList) && count($eventList) > 0)
             <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">Upcoming Activities</h2>
             <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style display-5"></h3>
             <div class="container timelines-container" mbri-timelines="">
                 {{--set info card position--}}
-                @if(isset($eventList) && count($eventList) > 0)
                     <?php $order = "" ?>
                     @foreach ($eventList as $event)
                         <?php $order = ($order == "reverse") ? '' : 'reverse' ?>
@@ -104,13 +104,7 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="container align-center">
-                        <div class="row justify-content-md-center">
-                            <div class="mbr-white col-md-10 main-wrapper" style="padding: 40px;margin: 10%;background-color: rgba(52, 52, 52, 0.5);">
-                                <h2 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style">No upcoming events right now</h2>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">No Upcoming Activities Right Now</h2>
                 @endif
             </div>
         </div>
