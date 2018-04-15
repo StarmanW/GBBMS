@@ -66,12 +66,14 @@
                                         <table class="table profile-table-nurse">
                                             <thead>
                                             <tr>
+                                                <th>Nurse ID</th>
                                                 <th>Nurse Name</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($donHistDetail->events->eventSchedules as $key => $nurses)
+                                            @foreach($donHistDetail->events->eventSchedules as $nurses)
                                                 <tr>
+                                                    <td class="body-item mbr-fonts-style display-7">{{$nurses->staffs->staffID}}</td>
                                                     <td class="body-item mbr-fonts-style display-7">{{$nurses->staffs->firstName}} {{$nurses->staffs->lastName}}</td>
                                                 </tr>
                                             @endforeach
