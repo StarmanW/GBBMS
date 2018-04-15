@@ -14,6 +14,7 @@
 @section('contents')
     <section class="header4 cid-qM5bcKLKIf mbr-fullscreen mbr-parallax-background" id="header4-z">
         <div class="mbr-overlay" style="opacity: 0.2; background-color: black;"></div>
+
         <div class="container align-center">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">

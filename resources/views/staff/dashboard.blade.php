@@ -11,6 +11,8 @@
 
 @section('contents')
     <section class="cid-qLZoPtxl7o mbr-fullscreen mbr-parallax-background" id="header2-j">
+        <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
+
         <div class="container align-center">
             <div class="card" id="cardHeader">
                 <div class="card-header main-color-bg">

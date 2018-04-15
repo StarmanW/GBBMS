@@ -11,6 +11,8 @@
 
 @section('contents')
     <section class="section-table cid-qMsKXLSbve" id="table1-1r">
+        <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
+
         <div class="container container-table">
             <div class="table-backpanel">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Schedule List</h2>

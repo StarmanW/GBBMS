@@ -10,8 +10,9 @@
 @endsection
 
 @section('contents')
-    <!-- /#sidebar-wrapper -->
     <section class="section-table cid-qMsKEFTWPJ" id="table1-1p">
+        <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
+
         <div class="container container-table">
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
             <div class="table-backpanel">

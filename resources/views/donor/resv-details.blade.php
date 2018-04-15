@@ -16,6 +16,7 @@
 
 @section('contents')
     <section class="testimonials5 cid-qM5et8Bfce" id="testimonials5-17" data-rv-view="1335">
+        <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
 
         <div class="container">
             <div class="media-container-column">

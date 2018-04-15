@@ -13,6 +13,8 @@
 
 @section('contents')
     <section class="section-table cid-qEBSaDdCCZ" id="table1-t" data-rv-view="1214">
+        <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
+
         <div class="container container-table">
             <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5"></h3>
             <div class="table-backpanel">
