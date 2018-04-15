@@ -59,7 +59,7 @@
                         <a class="text-white dropdown-item display-4" href="/staff/hr/registration">Registration
                             <br>
                         </a>
-                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/donor">View Lists
+                        <a class="text-white dropdown-item display-4" href="/staff/hr/list/staff">View Lists
                             <br>
                         </a>
                         <a class="text-white dropdown-item display-4" href="/staff/hr/report/summary">View Reports</a>

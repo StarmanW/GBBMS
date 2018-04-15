@@ -35,28 +35,30 @@
                     <table class="table isSearch" cellspacing="0">
                         <thead>
                         @if(session('rType') === "resvList")
-                                <tr class="table-heads ">
-                                    <th class="head-item mbr-fonts-style display-7">Event ID</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Date</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Time</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Room</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
-                                </tr>
-                            </thead>
+                            <tr class="table-heads ">
+                                <th class="head-item mbr-fonts-style display-7">Event ID</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Date</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Time</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Room</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Donor Absent</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
+                            </tr>
+                        </thead>
                             <tbody>
                             @foreach($records as $key => $event)
                                 <tr>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($event->reservations)}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 2))}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 3))}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 0))}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->reservations)}}</td>
                                 </tr>
                             @endforeach
                         @elseif(session('rType') === "blood")
@@ -73,23 +75,25 @@
                                     <th class="head-item mbr-fonts-style display-7">Blood O-</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood AB+</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood AB-</th>
+                                    <th class="head-item mbr-fonts-style display-7">TOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($records as $key => $blood)
+                            @foreach($records as $key => $event)
                                 <tr>
-                                    <td class="body-item mbr-fonts-style display-7">{{$blood->events->eventID}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{$blood->events->eventName}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($blood->events->eventDate), "d-M-Y")}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($blood->events->eventStartTime), "h:i A")}} to {{date_format(date_create($blood->events->eventEndTime), "h:i A")}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 1)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 2)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 3)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 4)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 5)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 6)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 7)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{count($blood->where('bloodType', '=', 8)->where('eventID', '=', $blood->events->eventID)->get())}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 1)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 2)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 3)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 4)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 5)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 6)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 7)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 8)->where('eventID', '=', $event->eventID))}} bag(s)</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{count($event->bloods)}} bag(s)</td>
                                 </tr>
                             @endforeach
                         @endif

@@ -16,19 +16,17 @@ class ReportController extends Controller {
 
     //Function to display dashboard data
     public function index() {
-
-        //get all blood amount for each blood type and return to dashboard page
-        $bloods = Blood::all();
-
-        //save total of each blood type to array
-        $totalBlood = array(0, 0, 0, 0, 0, 0, 0, 0);
-        for ($i = 1; $i <= 8; $i++) {
-            for ($j = 0; $j < count($bloods); $j++) {
-                if ($bloods[$j]->donors->bloodType === $i) {
-                    $totalBlood[$i - 1] += 1;
-                }
-            }
-        }
+        //Get all blood amount for each blood type and return to dashboard page
+        $totalBlood = [
+            '0' => Blood::where('bloodType', '=', 1)->count(),
+            '1' => Blood::where('bloodType', '=', 2)->count(),
+            '2' => Blood::where('bloodType', '=', 3)->count(),
+            '3' => Blood::where('bloodType', '=', 4)->count(),
+            '4' => Blood::where('bloodType', '=', 5)->count(),
+            '5' => Blood::where('bloodType', '=', 6)->count(),
+            '6' => Blood::where('bloodType', '=', 7)->count(),
+            '7' => Blood::where('bloodType', '=', 8)->count()
+        ];
 
         $data = [
             'donorCount' => Donor::count(),
@@ -156,7 +154,7 @@ class ReportController extends Controller {
                 session(['rType' => 'resvList']);
                 break;
             case "blood":
-                $records = Blood::whereYear('created_at', '=', $year)->paginate(10);
+                $records = Event::whereYear('eventDate', '=', $year)->paginate(10);
                 session(['rType' => 'blood']);
                 break;
         }
@@ -182,7 +180,7 @@ class ReportController extends Controller {
                 break;
             case "blood":
                 $data = [
-                    'records' => Blood::whereYear('created_at', '=', $year)->get()
+                    'records' => Event::whereYear('eventDate', '=', $year)->get()
                 ];
                 session(['rType' => 'blood']);
                 $pdf = PDF::loadView('staff.reports.summary.annualReportPrint', $data);

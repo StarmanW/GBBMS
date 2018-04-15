@@ -19,7 +19,7 @@ class CreateBloodsTable extends Migration
             $table->string('eventID', 10);
             $table->integer('bloodType')->nullable(false);
             $table->float('bloodVol', 8, 2)->nullable(false);
-            $table->string('remarks');
+            $table->string('remarks')->nullable(true);
             $table->timestamps();
         });
     }

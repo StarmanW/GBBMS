@@ -22,36 +22,14 @@ class BloodController extends Controller {
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-        //get all blood amount for each blood type and return to dashboard page
-
-        $bloods = Blood::all();
-
-        //save total of each blood type to array
-        $totalBlood = array();
-        for ($i = 1; $i <= 8; $i++)
-            $totalBlood[$i - 1] += $bloods[$i]->bloodAmount;
-
-        return view('staff.dashboard')->with('totalBlood', $totalBlood);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create($id) {
         //get all donor id for blood management page
-
         $schedule = EventSchedule::find($id);
-
-        $event = Event::find($schedule->eventID);
-
-        $reservations = Reservation::where('eventID', '=', $event->eventID)->get();
+        $reservations = Reservation::where('eventID', '=', $schedule->eventID)->where('resvStatus', '=', 1)->get();
 
         $donors = array();
         for ($i = 0; $i < count($reservations); $i++)
@@ -59,7 +37,7 @@ class BloodController extends Controller {
 
         $data = [
             'donors' => $donors,
-            'eventID' => $event->eventID
+            'eventID' => $schedule->eventID
         ];
 
         return view('staff.blood-management')->with('data', $data);
@@ -77,14 +55,20 @@ class BloodController extends Controller {
         $validator = Validator::make($request->all(),
             [
                 'bloodBagID' => ['required', 'string', 'max:9', 'min:9', 'regex:/^((NAP)|(NAN)|(NBP)|(NBN)|(NOP)|(NON)|(ABP)|(ABN))(\d{6})$/'],
+                'donorID' => ['required', 'regex:/^D\d{6}$/'],
                 'bloodVol' => ['required', 'integer', 'between:0,500'],
                 'remarks' => ['nullable', 'string', 'max:255']
             ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         //find records by id
         $blood = Blood::find($request->bloodBagID);
         $donor = Donor::find($request->donorID);
         $event = Event::find(session('eventID'));
+        $reservation = Reservation::where('eventID', '=', session('eventID'))->where('donorID', '=', $donor->donorID)->first();
 
         if ($blood !== null)
             return redirect()->back()->with('failure', 'Blood Bag ID ' . $blood->bloodBagID . ' already exist, please try again.');
@@ -92,9 +76,9 @@ class BloodController extends Controller {
             return redirect()->back()->with('failure', 'No donor with ID' . $request->donorID . ' is found. Please try again.');
         else if ($event === null)
             return redirect()->back()->with('failure', 'No event with ID ' . $request->eventID . ' is found. Please try again.');
-        else if ($validator->fails())
-            return redirect()->back()->withErrors($validator)->withInput();
         else {
+            $reservation->resvStatus = 0;
+
             $blood = new Blood();
             $blood->bloodBagID = $request->input('bloodBagID');
             $blood->donorID = $donor->donorID;
@@ -103,10 +87,11 @@ class BloodController extends Controller {
             $blood->bloodVol = $request->input('bloodVol');
             $blood->remarks = $request->input('remarks');
 
-            if ($blood->save() === true)
-                return redirect()->back()->with('success', 'Blood donation created successfully!');
+            if ($blood->save() === true && $reservation->save() === true)
+                return redirect()->back()->with('success', 'Blood bag (' . $blood->bloodBagID . ') for (' .
+                    $donor->firstName . ' ' . $donor->firstName . ') (' . $donor->donorID  . ') has been registered!');
             else
-                return redirect()->back()->with('failure', 'Blood donation was not created.');
+                return redirect()->back()->with('failure', 'Blood bag for donor (' . $donor->donorID . ') was not created.');
         }
     }
 }
