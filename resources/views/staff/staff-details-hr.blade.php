@@ -85,11 +85,13 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <a href="/staff/hr/list/staff"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
+                                        @if($staff->staffAccStatus===1)
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
-                                        <form method="POST" action="/staff/hr/list/staff/{{$staff->staffID}}/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
+                                        <form method="POST" action="/staff/hr/list/staff/{{$staff->staffID}}/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
