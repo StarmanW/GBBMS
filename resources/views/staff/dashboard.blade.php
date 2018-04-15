@@ -71,7 +71,7 @@
                     <a href="/staff/hr/registration">
                         <button type="button" class="btn btn-lg btn-primary">Registration</button>
                     </a>
-                    <a href="/staff/hr/list/staff">
+                    <a href="/staff/hr/list/event">
                         <button type="button" class="btn btn-lg btn-primary">View Lists</button>
                     </a>
                     <a href="/staff/hr/report/summary">
