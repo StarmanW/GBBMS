@@ -25,6 +25,7 @@
 
 .chgnPass-btn {
     padding: 6px;
+    margin-left: 0;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 580px) {
