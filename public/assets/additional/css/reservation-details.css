@@ -29,3 +29,17 @@
 	background-color: #387f38 !important;
 	border-color: #387f38 !important;
 }
+
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+}
+
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+}
+
+@media only screen and (min-width: 1200px) {
+	.btn-success {
+		width: 30%;
+	}
+}
+
+
