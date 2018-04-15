@@ -51,15 +51,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/donor/upcoming-events">Upcoming Events</a>
+                    <a class="nav-link link text-white display-4" href="/donor/upcoming-events">UPCOMING EVENTS</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/donor/donation">Donation History</a>
+                    <a class="nav-link link text-white display-4" href="/donor/donation">DONATION HISTORY</a>
                     <!-- TEMP LINK -->
                 </li>
                 <li class="nav-item dropdown open">
-                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">Reservation</a>
+                    <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">RESERVATION</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="text-white dropdown-item display-4" href="/donor/reservation/current">Current Reservation</a>
                         <a class="text-white dropdown-item display-4" href="/donor/reservation">Reservation History</a>
