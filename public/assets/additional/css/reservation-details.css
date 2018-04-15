@@ -6,3 +6,26 @@
 .profile-table td {
 	text-align: left;
 }
+
+.btn-success,
+.btn-success:active {
+	background-color: #4cae4c !important;
+	border-color: #4cae4c !important;
+	color: #ffffff !important;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success.active {
+	color: #ffffff !important;
+	background-color: #387f38 !important;
+	border-color: #387f38 !important;
+}
+
+.btn-success.disabled,
+.btn-success:disabled {
+	color: #ffffff !important;
+	background-color: #387f38 !important;
+	border-color: #387f38 !important;
+}

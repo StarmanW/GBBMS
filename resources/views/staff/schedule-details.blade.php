@@ -76,10 +76,11 @@
                                 </table>
                                 <div class="card">
                                     <div class="card-body">
+                                        <a href="/staff/nurse/event/{{$schedule->schedID}}/manage-blood">
+                                            <button type="button" class="btn btn-sm btn-success profile-btn" style="width: 30%">Manage Blood Donation</button>
+                                        </a>
                                         <a href="/staff/nurse/schedule">
-                                            <button type="button" class="btn btn-sm btn-primary profile-btn">
-                                                Back
-                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary profile-btn">Back</button>
                                         </a>
                                     </div>
                                 </div>
