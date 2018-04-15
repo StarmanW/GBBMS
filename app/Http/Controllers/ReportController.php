@@ -156,7 +156,7 @@ class ReportController extends Controller {
                 session(['rType' => 'resvList']);
                 break;
             case "blood":
-                $records = Blood::whereYear('created_at', '=', $year)->paginate(10);
+                $records = Event::whereYear('eventDate', '=', $year)->paginate(10);
                 session(['rType' => 'blood']);
                 break;
         }
@@ -182,7 +182,7 @@ class ReportController extends Controller {
                 break;
             case "blood":
                 $data = [
-                    'records' => Blood::whereYear('created_at', '=', $year)->get()
+                    'records' => Event::whereYear('eventDate', '=', $year)->get()
                 ];
                 session(['rType' => 'blood']);
                 $pdf = PDF::loadView('staff.reports.summary.annualReportPrint', $data);
