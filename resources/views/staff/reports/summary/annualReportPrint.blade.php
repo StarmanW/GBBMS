@@ -35,21 +35,20 @@
                     <table class="table isSearch" cellspacing="0">
                         <thead>
                         @if(session('rType') === "resvList")
-                                <tr class="table-heads ">
-                                    <th class="head-item mbr-fonts-style display-7">Event ID</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Date</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Time</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Room</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Donor Absent</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
-                                </tr>
-                            </thead>
+                            <tr class="table-heads ">
+                                <th class="head-item mbr-fonts-style display-7">Event ID</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Date</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Time</th>
+                                <th class="head-item mbr-fonts-style display-7">Event Room</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Donor Absent</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
+                                <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
+                            </tr>
+                        </thead>
                             <tbody>
                             @foreach($records as $key => $event)
-                                @if($key === 0)
                                 <tr>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
@@ -61,18 +60,6 @@
                                     <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 3))}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 0))}}</td>
                                 </tr>
-                                @else
-                                <tr>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                    <td class="body-item mbr-fonts-style display-7"></td>
-                                </tr>
-                                @endif
                             @endforeach
                         @elseif(session('rType') === "blood")
                                 <tr class="table-heads ">

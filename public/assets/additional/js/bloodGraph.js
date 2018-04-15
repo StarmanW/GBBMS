@@ -22,14 +22,14 @@ function renderGraph(bloodDetails) {
             legendMarkerColor: "red",
             legendText: "Scale: 100 = One Hundred Blood Package",
             dataPoints: [
-                { y: bloodsCount[0], label: "-A" },
-                { y: bloodsCount[1], label: "A+" },
-                { y: bloodsCount[2], label: "B-" },
-                { y: bloodsCount[3], label: "B+"},
-                { y: bloodsCount[4], label: "AB-" },
-                { y: bloodsCount[5], label: "AB+" },
-                { y: bloodsCount[6], label: "O-" },
-                { y: bloodsCount[7], label: "O+" }
+                { y: bloodsCount[0], label: "A+" },
+                { y: bloodsCount[1], label: "A-" },
+                { y: bloodsCount[2], label: "B+" },
+                { y: bloodsCount[3], label: "B-"},
+                { y: bloodsCount[4], label: "O+" },
+                { y: bloodsCount[5], label: "O-" },
+                { y: bloodsCount[6], label: "AB+" },
+                { y: bloodsCount[7], label: "AB-" }
             ]
         }]
     });

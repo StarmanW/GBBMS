@@ -32,6 +32,11 @@
                                         <br />
                                         <br />
                                         <div class="col-sm-12">
+                                            @if(session('success'))
+                                                <p id="successParagraph" style="color:#079e04;font-size:20px;">{{session('success')}}</p>
+                                            @elseif(session('failure'))
+                                                <p id="failureParagraph" style="color:red;font-size:20px;">{{session('failure')}}</p>
+                                            @endif
                                             <div class="row" style="margin:auto">
                                                 <label>
                                                     <span style="color:red;">*</span>Blood Bag ID</label>
@@ -90,5 +95,19 @@
 
     @if(count($errors) > 0)
         <script>bloodManagementFormErr('Empty/Invalid Data Entered', {!! $errors !!});</script>
+    @endif
+
+    @if(session('success'))
+    <script>
+        setTimeout(function() {     //Remove message after 5 second
+            $('#successParagraph').remove();
+        }, 5000);
+    </script>
+    @elseif(session('failure'))
+    <script>
+        setTimeout(function() {     //Remove message after 5 second
+            $('#failureParagraph').remove();
+        }, 5000);
+    </script>
     @endif
 @endsection
