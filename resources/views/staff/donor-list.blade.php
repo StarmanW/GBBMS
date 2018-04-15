@@ -54,12 +54,12 @@
                             <table class="table isSearch" cellspacing="0">
                                 <thead>
                                 <tr class="table-heads ">
-                                    <th class="head-item mbr-fonts-style display-7">Donor ID</th>
-                                    <th class="head-item mbr-fonts-style display-7">Donor Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">ID</th>
+                                    <th class="head-item mbr-fonts-style display-7">Name</th>
                                     <th class="head-item mbr-fonts-style display-7">Gender</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood Type</th>
-                                    <th class="head-item mbr-fonts-style display-7">Phone Number</th>
-                                    <th class="head-item mbr-fonts-style display-7">Account Status</th>
+                                    <th class="head-item mbr-fonts-style display-7">Phone</th>
+                                    <th class="head-item mbr-fonts-style display-7">Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                                 </thead>

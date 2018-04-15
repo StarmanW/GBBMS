@@ -44,6 +44,7 @@
                                     <th class="head-item mbr-fonts-style display-7">Room</th>
                                     <th class="head-item mbr-fonts-style display-7">Event Status</th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
+                                    <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                             </thead>
 
@@ -56,17 +57,19 @@
                                     <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">
-                                    @if($event->reservations->where('resvStatus', '=', 1)->where('donorID', '=', Auth::id())->where('eventID', '=', $event->eventID)->count() === 0)
+                                        <a href="/donor/upcoming-events/{{$event->eventID}}">
+                                            <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
+                                        </a>
+                                    </td>
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
+                                        @if($event->reservations->where('resvStatus', '=', 1)->where('donorID', '=', Auth::id())->where('eventID', '=', $event->eventID)->count() === 0)
                                         <a href="#" onclick="reservationPrompt('{{$event->eventID}}', '{{$event->eventName}}')">
-                                            <i class="fa fa-calendar-check" aria-hidden="true" title="Reserve now"></i>
+                                            <i class="fa fa-check" aria-hidden="true" title="Reserve now"></i>
                                         </a>
                                         <form method="post" action="/donor/{{$event->eventID}}/reserve" id="reserve{{$event->eventID}}" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
-                                    @endif
-                                        <a href="/donor/upcoming-events/{{$event->eventID}}">
-                                            <i class="fa fa-bars" aria-hidden="true" title="Event details"></i>
-                                        </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

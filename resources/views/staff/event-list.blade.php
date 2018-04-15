@@ -61,12 +61,13 @@
                             <table class="table isSearch" cellspacing="0">
                                 <thead>
                                 <tr class="table-heads ">
-                                    <th class="head-item mbr-fonts-style display-7">Event ID</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">ID</th>
+                                    <th class="head-item mbr-fonts-style display-7">Name</th>
                                     <th class="head-item mbr-fonts-style display-7">Date</th>
                                     <th class="head-item mbr-fonts-style display-7">Time</th>
                                     <th class="head-item mbr-fonts-style display-7">Room</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Status</th>
+                                    <th class="head-item mbr-fonts-style display-7">Status</th>
+                                    <th class="head-item mbr-fonts-style display-7"></th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                                 </thead>
@@ -80,18 +81,22 @@
                                     <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$event->getEventStatus()}}</td>
                                     <td class="body-item mbr-fonts-style display-7 button-column">
+                                        <a href="/staff/hr/list/event/{{$event->eventID}}">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="body-item mbr-fonts-style display-7 button-column">
                                         @if($event->eventStatus===1)
                                         <a href="#" onclick="cancelEventPrompt('{{$event->eventID}}', '{{$event->eventName}}')">
-                                            <i class="fa fa-calendar-times" aria-hidden="true" title="Cancel event"></i>
+                                            <i class="fa fa-times" aria-hidden="true" title="Cancel event"></i>
                                         </a>
                                         <form method="post" action="/staff/hr/list/event/{{$event->eventID}}/cancel" id="cancel{{$event->eventID}}" style="display: none;">
                                             {{csrf_field()}}
                                         </form>
                                         @endif
-                                        <a href="/staff/hr/list/event/{{$event->eventID}}">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                        </a>
+
                                     </td>
+
                                 </tr>
                                 @endforeach
                                 </tbody>
