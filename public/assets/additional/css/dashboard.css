@@ -48,11 +48,6 @@ body {
     margin-top: 5%;
 }
 
-.align-center {
-    max-width: none;
-    width: 80%;
-}
-
 /* Navbar */
 
 .navbar {
@@ -192,10 +187,6 @@ body {
 }
 
 @media (max-width: 767px) {
-    .align-center {
-        max-width: none;
-        width: 100%;
-    }
 
     #cardHeader {
         margin-top: 15%;
