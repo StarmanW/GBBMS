@@ -131,6 +131,8 @@
 
     @if(session('success'))
         <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
+    @elseif(session('failure'))
+        <script>oneHRAcc("{{session('failure')}}");</script>
     @elseif(session('successHRDeactivate'))
         <script>staffAccDeactivationHR("{{session('successHRDeactivate')}}");</script>
     @elseif(session('failureHRDeactivate'))

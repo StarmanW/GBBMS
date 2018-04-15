@@ -252,6 +252,10 @@ class StaffController extends Controller {
         $staff = Auth::user();
         $staff->staffAccStatus = 0;
 
+        if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1) {
+            return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
+        }
+
         //redirect to staff login
         if ($staff->save()) {
             Auth::logout();                         //Log user out
@@ -270,6 +274,11 @@ class StaffController extends Controller {
     public function deactivateHR($id) {
         //Set staff account status
         $staff = Staff::find($id);
+
+        if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1) {
+            return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
+        }
+
         $staff->staffAccStatus = 0;
 
         //redirect to staff login

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Blood;
 use App\Donor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -83,6 +84,16 @@ class DonorController extends Controller {
                 }
             }
 
+            $bloods = Blood::where('donorID', '=', Auth::user()->donorID)->get();
+            $bloodCount = 0;
+            if (count($bloods) !== 0) {
+                foreach ($bloods as $blood) {
+                    $blood->bloodType = $request->input('bloodType');
+                    $blood->save();
+                    $bloodCount++;
+                }
+            }
+
             //Set member details
             $donor->firstName = $request->input('firstName');
             $donor->lastName = $request->input('lastName');
@@ -97,7 +108,7 @@ class DonorController extends Controller {
             }
             $donor->homeAddress = $request->input('homeAddress');
 
-            if($donor->save())
+            if($donor->save() === true && $bloodCount === count($bloods))
                 return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
             else
                 return redirect('/donor/profile')->with('failure', 'Oops, Profile details was not updated successfully.');

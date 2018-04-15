@@ -184,7 +184,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($donor->gender === 1) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                        <input type="radio" name="gender" required="required" value="1" @if($donor->gender === 1) {{'checked="checked"'}} @else {{'checked="checked"'}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
                                         <input type="radio" name="gender" required="required" value="0" @if($donor->gender === 0) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Female<br>
                                     </div>
                                     <div class="col-sm-6 form-group">

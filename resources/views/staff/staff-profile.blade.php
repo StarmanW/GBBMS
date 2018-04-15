@@ -93,11 +93,11 @@
                                     <div class="card-body">
                                         <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
                                         <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
+                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
                                         @if(Auth::user()->staffPos === 1)
-                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                         @else
-                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc" style="display: none;">
+                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                         @endif
                                             {{csrf_field()}}
                                         </form>
@@ -271,5 +271,7 @@
         </script>
     @elseif(session('success'))
         <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
+    @elseif(session('failure'))
+        <script>oneHRAcc("{{session('failure')}}");</script>
     @endif
 @endsection
