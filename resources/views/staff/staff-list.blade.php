@@ -86,12 +86,14 @@
                                             </a>
                                         </td>
                                         <td class="body-item mbr-fonts-style display-7 button-column">
+                                            @if($staff->staffAccStatus===1)
                                             <a href="#" onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">
                                                 <i class="fa fa-times" aria-hidden="true" title="Deactivate staff account"></i>
                                             </a>
                                             <form method="POST" action="/staff/hr/list/staff/{{$staff->staffID}}/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
                                                 {{csrf_field()}}
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

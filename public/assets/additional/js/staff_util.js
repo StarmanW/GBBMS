@@ -1,6 +1,6 @@
 //Function to prompt the user for deactivation confirmation
 function deactivateStaffAccPrompt(staffID, staffName) {
-    alertify.confirm("Confirm to deactivate staff (" + staffName + ") account?", function (e) {
+    alertify.confirm("Confirm to deactivate staff \"" + staffName + "\" " + "(" + staffID + ")" + " account?", function (e) {
         if (e) {
             $('#deactivateStaffAcc' + staffID).submit();
         }
