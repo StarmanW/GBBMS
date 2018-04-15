@@ -1,8 +1,8 @@
 //Function to prompt the user for deactivation confirmation
-function deactivateStaffAccPrompt(staffName) {
+function deactivateStaffAccPrompt(staffID, staffName) {
     alertify.confirm("Confirm to deactivate staff (" + staffName + ") account?", function (e) {
         if (e) {
-            $('#deactivateStaffAcc').submit();
+            $('#deactivateStaffAcc' + staffID).submit();
         }
     }).setting({
         'transition': 'zoom',

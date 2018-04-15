@@ -54,13 +54,14 @@
                             <table class="table isSearch" cellspacing="0">
                                 <thead>
                                 <tr class="table-heads ">
-                                    <th class="head-item mbr-fonts-style display-7">Staff ID</th>
-                                    <th class="head-item mbr-fonts-style display-7">Staff Name</th>
+                                    <th class="head-item mbr-fonts-style display-7">ID</th>
+                                    <th class="head-item mbr-fonts-style display-7">Name</th>
                                     <th class="head-item mbr-fonts-style display-7">Gender</th>
                                     <th class="head-item mbr-fonts-style display-7">Position</th>
-                                    <th class="head-item mbr-fonts-style display-7">Email Address</th>
-                                    <th class="head-item mbr-fonts-style display-7">Phone Number</th>
-                                    <th class="head-item mbr-fonts-style display-7">Account Status</th>
+                                    <th class="head-item mbr-fonts-style display-7">Email</th>
+                                    <th class="head-item mbr-fonts-style display-7">Phone</th>
+                                    <th class="head-item mbr-fonts-style display-7">Status</th>
+                                    <th class="head-item mbr-fonts-style display-7"></th>
                                     <th class="head-item mbr-fonts-style display-7"></th>
                                 </tr>
                                 </thead>
@@ -74,10 +75,18 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->emailAddress}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->phoneNum}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{$staff->getAccStatus()}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">
+                                        <td class="body-item mbr-fonts-style display-7 button-column">
                                             <a href="/staff/hr/list/staff/{{$staff->staffID}}">
-                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                <i class="fa fa-bars" aria-hidden="true" title="Staff details"></i>
                                             </a>
+                                        </td>
+                                        <td class="body-item mbr-fonts-style display-7 button-column">
+                                            <a href="#" onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">
+                                                <i class="fa fa-times" aria-hidden="true" title="Deactivate staff account"></i>
+                                            </a>
+                                            <form method="POST" action="/staff/hr/list/staff/{{$staff->staffID}}/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
+                                                {{csrf_field()}}
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -110,8 +119,17 @@
 @endsection
 
 @section('additionalJS')
-    <script src="/assets/datatables/jquery.data-tables.min.js"></script>
-    <script src="/assets/datatables/data-tables.bootstrap4.min.js"></script>
+    <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
+    <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
+    <script src={{"/assets/additional/js/staff_util.js"}}></script>
+    @if(session('success'))
+        <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
+    @elseif(session('successHRDeactivate'))
+        <script>staffAccDeactivationHR("{{session('successHRDeactivate')}}");</script>
+    @elseif(session('failureHRDeactivate'))
+        <script>staffAccDeactivationHR("{{session('failureHRDeactivate')}}");</script>
+    @endif
+
     <script>
         //Menu Toggle Script
         function w3_open() {
