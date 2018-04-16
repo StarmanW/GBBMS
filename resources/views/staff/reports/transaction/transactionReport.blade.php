@@ -43,9 +43,9 @@
                                 <th class="body-item mbr-fonts-style display-7">No.</th>
                                 <th class="head-item mbr-fonts-style display-7">Event ID</th>
                                 <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                <th class="head-item mbr-fonts-style display-7">Event Date</th>
-                                <th class="head-item mbr-fonts-style display-7">Event Time</th>
-                                <th class="head-item mbr-fonts-style display-7">Event Room</th>
+                                <th class="head-item mbr-fonts-style display-7">Date</th>
+                                <th class="head-item mbr-fonts-style display-7">Time</th>
+                                <th class="head-item mbr-fonts-style display-7">Room ID</th>
                                 <th class="head-item mbr-fonts-style display-7">Reservation ID</th>
                                 <th class="head-item mbr-fonts-style display-7">Donor ID</th>
                                 <th class="head-item mbr-fonts-style display-7">Donor Name</th>
@@ -61,10 +61,7 @@
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->events->eventStartTime), "h:i A")}}
                                         to {{date_format(date_create($resv->events->eventEndTime), "h:i A")}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        Room {{substr($resv->events->rooms->roomID, 3)}},
-                                        Quadrant {{$resv->events->rooms->quadrant}},
-                                        Floor {{$resv->events->rooms->floor}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{$resv->events->rooms->roomID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->donors->donorID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->donors->firstName}} {{$resv->donors->lastName}}</td>

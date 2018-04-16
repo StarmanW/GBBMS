@@ -48,13 +48,12 @@
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Event ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Date</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Time</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Room</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Donor Absent</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Cancelled</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Reservations Made</th>
-                                    <th class="head-item mbr-fonts-style display-7">Total Completed Reservations</th>
+                                    <th class="head-item mbr-fonts-style display-7">Date</th>
+                                    <th class="head-item mbr-fonts-style display-7">Room ID</th>
+                                    <th class="head-item mbr-fonts-style display-7">Donors Absent</th>
+                                    <th class="head-item mbr-fonts-style display-7">Reservations Cancelled</th>
+                                    <th class="head-item mbr-fonts-style display-7">Reservations Completed</th>
+                                    <th class="head-item mbr-fonts-style display-7">Reservations Made</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -63,8 +62,7 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
+                                        <td class="body-item mbr-fonts-style display-7">{{$event->rooms->roomID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 2))}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 3))}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->reservations->where('resvStatus', 0))}}</td>
@@ -75,8 +73,7 @@
                                 <tr class="table-heads ">
                                     <th class="head-item mbr-fonts-style display-7">Event ID</th>
                                     <th class="head-item mbr-fonts-style display-7">Event Name</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Date</th>
-                                    <th class="head-item mbr-fonts-style display-7">Event Time</th>
+                                    <th class="head-item mbr-fonts-style display-7">Date</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood A+</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood A-</th>
                                     <th class="head-item mbr-fonts-style display-7">Blood B+</th>
@@ -93,7 +90,6 @@
                                         <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
-                                        <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 1)->where('eventID', '=', $event->eventID))}} bag(s)</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 2)->where('eventID', '=', $event->eventID))}} bag(s)</td>
                                         <td class="body-item mbr-fonts-style display-7">{{count($event->bloods->where('bloodType', '=', 3)->where('eventID', '=', $event->eventID))}} bag(s)</td>
