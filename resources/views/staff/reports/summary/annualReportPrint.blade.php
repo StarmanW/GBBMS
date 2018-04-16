@@ -20,9 +20,9 @@
 
 <div style="text-align: center;">
     @if(session('rType') === "resvList")
-        <h2 style="margin-bottom: 2.5%;">Summary Report <br/> {{date_format(date_create($records[0]->eventDate), "Y")}} Reservation Report</h2>
+        <h2 style="margin-bottom: 2.5%;">Summary Report <br/> Reservation Report {{date_format(date_create($records[0]->eventDate), "Y")}}</h2>
     @elseif(session('rType') === "blood")
-        <h2 style="margin-bottom: 2.5%;">Summary Report <br/> {{date_format(date_create($records[0]->eventDate), "Y")}} Donated Bloods Report</h2>
+        <h2 style="margin-bottom: 2.5%;">Summary Report <br/> Blood Donation Report {{date_format(date_create($records[0]->eventDate), "Y")}}</h2>
     @endif
 </div>
 

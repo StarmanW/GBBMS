@@ -21,9 +21,9 @@
             <div class="table-backpanel">
                 <div class="table-wrapper">
                     @if(session('rType') === "resvList")
-                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">{{date_format(date_create($records[0]->eventDate), "Y")}} Reservation Report</h2>
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Reservation Report {{date_format(date_create($records[0]->eventDate), "Y")}}</h2>
                     @elseif(session('rType') === "blood")
-                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">{{date_format(date_create($records[0]->eventDate), "Y")}} Donated Bloods Report</h2>
+                        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">Blood Donation Report {{date_format(date_create($records[0]->eventDate), "Y")}}</h2>
                     @endif
                     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
                         <span style="text-align: center"><a href="./{{session('rType')}}/print" target="_blank"><button type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
