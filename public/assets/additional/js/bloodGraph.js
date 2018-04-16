@@ -11,7 +11,7 @@ function renderGraph(bloodDetails) {
             text: ""
         },
         axisY: {
-            title: "Packages"
+            title: "mL"
         },
         axisX: {
             title: "Blood Types",

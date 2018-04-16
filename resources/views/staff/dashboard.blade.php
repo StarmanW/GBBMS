@@ -45,7 +45,7 @@
                             <div class="well dash-box">
                                 <h2>
                                     <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{$data['bloodCount']}}</h2>
-                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Packages</h4>
+                                <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Bags</h4>
                             </div>
                         </div>
                     </div>

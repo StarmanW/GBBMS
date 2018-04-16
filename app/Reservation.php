@@ -26,7 +26,7 @@ class Reservation extends Model {
                 $resvStatus = 'Did not attend';
                 break;
             case 3:
-                $resvStatus = 'Donor cancelled';
+                $resvStatus = 'Cancelled by Donor';
                 break;
             case 4:
                 $resvStatus = 'Event cancelled';

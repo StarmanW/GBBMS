@@ -18,15 +18,16 @@ class ReportController extends Controller {
     public function index() {
         //Get all blood amount for each blood type and return to dashboard page
         $totalBlood = [
-            '0' => Blood::where('bloodType', '=', 1)->count(),
-            '1' => Blood::where('bloodType', '=', 2)->count(),
-            '2' => Blood::where('bloodType', '=', 3)->count(),
-            '3' => Blood::where('bloodType', '=', 4)->count(),
-            '4' => Blood::where('bloodType', '=', 5)->count(),
-            '5' => Blood::where('bloodType', '=', 6)->count(),
-            '6' => Blood::where('bloodType', '=', 7)->count(),
-            '7' => Blood::where('bloodType', '=', 8)->count()
+            '0' => Blood::where('bloodType', '=', 1)->sum('bloodVol'),
+            '1' => Blood::where('bloodType', '=', 2)->sum('bloodVol'),
+            '2' => Blood::where('bloodType', '=', 3)->sum('bloodVol'),
+            '3' => Blood::where('bloodType', '=', 4)->sum('bloodVol'),
+            '4' => Blood::where('bloodType', '=', 5)->sum('bloodVol'),
+            '5' => Blood::where('bloodType', '=', 6)->sum('bloodVol'),
+            '6' => Blood::where('bloodType', '=', 7)->sum('bloodVol'),
+            '7' => Blood::where('bloodType', '=', 8)->sum('bloodVol')
         ];
+
 
         $data = [
             'donorCount' => Donor::count(),
