@@ -89,5 +89,5 @@
 @section('additionalJS')
     <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
     <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
-    <script src={{"assets/theme/js/script.js"}}></script>
+    <script src={{"/assets/theme/js/script.js"}}></script>
 @endsection
