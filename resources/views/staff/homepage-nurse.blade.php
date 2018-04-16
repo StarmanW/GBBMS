@@ -5,9 +5,14 @@
 @endsection
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="/assets/additional/css/hover-image.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/homepage.css" type="text/css">
-    <link rel="stylesheet" href="/assets/additional/css/homepage-nurse.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href={{"/assets/additional/css/hover-image.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/homepage.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/homepage-nurse.css"}} type="text/css">
+    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -109,4 +114,29 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('additionalJS')
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+    @if(session('success'))
+        <script>
+            //Display Conclude Event Success message
+                alertify.alert('{{session('success')}}').setting({
+                    'transition': 'zoom',
+                    'movable': false,
+                    'modal': true,
+                    'labels': 'OK'
+                }).setHeader("Conclude Event Successful").show();
+        </script>
+    @elseif(session('failure'))
+        <script>
+            //Display Conclude Event Failure message
+                alertify.alert('{{session('failure')}}').setting({
+                    'transition': 'zoom',
+                    'movable': false,
+                    'modal': true,
+                    'labels': 'OK'
+                }).setHeader("Conclude Event Failed").show();
+        </script>
+    @endif
 @endsection
