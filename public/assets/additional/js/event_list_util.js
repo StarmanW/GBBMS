@@ -8,7 +8,7 @@ function displayReservationStatus(message) {
     }).setHeader("Blood Donation Reservation").show();
 }
 
-//Function to display cancellation confirm message
+//Function to display reservation confirm message
 function reservationPrompt(eventID, eventName) {
     alertify.confirm("Confirm to make reservation for event \"" + eventName + "\" (" + eventID + ")" + "?", function (e) {
         if (e) {
