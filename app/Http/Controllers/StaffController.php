@@ -26,8 +26,7 @@ class StaffController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //get all staffs and paginate for list page
         $staffs = Staff::paginate(10);
         return view('staff.staff-list')->with('staffs', $staffs);
@@ -73,9 +72,9 @@ class StaffController extends Controller {
         }
 
         //Verify if new password is the current (old) password
-        if(strcmp($request['currentPass'], $request['newPass']) == 0){
+        if (strcmp($request['currentPass'], $request['newPass']) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error", "New Password cannot be same as your current password. Please choose a different password.");
         }
 
         //Validate Data
@@ -90,7 +89,7 @@ class StaffController extends Controller {
         } else {
             //Set staff new password
             $staff->password = bcrypt($request['newPass']);
-            if($staff->save())
+            if ($staff->save())
                 return redirect()->back()->with('success', 'Password successfully changed!');
             else
                 return redirect()->back()->with('error', 'Oops, password was not successfully changed.');
@@ -112,9 +111,9 @@ class StaffController extends Controller {
             [
                 'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,'.Auth::user()->staffID.',staffID', 'regex:/\d{12}/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,' . Auth::user()->staffID . ',staffID', 'regex:/\d{12}/'],
                 'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-                'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,'.Auth::user()->staffID.',staffID',
+                'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,' . Auth::user()->staffID . ',staffID',
                 'birthDate' => 'required|date',
                 'gender' => ['required', 'boolean'],
                 'profileImage' => 'image|nullable|max:1999',
@@ -188,9 +187,9 @@ class StaffController extends Controller {
                 'staffPos' => ['required', 'boolean'],
                 'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
                 'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,'.$staff->staffID.',staffID', 'regex:/\d{12}/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,' . $staff->staffID . ',staffID', 'regex:/\d{12}/'],
                 'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-                'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,'.$staff->staffID.',staffID',
+                'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,' . $staff->staffID . ',staffID',
                 'birthDate' => 'required|date',
                 'gender' => ['required', 'boolean'],
                 'profileImage' => 'image|nullable|max:1999',
@@ -274,13 +273,11 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivateHR($id) {
-        //Set staff account status
-        $staff = Staff::where('staffID', '=', $id)->where('staffAccStatus', '=', 1)->get();
-
-        if ($staff !== 0)
+        if (Staff::where('staffID', '=', $id)->where('staffAccStatus', '=', 0)->count() !== 0) {
             return redirect()->back()->with('failure', 'Staff account has already been deactivated.');
-        else
-        {
+        } else {
+            //Set staff account status
+            $staff = Staff::find($id);
             if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1)
                 return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
 
@@ -288,9 +285,9 @@ class StaffController extends Controller {
 
             //redirect to staff login
             if ($staff->save()) {
-                return redirect()->back()->with('successHRDeactivate', 'Staff ('. $staff->staffID .') account has been successfully deactivated!');
+                return redirect()->back()->with('successHRDeactivate', 'Staff (' . $staff->staffID . ') account has been successfully deactivated!');
             } else
-                return redirect()->back()->with('failureHRDeactivate', 'Oops, an error has occurred while deactivating staff ('. $staff->staffID .')account.');
+                return redirect()->back()->with('failureHRDeactivate', 'Oops, an error has occurred while deactivating staff (' . $staff->staffID . ')account.');
         }
     }
 }
