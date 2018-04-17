@@ -47,6 +47,14 @@ class RegisterController extends Controller {
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data) {
+        //Defining custom validation message - Since "before" already have an existing custom
+        //validation message in "rescources > lang > en > validation.php". Will override if
+        //2 same attribute exist in "validation.php" file
+        //Custom message is passed as the third parameter in Validator::make();
+        $customValidationMsg = [
+            'before' => 'The nurse must be 18 years old and above to register an account.'
+        ];
+        
         return Validator::make($data, [
             'staffPos' => ['required', 'boolean'],
             'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
@@ -58,7 +66,7 @@ class RegisterController extends Controller {
             'gender' => ['required', 'boolean'],
             'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required|max:500'
-        ]);
+        ], $customValidationMsg);
     }
 
     /**
