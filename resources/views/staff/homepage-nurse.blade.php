@@ -12,7 +12,6 @@
     <link rel="stylesheet" href={{"/assets/additional/css/hover-image.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/homepage.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/homepage-nurse.css"}} type="text/css">
-    <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
 @endsection
 
 @section('contents')
@@ -28,6 +27,14 @@
                         <i class="fa fa-calendar-alt fa-5x" id="fa-card-icon-1" aria-hidden="true"></i>
                     </div>
                     <h4 class="card-title py-2 mbr-fonts-style display-2">Upcoming Schedules</h4>
+                    <p class="mbr-text mbr-fonts-style display-7"></p>
+                </div>
+                <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
+                     onclick="window.location='./schedule-history';">
+                    <div class="card-img">
+                        <i class="fa fa-history fa-5x" id="fa-card-icon-2" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="card-title py-2 mbr-fonts-style display-2">Schedule History</h4>
                     <p class="mbr-text mbr-fonts-style display-7"></p>
                 </div>
                 <div class="card col-12 col-md-6 p-5 m-3 align-center col-lg-4 card-text hover-image"
@@ -117,26 +124,15 @@
 @endsection
 
 @section('additionalJS')
-    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-    @if(session('success'))
-        <script>
-            //Display Conclude Event Success message
-                alertify.alert('{{session('success')}}').setting({
-                    'transition': 'zoom',
-                    'movable': false,
-                    'modal': true,
-                    'labels': 'OK'
-                }).setHeader("Conclude Event Successful").show();
-        </script>
-    @elseif(session('failure'))
-        <script>
-            //Display Conclude Event Failure message
-                alertify.alert('{{session('failure')}}').setting({
-                    'transition': 'zoom',
-                    'movable': false,
-                    'modal': true,
-                    'labels': 'OK'
-                }).setHeader("Conclude Event Failed").show();
-        </script>
-    @endif
+<script>
+    //Display Event  Success message
+    function cancelEventSuccess(successMsg) {
+        alertify.alert(successMsg).setting({
+            'transition': 'zoom',
+            'movable': false,
+            'modal': true,
+            'labels': 'OK'
+        }).setHeader("Event Cancelled").show();
+    }
+</script>
 @endsection

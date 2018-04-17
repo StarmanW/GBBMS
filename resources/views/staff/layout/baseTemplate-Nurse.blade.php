@@ -54,8 +54,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/staff/nurse/schedule">VIEW SCHEDULES</a>
-                    <!-- TEMP LINK -->
+                    <a class="nav-link link text-white display-4" href="/staff/nurse/schedule">UPCOMING SCHEDULES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/staff/nurse/schedule-history">SCHEDULES HISTORY</a>
                 </li>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu"
