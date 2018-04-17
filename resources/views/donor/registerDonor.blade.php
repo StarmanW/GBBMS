@@ -186,7 +186,7 @@
                 </div>
                 <div class="submit-button">
                     <button class="btn btn-primary btn-sm" type="submit" class="close" data-dismiss="modal">Accept</button>
-                    <button class="btn btn-secondary btn-sm" type="button" onclick="window.location.href = '/login';">Decline</button>
+                    <button class="btn btn-secondary btn-sm" type="button" onclick="window.location.href = '/';">Decline</button>
                 </div>
             </div>
         </div>

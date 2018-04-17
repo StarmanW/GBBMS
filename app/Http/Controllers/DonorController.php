@@ -134,7 +134,7 @@ class DonorController extends Controller {
         //Verify if new password is the current (old) password
         if(strcmp($request['currentPass'], $request['newPass']) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error","New password cannot be same as your current password. Please choose a different password.");
         }
 
         //Validate Data

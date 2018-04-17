@@ -106,7 +106,13 @@ return [
         ],
         'birthDate' => [
             'before' => 'You must be 17 years old and above to register an account.'
-        ]
+        ],
+        'newPass' => [
+            'confirmed' => 'The "confirm new password" does not match with the new password field.'
+        ],
+        'ICNum' => [
+            'unique' => 'The IC number has already been taken.'
+        ],
     ],
 
     /*
