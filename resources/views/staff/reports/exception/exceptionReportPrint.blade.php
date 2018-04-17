@@ -56,7 +56,7 @@
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->donors->donorID}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{$resv->donors->firstName}} {{$resv->donors->lastName}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{$resv->updated_at}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->updated_at), "d-M-Y h:i A")}}</td>
                             </tr>
                         @endforeach
                         </tbody>

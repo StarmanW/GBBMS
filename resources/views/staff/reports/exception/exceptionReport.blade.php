@@ -21,8 +21,7 @@
                     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
                         <span style="text-align: center"><a href="./{{$resvs[0]->eventID}}/print" target="_blank"><button
                                         type="button" class="btn btn-sm btn-primary">Print Report</button></a></span>
-                        <span style="text-align: center"><a href="/staff/hr/report/exception"><button type="button"
-                                                                                                      class="btn btn-sm btn-primary">Back to Search</button></a></span>
+                        <span style="text-align: center"><a href="/staff/hr/report/exception"><button type="button" class="btn btn-sm btn-primary">Back to Search</button></a></span>
                     </h2>
                     <div class="container">
                         <div class="row search">
@@ -65,7 +64,7 @@
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->resvID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->donors->donorID}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$resv->donors->firstName}} {{$resv->donors->lastName}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">{{$resv->updated_at}}</td>
+                                    <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($resv->updated_at), "d-M-Y h:i A")}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
