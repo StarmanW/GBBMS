@@ -141,6 +141,20 @@ class ReservationController extends Controller {
             }
         }
 
+        //Checks if donors previously reserved a specific event
+        //If donors previously cancelled a specific event, set status
+        //back to 1 instead of creating a duplicated records
+        $prevCancelledResv = Reservation::where('donorId', $donor->donorID)->where('eventID', $id)->where('resvStatus', 3)->first();
+        if ($prevCancelledResv !== null) {
+            $prevCancelledResv->resvStatus = 1;     //Update 'cancelled' status back to 'reserved'
+            
+            //Redirect to upcoming-events page with appropriate message
+            if ($prevCancelledResv->save())
+                return redirect('/donor/upcoming-events/' . $prevCancelledResv->eventID)->with('success', 'Reservation has been successfully made!');
+            else
+                return redirect('/donor/upcoming-events/')->with('failure', 'Oops, reservation was not successfully made.');
+        }
+
         //generate reservation id
         $resvID = 'R' . date('y') . sprintf('%04d', count(Reservation::all()) + 1);
 
@@ -155,7 +169,7 @@ class ReservationController extends Controller {
         if ($resv->save())
             return redirect('/donor/upcoming-events/' . $resv->eventID)->with('success', 'Reservation has been successfully made!');
         else
-            return redirect('/donor/upcoming-events')->with('failure', 'Oops, reservation was not successfully made.');
+            return redirect('/donor/upcoming-events/')->with('failure', 'Oops, reservation was not successfully made.');
     }
 
     /**
