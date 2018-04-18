@@ -18,6 +18,7 @@ class DonorController extends Controller {
      * @return void
      */
     public function __construct() {
+        //authenticate user
         $this->middleware('auth:donor');
     }
 
@@ -27,7 +28,10 @@ class DonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit() {
+        //get current user donor
         $donor = Donor::find(Auth::user()->donorID);
+
+        //return result to donor profile page
         return view('donor.donorProfile')->with('donor', $donor);
     }
 
@@ -38,7 +42,7 @@ class DonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request) {
-
+        //get current user donor
         $donor = Donor::find(Auth::user()->donorID);
 
         //Validate Data
@@ -84,6 +88,7 @@ class DonorController extends Controller {
                 }
             }
 
+            //Set donor blood details
             $bloods = Blood::where('donorID', '=', Auth::user()->donorID)->get();
             $bloodCount = 0;
             if (count($bloods) !== 0) {
@@ -94,7 +99,7 @@ class DonorController extends Controller {
                 }
             }
 
-            //Set member details
+            //Set donor details
             $donor->firstName = $request->input('firstName');
             $donor->lastName = $request->input('lastName');
             $donor->ICNum = $request->input('ICNum');
@@ -108,6 +113,7 @@ class DonorController extends Controller {
             }
             $donor->homeAddress = $request->input('homeAddress');
 
+            //return to profile page with message
             if($donor->save() === true && $bloodCount === count($bloods))
                 return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
             else
@@ -149,6 +155,8 @@ class DonorController extends Controller {
         } else {
             //Set donor new password
             $donor->password = bcrypt($request['newPass']);
+
+            //return to current page with message
             if($donor->save())
                 return redirect()->back()->with('success', 'Password successfully changed!');
             else
@@ -167,10 +175,12 @@ class DonorController extends Controller {
         $donor = Auth::user();
         $donor->donorAccStatus = 0;
 
-        //redirect to donor login
+        //redirect to donor login page with message
         if ($donor->save()) {
-            Auth::logout();                         //Log user out
-            $request->session()->invalidate();      //Invalidate the session
+            //Log user out
+            Auth::logout();
+            //Invalidate the session
+            $request->session()->invalidate();
             return redirect('/login')->with('success', 'Your account has been successfully deactivated!');
         } else
             return redirect('/login')->with('failure', 'Your account was not deactivated.');

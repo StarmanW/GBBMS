@@ -23,11 +23,10 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //get all upcoming events from events table for upcoming event list page
-        //get events after current date and sort by date in ascending order
+        //get events after current date and sort by date in ascending order and paginate into set of 10
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->paginate(10);
 
-        //get nearest 3 events to current date
+        //return result to upcoming event list page
         return view('donor.upcoming-event-list')->with('eventList', $events);
     }
 
@@ -37,10 +36,10 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function indexShort() {
-        //get 3 upcoming events from events table for homepage
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->take(3)->get();
 
+        //return 3 results to homepage
         if(count($events) > 0) {
             //get nearest 3 events to current date
             return view('donor.homepage')->with('eventList', $events);
@@ -56,15 +55,18 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //get one event for detail page
+        //get a specific event
         $event = Event::find($id);
+        //get event schedules for the event
         $eventScheds = EventSchedule::where('eventID', '=', $id)->get();
 
+        //validate data
         $data = [
             'event' => $event,
             'nurses' => $eventScheds
         ];
 
+        //return result to event details page
         return view('donor.event-details-donor')->with('data', $data);
     }
 }
