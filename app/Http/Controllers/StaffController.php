@@ -73,13 +73,13 @@ class StaffController extends Controller {
         $staff = Staff::find(Auth::user()->staffID);
 
         //Verify current password input field
-        if (!(Hash::check($request['currentPass'], Auth::user()->password))) {
+        if (!(Hash::check($request['currentPassword'], Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error", "Your current password does not match with the password you provided.");
         }
 
         //Verify if new password is the current (old) password
-        if (strcmp($request['currentPass'], $request['newPass']) == 0) {
+        if (strcmp($request['currentPassword'], $request['newPassword']) == 0) {
             //Current password and new password are same
             return redirect()->back()->with("error", "New password cannot be same as your current password. Please choose a different password.");
         }
@@ -88,8 +88,8 @@ class StaffController extends Controller {
         //Set passValidation to true so the correct modal will be displayed
         session(['passValidation' => 'true']);
         $validator = Validator::make($request->all(), [
-            'currentPass' => 'required|min:6|max:255',
-            'newPass' => 'required|min:6|max:255|confirmed'
+            'currentPassword' => 'required|min:6|max:255',
+            'newPassword' => 'required|min:6|max:255|confirmed'
         ]);
 
         //return to current page with message
@@ -97,7 +97,7 @@ class StaffController extends Controller {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             //Set staff new password
-            $staff->password = bcrypt($request['newPass']);
+            $staff->password = bcrypt($request['newPassword']);
             if ($staff->save())
                 return redirect()->back()->with('success', 'Password successfully changed!');
             else

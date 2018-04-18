@@ -240,15 +240,15 @@
                             <div class="col-sm-12">
                                 <div class="row">
                                     <label><span style="color:red;">*</span> Current Password</label>
-                                    <input type="password" name="currentPass" class="form-control" required="required">
+                                    <input type="password" name="currentPassword" class="form-control" required="required">
                                 </div>
                                 <div class="row">
                                     <label><span style="color:red;">*</span> New Password</label>
-                                    <input type="password" name="newPass" class="form-control" required="required">
+                                    <input type="password" name="newPassword" class="form-control" required="required">
                                 </div>
                                 <div class="row">
                                     <label><span style="color:red;">*</span> Confirm New Password</label>
-                                    <input type="password" name="newPass_confirmation" class="form-control" required="required">
+                                    <input type="password" name="newPassword_confirmation" class="form-control" required="required">
                                 </div>
                                 <br/>
                                 <div class="submit-button div-button-center">
