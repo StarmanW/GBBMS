@@ -13,6 +13,7 @@ class StaffDonorController extends Controller {
      * @return void
      */
     public function __construct() {
+        //authenticate user
         $this->middleware('auth:staff');
     }
 
@@ -22,7 +23,10 @@ class StaffDonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        //get all donors and paginate into set of 10
         $donors = Donor::paginate(10);
+
+        //return result to donor list page
         return view('staff.donor-list')->with('donors', $donors);
     }
 
@@ -33,7 +37,10 @@ class StaffDonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
+        //get a specific donor
         $donor = Donor::find($id);
+
+        //return result to donor profile page
         return view('staff.donor-profile-hr')->with('donor', $donor);
     }
 }

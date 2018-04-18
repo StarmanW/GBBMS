@@ -27,8 +27,10 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //get all staffs and paginate for list page
+        //get all staffs and paginate into set of 10
         $staffs = Staff::paginate(10);
+
+        //return result to staff list page
         return view('staff.staff-list')->with('staffs', $staffs);
     }
 
@@ -39,8 +41,10 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //get one staff for profile page
+        //get a specific staff
         $staff = Staff::find($id);
+
+        //return result to staff profile page
         return view('staff.staff-details-hr')->with('staff', $staff);
     }
 
@@ -50,8 +54,10 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit() {
-        //get one staff for edit
+        //get a specific staff
         $staff = Staff::find(Auth::user()->staffID);
+
+        //return result to staff profile for editing
         return view('staff.staff-profile')->with('staff', $staff);
     }
 
@@ -63,6 +69,7 @@ class StaffController extends Controller {
      */
     public function changePassword(Request $request) {
 
+        //get current user staff
         $staff = Staff::find(Auth::user()->staffID);
 
         //Verify current password input field
@@ -78,12 +85,14 @@ class StaffController extends Controller {
         }
 
         //Validate Data
-        session(['passValidation' => 'true']);          //Set passValidation to true so the correct modal will be displayed
+        //Set passValidation to true so the correct modal will be displayed
+        session(['passValidation' => 'true']);
         $validator = Validator::make($request->all(), [
             'currentPass' => 'required|min:6|max:255',
             'newPass' => 'required|min:6|max:255|confirmed'
         ]);
 
+        //return to current page with message
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
@@ -162,7 +171,7 @@ class StaffController extends Controller {
             }
             $staff->homeAddress = $request->input('homeAddress');
 
-            //redirect to staff profile with update status and message
+            //return to current page with message
             if ($staff->save())
                 return redirect()->back()->with('success', 'Staff profile details has been successfully updated!');
             else
@@ -234,7 +243,7 @@ class StaffController extends Controller {
             }
             $staff->homeAddress = $request->input('homeAddress');
 
-            //redirect to staff profile with update status and message
+            //return to current page with message
             if ($staff->save())
                 return redirect()->back()->with('success', 'Staff profile details has been successfully updated!');
             else
@@ -249,41 +258,52 @@ class StaffController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate(Request $request) {
-        //Set staff account status
+        //find current user staff
         $staff = Auth::user();
+
+        //set staff account to "deactivated"
         $staff->staffAccStatus = 0;
 
-        if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1) {
+        //if current user is HR manager and is the only HR manager, return to current page with message
+        if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1)
             return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
-        }
 
-        //redirect to staff login
+        //return to staff login page with message
         if ($staff->save()) {
-            Auth::logout();                         //Log user out
-            $request->session()->invalidate();      //Invalidate the session
+            //Log user out
+            Auth::logout();
+
+            //Invalidate the session
+            $request->session()->invalidate();
+
             return redirect('/login')->with('success', 'Your account has been successfully deactivated!');
         } else
             return redirect('/login')->with('failure', 'Your account was not deactivated.');
     }
 
     /**
-     * Update staff account status for deactivation by HR manager.
+     * Update staff account status for deactivation by HR manager only.
      *
      * @param  string $id
      * @return \Illuminate\Http\Response
      */
     public function deactivateHR($id) {
+        //if the specific staff account is deactivated
         if (Staff::where('staffID', '=', $id)->where('staffAccStatus', '=', 0)->count() !== 0) {
+            //return to current page with message
             return redirect()->back()->with('failure', 'Staff account has already been deactivated.');
         } else {
-            //Set staff account status
+            //get a specific staff account
             $staff = Staff::find($id);
+
+            //if current user is HR manager and is the only HR manager, return to current page with message
             if ($staff->staffPos === 1 && Staff::where('staffPos', '=', 1)->count() === 1)
                 return redirect()->back()->with('failure', 'Please nominate a new HR manager before proceeding.');
 
+            //set staff account status to "deactivated"
             $staff->staffAccStatus = 0;
 
-            //redirect to staff login
+            //return to staff login page with message
             if ($staff->save()) {
                 return redirect()->back()->with('successHRDeactivate', 'Staff (' . $staff->staffID . ') account has been successfully deactivated!');
             } else

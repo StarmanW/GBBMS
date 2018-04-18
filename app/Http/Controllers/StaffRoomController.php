@@ -52,6 +52,7 @@ class StaffRoomController extends Controller {
             $room->floor = $request->input('floor');
             $room->roomStatus = true;
 
+            //return to HR registration page with message
             if ($room->save() === true)
                 return redirect('/staff/hr/registration')->with('success', 'Room created successfully!');
             else
@@ -66,7 +67,10 @@ class StaffRoomController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+        //get a specific room
         $room = Room::find($id);
+
+        //return result to HR registration page
         return view('/staff/hr/registration')->with('room', $room);
     }
 
@@ -78,7 +82,7 @@ class StaffRoomController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //find room
+        //get a specific room
         $room = Room::find($id);
 
         //validate data
@@ -96,6 +100,7 @@ class StaffRoomController extends Controller {
             $room->floor = $request->input('floor');
             $room->roomStatus = $request->input('roomStatus');
 
+            //return to HR registration page with message
             if ($room->save())
                 return redirect('/staff/hr/registration')->with('success', 'Room updated successfully!');
             else
@@ -110,10 +115,12 @@ class StaffRoomController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function deactivate($id) {
-        //find room
+        //get a specific room
         $room = Room::find($id);
+        //set room status to "deactivated"
         $room->roomStatus = false;
 
+        //return to HR registration page with message
         if ($room->save())
             return redirect('/staff/hr/registration')->with('success', 'Room deactivated successfully!');
         else

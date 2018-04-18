@@ -30,13 +30,15 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //get all from events table and paginate for list page
+        //get all from events table and paginate into set of 10
         $events = Event::paginate(10);
+
+        //return result to staff event list page
         return view('staff.event-list')->with('events', $events);
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of 3 resources or less.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,13 +47,18 @@ class StaffEventController extends Controller {
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->take(3)->get();
 
+        //return result as
         if(count($events) > 0) {
+            //if current user is HR manager, return to HR homepage with result, else to nurse homepage
+            //return result as array
             if (Auth::user()->staffPos === 1) {
                 return view('staff.homepage-hr')->with('eventList', $events);
             } elseif (Auth::user()->staffPos === 0) {
                 return view('staff.homepage-nurse')->with('eventList', $events);
             }
         } else {
+            //if current user is HR manager, return to HR homepage with result, else to nurse homepage
+            //return result as single object
             if (Auth::user()->staffPos === 1) {
                 return view('staff.homepage-hr');
             } elseif (Auth::user()->staffPos === 0) {
@@ -66,8 +73,10 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //get all rooms for registration page
+        //get all rooms
         $rooms = Room::where('roomStatus', '=', 1)->get();
+
+        //return result to HR registration page
         return view('staff.registration')->with('rooms', $rooms);
     }
 
@@ -85,6 +94,7 @@ class StaffEventController extends Controller {
         //generate event ID
         $eventID = 'E' . date('y') . sprintf('%04d', count(Event::all()) + 1);
 
+        //data validation
         $validator = Validator::make($request->all(),
             [
                 'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@\! ]{2,}/'],
@@ -136,6 +146,7 @@ class StaffEventController extends Controller {
                     $evSchedSaveStats++;
                 }
 
+                //return to HR registration page with message
                 if ($eventSaveStats === true && $evSchedSaveStats === 5)
                     return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
                 else
@@ -151,16 +162,21 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //get one event for detail page
+        //get a specific event
         $event = Event::find($id);
+        //get all rooms
         $rooms = Room::all();
+        //get reservations related to the event
         $eventScheds = EventSchedule::where('eventID', '=', $event->eventID)->get();
 
+        //validate data
         $data = [
             'event' => $event,
             'rooms' => $rooms,
             'eventScheds' => $eventScheds
         ];
+
+        //return result to HR event detail page
         return view('staff.event-details-hr')->with('data', $data);
     }
 
@@ -172,8 +188,7 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //update event details
-        //get event
+        //get a specific event
         $event = Event::find($id);
 
         //validate data
@@ -196,6 +211,7 @@ class StaffEventController extends Controller {
             $event->eventEndTime = $request->input('eventEndTime');
             $event->roomID = $request->input('roomID');
 
+            //return to HR event list page with message
             if ($event->save())
                 return redirect('/staff/hr/list/event/' . $event->eventID)->with('success', 'Event updated successfully!');
             else
@@ -204,51 +220,49 @@ class StaffEventController extends Controller {
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update event status for deactivation.
      *
      * @param  string $id
      * @return \Illuminate\Http\Response
      */
     public function deactivate($id) {
-        //deactivate event without deleting
-        //Find event based on ID
+        //Get a specific event
         $event = Event::find($id);
 
-        //Set event status
+        //Set event status to "cancelled"
         $event->eventStatus = 2;
 
-        //Find related reservation id
+        //Get reservations related to the event
         $reservation = Reservation::where('resvStatus', '=', '1')->where('eventID', '=', $event->eventID)->get();
 
-        //Set related reservation status
-        $resvCount = 0;     //Counter for validation
+        //Set reservation status of reservations related to the event to "deactivated"
+        //Counter for validation
+        $resvCount = 0;
         foreach ($reservation as $resv) {
             $resv->resvStatus = 4;
             $resv->save();
             $resvCount++;
         }
 
-        //Find related event schedule id
+        //Get schedules related to the event
         $eventScheds = EventSchedule::where('schedStatus', '=', '1')->where('eventID', '=', $event->eventID)->get();
 
-        //Set related reservation status
-        $schedCount = 0;     //Counter for validation
+        //Set schedules status of schdules related to the event to "deactivated"
+        //Counter for validation
+        $schedCount = 0;
         foreach ($eventScheds as $sched) {
             $sched->schedStatus = 0;
             $sched->save();
             $schedCount++;
         }
 
-        //Redirect back to previous page
+        //Return to current page with message
         if ($resvCount !== 0 && $schedCount !== 0) {
             if ($event->save() && $resvCount === count($reservation) && $schedCount === count($eventScheds))
-                //return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
                 return redirect()->back()->with('cancelSuccess', 'Event has been successfully cancelled!');
         } elseif ($event->save()) {
-            //return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelSuccess', 'Event has been successfully cancelled!');
             return redirect()->back()->with('cancelSuccess', 'Event has been successfully cancelled!');
         } else
-            //return redirect('/staff/hr/list/event/' . $event->eventID)->with('cancelFailure', 'Event was not cancelled.');
             return redirect()->back()->with('cancelFailure', 'Event was not cancelled.');
     }
 

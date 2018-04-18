@@ -113,7 +113,7 @@ class DonorController extends Controller {
             }
             $donor->homeAddress = $request->input('homeAddress');
 
-            //return to profile page with message
+            //return to donor profile page with message
             if($donor->save() === true && $bloodCount === count($bloods))
                 return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
             else

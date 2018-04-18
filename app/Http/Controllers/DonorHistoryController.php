@@ -26,7 +26,7 @@ class DonorHistoryController extends Controller {
         //get all donation history for the current user donor and paginate into set of 10
         $donationHistory = Blood::where('donorID', '=', Auth::user()->donorID)->paginate(10);
 
-        //return result to donation history page
+        //return result to donor donation history page
         return view('donor.donate-history')->with('donationHistory', $donationHistory);
     }
 
@@ -40,7 +40,7 @@ class DonorHistoryController extends Controller {
         //find a specific donation history for the current user donor
         $donHistDetail = Blood::where('bloodBagID', $id)->where('donorID', '=', Auth::user()->donorID)->first();
 
-        //return result to donation history detail page
+        //return result to donor donation history detail page
         return view('donor.donate-history-details')->with('donHistDetail', $donHistDetail);
     }
 }

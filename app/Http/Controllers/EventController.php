@@ -26,7 +26,7 @@ class EventController extends Controller {
         //get events after current date and sort by date in ascending order and paginate into set of 10
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->paginate(10);
 
-        //return result to upcoming event list page
+        //return result to donor upcoming event list page
         return view('donor.upcoming-event-list')->with('eventList', $events);
     }
 
@@ -39,7 +39,7 @@ class EventController extends Controller {
         //get events after current date and sort by date in ascending order
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->take(3)->get();
 
-        //return 3 results to homepage
+        //return 3 results to donor homepage
         if(count($events) > 0) {
             //get nearest 3 events to current date
             return view('donor.homepage')->with('eventList', $events);
@@ -66,7 +66,7 @@ class EventController extends Controller {
             'nurses' => $eventScheds
         ];
 
-        //return result to event details page
+        //return result to donor event details page
         return view('donor.event-details-donor')->with('data', $data);
     }
 }

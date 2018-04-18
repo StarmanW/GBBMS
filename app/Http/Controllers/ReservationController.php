@@ -32,7 +32,7 @@ class ReservationController extends Controller {
         //get reservations history for the user and paginate into set of 10
         $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '!=', 1)->paginate(10);
 
-        //return result to reservation history list page
+        //return result to donor reservation history list page
         return view('donor.resv-list')->with('resvs', $resvs);
     }
 
@@ -48,7 +48,7 @@ class ReservationController extends Controller {
         //get current reservations for the user and paginate into set of 10
         $resvs = Reservation::where('donorID', '=', $donor->donorID)->where('resvStatus', '=', 1)->paginate(10);
 
-        //return result to reservation list page
+        //return result to donor reservation list page
         return view('donor.resv-current')->with('resvs', $resvs);
     }
 
@@ -95,7 +95,7 @@ class ReservationController extends Controller {
                 //get date difference
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
-                //return to upcoming events page with message
+                //return to donor upcoming events page with message
                 return redirect('/donor/upcoming-events')->with
                     (
                         'failure', 'You have donated blood at ' .
@@ -121,7 +121,7 @@ class ReservationController extends Controller {
                 //get date difference
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
-                //return to upcoming events page with message
+                //return to donor upcoming events page with message
                 return redirect('/donor/upcoming-events')->with
                     (
                         'failure', 'You have recently reserved a blood donation event that is within the 3 months period. 
@@ -137,7 +137,7 @@ class ReservationController extends Controller {
         if ($prevCancelledResv !== null) {
             $prevCancelledResv->resvStatus = 1;     //Update 'cancelled' status back to 'reserved'
             
-            //return to upcoming events page with message
+            //return to donor upcoming events page with message
             if ($prevCancelledResv->save())
                 return redirect('/donor/upcoming-events/' . $prevCancelledResv->eventID)->with('success', 'Reservation has been successfully made!');
             else
@@ -155,7 +155,7 @@ class ReservationController extends Controller {
         $resv->resvDateTime = Carbon::now();
         $resv->resvStatus = 1;
 
-        //if save successful, return to upcoming events page with message
+        //if save successful, return to donor upcoming events page with message
         if ($resv->save())
             return redirect('/donor/upcoming-events/' . $resv->eventID)->with('success', 'Reservation has been successfully made!');
         else
@@ -180,7 +180,7 @@ class ReservationController extends Controller {
         //find a specific reservation
         $reservation = Reservation::find($id);
 
-        //return result to reservation detail page
+        //return result to donor reservation detail page
         return view('donor.resv-details')->with('reservation', $reservation);
     }
 
