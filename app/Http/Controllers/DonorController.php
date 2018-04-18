@@ -132,13 +132,13 @@ class DonorController extends Controller {
         $donor = Donor::find(Auth::user()->donorID);
 
         //Verify current password input field
-        if (!(Hash::check($request['currentPass'], Auth::user()->password))) {
+        if (!(Hash::check($request['currentPassword'], Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error", "Your current password does not match with the password you provided.");
         }
 
         //Verify if new password is the current (old) password
-        if(strcmp($request['currentPass'], $request['newPass']) == 0){
+        if(strcmp($request['currentPassword'], $request['newPassword']) == 0){
             //Current password and new password are same
             return redirect()->back()->with("error","New password cannot be same as your current password. Please choose a different password.");
         }
@@ -146,15 +146,15 @@ class DonorController extends Controller {
         //Validate Data
         session(['passValidation' => 'true']);          //Set passValidation to true so the correct modal will be displayed
         $validator = Validator::make($request->all(), [
-            'currentPass' => 'required|min:6|max:255',
-            'newPass' => 'required|min:6|max:255|confirmed'
+            'currentPassword' => 'required|min:6|max:255',
+            'newPassword' => 'required|min:6|max:255|confirmed'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             //Set donor new password
-            $donor->password = bcrypt($request['newPass']);
+            $donor->password = bcrypt($request['newPassword']);
 
             //return to current page with message
             if($donor->save())
