@@ -85,7 +85,11 @@ class BloodController extends Controller {
             $blood->eventID = $event->eventID;
             $blood->bloodType = $donor->bloodType;
             $blood->bloodVol = $request->input('bloodVol');
-            $blood->remarks = $request->input('remarks');
+            if ($request['remarks'] == null) {
+                $blood->remarks = 'Completed';
+            } else {
+                $blood->remarks = $request->input('remarks');
+            }
 
             if ($blood->save() === true && $reservation->save() === true)
                 return redirect()->back()->with('success', 'Blood bag (' . $blood->bloodBagID . ') for (' .

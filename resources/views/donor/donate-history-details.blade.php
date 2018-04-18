@@ -45,7 +45,11 @@
                                 </tr>
                                 <tr>
                                     <th class="body-item mbr-fonts-style display-7">Additional Remarks</th>
-                                    <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->remarks}}</td>
+                                    @if($donHistDetail->remarks==null)
+                                        <td class="body-item mbr-fonts-style display-7">Completed</td>
+                                    @else
+                                        <td class="body-item mbr-fonts-style display-7">{{$donHistDetail->remarks}}</td>
+                                    @endif
                                 </tr>
                                 <th colspan="2" class="title pb-3 mbr-fonts-style display-2">Event</th>
                                 <tr>
