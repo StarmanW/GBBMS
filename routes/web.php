@@ -176,8 +176,8 @@ Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseSt
     /***** LIST SECTION *****/
     Route::get('/schedule', 'StaffScheduleController@index');
     Route::get('/schedule/{id}', 'StaffScheduleController@show');
-    Route::get('/schedule-history', 'StaffSchedHistoryController@index');
-    Route::get('/schedule-history/{id}', 'StaffSchedHistoryController@show');
+    Route::get('/schedule-history', 'StaffScheduleController@schedHistory');
+    Route::get('/schedule-history/{id}', 'StaffScheduleController@showHistory');
 
     /***** MANAGE BLOOD SECTION *****/
     Route::get('/event/{id}/manage-blood', 'BloodController@create');

@@ -32,7 +32,7 @@
                                 <select name="report" class="form-control" required="required">
                                     <option disabled="disabled" selected="selected">Select a report</option>
                                     <option value="resvList">Reservation Report</option>
-                                    <option value="blood">Blood Donation Repor</option>
+                                    <option value="blood">Blood Donation Report</option>
                                 </select>
                                 @if($errors->has('reportType'))
                                     <span style="color:red;">Please select an appropriate report type</span>

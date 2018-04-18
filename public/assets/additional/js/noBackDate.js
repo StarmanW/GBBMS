@@ -2,7 +2,7 @@ $(function () {
     var dtToday = new Date();
 
     var month = dtToday.getMonth() + 1;
-    var day = dtToday.getDate();
+    var day = dtToday.getDate() + 7;
     var year = dtToday.getFullYear();
     if (month < 10)
         month = '0' + month.toString();

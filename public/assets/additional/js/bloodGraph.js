@@ -18,7 +18,7 @@ function renderGraph(bloodDetails) {
         },
         data: [{
             type: "column",
-            showInLegend: true,
+            showInLegend: false,
             legendMarkerColor: "red",
             legendText: "Scale: 100 = One Hundred Blood Package",
             dataPoints: [

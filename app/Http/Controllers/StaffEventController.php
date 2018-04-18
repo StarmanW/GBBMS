@@ -88,7 +88,7 @@ class StaffEventController extends Controller {
         $validator = Validator::make($request->all(),
             [
                 'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@\! ]{2,}/'],
-                'eventDate' => ['required', 'date'],
+                'eventDate' => ['required', 'date', 'after:1 week'],
                 'eventStartTime' => ['required', 'date_format:H:i'],
                 'eventEndTime' => ['required', 'date_format:H:i'],
                 'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{3})$/']
