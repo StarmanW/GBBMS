@@ -4,9 +4,11 @@ namespace App\Http\Controllers\DonorAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller {
     /*
@@ -18,7 +20,7 @@ class ResetPasswordController extends Controller {
     | and uses a simple trait to include this behavior. You're free to
     | explore this trait and override any methods you wish to tweak.
     |
-    */
+     */
 
     use ResetsPasswords;
 
@@ -27,8 +29,7 @@ class ResetPasswordController extends Controller {
      *
      * @var string
      */
-    public $redirectTo = '/donor/homepage';
-
+    public $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -86,6 +87,30 @@ class ResetPasswordController extends Controller {
             'emailAddress' => 'required|email',
             'password' => 'required|confirmed|min:6',
         ];
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password) {
+        $user->password = Hash::make($password);
+        $user->setRememberToken(Str::random(60));
+        $user->save();
+    }
+
+    /**
+     * Get the response for a successful password reset.
+     *
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetResponse($response) {
+        return redirect($this->redirectPath())
+            ->with('status', trans($response));
     }
 
     /**
