@@ -55,7 +55,7 @@
                             @foreach($events as $event)
                             <tr>
                                 <td class="body-item mbr-fonts-style display-7">{{$event->eventID}}</td>
-                                <td class="body-item mbr-fonts-style display-7">{{$event->eventName}}</td>
+                                <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($event->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventDate), "d-M-Y")}}</td>
                                 <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($event->eventStartTime), "h:i A")}} to {{date_format(date_create($event->eventEndTime), "h:i A")}}</td>
                                 <td class="body-item mbr-fonts-style display-7">Room {{substr($event->rooms->roomID, 3)}}, Quadrant {{$event->rooms->quadrant}}, Floor {{$event->rooms->floor}}</td>
