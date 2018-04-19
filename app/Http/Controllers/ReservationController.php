@@ -96,7 +96,13 @@ class ReservationController extends Controller {
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
                 //return to donor upcoming events page with message
-                return redirect('/donor/upcoming-events')->with('failure', 'You have donated blood at ' . date_format(date_create($donation->events->eventDate), 'd F Y') . ' Please try again after ' . $dateDiff . ' days.  (After ' . date_format ($donationEventDate, 'd F Y') . ')');
+                return redirect('/donor/upcoming-events')->with
+                    (
+                        'failure', 'You have donated blood at ' .
+                        date_format(date_create($donation->events->eventDate), 'd F Y') .
+                        ' Please try again after ' . $dateDiff . ' days. 
+                        (After ' . date_format($donationEventDate, 'd F Y') . ')'
+                    );
             }
         }
 
@@ -116,7 +122,11 @@ class ReservationController extends Controller {
                 $dateDiff = $threeMntsFrmDate->diff($currentDate)->days + 1;
 
                 //return to donor upcoming events page with message
-                return redirect('/donor/upcoming-events')->with('failure', 'You have recently reserved a blood donation event that is within the 3 months period. Please try again after ' . $dateDiff . ' days. (After ' . date_format($donationEventDate, 'd F Y') . ')');
+                return redirect('/donor/upcoming-events')->with
+                    (
+                        'failure', 'You have recently reserved a blood donation event that is within the 3 months period. 
+                        Please try again after ' . $dateDiff . ' days. (After ' . date_format($donationEventDate, 'd F Y') . ')'
+                    );
             }
         }
 
