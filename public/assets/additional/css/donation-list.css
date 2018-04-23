@@ -1,0 +1,24 @@
+
+.table td {
+    padding: .60rem;
+}
+
+.fa-bars {
+    width: 1.8rem;
+    height: 1.5rem;
+    outline: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: .2em .5em;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.fa-bars:hover,
+.fa-bars:focus,
+.fa-bars.focus,
+.fa-bars.active {
+    color: white;
+    background-color: #0d6786;
+}

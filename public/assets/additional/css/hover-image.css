@@ -1,0 +1,29 @@
+.hover-image {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.hover-image:hover {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+    .card-text {
+        font-size: 150%;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+    .card-text {
+        font-size: 200%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .card-text {
+        font-size: 250%;
+    }
+}

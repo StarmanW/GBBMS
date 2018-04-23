@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Room;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class StaffRoomController extends Controller {
+
+    /**
+     * Create new controller instance
+     *
+     * @return void
+     */
+    public function __construct() {
+        //authenticate user
+        $this->middleware('auth:staff');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+        //Set the current registration tab into session
+        session(['roomTab' => 'true']);
+
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'roomNo' => ['required', 'integer', 'regex:/^[0-9]{0,3}$/'],
+            'quadrant' => ['required', 'integer', 'regex:/^[1-4]$/'],
+            'floor' => ['required', 'integer', 'regex:/^[0-9]{0,2}$/'],
+        ]);
+
+        //set room details
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else {
+            //Generate roomID
+            $roomID = sprintf('%02d', $request->input('floor')) . $request->input('quadrant') . sprintf('%03d', $request->input('roomNo'));
+
+            if(Room::find($roomID) !== null) {
+                return redirect('/staff/hr/registration')->withInput()->with('roomAddDup', 'The room has already existed in the system.');
+            }
+
+            $room = new Room();
+            $room->roomID = $roomID;
+            $room->quadrant = $request->input('quadrant');
+            $room->floor = $request->input('floor');
+            $room->roomStatus = true;
+
+            //return to HR registration page with message
+            if ($room->save() === true)
+                return redirect('/staff/hr/registration')->with('success', 'Room created successfully!');
+            else
+                return redirect('/staff/hr/registration')->with('roomAddFailed', 'Room creation was unsuccessfully.');
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        //get a specific room
+        $room = Room::find($id);
+
+        //return result to HR registration page
+        return view('/staff/hr/registration')->with('room', $room);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+        //get a specific room
+        $room = Room::find($id);
+
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'quadrant' => ['required', 'integer', 'max:1'],
+            'floor' => ['required', 'integer', 'max:2'],
+        ]);
+
+        //set room details
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator)->withInput();
+        else {
+            $room->roomID = $request->input('roomID');
+            $room->quadrant = $request->input('quadrant');
+            $room->floor = $request->input('floor');
+            $room->roomStatus = $request->input('roomStatus');
+
+            //return to HR registration page with message
+            if ($room->save())
+                return redirect('/staff/hr/registration')->with('success', 'Room updated successfully!');
+            else
+                return redirect('/staff/hr/registration')->with('failure', 'Room was not updated.');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deactivate($id) {
+        //get a specific room
+        $room = Room::find($id);
+        //set room status to "deactivated"
+        $room->roomStatus = false;
+
+        //return to HR registration page with message
+        if ($room->save())
+            return redirect('/staff/hr/registration')->with('success', 'Room deactivated successfully!');
+        else
+            return redirect('/staff/hr/registration')->with('failure', 'Room was not deactivated.');
+
+    }
+}

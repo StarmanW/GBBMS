@@ -1,0 +1,65 @@
+.title h2 {
+    margin-top: 3%;
+    margin-bottom: 60px;
+}
+
+.table th {
+    width: 220px;
+}
+
+.profile-table-wrap{
+    overflow: auto;
+}
+
+.profile-table td{
+    text-align: left;
+}
+
+.profile-table-btn{
+    padding: .2em .4em;
+    margin: 0;
+}
+
+.profile-table-btn-center {
+    text-align: center;
+}
+
+.div-button-center {
+    text-align: center;
+}
+
+.chgnPass-btn {
+    padding: 6px;
+    margin-left: 0;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 580px) {
+    .display-7 {
+        font-size:calc(.75em + .40vw);
+    }
+
+    .card-block {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .profile-btn {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 450px) and (max-width: 1200px) {
+    .card-block {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .profile-btn {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .profile-btn {
+        width: 26%;
+    }
+}
+

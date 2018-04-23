@@ -1,0 +1,74 @@
+* {
+    outline:none !important;
+}
+
+.table td {
+    padding: .60rem;
+}
+
+.table .button-column {
+    text-align: center;
+}
+
+.pagination {
+    margin:auto !important;
+}
+
+table .fa-bars,
+table .fa-check,
+table .fa-calendar-times,
+table .fa-tint,
+table .fa-times {
+    color: #505050;
+    display: inline-block;    
+    width: 1.8rem;
+    height: 1.5rem;
+    outline: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: .2em .7em;
+    margin: 0;
+    border-radius: 3px;
+}
+
+table .fa-bars:hover,
+table .fa-bars:focus,
+table .fa-bars.focus,
+table .fa-bars.active,
+table .fa-calendar-times:hover,
+table .fa-calendar-times:focus,
+table .fa-calendar-times.focus,
+table .fa-calendar-times.active {
+    color: white;
+    background-color: #0d6786;
+}
+
+table .fa-check:hover,
+table .fa-check:focus,
+table .fa-check.focus,
+table .fa-check.active {
+    color: white;
+    background-color: #4cae4c;
+}
+
+table .fa-times:hover,
+table .fa-times:focus,
+table .fa-times.focus,
+table .fa-times.active {
+    color: white;
+    background-color: #e50039;
+}
+
+table .fa-tint:hover,
+table .fa-tint:focus,
+table .fa-tint.focus,
+table .fa-tint.active {
+    color: white;
+    background-color: #4cae4c;
+}
+
+.table-backpanel {
+    background-color: #e5e5e5;
+    padding-top: 15px;
+}
