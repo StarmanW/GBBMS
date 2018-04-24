@@ -3,10 +3,10 @@ GBBMS is a Blood Bank Management System developed using PHP framework called Lar
 This system consists of three main modules which are "Donor Module", "Nurse Module
 and "HR Manager Module". 
 
-It is a web application capable of registering donors, adding upcoming blood donation events, performing blood donation booking/cancellation, maintaining staffs details, view lists of informations and generating PDF reports. 
+It is a web application capable of registering donors, adding upcoming blood donation events, performing blood donation booking/cancellation, maintaining staffs details, view lists of information and generating PDF reports. 
 
 # Development Technologies
-The system are developed and tested using the following technologies:
+The system is developed and tested using the following technologies:
 - Editor: [Visual Studio Code Version 1.22](https://code.visualstudio.com/download "VS Code")
 - Laravel: [Laravel 5.6.16](https://laravel.com/ "Laravel")
 - Database:  MariaDB 10.1.31 (XAMPP package)
@@ -17,7 +17,7 @@ The system are developed and tested using the following technologies:
 - Tested on browser: [Mozilla Firefox version 59.0.2 (64-bit)](https://www.mozilla.org/en-US/firefox/new/)
 - Tested screen resolution: Full HD 1920x1080 60Hz and mobile resolution 414x736
 
-It is highly recommended that user should fulfill the requirements above in order to fully deploy the application. 
+It is highly recommended that user should fulfil the requirements above in order to fully deploy the application. 
 In addition, user’s browser should have javascript enabled in order for certain features to fully operate.
 
 While the tested screen resolution are 1920x1080 and 414x736, the webpages are designed to be responsive on majority
