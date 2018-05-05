@@ -1,8 +1,6 @@
 @extends('baseTemplates')
 
-@section('title')
-    <title>Login</title>
-@endsection
+@section('title', "Login")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DonorAuth;
 
-use App\Donor;
+use App\Models\Donor;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +27,7 @@ class RegisterController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/donor/homepage';
+    protected $redirectTo = '/donor/home';
 
     /**
      * Create a new controller instance.

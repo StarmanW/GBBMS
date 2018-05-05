@@ -1,8 +1,6 @@
 @extends('staff.layout.baseTemplate-HR')
 
-@section('title')
-    <title>Transaction Report</title>
-@endsection
+@section('title', "Transaction Report")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">

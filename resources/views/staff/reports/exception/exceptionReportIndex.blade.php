@@ -1,8 +1,6 @@
 @extends('staff.layout.baseTemplate-HR')
 
-@section('title')
-    <title>Exception Report</title>
-@endsection
+@section('title', "Exception Report")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="/assets/datatables/data-tables.bootstrap4.min.css">

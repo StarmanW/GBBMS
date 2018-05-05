@@ -2,9 +2,9 @@
 
 @section('title')
     @if(session('rType') === "resvList")
-        <title>Summary Report - {{date_format(date_create($records[0]->eventDate), "Y")}} Reservation Report</title>
+        Summary Report - {{date_format(date_create($records[0]->eventDate), "Y")}} Reservation Report
     @elseif(session('rType') === "blood")
-        <title>Summary Report - {{date_format(date_create($records[0]->eventDate), "Y")}} Donated Bloods Report</title>
+        Summary Report - {{date_format(date_create($records[0]->eventDate), "Y")}} Donated Bloods Report
     @endif
 @endsection
 

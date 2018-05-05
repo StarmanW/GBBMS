@@ -1,8 +1,6 @@
 @extends('baseTemplates')
 
-@section('title')
-    <title>Donor Reset Password</title>
-@endsection
+@section('title', "Donor Reset Password")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="{{'/assets/additional/css/registerForm.css'}}" type="text/css">

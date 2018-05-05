@@ -1,7 +1,7 @@
 @extends('staff.layout.baseTemplate-HR')
 
 @section('title')
-    <title>Event ({{$resvs[0]->eventID}}) Reservation Report</title>
+    Event ({{$resvs[0]->eventID}}) Reservation Report
 @endsection
 
 @section('additionalCSS')

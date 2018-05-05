@@ -1,8 +1,6 @@
 @extends((Auth::guest() === true) ? 'baseTemplates' : ((Auth::user() instanceof \App\Donor) ? 'donor.layout.baseTemplate' : ((Auth::user()->staffPos === 1) ? 'staff.layout.baseTemplate-HR' : 'staff.layout.baseTemplate-Nurse')))
 
-@section('title')
-    <title>An Error Occurred</title>
-@endsection
+@section('title', "An Error Occurred")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="/assets/additional/css/error.css" type="text/css">

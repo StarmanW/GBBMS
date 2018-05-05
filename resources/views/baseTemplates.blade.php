@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{'/assets/images/gLogo.png'}}" type="image/x-icon">
     <meta name="description" content="">
-    @yield('title')
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{'/assets/web/assets/mobirise-icons/mobirise-icons.css'}}">
     <link rel="stylesheet" href="{{'/assets/tether/tether.min.css'}}">
     <link rel="stylesheet" href="{{'/assets/bootstrap/css/bootstrap.min.css'}}">

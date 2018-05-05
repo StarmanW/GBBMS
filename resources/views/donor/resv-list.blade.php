@@ -1,8 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
-@section('title')
-    <title>Reservation List</title>
-@endsection
+@section('title', "Reservation List")
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/datatables/data-tables.bootstrap4.min.css"}}>

@@ -1,8 +1,6 @@
 @extends('baseTemplates')
 
-@section('title')
-    <title>Register Donor</title>
-@endsection
+@section('title', "Register Donor")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>

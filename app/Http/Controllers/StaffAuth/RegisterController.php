@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\StaffAuth;
 
-use App\Staff;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -28,7 +28,7 @@ class RegisterController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/staff/hr/homepage';
+    protected $redirectTo = '/staff/hr/home';
 
     /**
      * Create a new controller instance.
@@ -143,7 +143,7 @@ class RegisterController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function showRegistrationForm() {
-        return view('staff.registration');    //Return registration form in "staff" > "auth" folder
+        return view('staff.hrm.registration');    //Return registration form in "staff" > "auth" folder
     }
 
     /**

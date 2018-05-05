@@ -1,8 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
-@section('title')
-    <title>Donation History Details</title>
-@endsection
+@section('title', "Donation History Details")
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/additional/css/scrollToTop.css"}} type="text/css">

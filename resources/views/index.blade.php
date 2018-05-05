@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="{{'/assets/additional/css/index.css'}}">
 @endsection
 
-@section('title')
-    <title>GBBMS</title>
-@endsection
+@section('title', "GBBMS")
 
 @section('contents')
     <section class="cid-qOJqjMLUFF mbr-fullscreen mbr-parallax-background" id="header2-f">
@@ -15,7 +13,7 @@
         <div class="container align-center">
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10 main-wrapper">
-                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Gleaneagles Blood Donation</h1>
+                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Gleaneagles <br> Blood Donation</h1>
                     <div class="">
                         <p class="mbr-text pb-3 mbr-fonts-style display-5">
                             <i>Donating one unit of blood can save three lives.</i>

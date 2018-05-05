@@ -77,17 +77,17 @@ return [
     'providers' => [
         'donors' => [
             'driver' => 'eloquent',
-            'model' => App\Donor::class,
+            'model' => App\Models\Donor::class,
         ],
 
         'staff' => [
             'driver' => 'eloquent',
-            'model' => App\Staff::class,
+            'model' => App\Models\Staff::class,
         ],
 
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

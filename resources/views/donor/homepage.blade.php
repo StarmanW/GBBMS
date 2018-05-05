@@ -1,6 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
-@section('title')<title>Home - Donor</title>@endsection
+@section('title', "Home - Donor")
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/additional/css/hover-image.css"}} type="text/css">

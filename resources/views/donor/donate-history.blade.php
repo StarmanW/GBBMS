@@ -1,8 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
-@section('title')
-    <title>Donation History</title>
-@endsection
+@section('title', "Donation History")
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/datatables/data-tables.bootstrap4.min.css"}}>

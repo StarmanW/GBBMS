@@ -1,8 +1,6 @@
 @extends(((Auth::user()->staffPos === 1) ? 'staff.layout.baseTemplate-HR' : 'staff.layout.baseTemplate-Nurse'))
 
-@section('title')
-    <title>Staff Profile</title>
-@endsection
+@section('title', "Staff Profile")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />

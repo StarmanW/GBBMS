@@ -12,8 +12,7 @@
 */
 
 /***** Non-Auth Routes *****/
-Route::group(['middleware' => ['guest']], function () {
-
+Route::group(['middleware' => ['web', 'staff.guest', 'donor.guest']], function () {
     //Main homepage
     Route::get('/', function () {
         return view('index');
@@ -21,17 +20,7 @@ Route::group(['middleware' => ['guest']], function () {
 
     //Login Route
     Route::get('/login', function () {
-        //Validate if donor is authenticated
-        if (Auth::guard('donor')->check()) {
-            return redirect('/donor/homepage');
-        } elseif (Auth::guard('staff')->check()) {                  //Validate if staff is authenticated
-            if (Auth::guard('staff')->user()->staffPos === 1)       //Verify staff position is HR Manager
-                return redirect('/staff/hr/homepage');
-            elseif (Auth::guard('staff')->user()->staffPos === 0)   //Verify staff position is Nurse
-                return redirect('/staff/nurse/homepage');
-        } else {
-            return view('login');                              //Redirect default guest to login page
-        }
+            return view('login');
     })->name('login');
 
     //Donor Login & Register Route
@@ -56,34 +45,34 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 //Donor Routes grouped under "/donor/..."
-Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
+Route::group(['prefix' => 'donor', 'middleware' => ['web', 'auth:donor']], function () {
 
     //Homepage
-    Route::get('/homepage', 'EventController@indexShort');
+    Route::get('/home', 'DonorControllers\EventController@indexShort');
 
     //Logout
     Route::post('/logout', 'DonorAuth\LoginController@logout')->name('logout');
 
     //Donor profile view, edit and deactivate
-    Route::get('/profile', 'DonorController@edit');
-    Route::post('/profile', 'DonorController@update');
-    Route::post('/profile/password', 'DonorController@changePassword');
-    Route::post('/profile/deactivate', 'DonorController@deactivate');
+    Route::get('/profile', 'DonorControllers\DonorController@edit');
+    Route::post('/profile', 'DonorControllers\DonorController@update');
+    Route::post('/profile/password', 'DonorControllers\DonorController@changePassword');
+    Route::post('/profile/deactivate', 'DonorControllers\DonorController@deactivate');
 
     //Upcoming events and booking of events
-    Route::get('/upcoming-events', 'EventController@index');
-    Route::get('/upcoming-events/{id}', 'EventController@show');
-    Route::post('{id}/reserve', 'ReservationController@store');
+    Route::get('/upcoming-events', 'DonorControllers\EventController@index');
+    Route::get('/upcoming-events/{id}', 'DonorControllers\EventController@show');
+    Route::post('{id}/reserve', 'DonorControllers\ReservationController@store');
 
     //Reservation
-    Route::get('/reservation', 'ReservationController@index');
-    Route::get('/reservation/current', 'ReservationController@resvCurrent');
-    Route::get('/reservation/{id}', 'ReservationController@show');
-    Route::post('/reservation/{id}/cancel', 'ReservationController@deactivate');
+    Route::get('/reservation', 'DonorControllers\ReservationController@index');
+    Route::get('/reservation/current', 'DonorControllers\ReservationController@resvCurrent');
+    Route::get('/reservation/{id}', 'DonorControllers\ReservationController@show');
+    Route::post('/reservation/{id}/cancel', 'DonorControllers\ReservationController@deactivate');
 
     //Donor blood donation
-    Route::get('/donation', 'DonorHistoryController@index');
-    Route::get('/donation/{id}/detail', 'DonorHistoryController@show');
+    Route::get('/donation', 'DonorControllers\DonorHistoryController@index');
+    Route::get('/donation/{id}/detail', 'DonorControllers\DonorHistoryController@show');
 
     //Fallback route for 404 error
     Route::fallback(function(){
@@ -92,65 +81,65 @@ Route::group(['prefix' => 'donor', 'middleware' => 'auth:donor'], function () {
 });
 
 //HR Manager Routes grouped under "/staff/hr/..."
-Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']], function () {
+Route::group(['prefix' => 'staff/hr', 'middleware' => ['web', 'auth:staff', 'HRStaff']], function () {
 
     //Homepage
-    Route::get('/homepage', 'StaffEventController@indexShort');
+    Route::get('/home', 'StaffControllers\StaffEventController@indexShort');
 
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
     //Staff profile view, edit and deactivate
-    Route::get('/profile', 'StaffController@edit');
-    Route::post('/profile', 'StaffController@update');
-    Route::post('/profile/password', 'StaffController@changePassword');
-    Route::post('/profile/deactivate', 'StaffController@deactivate');
+    Route::get('/profile', 'StaffControllers\StaffController@edit');
+    Route::post('/profile', 'StaffControllers\StaffController@update');
+    Route::post('/profile/password', 'StaffControllers\StaffController@changePassword');
+    Route::post('/profile/deactivate', 'StaffControllers\StaffController@deactivate');
 
     /***** REGISTER SECTION *****/
     //Staff Register
-    Route::get('/registration', 'StaffEventController@create')->name('register');
+    Route::get('/registration', 'StaffControllers\StaffEventController@create')->name('register');
     Route::post('/registration', 'StaffAuth\RegisterController@register');
 
     //Event Register
-    Route::post('/registration/event', 'StaffEventController@store');
+    Route::post('/registration/event', 'StaffControllers\StaffEventController@store');
 
     //Room register
-    Route::post('/registration/room', 'StaffRoomController@store');
+    Route::post('/registration/room', 'StaffControllers\StaffRoomController@store');
 
     /***** LIST SECTION *****/
-    Route::get('/list/donor', 'StaffDonorController@index');
-    Route::get('/list/donor/{id}', 'StaffDonorController@show');
+    Route::get('/list/donor', 'StaffControllers\StaffDonorController@index');
+    Route::get('/list/donor/{id}', 'StaffControllers\StaffDonorController@show');
 
-    Route::get('/list/staff', 'StaffController@index');
-    Route::get('/list/staff/{id}', 'StaffController@show');
-    Route::post('/list/staff/{id}', 'StaffController@updateHR');
-    Route::post('/list/staff/{id}/deactivate', 'StaffController@deactivateHR');
+    Route::get('/list/staff', 'StaffControllers\StaffController@index');
+    Route::get('/list/staff/{id}', 'StaffControllers\StaffController@show');
+    Route::post('/list/staff/{id}', 'StaffControllers\StaffController@updateHR');
+    Route::post('/list/staff/{id}/deactivate', 'StaffControllers\StaffController@deactivateHR');
 
-    Route::get('/list/event', 'StaffEventController@index');
-    Route::get('/list/event/{id}', 'StaffEventController@show');
-    Route::post('/list/event/{id}', 'StaffEventController@update');
-    Route::post('/list/event/{id}/cancel', 'StaffEventController@deactivate');
+    Route::get('/list/event', 'StaffControllers\StaffEventController@index');
+    Route::get('/list/event/{id}', 'StaffControllers\StaffEventController@show');
+    Route::post('/list/event/{id}', 'StaffControllers\StaffEventController@update');
+    Route::post('/list/event/{id}/cancel', 'StaffControllers\StaffEventController@deactivate');
 
-    Route::get('/dashboard', 'ReportController@index');
+    Route::get('/dashboard', 'StaffControllers\ReportController@index');
 
     //Reports route
     //Exception Report
-    Route::get('/report/exception', 'ReportController@exceptionReportIndex');
-    Route::post('/report/exception', 'ReportController@exceptionReportProcessForm');
-    Route::get('/report/exception/{id}', 'ReportController@exceptionReport');
-    Route::get('/report/exception/{id}/print', 'ReportController@exceptionReportPrint');
+    Route::get('/report/exception', 'StaffControllers\ReportController@exceptionReportIndex');
+    Route::post('/report/exception', 'StaffControllers\ReportController@exceptionReportProcessForm');
+    Route::get('/report/exception/{id}', 'StaffControllers\ReportController@exceptionReport');
+    Route::get('/report/exception/{id}/print', 'StaffControllers\ReportController@exceptionReportPrint');
 
     //Transaction Report
-    Route::get('/report/transaction', 'ReportController@transactionReportIndex');
-    Route::post('/report/transaction/', 'ReportController@transactionReportProcessForm');
-    Route::get('/report/transaction/{id}', 'ReportController@transactionReport');
-    Route::get('/report/transaction/{id}/print', 'ReportController@transactionReportPrint');
+    Route::get('/report/transaction', 'StaffControllers\ReportController@transactionReportIndex');
+    Route::post('/report/transaction/', 'StaffControllers\ReportController@transactionReportProcessForm');
+    Route::get('/report/transaction/{id}', 'StaffControllers\ReportController@transactionReport');
+    Route::get('/report/transaction/{id}/print', 'StaffControllers\ReportController@transactionReportPrint');
 
     //Summary Report
-    Route::get('/report/summary', 'ReportController@summaryReportIndex');
-    Route::post('/report/summary', 'ReportController@summaryReportProcessForm');
-    Route::get('/report/summary/{year}/{rType}', 'ReportController@summaryReport');
-    Route::get('/report/summary/{year}/{rType}/print', 'ReportController@summaryReportPrint');
+    Route::get('/report/summary', 'StaffControllers\ReportController@summaryReportIndex');
+    Route::post('/report/summary', 'StaffControllers\ReportController@summaryReportProcessForm');
+    Route::get('/report/summary/{year}/{rType}', 'StaffControllers\ReportController@summaryReport');
+    Route::get('/report/summary/{year}/{rType}/print', 'StaffControllers\ReportController@summaryReportPrint');
 
     //Fallback route for 404 error
     Route::fallback(function(){
@@ -159,30 +148,30 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['auth:staff', 'HRStaff']]
 });
 
 //Nurse Routes grouped under "/staff/nurse/..."
-Route::group(['prefix' => 'staff/nurse', 'middleware' => ['auth:staff', 'NurseStaff']], function () {
+Route::group(['prefix' => 'staff/nurse', 'middleware' => ['web', 'auth:staff', 'NurseStaff']], function () {
 
     //Homepage
-    Route::get('/homepage', 'StaffEventController@indexShort');
+    Route::get('/home', 'StaffControllers\StaffEventController@indexShort');
 
     //Logout
     Route::post('/logout', 'StaffAuth\LoginController@logout')->name('logout');
 
     //Profile view, edit and deactivate
-    Route::get('/profile', 'StaffController@edit');
-    Route::post('/profile', 'StaffController@update');
-    Route::post('/profile/password', 'StaffController@changePassword');
-    Route::post('/profile/deactivate', 'StaffController@deactivate');
+    Route::get('/profile', 'StaffControllers\StaffController@edit');
+    Route::post('/profile', 'StaffControllers\StaffController@update');
+    Route::post('/profile/password', 'StaffControllers\StaffController@changePassword');
+    Route::post('/profile/deactivate', 'StaffControllers\StaffController@deactivate');
 
     /***** LIST SECTION *****/
-    Route::get('/schedule', 'StaffScheduleController@index');
-    Route::get('/schedule/{id}', 'StaffScheduleController@show');
-    Route::get('/schedule-history', 'StaffScheduleController@schedHistory');
-    Route::get('/schedule-history/{id}', 'StaffScheduleController@showHistory');
+    Route::get('/schedule', 'StaffControllers\StaffScheduleController@index');
+    Route::get('/schedule/{id}', 'StaffControllers\StaffScheduleController@show');
+    Route::get('/schedule-history', 'StaffControllers\StaffScheduleController@schedHistory');
+    Route::get('/schedule-history/{id}', 'StaffControllers\StaffScheduleController@showHistory');
 
     /***** MANAGE BLOOD SECTION *****/
-    Route::get('/event/{id}/manage-blood', 'BloodController@create');
-    Route::post('/event/{id}/manage-blood', 'BloodController@store');
-    Route::post('/event/{id}/conclude', 'ConcludeEventController@update');
+    Route::get('/event/{id}/manage-blood', 'StaffControllers\BloodController@create');
+    Route::post('/event/{id}/manage-blood', 'StaffControllers\BloodController@store');
+    Route::post('/event/{id}/conclude', 'StaffControllers\ConcludeEventController@update');
 
     //Fallback route for 404 error
     Route::fallback(function(){

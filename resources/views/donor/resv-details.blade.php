@@ -1,8 +1,6 @@
 @extends('donor.layout.baseTemplate')
 
-@section('title')
-    <title>Reservation Details</title>
-@endsection
+@section('title', "Reservation Details")
 
 @section('additionalCSS')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />

@@ -1,8 +1,6 @@
 @extends('staff.layout.baseTemplate-HR')
 
-@section('title')
-    <title>Summary Report</title>
-@endsection
+@section('title', "Summary Report")
 
 @section('additionalCSS')
     <link rel="stylesheet" href={{"/assets/datatables/data-tables.bootstrap4.min.css"}}>
