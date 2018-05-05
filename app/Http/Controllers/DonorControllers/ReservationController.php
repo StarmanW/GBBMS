@@ -184,13 +184,19 @@ class ReservationController extends Controller {
         //find a specific reservation
         $resv = Reservation::find($id);
 
-        //set reservation status to "Donor cancelled"
-        $resv->resvStatus = 3;
-
-        //return to current page with message
-        if ($resv->save())
-            return redirect()->back()->with('success', 'Reservation has been successfully cancelled!');
-        else
+        //Verify donor ID to prevent cancellation of other reservations
+        if ($resv->donorID !== Auth::id()) {
             return redirect()->back()->with('failure', 'Reservation was not successfully cancelled.');
+        } elseif ($resv->donorID === Auth::id()) {
+            //set reservation status to "Donor cancelled"
+            $resv->resvStatus = 3;
+
+            //return to current page with message
+            if ($resv->save()) {
+                return redirect()->back()->with('success', 'Reservation has been successfully cancelled!');
+            } else {
+                return redirect()->back()->with('failure', 'Reservation was not successfully cancelled.');
+            }
+        }
     }
 }
