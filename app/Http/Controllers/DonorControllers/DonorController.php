@@ -48,22 +48,21 @@ class DonorController extends Controller {
 
         //Validate Data
         $validator = Validator::make($request->all(), [
-            'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'ICNum' => ['required', 'min:12', 'max:12', 'regex:/\d{12}/', 'unique:donors,ICNum,'.Auth::user()->donorID.',donorID'],
-            'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
-            'emailAddress' => 'required|email|max:255|unique:donors,emailAddress,'.Auth::user()->emailAddress.',emailAddress',
+            'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,255}$/'],
+            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,255}$/'],
+            'ICNum' => ['required', 'min:12', 'max:12', 'regex:/^\d{12}$/', 'unique:donors,ICNum,' . Auth::user()->donorID . ',donorID'],
+            'phoneNum' => ['required', 'max:20', 'regex:/^([0-9]|[0-9\-]){3,20}$/'],
+            'emailAddress' => 'required|email|max:255|unique:donors,emailAddress,' . Auth::user()->emailAddress . ',emailAddress',
             'birthDate' => 'required|date',
-            'bloodType' => ['required', 'regex:/[1-8]{1}/'],
+            'bloodType' => ['required', 'regex:/^[1-8]{1}$/'],
             'gender' => ['required', 'boolean'],
             'profileImage' => 'image|nullable|max:1999',
             'homeAddress' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
         } else {
-
             //Handle file upload
             if ($request->hasFile('profileImage')) {
                 //Get filename
@@ -115,10 +114,18 @@ class DonorController extends Controller {
             $donor->homeAddress = $request->input('homeAddress');
 
             //return to donor profile page with message
-            if($donor->save() === true && $bloodCount === count($bloods))
-                return redirect('/donor/profile')->with('success', 'Profile details has been successfully updated!');
-            else
-                return redirect('/donor/profile')->with('failure', 'Oops, Profile details was not updated successfully.');
+            if ($donor->save() === true && $bloodCount === count($bloods)) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Profile details has been successfully updated!',
+                    'user' => $donor
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Oops, Profile details was not updated successfully.'
+                ]);
+            }
         }
     }
 
@@ -129,39 +136,50 @@ class DonorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function changePassword(Request $request) {
-
         $donor = Donor::find(Auth::user()->donorID);
 
         //Verify current password input field
         if (!(Hash::check($request['currentPassword'], Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("error", "Your current password does not match with the password you provided.");
+            // The passwords matches with old one
+            return response()->json([
+                'validationFailed' => true,
+                'validationData' => ['currentPassword' => ['Your current password does not match with the password you provided.']]
+            ]);
         }
 
         //Verify if new password is the current (old) password
-        if(strcmp($request['currentPassword'], $request['newPassword']) == 0){
+        if (strcmp($request['currentPassword'], $request['newPassword']) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error","New password cannot be same as your current password. Please choose a different password.");
+            return response()->json([
+                'validationFailed' => true,
+                'validationData' => ['newPassword' => ['New password cannot be same as your current password. Please choose a different password.']]
+            ]);
         }
 
         //Validate Data
-        session(['passValidation' => 'true']);          //Set passValidation to true so the correct modal will be displayed
         $validator = Validator::make($request->all(), [
             'currentPassword' => 'required|min:6|max:255',
             'newPassword' => 'required|min:6|max:255|confirmed'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
         } else {
             //Set donor new password
             $donor->password = bcrypt($request['newPassword']);
 
             //return to current page with message
-            if($donor->save())
-                return redirect()->back()->with('success', 'Password successfully changed!');
-            else
-                return redirect()->back()->with('error', 'Oops, password was not successfully changed.');
+            if ($donor->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Password successfully changed!'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Oops, password was not successfully changed.'
+                ]);
+            }
         }
     }
 

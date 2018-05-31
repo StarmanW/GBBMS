@@ -55,7 +55,7 @@ class RegisterController extends Controller {
             'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
             'emailAddress' => 'required|email|max:255|unique:donors',
             'birthDate' => 'required|date|before:17 years ago',
-            'password' => 'required|min:6|max:255|confirmed',
+            'password' => 'required|min:6|confirmed',
             'bloodType' => ['required', 'regex:/[1-8]{1}/'],
             'gender' => ['required', 'boolean'],
             'profileImage' => 'image|nullable|max:1999',

@@ -50,8 +50,8 @@
                                     <td class="body-item mbr-fonts-style display-7">{{html_entity_decode($donateHist->events->eventName, ENT_QUOTES, 'UTF-8')}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($donateHist->events->eventDate), "d-M-Y")}}</td>
                                     <td class="body-item mbr-fonts-style display-7">{{$donateHist->bloodVol}}</td>
-                                    <td class="body-item mbr-fonts-style display-7">
-                                        @if($donateHist->remarks==null)
+                                    <td class="body-item mbr-fonts-style display-7" id="remarks">
+                                        @if($donateHist->remarks === null)
                                             Completed
                                         @else
                                             {{$donateHist->remarks}}
@@ -92,5 +92,6 @@
     <script src={{"/assets/datatables/jquery.data-tables.min.js"}}></script>
     <script src={{"/assets/datatables/data-tables.bootstrap4.min.js"}}></script>
     <script src={{"/assets/theme/js/script.js"}}></script>
+    <script src={{"/assets/additional/js/truncate.js"}}></script>
 @endsection
 

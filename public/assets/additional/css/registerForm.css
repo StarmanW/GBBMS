@@ -1,5 +1,6 @@
 @import "font-awesome.min.css";
 @import "font-awesome-ie7.min.css";
+
 * {
     font-family: 'Rubik';
     outline: none !important;
@@ -69,8 +70,12 @@ li a {
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.btn {
+    margin: 0 !important;
+}
+
 .btn-lg,
-.btn-group-lg>.btn {
+.btn-group-lg > .btn {
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.33;
@@ -115,11 +120,13 @@ li a {
     li {
         border-right: none !important;
     }
+
     li a {
         padding: 5%;
         color: black;
         font-size: 130%;
     }
+
     .nav-tabs {
         border-bottom: none !important;
         margin: auto;
@@ -127,18 +134,23 @@ li a {
         padding-bottom: 1%;
         margin-bottom: 1%;
     }
+
     .form-btn {
-        width:70%
+        width: 70%
     }
+
     .conclude-btn {
         width: 70%;
     }
+
     .multitab-btn {
         padding: 5% 0;
     }
+
     #multitab-left {
-        border-bottom:1px solid;
+        border-bottom: 1px solid;
     }
+
     /* Tab section end */
 }
 
@@ -150,20 +162,25 @@ li a {
         width: 500px;
         background-color: #eaeaea;
     }
-    .row form {
+
+    form {
         margin: auto;
-        width: 70%;
+        width: 85%;
     }
+
     /*form selection*/
     .form-btn {
-        width:60%
+        width: 60%
     }
+
     .conclude-btn {
         width: 65%;
     }
+
     #multitab-left {
-        border-right:1px solid;
+        border-right: 1px solid;
     }
+
     /*end*/
 }
 
@@ -175,20 +192,25 @@ li a {
         width: 100%;
         background-color: #eaeaea;
     }
-    .row form {
+
+    form {
         margin: auto;
-        width: 70%;
+        width: 85%;
     }
+
     /*tab selection*/
     .form-btn {
-        width:30%
+        width: 30%
     }
+
     .conclude-btn {
         width: 65%;
     }
+
     #multitab-left {
-        border-right:1px solid
+        border-right: 1px solid
     }
+
     /*end*/
 }
 
