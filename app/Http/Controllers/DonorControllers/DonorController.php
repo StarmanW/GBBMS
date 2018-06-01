@@ -158,8 +158,8 @@ class DonorController extends Controller {
 
         //Validate Data
         $validator = Validator::make($request->all(), [
-            'currentPassword' => 'required|min:6|max:255',
-            'newPassword' => 'required|min:6|max:255|confirmed'
+            'currentPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6|confirmed'
         ]);
 
         if ($validator->fails()) {

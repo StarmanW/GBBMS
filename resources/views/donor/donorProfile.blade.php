@@ -30,11 +30,10 @@
                         </div>
                         <div class="card-block">
                             <div class="testimonial-photo">
-                                <img src="/storage/profileImage/{{$donor->profileImage}}" alt="" title=""
-                                     media-simple="true">
+                                <img src="/storage/profileImage/{{$donor->profileImage}}" alt="Profile Image"
+                                     title="Profile Image"
+                                     media-simple="true" id="profileImage">
                             </div>
-                            <p class="mbr-text mbr-fonts-style mbr-white display-5"></p>
-
                             <table class="table profile-table" cellspacing="0">
                                 <tbody>
                                 <tr>
@@ -103,12 +102,17 @@
                                 </tbody>
                             </table>
                             <div class="container row mx-auto pb-2">
-                                <div class="col-md-6 p-1">
+                                <div class="col-md-4 p-1">
+                                    <a href="{{URL::previous()}}">
+                                        <button type="button" class="btn btn-sm btn-primary btn-block">Back</button>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 p-1">
                                     <button data-toggle="modal" data-target="#updateProfileModal" type="button"
                                             name="edit" class="btn btn-sm btn-primary btn-block">Edit Profile
                                     </button>
                                 </div>
-                                <div class="col-md-6 p-1">
+                                <div class="col-md-4 p-1">
                                     <button type="button" name="delete" class="btn btn-sm btn-secondary btn-block"
                                             id="deactivateAcc">
                                         Deactivate Account
@@ -297,28 +301,26 @@
                             <p style="color:red; float: left;">"*" Required fields</p>
                             <br/>
                             <br/>
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <label><span style="color:red;">*</span> Current Password</label>
-                                    <input type="password" name="currentPassword" class="form-control"
-                                           required="required">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="row">
-                                    <label><span style="color:red;">*</span> New Password</label>
-                                    <input type="password" name="newPassword" class="form-control" required="required">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="row">
-                                    <label><span style="color:red;">*</span> Confirm New Password</label>
-                                    <input type="password" name="newPassword_confirmation" class="form-control"
-                                           required="required">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <br/>
-                                <div class="submit-button div-button-center">
-                                    <button type="submit" class="btn btn-lg btn-success profile-btn">Submit</button>
-                                </div>
+                            <div class="row">
+                                <label><span style="color:red;">*</span> Current Password</label>
+                                <input type="password" name="currentPassword" class="form-control"
+                                       required="required">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="row">
+                                <label><span style="color:red;">*</span> New Password</label>
+                                <input type="password" name="newPassword" class="form-control" required="required">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="row">
+                                <label><span style="color:red;">*</span> Confirm New Password</label>
+                                <input type="password" name="newPassword_confirmation" class="form-control"
+                                       required="required">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <br/>
+                            <div class="col-md-8 mx-auto">
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
                             </div>
                         </form>
                     </div>

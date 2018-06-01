@@ -120,7 +120,8 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['web', 'auth:staff', 'HRS
     Route::post('/list/event/{id}', 'StaffControllers\StaffEventController@update');
     Route::post('/list/event/{id}/cancel', 'StaffControllers\StaffEventController@deactivate');
 
-    Route::get('/dashboard', 'StaffControllers\ReportController@index');
+    Route::get('/dashboard', function() { return view('staff.hrm.dashboard'); });
+    Route::get('/dashboard/data', 'StaffControllers\ReportController@index');
 
     //Reports route
     //Exception Report

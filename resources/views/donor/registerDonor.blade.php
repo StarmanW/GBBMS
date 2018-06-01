@@ -273,12 +273,16 @@
                         <li>Sexual contact with those mentioned above</li>
                     </ul>
                 </div>
-                <div class="submit-button">
-                    <button class="btn btn-primary btn-sm" type="submit" class="close" data-dismiss="modal">Accept
-                    </button>
-                    <button class="btn btn-secondary btn-sm" type="button" onclick="window.location.href = '/';">
-                        Decline
-                    </button>
+                <div class="modal-footer">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-sm btn-block" type="submit" class="close" data-dismiss="modal">Accept
+                        </button>
+                    </div>
+                        <div class="col-md-6">
+                        <button class="btn btn-secondary btn-sm btn-block" type="button" onclick="window.location.href = '/';">
+                            Decline
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

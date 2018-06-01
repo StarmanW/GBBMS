@@ -142,7 +142,6 @@
 @endsection
 
 @section('additionalJS')
-    <script src="{{'/assets/additional/js/jquery-1.12.1.min.js'}}"></script>
     <script src="{{'/assets/additional/js/login_util.js'}}"></script>
     <script src="{{'/assets/additional/js/login-page_script.js'}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>

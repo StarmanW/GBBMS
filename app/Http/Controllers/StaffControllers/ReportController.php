@@ -38,7 +38,7 @@ class ReportController extends Controller {
             'totalBlood' => $totalBlood
         ];
 
-        return view('staff.hrm.dashboard')->with('data', $data);
+        return response()->json($data);
     }
 
     /***** Exception Report - Reservation Cancellation for each events *****/

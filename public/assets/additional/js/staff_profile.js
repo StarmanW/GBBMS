@@ -14,7 +14,7 @@
     // Add event listeners to forms and buttons
     updateProfileForm.addEventListener('submit', updateProfile);
     updatePassForm.addEventListener('submit', updatePassword);
-    document.getElementById('deactivateAcc').addEventListener('click', deactivateDonorAccPrompt);
+    document.getElementById('deactivateAcc').addEventListener('click', deactivateStaffAccPrompt);
 
     // Function to update donor profile information using fetch API
     function updateProfile(e) {
@@ -29,7 +29,7 @@
             body: new FormData(updateProfileForm)
         };
 
-        fetch('/donor/profile', fetchInit).then(res => {
+        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile`, fetchInit).then(res => {
             return res.json();
         }).then(data => {
             if (data.status === 'success') {
@@ -61,7 +61,7 @@
             body: new FormData(updatePassForm)
         };
 
-        fetch('/donor/profile/password', fetchInit).then(res => {
+        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile/password`, fetchInit).then(res => {
             return res.json();
         }).then(data => {
             if (data.status === 'success') {
@@ -80,10 +80,10 @@
     }
 
     //Function to prompt the user for deactivation confirmation
-    function deactivateDonorAccPrompt() {
-        alertify.confirm("Confirm to deactivate your account?", function (e) {
+    function deactivateStaffAccPrompt() {
+        alertify.confirm("Confirm to deactivate your staff account?", function (e) {
             if (e) {
-                $('#deactivateDonorAcc').submit();
+                $('form[id^=deactivateStaffAcc]').submit();
             }
         }).setting({
             'transition': 'zoom',
@@ -93,7 +93,7 @@
                 ok: 'Confirm',
                 cancel: "Cancel"
             }
-        }).setHeader("Deactivate Donor Account Confirmation").show();
+        }).setHeader("Deactivate Staff Account Confirmation").show();
     }
 
     // Function to reset input error class
@@ -111,83 +111,28 @@
         const birthDate = new Date(user.birthDate);
 
         $('#profileImage').attr('src', `/storage/profileImage/${user.profileImage}`);
-        $('#tDonorName').text(`${user.firstName} ${user.lastName}`);
+        $('#tStaffName').text(`${user.firstName} ${user.lastName}`);
         $('#tIcNum').text(`${user.ICNum}`);
         $('#tGender').text(user.gender === "1" ? 'Male' : 'Female');
         $('#tBirthDate').text(`${birthDate.getDate()}-${monthNames[birthDate.getMonth()]}-${birthDate.getFullYear()}`);
-        $('#tBloodType').text(`${getBloodTypeString(user.bloodType)}`);
+        $('#tStaffPos').text(`${getStaffPositionString(user.staffPos)}`);
         $('#tEmail').text(`${user.emailAddress}`);
         $('#tPhone').text(`${user.phoneNum}`);
         $('#tHomeAddress').text(`${user.homeAddress}`);
     }
 
     // Function to convert blood type value to string
-    function getBloodTypeString(bloodType) {
-        let bloodTypeString = '';
+    function getStaffPositionString(staffPos) {
+        let staffPosString = '';
 
-        switch (parseInt(bloodType)) {
+        switch (parseInt(staffPos)) {
+            case 0:
+                staffPosString = "Nurse";
+                break;
             case 1:
-                bloodTypeString = "A Positive";
-                break;
-            case 2:
-                bloodTypeString = "A Negative";
-                break;
-            case 3:
-                bloodTypeString = "B Positive";
-                break;
-            case 4:
-                bloodTypeString = "B Negative";
-                break;
-            case 5:
-                bloodTypeString = "O Positive";
-                break;
-            case 6:
-                bloodTypeString = "O Negative";
-                break;
-            case 7:
-                bloodTypeString = "AB Positive";
-                break;
-            case 8:
-                bloodTypeString = "AB Negative";
+                staffPosString = "Human Resource Manager";
                 break;
         }
-        return bloodTypeString;
+        return staffPosString;
     }
 })();
-
-// // AJAX request using JQuery
-// $.ajaxSetup({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     },
-// });
-//
-// $.ajax({
-//     url: '/donor/profile',
-//     dataType: 'json',
-//     type: 'POST',
-//     data: new FormData(updateProfileForm),
-//     processData: false,
-//     contentType: false,
-//     success: function (res) {
-//         if (res.status === 'success') {
-//             $('#squarespaceModal').modal('hide');
-//             resetInputClass();
-//             alertify.alert(res.message).setting({
-//                 'transition': 'zoom',
-//                 'movable': false,
-//                 'modal': true,
-//                 'labels': 'OK'
-//             }).setHeader("Profile Details Updated!").show();
-//         } else {
-//             for (inputField in res) {
-//                 let fieldElement = document.querySelector(`*[name="${inputField}"]`);
-//                 fieldElement.classList.add('is-invalid');
-//                 fieldElement.nextElementSibling.textContent = `${res[inputField]}`;
-//             }
-//         }
-//     },
-//     error: function (err) {
-//         console.log(`${err.statusText}: ${err.statusText}`);
-//     }
-// });

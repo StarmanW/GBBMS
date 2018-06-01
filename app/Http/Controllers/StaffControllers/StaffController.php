@@ -75,34 +75,45 @@ class StaffController extends Controller {
 
         //Verify current password input field
         if (!(Hash::check($request['currentPassword'], Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("error", "Your current password does not match with the password you provided.");
+            // The passwords matches with old one
+            return response()->json([
+                'validationFailed' => true,
+                'validationData' => ['currentPassword' => ['Your current password does not match with the password you provided.']]
+            ]);
         }
 
         //Verify if new password is the current (old) password
         if (strcmp($request['currentPassword'], $request['newPassword']) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error", "New password cannot be same as your current password. Please choose a different password.");
+            return response()->json([
+                'validationFailed' => true,
+                'validationData' => ['newPassword' => ['New password cannot be same as your current password. Please choose a different password.']]
+            ]);
         }
 
         //Validate Data
-        //Set passValidation to true so the correct modal will be displayed
-        session(['passValidation' => 'true']);
         $validator = Validator::make($request->all(), [
-            'currentPassword' => 'required|min:6|max:255',
-            'newPassword' => 'required|min:6|max:255|confirmed'
+            'currentPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6|confirmed'
         ]);
 
         //return to current page with message
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
         } else {
             //Set staff new password
             $staff->password = bcrypt($request['newPassword']);
-            if ($staff->save())
-                return redirect()->back()->with('success', 'Password successfully changed!');
-            else
-                return redirect()->back()->with('error', 'Oops, password was not successfully changed.');
+            if ($staff->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Password successfully changed!'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Oops, password was not successfully changed.'
+                ]);
+            }
         }
     }
 
@@ -119,10 +130,10 @@ class StaffController extends Controller {
         //validate data
         $validator = Validator::make($request->all(),
             [
-                'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,' . Auth::user()->staffID . ',staffID', 'regex:/\d{12}/'],
-                'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
+                'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,255}$/'],
+                'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,255}$/'],
+                'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff,ICNum,' . Auth::user()->staffID . ',staffID', 'regex:/^\d{12}$/'],
+                'phoneNum' => ['required', 'max:20', 'regex:/^([0-9]|[0-9\-]){3,20}$/'],
                 'emailAddress' => 'required|email|max:255|unique:staff,emailAddress,' . Auth::user()->staffID . ',staffID',
                 'birthDate' => 'required|date',
                 'gender' => ['required', 'boolean'],
@@ -131,9 +142,8 @@ class StaffController extends Controller {
             ]);
 
         if ($validator->fails())
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
         else {
-
             //Handle file upload
             if ($request->hasFile('profileImage')) {
                 //Get filename
@@ -173,15 +183,23 @@ class StaffController extends Controller {
             $staff->homeAddress = $request->input('homeAddress');
 
             //return to current page with message
-            if ($staff->save())
-                return redirect()->back()->with('success', 'Staff profile details has been successfully updated!');
-            else
-                return redirect()->back()->with('failure', 'Oops, staff profile details was not updated successfully.');
+            if ($staff->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Staff profile details has been successfully updated!',
+                    'user' => $staff
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Oops, staff profile details was not updated successfully.'
+                ]);
+            }
         }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update specific staff profile by HR Manager
      *
      * @param  string $id
      * @param  \Illuminate\Http\Request $request
@@ -207,7 +225,7 @@ class StaffController extends Controller {
             ]);
 
         if ($validator->fails())
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
         else {
 
             //Handle file upload
@@ -245,10 +263,18 @@ class StaffController extends Controller {
             $staff->homeAddress = $request->input('homeAddress');
 
             //return to current page with message
-            if ($staff->save())
-                return redirect()->back()->with('success', 'Staff profile details has been successfully updated!');
-            else
-                return redirect()->back()->with('failure', 'Oops, staff profile details was not updated successfully.');
+            if ($staff->save()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Staff profile details has been successfully updated!',
+                    'user' => $staff
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Oops, staff profile details was not updated successfully.'
+                ]);
+            }
         }
     }
 

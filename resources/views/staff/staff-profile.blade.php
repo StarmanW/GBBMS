@@ -3,10 +3,11 @@
 @section('title', "Staff Profile")
 
 @section('additionalCSS')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/themes/bootstrap.rtl.min.css"/>
     <link rel="stylesheet" href={{"/assets/additional/css/registerForm.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/profile.css"}} type="text/css">
     <link rel="stylesheet" href={{"/assets/additional/css/notify.css"}} type="text/css">
@@ -15,7 +16,6 @@
 @section('contents')
     <section class="testimonials5 cid-qMsL85WpiQ" id="testimonials5-1u">
         <div class="mbr-overlay" style="opacity: 0.1; background-color:#000000;"></div>
-
         <div class="container">
             <div class="media-container-column">
                 <div class="mbr-testimonial align-center col-12 col-md-10">
@@ -29,76 +29,98 @@
                         </div>
                         <div class="card-block">
                             <div class="testimonial-photo">
-                                <img src="/storage/profileImage/{{$staff->profileImage}}" alt="" title="" media-simple="true">
+                                <img src="/storage/profileImage/{{$staff->profileImage}}" alt="Profile Image"
+                                     title="Profile Image"
+                                     media-simple="true" id="profileImage">
                             </div>
-                            <div class="profile-table-wrap">
-                                <table class="table profile-table" id="" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Staff ID</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->staffID}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Name</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->firstName}} {{$staff->lastName}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Password</th>
-                                            <td class="body-item mbr-fonts-style display-7">
-                                                <button data-toggle="modal" data-target="#changePasswordForm" type="button" name="edit" class="btn btn-sm btn-primary chgnPass-btn">Change Password</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">IC Number</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->ICNum}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Gender</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->getGender()}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Birth Date</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($staff->birthDate), "d-M-Y")}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Position</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->getStaffPosition()}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Email Address</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->emailAddress}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Contact Number</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->phoneNum}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Home Address</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->homeAddress}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Account Status</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{$staff->getAccStatus()}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="body-item mbr-fonts-style display-7">Account Created at</th>
-                                            <td class="body-item mbr-fonts-style display-7">{{date_format(date_create($staff->created_at), "d-M-Y h:i:s A")}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="{{URL::previous()}}"><button type="button" class="btn btn-sm btn-primary profile-btn">Back</button></a>
-                                        <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="edit" class="btn btn-sm btn-primary profile-btn ">Edit Profile</button>
-                                        <button type="button" name="delete" class="btn btn-sm btn-secondary profile-btn " onclick="deactivateStaffAccPrompt('{{$staff->staffID}}', '{{$staff->firstName}} {{$staff->lastName}}');">Deactivate Account</button>
-                                        @if(Auth::user()->staffPos === 1)
-                                        <form method="POST" action="/staff/hr/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
-                                        @else
-                                        <form method="POST" action="/staff/nurse/profile/deactivate" id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
-                                        @endif
-                                            {{csrf_field()}}
-                                        </form>
-                                    </div>
+                            <table class="table profile-table" id="" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Staff ID</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tstaffID">{{$staff->staffID}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Name</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tStaffName">{{$staff->firstName}} {{$staff->lastName}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Password</th>
+                                    <td class="body-item mbr-fonts-style display-7">
+                                        <button data-toggle="modal" data-target="#changePasswordForm" type="button"
+                                                name="edit" class="btn btn-sm btn-primary chgnPass-btn">Change
+                                            Password
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">IC Number</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tIcNum">{{$staff->ICNum}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Gender</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tGender">{{$staff->getGender()}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Birth Date</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tBirthDate">{{date_format(date_create($staff->birthDate), "d-M-Y")}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Position</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tStaffPos">{{$staff->getStaffPosition()}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Email Address</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tEmail">{{$staff->emailAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Contact Number</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tPhone">{{$staff->phoneNum}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Home Address</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tHomeAddress">{{$staff->homeAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Account Status</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tAccStatus">{{$staff->getAccStatus()}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="body-item mbr-fonts-style display-7">Account Created at</th>
+                                    <td class="body-item mbr-fonts-style display-7"
+                                        id="tAccCreatedAt">{{date_format(date_create($staff->created_at), "d-M-Y h:i:s A")}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="container row mx-auto pb-2">
+                                <div class="col-md-4 p-1">
+                                    <a href="{{URL::previous()}}">
+                                        <button type="button" class="btn btn-sm btn-primary btn-block">Back</button>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 p-1">
+                                    <button data-toggle="modal" data-target="#updateProfileModal" type="button"
+                                            name="edit" class="btn btn-sm btn-primary btn-block">Edit Profile
+                                    </button>
+                                </div>
+                                <div class="col-md-4 p-1">
+                                    <button type="button" class="btn btn-sm btn-secondary btn-block" id="deactivateAcc">
+                                        Deactivate Account
+                                    </button>
+                                    <form method="POST"
+                                          action="/staff/{{ Auth::user()->staffPos === 1 ? 'hr' : 'nurse' }}/profile/deactivate"
+                                          id="deactivateStaffAcc{{$staff->staffID}}" style="display: none;">
+                                        {{csrf_field()}}
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +130,8 @@
         </div>
 
         <!-- Update staff profile form modal -->
-        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -119,95 +142,129 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        @if(Auth::user()->staffPos === 1)
-                        <form method="POST" action="/staff/hr/profile" enctype="multipart/form-data">
-                        @else
-                        <form method="POST" action="/staff/nurse/profile" enctype="multipart/form-data">
-                        @endif
+                        <form id="updateProfileForm">
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
-                            <br />
-                            <br />
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>First Name</label>
-                                        <input type="text" name="firstName" placeholder="John" value="{{$staff->firstName}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
-                                            required="required">
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>Last Name</label>
-                                        <input type="text" name="lastName" placeholder="Doe" value="{{$staff->lastName}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Smith"
-                                            required="required">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>IC Number</label>
-                                        <input type="text" name="ICNum" placeholder="981213125523" value="{{$staff->ICNum}}" class="form-control" pattern="\d{12}" title="Numeric only. E.g. 985564127789"
-                                            maxlength="12" required="required">
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>Contact Number</label>
-                                        <input type="text" name="phoneNum" placeholder="0186559875" value="{{$staff->phoneNum}}" class="form-control" pattern="([0-9]|[0-9\-]){3,20}" title="Numeric and '-' symbols only. E.g. 014-8897875"
-                                            required="required">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>Email</label>
-                                        <input type="email" name="emailAddress" placeholder="email@hotmail.com" value="{{$staff->emailAddress}}" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                                            title="E.g. - john@hotmail.com" required="required">
-                                    </div>
-
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            <span style="color:red;">*</span>Birth Date</label>
-                                        <input class="form-control" type="date" name="birthDate" value="{{$staff->birthDate}}" required="required">
-                                    </div>
-                                </div>
-                                @if(Auth::user()->staffPos === 1)
-                                <div class="row" style="margin:auto">
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
                                     <label>
-                                        <span style="color:red;">*</span>Staff Position</label>
-                                    <select name="staffPos" class="form-control" required="required">
-                                        <option disabled=disabled" selected="selected" value>Select staff position</option>
-                                        <option value="0" @if($staff->staffPos === 0) {{'selected="selected"'}} @endif>Nurse</option>
-                                        <option value="1" @if($staff->staffPos === 1) {{'selected="selected"'}} @endif>Human Resource Manager</option>
-                                    </select>
+                                        <span style="color:red;">*</span>First Name</label>
+                                    <input type="text" name="firstName" placeholder="John"
+                                           value="{{$staff->firstName}}" class="form-control"
+                                           pattern="[A-Za-z\-@ ]{2,}"
+                                           title="Alphabetic, @ and - symbols only. E.g. - John"
+                                           required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                                @endif
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label><span style="color:red;">*</span>Gender</label><br/>
-                                        <input type="radio" name="gender" required="required" value="1" @if($staff->gender === 1) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                        <input type="radio" name="gender" required="required" value="0" @if($staff->gender === 0) {{'checked="checked"'}} @endif>&nbsp;&nbsp;Female<br>
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <label>
-                                            Profile Picture</label>
-                                        <input name="profileImage" class="form-control" type="file">
-                                    </div>
-                                </div>
-                                <div class="row" style="margin:auto">
+                                <div class="col-md-6 form-group">
                                     <label>
-                                        <span style="color:red;">*</span>Home Address</label>
-                                    <textarea name="homeAddress" class="form-control" style="height:200px;resize: none;">{{$staff->homeAddress}}</textarea>
+                                        <span style="color:red;">*</span>Last Name</label>
+                                    <input type="text" name="lastName" placeholder="Doe"
+                                           value="{{$staff->lastName}}" class="form-control"
+                                           pattern="[A-Za-z\-@ ]{2,}"
+                                           title="Alphabetic, @ and - symbols only. E.g. - Smith"
+                                           required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
                             </div>
-                            <br />
-                            <span style="text-align:center">
-                                <div class="submit-button">
-                                    <button type="submit" class="btn btn-sm btn-success profile-btn ">Submit</button>
-                                    <button type="reset" class="btn btn-sm btn-primary profile-btn ">Reset</button>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>
+                                        <span style="color:red;">*</span>IC Number</label>
+                                    <input type="text" name="ICNum" placeholder="981213125523"
+                                           value="{{$staff->ICNum}}" class="form-control"
+                                           pattern="\d{12}" title="Numeric only. E.g. 985564127789"
+                                           maxlength="12" required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
-                            </span>
+                                <div class="col-md-6 form-group">
+                                    <label>
+                                        <span style="color:red;">*</span>Contact Number</label>
+                                    <input type="text" name="phoneNum" placeholder="0186559875"
+                                           value="{{$staff->phoneNum}}" class="form-control"
+                                           pattern="([0-9]|[0-9\-]){3,20}"
+                                           title="Numeric and '-' symbols only. E.g. 014-8897875"
+                                           required="required">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>
+                                        <span style="color:red;">*</span>Email</label>
+                                    <input type="email" name="emailAddress"
+                                           placeholder="email@hotmail.com"
+                                           value="{{$staff->emailAddress}}" class="form-control"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                           title="E.g. - john@hotmail.com" required="required">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>
+                                        <span style="color:red;">*</span>Birth Date</label>
+                                    <input class="form-control" type="date" name="birthDate"
+                                           value="{{$staff->birthDate}}" required="required">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            @if(Auth::user()->staffPos === 1)
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>
+                                            <span style="color:red;">*</span>Staff Position</label>
+                                        <select name="staffPos" class="form-control" required="required">
+                                            <option disabled=disabled" selected="selected" value>Select
+                                                staff position
+                                            </option>
+                                            <option value="0" {{ $staff->staffPos === 0 ? 'selected="selected"' : '' }}>
+                                                Nurse
+                                            </option>
+                                            <option value="1" {{ $staff->staffPos === 1 ? 'selected="selected"' : '' }}>
+                                                Human Resource Manager
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label><span style="color:red;">*</span>Gender</label><br/>
+                                    <input type="radio" name="gender" required="required"
+                                           value="1" {{ $staff->gender === 1 ? 'checked="checked"' : '' }}>
+                                    Male
+                                    <input type="radio" name="gender" required="required"
+                                           value="0" {{ $staff->gender === 0 ? 'checked="checked"' : '' }}>
+                                    Female<br>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>
+                                        Profile Picture</label>
+                                    <input name="profileImage" class="form-control" type="file">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>
+                                        <span style="color:red;">*</span>Home Address</label>
+                                    <textarea name="homeAddress" class="form-control"
+                                              style="height:200px;resize: none;">{{$staff->homeAddress}}</textarea>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Submit
+                                    </button>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <button type="reset" class="btn btn-lg btn-primary btn-block">Reset
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -215,7 +272,8 @@
         </div>
 
         <!-- Change Password form -->
-        <div class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="changePasswordForm" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -226,31 +284,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        @if(Auth::user()->staffPos === 1)
-                        <form method="POST" action="/staff/hr/profile/password" enctype="multipart/form-data">
-                        @else
-                        <form method="POST" action="/staff/nurse/profile/password" enctype="multipart/form-data">
-                        @endif
+                        <form id="updatePassForm">
                             {{csrf_field()}}
                             <p style="color:red; float: left;">"*" Required fields</p>
-                            <br />
-                            <br />
+                            <br/>
+                            <br/>
                             <div class="col-sm-12">
                                 <div class="row">
                                     <label><span style="color:red;">*</span> Current Password</label>
-                                    <input type="password" name="currentPassword" class="form-control" required="required">
+                                    <input type="password" name="currentPassword" class="form-control"
+                                           required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="row">
                                     <label><span style="color:red;">*</span> New Password</label>
-                                    <input type="password" name="newPassword" class="form-control" required="required">
+                                    <input type="password" name="newPassword" class="form-control"
+                                           required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="row">
                                     <label><span style="color:red;">*</span> Confirm New Password</label>
-                                    <input type="password" name="newPassword_confirmation" class="form-control" required="required">
+                                    <input type="password" name="newPassword_confirmation"
+                                           class="form-control" required="required">
+                                    <div class="invalid-feedback"></div>
                                 </div>
                                 <br/>
-                                <div class="submit-button div-button-center">
-                                    <button type="submit" class="btn btn-lg btn-success profile-btn">Submit</button>
+                                <div class="col-md-8 mx-auto">
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -262,35 +322,10 @@
 @endsection
 
 @section('additionalJS')
-    <script src={{"/assets/additional/js/staff_util.js"}}></script>
+    <script src={{"/assets/additional/js/staff_profile.js"}}></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
-    @if(count($errors) > 0)
-        @if(session('passValidation'))
-            <script>
-                $('#changePasswordForm').modal('show');
-                staffFormError('Change Password', {!! $errors !!});
-            </script>
-            @php session()->forget('passValidation'); @endphp
-        @else
-            <script>
-                $('#squarespaceModal').modal('show');
-                staffFormError('Empty/Invalid Data Entered', {!! $errors !!});
-            </script>
-        @endif
-    @elseif(session('success'))
-        <script>staffUpdateProfileSuccess("{{session('success')}}");</script>
-    @elseif(session('failure'))
+    @if(session('failure'))
         <script>oneHRAcc("{{session('failure')}}");</script>
-    @elseif(session('error'))
-        <script>
-            //Display Donor password update message
-            alertify.alert('{{session('error')}}').setting({
-                'transition': 'zoom',
-                'movable': false,
-                'modal': true,
-                'labels': 'OK'
-            }).setHeader("Change Password").show();
-        </script>
     @endif
 @endsection

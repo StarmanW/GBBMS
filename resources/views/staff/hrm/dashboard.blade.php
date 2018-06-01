@@ -20,29 +20,25 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="well dash-box">
-                                <h2>
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{$data['donorCount']}}</h2>
+                                <h2 id="donorCount"></h2>
                                 <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Donors</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
-                                <h2>
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{$data['nurseCount']}}</h2>
+                                <h2 id="nurseCount"></h2>
                                 <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Nurses</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
-                                <h2>
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{$data['eventCount']}}</h2>
+                                <h2 id="eventCount"></h2>
                                 <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Donation Events</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box">
-                                <h2>
-                                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>{{$data['bloodCount']}}</h2>
+                                <h2 id="bloodCount"></h2>
                                 <h4 class="mbr-section-title mbr-fonts-style align-center pb-3 display-6">Blood Bags</h4>
                             </div>
                         </div>
@@ -83,8 +79,5 @@
 
 @section('additionalJS')
     <script src={{"/assets/additional/js/canvasjs.js"}}></script>
-    <script src={{"/assets/additional/js/bloodGraph.js"}}></script>
-    <script>
-        window.onload = renderGraph('{!! json_encode($data['totalBlood']) !!}');    //Encode blood type count into json data
-    </script>
+    <script src={{"/assets/additional/js/dashboard.js"}}></script>
 @endsection
