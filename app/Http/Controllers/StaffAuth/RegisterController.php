@@ -57,10 +57,10 @@ class RegisterController extends Controller {
         
         return Validator::make($data, [
             'staffPos' => ['required', 'boolean'],
-            'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/[A-Za-z\-@ ]{2,}/'],
-            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/\d{12}/'],
-            'phoneNum' => ['required', 'max:20', 'regex:/([0-9]|[0-9\-]){3,20}/'],
+            'firstName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,}$/'],
+            'lastName' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[A-z\-\@ ]{2,}$/'],
+            'ICNum' => ['required', 'min:12', 'max:12', 'unique:staff', 'regex:/^\d{12}$/'],
+            'phoneNum' => ['required', 'max:20', 'regex:/^([0-9]|[0-9\-]){3,20}$/'],
             'emailAddress' => 'required|email|max:255|unique:staff',
             'birthDate' => 'required|date|before:18 years ago',
             'gender' => ['required', 'boolean'],
@@ -73,7 +73,7 @@ class RegisterController extends Controller {
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return Staff
+     *
      */
     protected function create(array $data) {
 
@@ -105,7 +105,8 @@ class RegisterController extends Controller {
             $fileNameToStore = 'defaultProfileImage.jpg';
         }
 
-        $staff = Staff::create([
+        // Create new staff instance and store in DB
+        Staff::create([
             'staffID' => $staffID,
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -120,9 +121,6 @@ class RegisterController extends Controller {
             'staffPos' => $data['staffPos'],
             'staffAccStatus' => 1,
         ]);
-
-        //Return the created staff instance and store in DB
-        return $staff;
     }
 
     /**
@@ -132,9 +130,18 @@ class RegisterController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request) {
-        $this->validator($request->all())->validate();
-        $this->create($request->all());
-        return redirect('/staff/hr/registration')->with('success', 'Nurse successfully registered!');
+        $validator = $this->validator($request->all());
+
+        // If validation failed
+        if ($validator->fails()) {
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
+        } else {
+            $this->create($request->all());
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Nurse successfully registered!'
+            ]);
+        }
     }
 
     /**

@@ -49,7 +49,7 @@ class StaffEventController extends Controller {
         $events = Event::where('eventStatus', '=', '1')->whereDate('eventDate', '>', DB::raw('CURDATE()'))->orderBy('eventDate', 'asc')->take(3)->get();
 
         //return result as
-        if(count($events) > 0) {
+        if (count($events) > 0) {
             //if current user is HR manager, return to HR homepage with result, else to nurse homepage
             //return result as array
             if (Auth::user()->staffPos === 1) {
@@ -88,28 +88,27 @@ class StaffEventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //get event details and save to DB
-        //Set the current registration tab into session
-        session(['eventTab' => 'true']);
-
         //generate event ID
         $eventID = 'E' . date('y') . sprintf('%04d', count(Event::all()) + 1);
 
         //data validation
         $validator = Validator::make($request->all(),
             [
-                'eventName' => ['required', 'string', 'max:255', 'regex:/[A-Za-z0-9\-@\! ]{2,}/'],
+                'eventName' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z0-9\-@\! ]{2,}$/'],
                 'eventDate' => ['required', 'date', 'after:1 week'],
                 'eventStartTime' => ['required', 'date_format:H:i'],
                 'eventEndTime' => ['required', 'date_format:H:i'],
                 'roomID' => ['required', 'string', 'regex:/^(\d{2})([1234]{1})(\d{3})$/']
             ]);
 
-        if ($validator->fails())
-            return redirect()->back()->withErrors($validator)->withInput();
-        else {
+        if ($validator->fails()) {
+            return response()->json(['validationFailed' => true, 'validationData' => $validator->errors()]);
+        } else {
             if (Event::where('eventDate', '=', $request['eventDate'])->where('roomID', '=', $request['roomID'])->count() !== 0) {
-                return redirect()->back()->with('occupiedRoom', 'An upcoming event has already occupied this room on the selected day.');
+                return response()->json([
+                    'status' => 'occupiedRoom',
+                    'message' => 'An upcoming event has already occupied this room on the selected day.'
+                ]);
             } else {
                 //Set event details
                 $event = new Event();
@@ -148,10 +147,17 @@ class StaffEventController extends Controller {
                 }
 
                 //return to HR registration page with message
-                if ($eventSaveStats === true && $evSchedSaveStats === 5)
-                    return redirect('/staff/hr/registration')->with('success', 'Event created successfully!');
-                else
-                    return redirect('/staff/hr/registration')->with('failure', 'Event was not created.');
+                if ($eventSaveStats === true && $evSchedSaveStats === 5) {
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => 'Event successfully created!'
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Event was not successfully created.'
+                    ]);
+                }
             }
         }
     }

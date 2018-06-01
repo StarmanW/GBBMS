@@ -1,12 +1,4 @@
 (function () {
-    // Define alertify configs
-    const alertifyConfigs = {
-        'transition': 'zoom',
-        'movable': false,
-        'modal': true,
-        'labels': 'OK'
-    };
-
     // Select two forms - Update profile form and Update password form
     const updateProfileForm = document.getElementById('updateProfileForm');
     const updatePassForm = document.getElementById('updatePassForm');
@@ -29,23 +21,36 @@
             body: new FormData(updateProfileForm)
         };
 
-        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile`, fetchInit).then(res => {
-            return res.json();
-        }).then(data => {
-            if (data.status === 'success') {
-                $('#updateProfileModal').modal('hide');
+        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile`, fetchInit)
+            .then(res => res.status === 200 ? res.json() : console.error(res.status))
+            .then(data => {
                 resetInputClass();
-                updateProfileHTML(data.user);
-                alertify.alert(data.message).setting(alertifyConfigs).setHeader("Profile Details Updated!").show();
-            } else if (data.validationFailed) {
-                resetInputClass();
-                for (inputField in data.validationData) {
-                    let fieldElement = document.querySelector(`*[name="${inputField}"]`);
-                    fieldElement.classList.add('is-invalid');
-                    fieldElement.nextElementSibling.textContent = `${data.validationData[inputField][0]}`;
+
+                // If validation failed
+                if (data.validationFailed) {
+                    for (inputField in data.validationData) {
+                        let fieldElement = document.querySelector(`*[name="${inputField}"]`);
+                        fieldElement.classList.add('is-invalid');
+                        fieldElement.nextElementSibling.textContent = `${data.validationData[inputField][0]}`;
+                    }
                 }
-            }
-        }).catch(err => console.log(err));
+
+                // Display alert message based on status
+                switch (data.status) {
+                    case 'success': {
+                        $('#updateProfileModal').modal('hide');
+                        updateProfileHTML(data.user);
+                        showAlert('Profile Details Updated!', data.message);
+                        break;
+                    }
+                    case 'error': {
+                        $('#updateProfileModal').modal('hide');
+                        showAlert('An error occurred', data.message);
+                        break;
+                    }
+                }
+            })
+            .catch(err => console.log(err));
     }
 
     // Function to update donor password using fetch API
@@ -61,31 +66,40 @@
             body: new FormData(updatePassForm)
         };
 
-        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile/password`, fetchInit).then(res => {
-            return res.json();
-        }).then(data => {
-            if (data.status === 'success') {
-                $('#changePasswordForm').modal('hide');
+        fetch(`/staff/${window.location.pathname.split('/')[2]}/profile/password`, fetchInit)
+            .then(res => res.status === 200 ? res.json() : console.error(res.status))
+            .then(data => {
                 resetInputClass();
-                alertify.alert(data.message).setting(alertifyConfigs).setHeader("Password Changed!").show();
-            } else if (data.validationFailed) {
-                resetInputClass();
-                for (inputField in data.validationData) {
-                    let fieldElement = document.querySelector(`input[name="${inputField}"]`);
-                    fieldElement.classList.add('is-invalid');
-                    fieldElement.nextElementSibling.textContent = `${data.validationData[inputField][0]}`;
+
+                // If validation failed
+                if (data.validationFailed) {
+                    for (inputField in data.validationData) {
+                        let fieldElement = document.querySelector(`input[name="${inputField}"]`);
+                        fieldElement.classList.add('is-invalid');
+                        fieldElement.nextElementSibling.textContent = `${data.validationData[inputField][0]}`;
+                    }
                 }
-            }
-        }).catch(err => console.log(err));
+
+                // Display alert message based on status
+                switch (data.status) {
+                    case 'success': {
+                        $('#changePasswordForm').modal('hide');
+                        showAlert('Password Changed!', data.message);
+                        break;
+                    }
+                    case 'error': {
+                        $('#changePasswordForm').modal('hide');
+                        showAlert('An error occurred', data.message);
+                        break;
+                    }
+                }
+            })
+            .catch(err => console.log(err));
     }
 
     //Function to prompt the user for deactivation confirmation
     function deactivateStaffAccPrompt() {
-        alertify.confirm("Confirm to deactivate your staff account?", function (e) {
-            if (e) {
-                $('form[id^=deactivateStaffAcc]').submit();
-            }
-        }).setting({
+        const alertifyConfigs = {
             'transition': 'zoom',
             'movable': false,
             'modal': true,
@@ -93,7 +107,13 @@
                 ok: 'Confirm',
                 cancel: "Cancel"
             }
-        }).setHeader("Deactivate Staff Account Confirmation").show();
+        };
+
+        alertify.confirm("Confirm to deactivate your staff account?", function (e) {
+            if (e) {
+                $('form[id^=deactivateStaffAcc]').submit();
+            }
+        }).setting(alertifyConfigs).setHeader("Deactivate Staff Account Confirmation").show();
     }
 
     // Function to reset input error class
@@ -119,6 +139,19 @@
         $('#tEmail').text(`${user.emailAddress}`);
         $('#tPhone').text(`${user.phoneNum}`);
         $('#tHomeAddress').text(`${user.homeAddress}`);
+    }
+
+    // Function to show alert message
+    function showAlert(header, message) {
+        // Define alertify configs
+        const alertifyConfigs = {
+            'transition': 'zoom',
+            'movable': false,
+            'modal': true,
+            'labels': 'OK'
+        };
+
+        alertify.alert(message).setting(alertifyConfigs).setHeader(header).show();
     }
 
     // Function to convert blood type value to string

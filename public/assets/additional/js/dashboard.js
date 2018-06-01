@@ -6,12 +6,7 @@
 
     // Fetch data
     fetch('/staff/hr/dashboard/data', fetchInit)
-        .then(res => {
-            console.log(res.status);
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
+        .then(res => res.status === 200 ? res.json() : console.error(res.status))
         .then(data => {
             displayCount(data);
             renderBloodAmtGraph(data.totalBlood);

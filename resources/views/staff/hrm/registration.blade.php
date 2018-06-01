@@ -34,206 +34,207 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="nurse" class="tab-pane fade show active">
-                                    <h1 class="well mbr-section-title mbr-fonts-style align-center pb-3 display-2">Register Staff</h1>
+                                    <h1 class="well mbr-section-title mbr-fonts-style align-center display-2">Register Staff</h1>
                                     <hr style="border-top:1px solid gray;" />
-                                    <div class="col-lg-12 well">
+                                    <form id="addStaffForm">
+                                        {{ csrf_field() }}
+                                        <p style="color:red; float: left;">"*" Required fields</p>
+                                        <br />
+                                        <br />
                                         <div class="row">
-                                            <form method="POST" action="/staff/hr/registration">
-                                                {{ csrf_field() }}
-                                                <p style="color:red; float: left;">"*" Required fields</p>
-                                                <br />
-                                                <br />
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>First Name</label>
-                                                            <input type="text" name="firstName" placeholder="John" value="{{old('firstName')}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
-                                                                required="required">
-                                                        </div>
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>Last Name</label>
-                                                            <input type="text" name="lastName" placeholder="Doe" value="{{old('lastName')}}" class="form-control" pattern="[A-Za-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Smith"
-                                                                required="required">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>IC Number</label>
-                                                            <input type="text" name="ICNum" placeholder="981213125523" value="{{old('ICNum')}}" class="form-control" pattern="\d{12}" title="Numeric only. E.g. 985564127789"
-                                                                maxlength="12" required="required">
-                                                        </div>
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>Contact Number</label>
-                                                            <input type="text" name="phoneNum" placeholder="0186559875" value="{{old('phoneNum')}}" class="form-control" pattern="([0-9]|[0-9\-]){3,20}" title="Numeric and '-' symbols only. E.g. 014-8897875"
-                                                                required="required">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>Email</label>
-                                                            <input type="email" name="emailAddress" placeholder="email@hotmail.com" value="{{old('emailAddress')}}" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                                                                title="E.g. - john@hotmail.com" required="required">
-                                                        </div>
-
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                <span style="color:red;">*</span>Birth Date</label>
-                                                            <input class="form-control" type="date" value="{{old('birthDate')}}" name="birthDate" required="required">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label><span style="color:red;">*</span>Gender</label><br/>
-                                                            <input type="radio" name="gender" required="required" value="1" @if(old('gender') === "1") {{'checked="checked"'}}@else{{'checked="checked"'}}@endif>&nbsp;&nbsp;Male&nbsp;&nbsp;
-                                                            <input type="radio" name="gender" required="required" value="0" @if(old('gender') === "0") {{'checked="checked"'}}@endif>&nbsp;&nbsp;Female<br>
-                                                        </div>
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>
-                                                                Profile Picture</label>
-                                                            <input name="profileImage" class="form-control" value="{{old('profileImage')}}" type="file">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" style="margin:auto">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Staff Position</label>
-                                                        <select name="staffPos" class="form-control" required="required">
-                                                            <option disabled="disabled" selected="selected" value>Select staff position</option>
-                                                            <option value="0" selected @if(old('staffPos') === "0") {{'selected="selected"'}}@endif>Nurse</option>
-                                                            <option value="1" @if(old('staffPos') === "1") {{'selected="selected"'}}@endif>Human Resource Manager</option>
-                                                        </select>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row" style="margin:auto">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Home Address</label>
-                                                        <textarea name="homeAddress" class="form-control" required="required" style="height:200px;resize: none;">{{old('homeAddress')}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <div class="submit-button">
-                                                    <button type="submit" class="btn btn-lg btn-success form-btn">Submit</button>
-                                                    <button type="reset" class="btn btn-lg btn-primary form-btn">Reset</button>
-                                                </div>
-                                            </form>
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>First Name</label>
+                                                <input type="text" name="firstName" placeholder="John" class="form-control" pattern="[A-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - John"
+                                                    required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Last Name</label>
+                                                <input type="text" name="lastName" placeholder="Doe" class="form-control" pattern="[A-z\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Smith"
+                                                    required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>IC Number</label>
+                                                <input type="text" name="ICNum" placeholder="981213125523" class="form-control" pattern="\d{12}" title="Numeric only. E.g. 985564127789"
+                                                    maxlength="12" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Contact Number</label>
+                                                <input type="text" name="phoneNum" placeholder="0186559875" class="form-control" pattern="([0-9]|[0-9\-]){3,20}" title="Numeric and '-' symbols only. E.g. 014-8897875"
+                                                    required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Email</label>
+                                                <input type="email" name="emailAddress" placeholder="email@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                                    title="E.g. - john@hotmail.com" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Birth Date</label>
+                                                <input class="form-control" type="date" name="birthDate" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label><span style="color:red;">*</span>Gender</label><br/>
+                                                <input type="radio" name="gender" required="required" value="1" checked="checked">&nbsp;&nbsp;Male&nbsp;&nbsp;
+                                                <input type="radio" name="gender" required="required" value="0">&nbsp;&nbsp;Female<br>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    Profile Picture</label>
+                                                <input name="profileImage" class="form-control" value="" type="file">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Staff Position</label>
+                                                <select name="staffPos" class="form-control" required="required">
+                                                    <option disabled="disabled" selected="selected" value>Select staff position</option>
+                                                    <option value="0" selected="selected">Nurse</option>
+                                                    <option value="1">Human Resource Manager</option>
+                                                </select>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Home Address</label>
+                                                <textarea name="homeAddress" class="form-control" required="required" style="height:200px;resize: none;"></textarea>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <button type="reset" class="btn btn-lg btn-primary btn-block">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div id="event" class="tab-pane fade">
                                     <h1 class="well mbr-section-title mbr-fonts-style align-center display-2">New Blood Donation Event</h1>
                                     <hr style="border-top:1px solid gray;" />
-                                    <div class="col-lg-12 well">
+                                    <form id="addEventForm">
+                                        {{ csrf_field() }}
+                                        <p style="color:red; float: left;">"*" Required fields</p>
+                                        <br />
+                                        <br />
                                         <div class="row">
-                                            <form action="/staff/hr/registration/event" id="addEventForm">
-                                                {{ csrf_field() }}
-                                                <p style="color:red; float: left;">"*" Required fields</p>
-                                                <br />
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-md-12 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Event Name</label>
-                                                        <input type="text" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-Za-z0-9\-@\! ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
-                                                            required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-12 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Event Date</label>
-                                                        <input class="form-control" type="date" name="eventDate" id="eventDate" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-6 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Start Time</label>
-                                                        <input class="form-control" type="time" name="eventStartTime" id="eventStartTime" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                    <div class="col-md-6 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>End Time</label>
-                                                        <input class="form-control" type="time" name="eventEndTime" id="eventEndTime" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12  form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Room</label>
-                                                        <select name="roomID" class="form-control" required="required">
-                                                            <option disabled="disabled" selected="selected" value>Select Room Number</option>
-                                                            @foreach($rooms as $room)
-                                                                <option value="{{$room->roomID}}">Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 form-group">
-                                                        <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
-                                                    </div>
-                                                    <div class="col-md-6 form-group">
-                                                        <button type="reset" class="btn btn-lg btn-primary btn-block">Reset</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <div class="col-md-12 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Event Name</label>
+                                                <input type="text" name="eventName" placeholder="Blood Drive Donation 2018" class="form-control" pattern="[A-z0-9\-@ ]{2,}" title="Alphabetic, @ and - symbols only. E.g. - Blood Drive Donation 2018"
+                                                    required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Event Date</label>
+                                                <input class="form-control" type="date" name="eventDate" id="eventDate" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Start Time</label>
+                                                <input class="form-control" type="time" name="eventStartTime" id="eventStartTime" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>End Time</label>
+                                                <input class="form-control" type="time" name="eventEndTime" id="eventEndTime" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12  form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Room</label>
+                                                <select name="roomID" class="form-control" required="required">
+                                                    <option disabled="disabled" selected="selected" value>Select Room Number</option>
+                                                    @foreach($rooms as $room)
+                                                        <option value="{{$room->roomID}}">Room {{$room->roomID}} (Floor {{$room->floor}}, Quadrant {{$room->quadrant}} - Room {{substr($room->roomID, 3)}})</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <button type="reset" class="btn btn-lg btn-primary btn-block">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div id="room" class="tab-pane fade">
                                     <h1 class="well mbr-section-title mbr-fonts-style align-center display-2">New Room</h1>
                                     <hr style="border-top:1px solid gray;" />
-                                    <div class="col-lg-12 well">
+                                    <form id="addRoomForm">
+                                        {{ csrf_field() }}
+                                        <p style="color:red; float: left;">"*" Required fields</p>
+                                        <br /><br />
                                         <div class="row">
-                                            <form id="addRoomForm">
-                                                {{ csrf_field() }}
-                                                <p style="color:red; float: left;">"*" Required fields</p>
-                                                <br />
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-md-12 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Room No.</label>
-                                                        <input class="form-control" type="number" value="" min="0" name="roomNo" id="roomNo" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Quadrant</label>
-                                                        <input class="form-control" type="number" value="" min="0" max="4" name="quadrant" id="quadrant" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                    <div class="col-sm-6 form-group">
-                                                        <label>
-                                                            <span style="color:red;">*</span>Floor</label>
-                                                        <input class="form-control" type="number" value="" min="0" name="floor" id="floor" required="required">
-                                                        <div class="invalid-feedback"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 form-group">
-                                                        <button type="submit" class="btn btn-lg btn-success  btn-block">Submit</button>
-                                                    </div>
-                                                    <div class="col-md-6 form-group">
-                                                        <button type="reset" class="btn btn-lg btn-primary btn-block">Reset</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <div class="col-md-12 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Room No.</label>
+                                                <input class="form-control" type="number" value="" min="0" name="roomNo" id="roomNo" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Quadrant</label>
+                                                <input class="form-control" type="number" value="" min="0" max="4" name="quadrant" id="quadrant" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <label>
+                                                    <span style="color:red;">*</span>Floor</label>
+                                                <input class="form-control" type="number" value="" min="0" name="floor" id="floor" required="required">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <button type="reset" class="btn btn-lg btn-primary btn-block">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -246,33 +247,6 @@
 
 @section('additionalJS')
     <script src={{"/assets/additional/js/noBackDate.js"}}></script>
-    <script src="{{'/assets/additional/js/donor_util.js'}}"></script>
     <script src="{{'/assets/additional/js/hr_registration_util.js'}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
-
-    @if(session('eventTab'))
-        <script>
-            $('#nurse').removeClass('active show');
-            $('#event').addClass('active show');
-            @php session()->forget('eventTab'); @endphp
-        </script>
-    @elseif(session('roomTab'))
-        <script>
-            $('#nurse').removeClass('active show');
-            $('#room').addClass('active show');
-            @php session()->forget('roomTab'); @endphp
-        </script>
-    @endif
-
-    @if(count($errors) > 0)
-        <script>donorFormError('Empty/Invalid Data Entered', {!! $errors !!});</script>
-    @elseif(session('success'))
-        <script>registrationSuccess('{{session('success')}}')</script>
-    @elseif(session('roomAddFailed'))
-        <script>roomAddFailure('{{session('roomAddFailed')}}')</script>
-    @elseif(session('roomAddDup'))
-        <script>roomAddDuplicated('{{session('roomAddDup')}}')</script>
-    @elseif(session('occupiedRoom'))
-        <script>occupiedRoom('{{session('occupiedRoom')}}')</script>
-    @endif
 @endsection

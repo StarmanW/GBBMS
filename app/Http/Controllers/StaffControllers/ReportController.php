@@ -52,7 +52,7 @@ class ReportController extends Controller {
     public function exceptionReportProcessForm(Request $request) {
         //Validate event ID
         $validator = Validator::make($request->all(), [
-            'eventID' => ['required', 'regex:/E\d{6}/']
+            'eventID' => ['required', 'regex:/^E\d{6}$/']
         ]);
 
         //Return the appropriate response

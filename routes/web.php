@@ -96,13 +96,12 @@ Route::group(['prefix' => 'staff/hr', 'middleware' => ['web', 'auth:staff', 'HRS
     Route::post('/profile/deactivate', 'StaffControllers\StaffController@deactivate');
 
     /***** REGISTER SECTION *****/
-    //Staff Register
     Route::get('/registration', 'StaffControllers\StaffEventController@create')->name('register');
-    Route::post('/registration', 'StaffAuth\RegisterController@register');
 
+    //Staff register
+    Route::post('/registration/staff', 'StaffAuth\RegisterController@register');
     //Event Register
     Route::post('/registration/event', 'StaffControllers\StaffEventController@store');
-
     //Room register
     Route::post('/registration/room', 'StaffControllers\StaffRoomController@store');
 
